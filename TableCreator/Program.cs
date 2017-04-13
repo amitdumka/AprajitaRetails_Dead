@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AprajitaRetails
+namespace TableCreator
 {
     static class Program
     {
@@ -16,9 +16,7 @@ namespace AprajitaRetails
         {
             Application.EnableVisualStyles ();
             Application.SetCompatibleTextRenderingDefault (false);
-            DataBase.DataBaseName = "aprajitaRetails";
-            DBHelper.SetDataBaseName (DataBase.DataBaseName);
-            Application.Run (new LoginForm ());
+            Application.Run (new Form1 ());
         }
     }
 }
