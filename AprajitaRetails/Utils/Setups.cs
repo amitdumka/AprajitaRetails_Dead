@@ -19,6 +19,7 @@ namespace AprajitaRetails
         }
         public static int IsUserTableExit()
         {
+            Logs.LogMe ("Checking UserTable with default id exist or not...");
             return
             DataBase.IsTableWithDefaultExit ("Users");
         }

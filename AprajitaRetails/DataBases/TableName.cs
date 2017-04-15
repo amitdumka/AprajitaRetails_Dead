@@ -28,7 +28,7 @@ namespace AprajitaRetails
         public static string Advances;
         public static string Incentive;
 
-        //Expenses
+        //ExpensesForm
         public static string Expenses;
         public static string Bank;
         public static string BankDetails;

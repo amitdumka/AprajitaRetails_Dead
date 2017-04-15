@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicWPF", "..\ClinicManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberNBasicOperations", "CyberNBasicOperations\CyberNBasicOperations.csproj", "{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem", "..\..\..\..\Desktop\BusTicketPrinting\RestorantBillingSystem\TicketingSystem.csproj", "{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

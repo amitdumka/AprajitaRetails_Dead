@@ -46,6 +46,7 @@ namespace AprajitaRetails
         {
             OleDBName = database + ".mdf";
             SqlDBName = database + ".mdf";
+            Logs.LogMe ("Setting Both Database Name to "+database);
         }
         /// <summary>
         /// Get Connection Objects
@@ -54,17 +55,21 @@ namespace AprajitaRetails
         /// <returns></returns>
         public Object GetConnectioObject(int DBTypes)
         {
+            Logs.LogMe ("Preparing to Send Connection Object");
             if ( DBTypes == ConType.SQLDB )
             {
                 sqlDB = new SqlConnection (ConStr);
+                Logs.LogMe ("SqlConnection Object is Created");
                 try
                 {
                     sqlDB.Open ();
+                    Logs.LogMe ("DataBase got Opened");
                     return sqlDB;
                 }
-                catch ( Exception )
+                catch ( Exception e)
                 {
 
+                    Logs.LogMe ("Exceptoin Happend! Exp:" +e.Message);
                     //throw;
                     return null;
                 }

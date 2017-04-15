@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AprajitaRetails.Forms
 {
-    public partial class Expenses : Form
+    public partial class ExpensesForm : Form
     {
-        public Expenses()
+        public ExpensesForm()
         {
             InitializeComponent();
         }

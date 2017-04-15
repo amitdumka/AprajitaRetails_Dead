@@ -22,7 +22,7 @@ namespace AprajitaRetails
 
         private void ShowNewForm(Form childForm)
         {
-           // Form childForm = new Form ();
+            // Form childForm = new Form ();
             childForm.MdiParent = this;
             //childForm.Text = "Window " + childFormNumber++;
             childForm.Show ();
@@ -53,6 +53,7 @@ namespace AprajitaRetails
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close ();
+            Application.Exit ();
         }
 
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,6 +124,51 @@ namespace AprajitaRetails
         private void uploadSaleRegisterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowNewForm (new Form1 ());
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new AprajitaRetails.Forms.FormTest ());
+        }
+
+        private void customersDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new CustomersForm ());
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new SaleInvoiceForm ());
+        }
+
+        private void salaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new SalaryForm ());
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new ExpensesForm ());
+        }
+
+        private void employeeDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new EmployeeForm ());
+        }
+
+        private void attendenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new AttendenceForm ());
+        }
+
+        private void updateEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new EmployeeForm ());
+        }
+
+        private void TSMIExpenses_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new ExpensesForm ());
         }
     }
 }

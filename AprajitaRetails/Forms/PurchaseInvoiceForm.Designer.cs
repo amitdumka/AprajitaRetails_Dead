@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GBPurchaseInvoice = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,41 +39,42 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.TXTGRNNo = new System.Windows.Forms.TextBox();
+            this.DTPGRNDate = new System.Windows.Forms.DateTimePicker();
+            this.TXTInvoiceNo = new System.Windows.Forms.TextBox();
+            this.DTPInvoiceDate = new System.Windows.Forms.DateTimePicker();
+            this.CBProductType = new System.Windows.Forms.ComboBox();
+            this.TXTTotalAmount = new System.Windows.Forms.TextBox();
+            this.TXTTaxAmount = new System.Windows.Forms.TextBox();
+            this.CKPaid = new System.Windows.Forms.CheckBox();
+            this.CKStockOk = new System.Windows.Forms.CheckBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.TXTGrandTotal = new System.Windows.Forms.TextBox();
             this.GBControls = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BTNAdd = new System.Windows.Forms.Button();
             this.BTNDelete = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.GBPurchaseInvoice.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.GBControls.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // GBPurchaseInvoice
             // 
-            this.groupBox1.AutoSize = true;
-            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(50);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(550, 194);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.GBPurchaseInvoice.AutoSize = true;
+            this.GBPurchaseInvoice.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.GBPurchaseInvoice.Controls.Add(this.tableLayoutPanel1);
+            this.GBPurchaseInvoice.Location = new System.Drawing.Point(21, 19);
+            this.GBPurchaseInvoice.Margin = new System.Windows.Forms.Padding(89, 77, 89, 77);
+            this.GBPurchaseInvoice.Name = "GBPurchaseInvoice";
+            this.GBPurchaseInvoice.Padding = new System.Windows.Forms.Padding(5);
+            this.GBPurchaseInvoice.Size = new System.Drawing.Size(974, 282);
+            this.GBPurchaseInvoice.TabIndex = 0;
+            this.GBPurchaseInvoice.TabStop = false;
+            this.GBPurchaseInvoice.Text = "Purchase Invice Details";
             // 
             // tableLayoutPanel1
             // 
@@ -94,19 +95,20 @@
             this.tableLayoutPanel1.Controls.Add(this.label7, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label10, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.TXTGRNNo, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.DTPGRNDate, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TXTInvoiceNo, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DTPInvoiceDate, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.CBProductType, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.TXTTotalAmount, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.TXTTaxAmount, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.CKPaid, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.CKStockOk, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox6, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.TXTGrandTotal, 3, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 36);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -114,182 +116,204 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(544, 169);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 241);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(5, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 20);
+            this.label1.Size = new System.Drawing.Size(113, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "GRNNo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 32);
+            this.label2.Location = new System.Drawing.Point(5, 48);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 20);
+            this.label2.Size = new System.Drawing.Size(141, 32);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.label2.Text = "InvoiceNo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 64);
+            this.label3.Location = new System.Drawing.Point(5, 96);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 20);
+            this.label3.Size = new System.Drawing.Size(176, 32);
             this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.label3.Text = "ProductType";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(273, 0);
+            this.label4.Location = new System.Drawing.Point(413, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
+            this.label4.Size = new System.Drawing.Size(137, 32);
             this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.label4.Text = "GRNDate";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(273, 32);
+            this.label5.Location = new System.Drawing.Point(413, 48);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 20);
+            this.label5.Size = new System.Drawing.Size(165, 32);
             this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.label5.Text = "InvoiceDate";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(273, 64);
+            this.label6.Location = new System.Drawing.Point(413, 96);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.Size = new System.Drawing.Size(184, 32);
             this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.label6.Text = "Total Amount";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(273, 98);
+            this.label7.Location = new System.Drawing.Point(413, 145);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 20);
+            this.label7.Size = new System.Drawing.Size(167, 32);
             this.label7.TabIndex = 6;
-            this.label7.Text = "label7";
+            this.label7.Text = "Tax Amount";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 137);
+            this.label9.Location = new System.Drawing.Point(5, 193);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 20);
+            this.label9.Size = new System.Drawing.Size(130, 32);
             this.label9.TabIndex = 8;
-            this.label9.Text = "label9";
+            this.label9.Text = "Total Qty";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(273, 137);
+            this.label10.Location = new System.Drawing.Point(413, 193);
+            this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 20);
+            this.label10.Size = new System.Drawing.Size(165, 32);
             this.label10.TabIndex = 9;
-            this.label10.Text = "label10";
+            this.label10.Text = "Grand Total";
             // 
-            // textBox1
+            // TXTGRNNo
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 10;
+            this.TXTGRNNo.Location = new System.Drawing.Point(191, 5);
+            this.TXTGRNNo.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTGRNNo.Name = "TXTGRNNo";
+            this.TXTGRNNo.Size = new System.Drawing.Size(212, 38);
+            this.TXTGRNNo.TabIndex = 10;
             // 
-            // dateTimePicker1
+            // DTPGRNDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(341, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker1.TabIndex = 11;
+            this.DTPGRNDate.Location = new System.Drawing.Point(607, 5);
+            this.DTPGRNDate.Margin = new System.Windows.Forms.Padding(5);
+            this.DTPGRNDate.Name = "DTPGRNDate";
+            this.DTPGRNDate.Size = new System.Drawing.Size(352, 38);
+            this.DTPGRNDate.TabIndex = 11;
             // 
-            // textBox2
+            // TXTInvoiceNo
             // 
-            this.textBox2.Location = new System.Drawing.Point(138, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
-            this.textBox2.TabIndex = 12;
+            this.TXTInvoiceNo.Location = new System.Drawing.Point(191, 53);
+            this.TXTInvoiceNo.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTInvoiceNo.Name = "TXTInvoiceNo";
+            this.TXTInvoiceNo.Size = new System.Drawing.Size(212, 38);
+            this.TXTInvoiceNo.TabIndex = 12;
             // 
-            // dateTimePicker2
+            // DTPInvoiceDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(341, 35);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker2.TabIndex = 13;
+            this.DTPInvoiceDate.Location = new System.Drawing.Point(607, 53);
+            this.DTPInvoiceDate.Margin = new System.Windows.Forms.Padding(5);
+            this.DTPInvoiceDate.Name = "DTPInvoiceDate";
+            this.DTPInvoiceDate.Size = new System.Drawing.Size(352, 38);
+            this.DTPInvoiceDate.TabIndex = 13;
             // 
-            // comboBox1
+            // CBProductType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(138, 67);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 14;
+            this.CBProductType.FormattingEnabled = true;
+            this.CBProductType.Location = new System.Drawing.Point(191, 101);
+            this.CBProductType.Margin = new System.Windows.Forms.Padding(5);
+            this.CBProductType.Name = "CBProductType";
+            this.CBProductType.Size = new System.Drawing.Size(212, 39);
+            this.CBProductType.TabIndex = 14;
             // 
-            // textBox3
+            // TXTTotalAmount
             // 
-            this.textBox3.Location = new System.Drawing.Point(341, 67);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 26);
-            this.textBox3.TabIndex = 15;
+            this.TXTTotalAmount.Location = new System.Drawing.Point(607, 101);
+            this.TXTTotalAmount.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTTotalAmount.Name = "TXTTotalAmount";
+            this.TXTTotalAmount.Size = new System.Drawing.Size(213, 38);
+            this.TXTTotalAmount.TabIndex = 15;
             // 
-            // textBox4
+            // TXTTaxAmount
             // 
-            this.textBox4.Location = new System.Drawing.Point(341, 101);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 26);
-            this.textBox4.TabIndex = 16;
+            this.TXTTaxAmount.Location = new System.Drawing.Point(607, 150);
+            this.TXTTaxAmount.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTTaxAmount.Name = "TXTTaxAmount";
+            this.TXTTaxAmount.Size = new System.Drawing.Size(213, 38);
+            this.TXTTaxAmount.TabIndex = 16;
             // 
-            // textBox5
+            // CKPaid
             // 
-            this.textBox5.Location = new System.Drawing.Point(341, 140);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 26);
-            this.textBox5.TabIndex = 17;
+            this.CKPaid.AutoSize = true;
+            this.CKPaid.Location = new System.Drawing.Point(5, 150);
+            this.CKPaid.Margin = new System.Windows.Forms.Padding(5);
+            this.CKPaid.Name = "CKPaid";
+            this.CKPaid.Size = new System.Drawing.Size(111, 36);
+            this.CKPaid.TabIndex = 18;
+            this.CKPaid.Text = "Paid";
+            this.CKPaid.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // CKStockOk
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 101);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(129, 33);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(138, 101);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(129, 33);
-            this.checkBox2.TabIndex = 19;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.CKStockOk.AutoSize = true;
+            this.CKStockOk.Location = new System.Drawing.Point(191, 150);
+            this.CKStockOk.Margin = new System.Windows.Forms.Padding(5);
+            this.CKStockOk.Name = "CKStockOk";
+            this.CKStockOk.Size = new System.Drawing.Size(208, 36);
+            this.CKStockOk.TabIndex = 19;
+            this.CKStockOk.Text = "Stock Match";
+            this.CKStockOk.UseVisualStyleBackColor = true;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(138, 140);
+            this.textBox6.Location = new System.Drawing.Point(191, 198);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(5);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 26);
+            this.textBox6.Size = new System.Drawing.Size(175, 38);
             this.textBox6.TabIndex = 20;
+            // 
+            // TXTGrandTotal
+            // 
+            this.TXTGrandTotal.Location = new System.Drawing.Point(607, 198);
+            this.TXTGrandTotal.Margin = new System.Windows.Forms.Padding(5);
+            this.TXTGrandTotal.Name = "TXTGrandTotal";
+            this.TXTGrandTotal.Size = new System.Drawing.Size(213, 38);
+            this.TXTGrandTotal.TabIndex = 17;
             // 
             // GBControls
             // 
             this.GBControls.AutoSize = true;
             this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(12, 231);
+            this.GBControls.Location = new System.Drawing.Point(21, 358);
+            this.GBControls.Margin = new System.Windows.Forms.Padding(5);
             this.GBControls.Name = "GBControls";
-            this.GBControls.Size = new System.Drawing.Size(330, 61);
+            this.GBControls.Padding = new System.Windows.Forms.Padding(5);
+            this.GBControls.Size = new System.Drawing.Size(788, 116);
             this.GBControls.TabIndex = 4;
             this.GBControls.TabStop = false;
             this.GBControls.Text = "Controls";
@@ -303,17 +327,19 @@
             this.flowLayoutPanel2.Controls.Add(this.Cancel);
             this.flowLayoutPanel2.Controls.Add(this.BTNUpdate);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 22);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 36);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(324, 36);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(778, 75);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // BTNAdd
             // 
             this.BTNAdd.AutoSize = true;
-            this.BTNAdd.Location = new System.Drawing.Point(3, 3);
+            this.BTNAdd.Location = new System.Drawing.Point(5, 5);
+            this.BTNAdd.Margin = new System.Windows.Forms.Padding(5);
             this.BTNAdd.Name = "BTNAdd";
-            this.BTNAdd.Size = new System.Drawing.Size(75, 30);
+            this.BTNAdd.Size = new System.Drawing.Size(135, 65);
             this.BTNAdd.TabIndex = 4;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
@@ -321,9 +347,10 @@
             // BTNDelete
             // 
             this.BTNDelete.AutoSize = true;
-            this.BTNDelete.Location = new System.Drawing.Point(84, 3);
+            this.BTNDelete.Location = new System.Drawing.Point(150, 5);
+            this.BTNDelete.Margin = new System.Windows.Forms.Padding(5);
             this.BTNDelete.Name = "BTNDelete";
-            this.BTNDelete.Size = new System.Drawing.Size(75, 30);
+            this.BTNDelete.Size = new System.Drawing.Size(192, 65);
             this.BTNDelete.TabIndex = 6;
             this.BTNDelete.Text = "Delete";
             this.BTNDelete.UseVisualStyleBackColor = true;
@@ -331,9 +358,10 @@
             // Cancel
             // 
             this.Cancel.AutoSize = true;
-            this.Cancel.Location = new System.Drawing.Point(165, 3);
+            this.Cancel.Location = new System.Drawing.Point(352, 5);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(5);
             this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(75, 30);
+            this.Cancel.Size = new System.Drawing.Size(203, 65);
             this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
@@ -341,24 +369,28 @@
             // BTNUpdate
             // 
             this.BTNUpdate.AutoSize = true;
-            this.BTNUpdate.Location = new System.Drawing.Point(246, 3);
+            this.BTNUpdate.Location = new System.Drawing.Point(565, 5);
+            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(5);
             this.BTNUpdate.Name = "BTNUpdate";
-            this.BTNUpdate.Size = new System.Drawing.Size(75, 30);
+            this.BTNUpdate.Size = new System.Drawing.Size(208, 65);
             this.BTNUpdate.TabIndex = 5;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
             // 
             // PurchaseInvoiceForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 371);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1084, 575);
             this.Controls.Add(this.GBControls);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GBPurchaseInvoice);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "PurchaseInvoiceForm";
             this.Text = "PurchaseInvoiceForm";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GBPurchaseInvoice.ResumeLayout(false);
+            this.GBPurchaseInvoice.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.GBControls.ResumeLayout(false);
@@ -372,7 +404,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GBPurchaseInvoice;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -383,16 +415,16 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox TXTGRNNo;
+        private System.Windows.Forms.DateTimePicker DTPGRNDate;
+        private System.Windows.Forms.TextBox TXTInvoiceNo;
+        private System.Windows.Forms.DateTimePicker DTPInvoiceDate;
+        private System.Windows.Forms.ComboBox CBProductType;
+        private System.Windows.Forms.TextBox TXTTotalAmount;
+        private System.Windows.Forms.TextBox TXTTaxAmount;
+        private System.Windows.Forms.TextBox TXTGrandTotal;
+        private System.Windows.Forms.CheckBox CKPaid;
+        private System.Windows.Forms.CheckBox CKStockOk;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.GroupBox GBControls;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;

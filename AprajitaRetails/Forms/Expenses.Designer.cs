@@ -1,6 +1,6 @@
 ﻿namespace AprajitaRetails.Forms
 {
-    partial class Expenses
+    partial class ExpensesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Expenses";
+            this.Text = "ExpensesForm";
         }
 
         #endregion

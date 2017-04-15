@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AprajitaRetails.DataModel
 {
     /// <summary>
-    /// Table Name: Expenses
+    /// Table Name: ExpensesForm
     /// </summary>
     class Expenses
     {
@@ -91,7 +91,7 @@ namespace AprajitaRetails.DataModel
         public int Level { get; set; }
     }
     /// <summary>
-    /// Expenses Level
+    /// ExpensesForm Level
     /// </summary>
     class ExpensesLevel
     {

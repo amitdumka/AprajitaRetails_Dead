@@ -8,7 +8,7 @@ namespace AprajitaRetails
 {
     class DataBase : IDisposable
     {
-        public static  string DataBaseName = "aprajitaRedtails";
+        public static string DataBaseName = "aprajitaRetails";
         DBHelper db;
         public static int DBType = 1;
         protected virtual void Dispose(bool disposing)
@@ -40,7 +40,7 @@ namespace AprajitaRetails
             if ( result == 1 )
             {
                 cmd.CommandText = "Select Count(*)as CTR from " + tablename;
-                result = (int)cmd.ExecuteScalar ();
+                result = (int) cmd.ExecuteScalar ();
                 Console.WriteLine ("ok2=" + result);
                 if ( result > 0 )
                     return 2;
@@ -187,6 +187,7 @@ namespace AprajitaRetails
 
         public static Object GetConnectionObject(int type)
         {
+            Logs.LogMe ("DataBase.GetConnectionObject=" + type);
             return new DBHelper ().GetConnectioObject (type);
         }
 

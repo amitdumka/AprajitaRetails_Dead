@@ -9,9 +9,9 @@ namespace AprajitaRetails
 {
     public class Logs
     {
-        public static string Filename = "log_" + DateTime.Now.ToLongDateString () + ".txt";
+        public static string Filename = "log_" + DateTime.Now.ToLongDateString ()+"_"+DateTime.Today.ToFileTime()  + ".txt";
 
-        private static string logfile = "log_" + DateTime.Now.ToLongDateString () + ".txt";
+        private static string logfile = Filename;
         public static string LogFile { get => logfile; set => logfile = value; }
         public static string GetTempFileName()
         {
@@ -19,7 +19,7 @@ namespace AprajitaRetails
         }
         public static void LogMe(string logMessage)
         {
-            Task t = Task.Run (() => Log (logMessage)     );
+            Task t = Task.Run (() => Log (logMessage));
         }
 
         public static void Logf(string logMessage)
@@ -66,7 +66,7 @@ namespace AprajitaRetails
                 w.Flush ();
                 w.Close ();
             }
-            catch ( Exception )
+            catch ( Exception e )
             {
                 Console.Write ("\r\nLog Entry : ");
                 Console.WriteLine ("{0} {1}", DateTime.Now.ToLongTimeString (),
@@ -74,6 +74,7 @@ namespace AprajitaRetails
                 Console.WriteLine ("  :");
                 Console.WriteLine ("  :{0}", logMessage);
                 Console.WriteLine ("-------------------------------");
+                Console.WriteLine ("EXPS: " + e.Message);
             }
         }
     }

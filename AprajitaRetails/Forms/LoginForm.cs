@@ -15,16 +15,19 @@ namespace AprajitaRetails
         public LoginForm()
         {
             InitializeComponent ();
+            Logs.LogMe ("Login Form Loaded..");
             int x = Setups.IsUserTableExit ();
+            Logs.LogMe ("Check User Table Exist or not: x="+x);
             if ( x < 0 )
             {
+                Logs.LogMe ("Creating AuthTable");
                 AuthUser.CreateAuthUserTable (x);
             }
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            Logs.LogMe ("loginForm onLoad...");
 
         }
 

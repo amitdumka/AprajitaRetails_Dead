@@ -20,11 +20,14 @@ namespace AprajitaRetails
             string sql = "CREATE TABLE Users (Id INT NOT NULL," +
                 "username varchar(50) NOT NULL,passwd varchar(20) NOT NULL,role INT NOT NULL, " +
                 "CONSTRAINT unTb UNIQUE (Id));";
+            Logs.LogMe ("CreateAuthUserTable:MODE: "+mode);
+
             DBHelper db = new DBHelper ();
             int ctr = 0;
             if ( mode == -1 )
             {
                 ctr = db.InsertQuerySql (sql);
+                Logs.LogMe ("TableCreated");
             }
             if ( mode == -2 )
             {
@@ -35,6 +38,7 @@ namespace AprajitaRetails
                 Console.WriteLine ("Table Created");
                 sql = "insert into users values(1,'admin','admin',1);";
                 ctr = db.InsertQuerySql (sql);
+                Logs.LogMe ("Defaults Added");
                 if ( ctr > 0 )
                     status = true;
                 else

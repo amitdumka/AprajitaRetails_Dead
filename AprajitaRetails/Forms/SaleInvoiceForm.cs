@@ -15,6 +15,7 @@ namespace AprajitaRetails.Forms
         public SaleInvoiceForm()
         {
             InitializeComponent();
+            
         }
     }
 }
