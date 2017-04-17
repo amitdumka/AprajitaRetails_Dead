@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AprajitaRetails", "AprajitaRetails\AprajitaRetails.csproj", "{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "..\..\..\..\Desktop\Excel - Kopie\ExcelReader.csproj", "{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManager", "..\ClinicManager\ClinicManager\ClinicManager.csproj", "{40877CBA-3A08-4954-B242-44238717FBEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberNBasicOperations", "CyberNBasicOperations\CyberNBasicOperations.csproj", "{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem", "..\..\..\..\Desktop\BusTicketPrinting\RestorantBillingSystem\TicketingSystem.csproj", "{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "ExcelReader\ExcelReader.csproj", "{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B36E80-39AC-4BB6-B989-BFB41B7E8A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
