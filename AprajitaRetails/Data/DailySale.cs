@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectScriptingExtensions;
-namespace AprajitaRetails.DataModel
+namespace AprajitaRetails.Data
 {
     public class DailySale
     {
@@ -13,8 +13,23 @@ namespace AprajitaRetails.DataModel
         public int CustomerID { set; get; }
         public string InvoiceNo { set; get; }
         public double Amount { set; get; }
-        public int DiscountID { set; get; }
-        
+        public double Discount { set; get; }
+        public int RMZ { set; get; }
+        public int Fabric { set; get; }
+        public int Tailoring { set; get; }
+        public int PaymentMode { set; get; }
+
+    }
+    public class NewCustomer
+    {
+        public int ID { set; get; }
+        public int CustomerID { set; get; }
+        public string InvoiceNo { set; get; }
+        public DateTime OnDate { set; get; }
+        public string CustomerFullName { get; set; }
+
+
+
     }
     class Discounts
     {

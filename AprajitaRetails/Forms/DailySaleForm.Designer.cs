@@ -44,24 +44,24 @@
             this.TXTCustomerName = new System.Windows.Forms.TextBox();
             this.NUDRmz = new System.Windows.Forms.NumericUpDown();
             this.NUDFabric = new System.Windows.Forms.NumericUpDown();
-            this.NUMTailoring = new System.Windows.Forms.NumericUpDown();
+            this.NUDTailoring = new System.Windows.Forms.NumericUpDown();
             this.TXTBillAmount = new System.Windows.Forms.TextBox();
             this.TXTDiscount = new System.Windows.Forms.TextBox();
             this.CBPaymentMode = new System.Windows.Forms.ComboBox();
             this.CKNewCustomer = new System.Windows.Forms.CheckBox();
+            this.CKPostDated = new System.Windows.Forms.CheckBox();
+            this.DTPDate = new System.Windows.Forms.DateTimePicker();
             this.GBControls = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BTNAdd = new System.Windows.Forms.Button();
             this.BTNDelete = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
-            this.CKPostDated = new System.Windows.Forms.CheckBox();
-            this.DTPDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.TLPInvoiceDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDRmz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDFabric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUMTailoring)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDTailoring)).BeginInit();
             this.GBControls.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(1984, 275);
+            this.groupBox1.Size = new System.Drawing.Size(2000, 267);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Invoice Details";
@@ -106,7 +106,7 @@
             this.TLPInvoiceDetails.Controls.Add(this.TXTCustomerName, 5, 0);
             this.TLPInvoiceDetails.Controls.Add(this.NUDRmz, 1, 1);
             this.TLPInvoiceDetails.Controls.Add(this.NUDFabric, 3, 1);
-            this.TLPInvoiceDetails.Controls.Add(this.NUMTailoring, 5, 1);
+            this.TLPInvoiceDetails.Controls.Add(this.NUDTailoring, 5, 1);
             this.TLPInvoiceDetails.Controls.Add(this.TXTBillAmount, 1, 2);
             this.TLPInvoiceDetails.Controls.Add(this.TXTDiscount, 3, 2);
             this.TLPInvoiceDetails.Controls.Add(this.CBPaymentMode, 5, 2);
@@ -121,7 +121,7 @@
             this.TLPInvoiceDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPInvoiceDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPInvoiceDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPInvoiceDetails.Size = new System.Drawing.Size(1974, 234);
+            this.TLPInvoiceDetails.Size = new System.Drawing.Size(1990, 226);
             this.TLPInvoiceDetails.TabIndex = 0;
             // 
             // label1
@@ -255,13 +255,13 @@
             this.NUDFabric.Size = new System.Drawing.Size(313, 38);
             this.NUDFabric.TabIndex = 13;
             // 
-            // NUMTailoring
+            // NUDTailoring
             // 
-            this.NUMTailoring.Location = new System.Drawing.Point(1215, 54);
-            this.NUMTailoring.Margin = new System.Windows.Forms.Padding(5);
-            this.NUMTailoring.Name = "NUMTailoring";
-            this.NUMTailoring.Size = new System.Drawing.Size(213, 38);
-            this.NUMTailoring.TabIndex = 14;
+            this.NUDTailoring.Location = new System.Drawing.Point(1215, 54);
+            this.NUDTailoring.Margin = new System.Windows.Forms.Padding(5);
+            this.NUDTailoring.Name = "NUDTailoring";
+            this.NUDTailoring.Size = new System.Drawing.Size(213, 38);
+            this.NUDTailoring.TabIndex = 14;
             // 
             // TXTBillAmount
             // 
@@ -287,6 +287,7 @@
             this.CBPaymentMode.Name = "CBPaymentMode";
             this.CBPaymentMode.Size = new System.Drawing.Size(212, 39);
             this.CBPaymentMode.TabIndex = 17;
+            this.CBPaymentMode.SelectedIndexChanged += new System.EventHandler(this.CBPaymentMode_SelectedIndexChanged);
             // 
             // CKNewCustomer
             // 
@@ -298,6 +299,24 @@
             this.CKNewCustomer.TabIndex = 18;
             this.CKNewCustomer.Text = "New Customer";
             this.CKNewCustomer.UseVisualStyleBackColor = true;
+            // 
+            // CKPostDated
+            // 
+            this.CKPostDated.AutoSize = true;
+            this.CKPostDated.Location = new System.Drawing.Point(1601, 52);
+            this.CKPostDated.Name = "CKPostDated";
+            this.CKPostDated.Size = new System.Drawing.Size(193, 36);
+            this.CKPostDated.TabIndex = 19;
+            this.CKPostDated.Text = "Post Dated";
+            this.CKPostDated.UseVisualStyleBackColor = true;
+            // 
+            // DTPDate
+            // 
+            this.DTPDate.Location = new System.Drawing.Point(1601, 100);
+            this.DTPDate.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
+            this.DTPDate.Name = "DTPDate";
+            this.DTPDate.Size = new System.Drawing.Size(200, 38);
+            this.DTPDate.TabIndex = 20;
             // 
             // GBControls
             // 
@@ -338,6 +357,7 @@
             this.BTNAdd.TabIndex = 4;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNDelete
             // 
@@ -360,6 +380,7 @@
             this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // BTNUpdate
             // 
@@ -372,41 +393,25 @@
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
             // 
-            // CKPostDated
-            // 
-            this.CKPostDated.AutoSize = true;
-            this.CKPostDated.Location = new System.Drawing.Point(1601, 52);
-            this.CKPostDated.Name = "CKPostDated";
-            this.CKPostDated.Size = new System.Drawing.Size(193, 36);
-            this.CKPostDated.TabIndex = 19;
-            this.CKPostDated.Text = "Post Dated";
-            this.CKPostDated.UseVisualStyleBackColor = true;
-            // 
-            // DTPDate
-            // 
-            this.DTPDate.Location = new System.Drawing.Point(1601, 100);
-            this.DTPDate.Name = "DTPDate";
-            this.DTPDate.Size = new System.Drawing.Size(200, 38);
-            this.DTPDate.TabIndex = 20;
-            // 
             // DailySaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2361, 800);
+            this.ClientSize = new System.Drawing.Size(2030, 800);
             this.Controls.Add(this.GBControls);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "DailySaleForm";
             this.Text = "Daily Sales";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.DailySaleForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.TLPInvoiceDetails.ResumeLayout(false);
             this.TLPInvoiceDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDRmz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDFabric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUMTailoring)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDTailoring)).EndInit();
             this.GBControls.ResumeLayout(false);
             this.GBControls.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
@@ -434,7 +439,7 @@
         private System.Windows.Forms.TextBox TXTCustomerName;
         private System.Windows.Forms.NumericUpDown NUDRmz;
         private System.Windows.Forms.NumericUpDown NUDFabric;
-        private System.Windows.Forms.NumericUpDown NUMTailoring;
+        private System.Windows.Forms.NumericUpDown NUDTailoring;
         private System.Windows.Forms.TextBox TXTBillAmount;
         private System.Windows.Forms.TextBox TXTDiscount;
         private System.Windows.Forms.ComboBox CBPaymentMode;

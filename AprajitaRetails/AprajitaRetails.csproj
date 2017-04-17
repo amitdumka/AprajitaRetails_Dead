@@ -81,6 +81,17 @@
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="Auths\AuthUser.cs" />
+    <Compile Include="Constant\Constants.cs" />
+    <Compile Include="DataModel\AuthUsers.cs" />
+    <Compile Include="DataModel\CashDetail.cs" />
+    <Compile Include="DataModel\Customer.cs" />
+    <Compile Include="DataModel\DailySaleDM.cs" />
+    <Compile Include="DataModel\Employee.cs" />
+    <Compile Include="DataModel\Expenses.cs" />
+    <Compile Include="DataModel\FootFall.cs" />
+    <Compile Include="DataModel\Purchase.cs" />
+    <Compile Include="DataModel\Salary.cs" />
+    <Compile Include="Excels\ExcelUploader.cs" />
     <Compile Include="Forms\AttendenceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,9 +110,16 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UploaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UploaderForm.Designer.cs">
+      <DependentUpon>UploaderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Utils\Controls.cs" />
     <Compile Include="Utils\Setups.cs" />
-    <Compile Include="DataModel\AuthUsers.cs" />
+    <Compile Include="Data\AuthUsers.cs" />
     <Compile Include="Utils\Basic.cs" />
     <Compile Include="DataBases\DataBase.cs" />
     <Compile Include="DataBases\DBHelper.cs" />
@@ -111,15 +129,14 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\CashDetail.cs" />
-    <Compile Include="DataModel\Customer.cs" />
-    <Compile Include="DataModel\DailySale.cs" />
-    <Compile Include="DataModel\Employee.cs" />
-    <Compile Include="DataModel\Expenses.cs" />
-    <Compile Include="DataModel\FootFall.cs" />
-    <Compile Include="DataModel\Salary.cs" />
-    <Compile Include="DataModel\SaleItemWise.cs" />
-    <Compile Include="Excels\ExcelReader.cs" />
+    <Compile Include="Data\CashDetail.cs" />
+    <Compile Include="Data\Customer.cs" />
+    <Compile Include="Data\DailySale.cs" />
+    <Compile Include="Data\Employee.cs" />
+    <Compile Include="Data\Expenses.cs" />
+    <Compile Include="Data\FootFall.cs" />
+    <Compile Include="Data\Salary.cs" />
+    <Compile Include="Data\SaleItemWise.cs" />
     <Compile Include="Excels\ExcelToDB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -184,13 +201,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataModel\Purchase.cs" />
-    <Compile Include="DataModel\SaleRegister.cs" />
+    <Compile Include="Data\Purchase.cs" />
+    <Compile Include="Data\SaleRegister.cs" />
     <Compile Include="TableCreator\MainProgram.cs" />
     <Compile Include="TableCreator\TableClass.cs" />
     <Compile Include="DataBases\TableName.cs" />
+    <Compile Include="ViewModel\CustomerVM.cs" />
+    <Compile Include="ViewModel\DailySalesVM.cs" />
+    <Compile Include="ViewModel\Features.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AttendenceForm.resx">
+      <DependentUpon>AttendenceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
@@ -213,8 +236,14 @@
     <EmbeddedResource Include="Forms\PurchaseInvoiceForm.resx">
       <DependentUpon>PurchaseInvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Salary.resx">
+      <DependentUpon>Salary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleInvoiceForm.resx">
       <DependentUpon>SaleInvoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UploaderForm.resx">
+      <DependentUpon>UploaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMDI.resx">
       <DependentUpon>MainMDI.cs</DependentUpon>

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AprajitaRetails.DataModel;
+using AprajitaRetails.Data;
 using TableCreator;
 
 namespace AprajitaRetails
@@ -12,7 +12,7 @@ namespace AprajitaRetails
     public partial class Form1 : Form
     {
         private List<string> itemlist = new List<string> ();
-        private ExcelReader ER;
+        private ExcelUploader ER;
         private ExcelToDB EDB;
         public int RecordCount = 0;
 
@@ -28,7 +28,7 @@ namespace AprajitaRetails
             comboBox1.Items.Add (itemlist [1]);
             comboBox1.Items.Add (itemlist [2]);
             comboBox1.SelectedIndex = 0;
-            ER = new ExcelReader ();
+            ER = new ExcelUploader ();
             EDB = new ExcelToDB ();
         }
 

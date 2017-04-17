@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AprajitaRetails.DataModel
+namespace AprajitaRetails.Data
 {
     /// <summary>
     /// Table Name: ExpensesForm
     /// </summary>
-    class ExpensesDM
+    class Expenses
     {
         public int ID { get; set; }
         public int ExpensesCategoryID { get; set; }
@@ -24,7 +24,7 @@ namespace AprajitaRetails.DataModel
     /// <summary>
     /// TableName : Bank
     /// </summary>
-    class BankDM
+    class Bank
     {
         /// <summary>
         /// Account Type Constants
@@ -43,11 +43,27 @@ namespace AprajitaRetails.DataModel
         public string BranchCity { get; set; }
 
     }
+    /// <summary>
+    /// Transcation Type
+    /// </summary>
+    class TranscationType
+    {
+        public static readonly int Cheque = 1;
+        public static readonly int RTGS = 2;
+        public static readonly int NEFT = 3;
+        public static readonly int IMPS = 4;
+        public static readonly int UPI = 5;
+        public static readonly int PaymentAPP = 6;
+        public static readonly int Cash = 7;
+        public static readonly int BankTransfer = 8;
+        public static readonly int Others = 9;
 
+
+    }
     /// <summary>
     ///  TableName : BankDetails
     /// </summary>
-    class BankDetailsDM
+    class BankDetails
     {
         public int ID { get; set; }
         public int BankID { get; set; }
@@ -56,15 +72,35 @@ namespace AprajitaRetails.DataModel
         public string TranscationRef { get; set; }
 
     }
+    /// <summary>
+    /// TableName: PaymentMode
+    /// </summary>
+    class PaymentMode
+    {
+        public int ID { get; set; }
+        public string PayMode { get; set; }
+        public override string ToString() { return PayMode; }
+    }
 
     /// <summary>
     /// TableName: ExpensesCategory
     /// </summary>
-    class ExpensesCategoryDM
+    class ExpensesCategory
     {
         public int ID { get; set; }
         public string Category { get; set; }
         public int Level { get; set; }
     }
-
+    /// <summary>
+    /// ExpensesForm Level
+    /// </summary>
+    class ExpensesLevel
+    {
+        public static readonly int General = 1;
+        public static readonly int Low = 2;
+        public static readonly int Medium = 3;
+        public static readonly int High = 4;
+        public static readonly int VeryHigh = 5;
+        public static readonly int Other = 6;
+    }
 }

@@ -20,13 +20,12 @@ namespace AprajitaRetails
             }
             // free native resources
         }
-
         public void Dispose()
         {
             Dispose (true);
             GC.SuppressFinalize (this);
         }
-
+        //Version 2
         public static int IsTableWithDefaultExit(string tablename)
         {
             string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
@@ -53,76 +52,34 @@ namespace AprajitaRetails
         public static bool IsTableExit(string tableName)
         {
             string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
-                "  WHERE  TABLE_NAME = '@tablename'))" +
+                "  WHERE  TABLE_NAME = @tablename))" +
                 "SELECT 1 AS Result ELSE SELECT 0 AS Result;";
             SqlCommand cmd = ( (SqlConnection) GetConnectionObject (ConType.SQLDB) ).CreateCommand ();
             cmd.CommandText = query;
             cmd.Parameters.AddWithValue ("@tablename", tableName);
-            String result = (string) cmd.ExecuteScalar ();
-            if ( result == "1" )
+
+            int result = (int) cmd.ExecuteScalar ();
+            Console.WriteLine ("table check of {0} is result ={1}", tableName, result);
+            if ( result == 1 )
                 return true;
             else
                 return false;
         }
+        public SqlConnection DBCon { private set; get; }
+
         public DataBase(int type)
         {
             DBHelper.SetDataBaseName (DataBaseName);
             db = new DBHelper ();
             DBType = type;
+            if ( DBType == ConType.SQLDB )
+                DBCon = (SqlConnection) db.GetConnectioObject (DBType);
+            Logs.LogMe ("DataBase(): Connection is Created");
+
         }
         public void ConnnetDB()
         {
             db.ConnectDB (DBType);
-
-        }
-        public void Querry(String sql)
-        {
-            if ( DBType == ConType.SQLDB )
-            {
-                db.QueryStrSql (sql);
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                db.QueryStrSql (sql);
-            }
-
-        }
-        public int Insert(String sql)
-        {
-            if ( DBType == ConType.SQLDB )
-            {
-                return db.InsertQuerySql (sql);
-
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                return db.InsertQueryOle (sql);
-            }
-            return -1;
-        }
-        public int Delete(String sql)
-        {
-            if ( DBType == ConType.SQLDB )
-            {
-                return db.NonQuerySql (sql);
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                return db.NonQueryOle (sql);
-            }
-            return -1;
-        }
-        public int Update(String sql)
-        {
-            if ( DBType == ConType.SQLDB )
-            {
-                return db.NonQuerySql (sql);
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                return db.NonQueryOle (sql);
-            }
-            return -1;
 
         }
         public void CloseDB()
@@ -137,60 +94,11 @@ namespace AprajitaRetails
             }
 
         }
-        public int InsertStoreProcedure(System.Data.SqlClient.SqlCommand cmd)
-        {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            int count = 0;
-            try
-            {
-                count = cmd.ExecuteNonQuery ();
-
-            }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-            }
-            return count;
-
-        }
-
-        public int InsertStoreProcedure(System.Data.OleDb.OleDbCommand cmd)
-        {
-            OleDbConnection con = (OleDbConnection) GetConnectionObject (ConType.OLEDB);
-            cmd.Connection = con;
-            int count = 0;
-            try
-            {
-                count = cmd.ExecuteNonQuery ();
-
-            }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-            }
-            return count;
-
-
-        }
-
         public static Object GetConnectionObject(int type)
         {
             Logs.LogMe ("DataBase.GetConnectionObject=" + type);
             return new DBHelper ().GetConnectioObject (type);
         }
-
         public static int GetSqlStoreProcedureReturnInt(SqlCommand cmd)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
@@ -312,13 +220,9 @@ namespace AprajitaRetails
         public static List<SortedDictionary<string, string>> GetSqlStoreProcedureString(SqlCommand cmd)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = sp;
             cmd.Connection = con;
-            //cmd.CommandType = System.Data.CommandType.StoredProcedure;
             int count = 0;
             List<SortedDictionary<string, string>> data = new List<SortedDictionary<string, string>> ();
-            ;
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader ();
@@ -340,7 +244,8 @@ namespace AprajitaRetails
             catch ( Exception ex )
             {
                 count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
+                System.Windows.Forms.MessageBox.Show (ex.Message, "GetSqlStoreProcedure");
+                Logs.LogMe ("GetSqlStoreProcedure:Error= " + ex.Message);
             }
             finally
             {
@@ -349,6 +254,136 @@ namespace AprajitaRetails
             }
             return data;
         }
+
+
+
+        // Verson :1
+
+        public void Querry(String sql)
+        {
+            if ( DBType == ConType.SQLDB )
+            {
+                db.QueryStrSql (sql);
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                db.QueryStrSql (sql);
+            }
+
+        }
+        public int Insert(String sql)
+        {
+            if ( DBType == ConType.SQLDB )
+            {
+                return db.InsertQuerySql (sql);
+
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                return db.InsertQueryOle (sql);
+            }
+            return -1;
+        }
+        public int Delete(String sql)
+        {
+            if ( DBType == ConType.SQLDB )
+            {
+                return db.NonQuerySql (sql);
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                return db.NonQueryOle (sql);
+            }
+            return -1;
+        }
+        public int Update(String sql)
+        {
+            if ( DBType == ConType.SQLDB )
+            {
+                return db.NonQuerySql (sql);
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                return db.NonQueryOle (sql);
+            }
+            return -1;
+
+        }
+
+        public int Insert(System.Data.SqlClient.SqlCommand cmd)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            //cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            try
+            {
+                count = cmd.ExecuteNonQuery ();
+
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+            }
+            return count;
+
+        }
+
+        public int InsertStoreProcedure(System.Data.SqlClient.SqlCommand cmd)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            try
+            {
+                count = cmd.ExecuteNonQuery ();
+
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+            }
+            return count;
+
+        }
+
+        public int InsertStoreProcedure(System.Data.OleDb.OleDbCommand cmd)
+        {
+            OleDbConnection con = (OleDbConnection) GetConnectionObject (ConType.OLEDB);
+            cmd.Connection = con;
+            int count = 0;
+            try
+            {
+                count = cmd.ExecuteNonQuery ();
+
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+            }
+            return count;
+
+
+        }
+
+
+
 
     }
 

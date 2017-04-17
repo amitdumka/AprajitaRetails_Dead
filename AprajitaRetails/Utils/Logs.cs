@@ -9,7 +9,7 @@ namespace AprajitaRetails
 {
     public class Logs
     {
-        public static string Filename = "log_" + DateTime.Now.ToLongDateString ()+"_"+DateTime.Today.ToFileTime()  + ".txt";
+        public static string Filename = "log_" + DateTime.Now.ToLongDateString () + "_" + DateTime.Today.ToFileTime () + ".txt";
 
         private static string logfile = Filename;
         public static string LogFile { get => logfile; set => logfile = value; }
@@ -19,23 +19,10 @@ namespace AprajitaRetails
         }
         public static void LogMe(string logMessage)
         {
-            Task t = Task.Run (() => Log (logMessage));
+            Log (logMessage);
+            //Task t = Task.Run (() => Log (logMessage));
         }
 
-        public static void Logf(string logMessage)
-        {
-            if ( Logs.logfile == "" )
-                Logs.logfile = GetTempFileName ();
-
-            using ( StreamWriter w = File.AppendText (Logs.logfile) )
-            {
-                w.Write ("\r\nLog : ");
-                w.WriteLine ("{0} {1}", DateTime.Now.ToLongTimeString (), DateTime.Now.ToLongDateString ());
-                w.WriteLine ("  :");
-                w.WriteLine ("  :{0}", logMessage);
-                w.WriteLine ("-------------------------------");
-            }
-        }
 
         public static void Loge(string logMessage)
         {
@@ -49,6 +36,9 @@ namespace AprajitaRetails
                 w.Write ("  :");
                 w.Write ("  :{0}", logMessage);
                 w.Write ("-------------------------------");
+                w.Flush ();
+                w.Close ();
+
             }
         }
 
@@ -56,15 +46,18 @@ namespace AprajitaRetails
         {
             try
             {
-                StreamWriter w = File.AppendText (Filename);
-                w.Write ("\r\nLog Entry : ");
-                w.Write ("{0} {1}", DateTime.Now.ToLongTimeString (),
-                    DateTime.Now.ToLongDateString ());
-                w.Write ("  :");
-                w.Write ("  :{0}", logMessage);
-                w.WriteLine ("-------------------------------");
-                w.Flush ();
-                w.Close ();
+                using ( StreamWriter w = File.AppendText (Filename) )
+                {
+                    w.Write ("\r\nLog Entry : ");
+                    w.Write ("{0} {1}", DateTime.Now.ToLongTimeString (),
+                        DateTime.Now.ToLongDateString ());
+                    w.Write ("  :");
+                    w.Write ("  :{0}", logMessage);
+                    w.WriteLine ("-------------------------------");
+                    w.Flush ();
+                    w.Close ();
+                }
+
             }
             catch ( Exception e )
             {

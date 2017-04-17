@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AprajitaRetails.DataModel
-
+namespace AprajitaRetails.Data
 {
     /// <summary>
     /// TableName: CashDetails

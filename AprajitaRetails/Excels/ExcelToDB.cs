@@ -7,80 +7,51 @@ namespace AprajitaRetails
 {
     public class ExcelToDB
     {
-        public static string SqlDBName = "aprajitaRetails.mdf";
-        private string ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + SqlDBName + ";Integrated Security = True;Connect TimeOut=30";
         private SqlConnection sqlDB;
-
-        private BindingSource PrescribedMedBindingSoure;
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
-        private DataTable PrescribedMedTable;
-        public DataGridView DGVPrescribedMed { get; private set; }
+        private DataBase DB;
+        private BindingSource UploaedDataBindingSource;
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter ();
+        private DataTable UploadedDataTable;
+        public DataGridView UploadedDataGrid { get; private set; }
 
         public void RefreshDGV(DataGridView dgv, string query)
         {
-            DGVPrescribedMed = dgv;
-            PrescribedMedBindingSoure = new BindingSource();
-            DGVPrescribedMed.DataSource = PrescribedMedBindingSoure;
+            UploadedDataGrid = dgv;
+            UploaedDataBindingSource = new BindingSource ();
+            UploadedDataGrid.DataSource = UploaedDataBindingSource;
             try
             {
-                sqlDB = GetConnection();
+                if ( sqlDB == null || sqlDB.State != ConnectionState.Open )
+                    sqlDB = (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB);
                 DataTable table;
-                if (sqlDB != null && sqlDB.State == ConnectionState.Open)
+                if ( sqlDB != null && sqlDB.State == ConnectionState.Open )
                 {
-                    dataAdapter = new SqlDataAdapter(query, sqlDB);
-                    SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-                    table = new DataTable();
+                    dataAdapter = new SqlDataAdapter (query, sqlDB);
+                    SqlCommandBuilder commandBuilder = new SqlCommandBuilder (dataAdapter);
+                    table = new DataTable ();
                     table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                    dataAdapter.Fill(table);
-                    PrescribedMedTable = table;
-                    DGVPrescribedMed.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                    PrescribedMedBindingSoure.DataSource = PrescribedMedTable;
+                    dataAdapter.Fill (table);
+                    UploadedDataTable = table;
+                    UploadedDataGrid.AutoResizeColumns (DataGridViewAutoSizeColumnsMode.AllCells);
+                    UploaedDataBindingSource.DataSource = UploadedDataTable;
                 }
             }
-            catch (Exception)
+            catch ( Exception )
             {
                 return;
             }
         }
 
-        public SqlConnection GetConnection()
-        {
-            if (sqlDB != null && sqlDB.State == ConnectionState.Open)
-                return sqlDB;
-            if (sqlDB != null && sqlDB.State != ConnectionState.Open)
-            {
-                try
-                {
-                    sqlDB.Open();
-                    return sqlDB;
-                }
-                catch (Exception)
-                {
-                    return sqlDB = null;
-                    //throw;
-                }
-            }
-            sqlDB = new SqlConnection(ConStr);
-            try
-            {
-                sqlDB.Open();
-                return sqlDB;
-            }
-            catch (Exception)
-            {
-                return sqlDB = null;
-                //throw;
-            }
-        }
 
         public ExcelToDB()
         {
-            sqlDB = new SqlConnection(ConStr);
+            DB = new DataBase (ConType.SQLDB);
+            sqlDB = (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB);
             try
             {
-                sqlDB.Open();
+                sqlDB.Open ();
             }
-            catch (Exception)
+            catch ( Exception )
             {
                 sqlDB = null;
                 //throw;
@@ -92,21 +63,21 @@ namespace AprajitaRetails
         {
             try
             {
-                int status = cmd.ExecuteNonQuery();
-                if (status > 0)
+                int status = cmd.ExecuteNonQuery ();
+                if ( status > 0 )
                 {
-                    Console.WriteLine("Insert done ");
+                    Console.WriteLine ("Insert done ");
                     return 1;
                 }
                 else
                 {
-                    Console.WriteLine("Insert Failed " + cmd.CommandText);
+                    Console.WriteLine ("Insert Failed " + cmd.CommandText);
                     return 0;
                 }
             }
-            catch (Exception e)
+            catch ( Exception e )
             {
-                Console.WriteLine("InsertExp: " + e.Message + "\t" + cmd.CommandText);
+                Console.WriteLine ("InsertExp: " + e.Message + "\t" + cmd.CommandText);
                 return -1;
             }
         }
@@ -115,42 +86,43 @@ namespace AprajitaRetails
         {
             string query = "INSERT INTO [dbo].[SalesRegister] " +
                 "( [InvoiceNo], [InvoiceDate], [InvoiceType],  " +
-                "BrandName,ProductName,ItemDescrpetion,BarCode,StyleCode"+
+                "BrandName,ProductName,ItemDescrpetion,BarCode,StyleCode" +
                 "[Qty], [MRP], [Discount], [BasicAmt], [TaxAmount], " +
-                "[RoundOff], LineTotal,[BillAmount], Salesman,[PaymentMode]) " +     
+                "[RoundOff], LineTotal,[BillAmount], Salesman,[PaymentMode]) " +
                 " VALUES (@Inv,@InvD , @InvT, @BName,@PName,@IDes,@BCode,@SCode" +
-                "@QTY, @MRP, @Dis, @BAMT, @TAMT,  @ROFF,@Ltotal, @BILL,@Sman,  @PM)";;
+                "@QTY, @MRP, @Dis, @BAMT, @TAMT,  @ROFF,@Ltotal, @BILL,@Sman,  @PM)";
+            ;
             SqlCommand cmd;
-            if (sqlDB == null || sqlDB.State != ConnectionState.Open)
+            if ( sqlDB == null || sqlDB.State != ConnectionState.Open )
             {
-                cmd = new SqlCommand(query, GetConnection());
+                cmd = new SqlCommand (query, (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB));
             }
             else
             {
-                cmd = new SqlCommand(query, sqlDB);
+                cmd = new SqlCommand (query, sqlDB);
             }
 
             // cmd.CommandText = query;
             //cmd.Connection = GetConnection();
-            cmd.Parameters.AddWithValue("@Inv", sr.InvoiceNo);
-            cmd.Parameters.AddWithValue("@InvD", sr.InvDate);
-            cmd.Parameters.AddWithValue("@InvT", sr.InvType);
-            cmd.Parameters.AddWithValue("@QTY", sr.QTY);
-            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
-            cmd.Parameters.AddWithValue("@Dis", sr.Discount);
-            cmd.Parameters.AddWithValue("@BAMT", sr.BasicRate);
-            cmd.Parameters.AddWithValue("@TAMT", sr.Tax);
-            cmd.Parameters.AddWithValue("@ROFF", sr.RoundOff);
-            cmd.Parameters.AddWithValue("@BILL", sr.BillAmnt);
-            cmd.Parameters.AddWithValue("@PM", sr.PaymentType);
-            cmd.Parameters.AddWithValue("@Sman", sr.Saleman);
-            cmd.Parameters.AddWithValue("@BCode", sr.Barcode);
-            cmd.Parameters.AddWithValue("@SCode", sr.StyleCode);
-            cmd.Parameters.AddWithValue("@Ltotal", sr.LineTotal);
-            cmd.Parameters.AddWithValue("@BName", sr.Barcode);
-            cmd.Parameters.AddWithValue("@PName", sr.StyleCode);
-            cmd.Parameters.AddWithValue("@IDes", sr.LineTotal);
-            return InsertQuerySql(cmd);
+            cmd.Parameters.AddWithValue ("@Inv", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@InvD", sr.InvDate);
+            cmd.Parameters.AddWithValue ("@InvT", sr.InvType);
+            cmd.Parameters.AddWithValue ("@QTY", sr.QTY);
+            cmd.Parameters.AddWithValue ("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue ("@Dis", sr.Discount);
+            cmd.Parameters.AddWithValue ("@BAMT", sr.BasicRate);
+            cmd.Parameters.AddWithValue ("@TAMT", sr.Tax);
+            cmd.Parameters.AddWithValue ("@ROFF", sr.RoundOff);
+            cmd.Parameters.AddWithValue ("@BILL", sr.BillAmnt);
+            cmd.Parameters.AddWithValue ("@PM", sr.PaymentType);
+            cmd.Parameters.AddWithValue ("@Sman", sr.Saleman);
+            cmd.Parameters.AddWithValue ("@BCode", sr.Barcode);
+            cmd.Parameters.AddWithValue ("@SCode", sr.StyleCode);
+            cmd.Parameters.AddWithValue ("@Ltotal", sr.LineTotal);
+            cmd.Parameters.AddWithValue ("@BName", sr.Barcode);
+            cmd.Parameters.AddWithValue ("@PName", sr.StyleCode);
+            cmd.Parameters.AddWithValue ("@IDes", sr.LineTotal);
+            return InsertQuerySql (cmd);
         }
 
         public int SaveRowData(SaleRegister sr)
@@ -164,33 +136,33 @@ namespace AprajitaRetails
                 " VALUES (@Inv,@InvD , @InvT, @QTY, @MRP, @Dis, @BAMT, " +
                 "@TAMT,  @ROFF, @BILL,  @PM)";//, @CO,@CAMT,  @TFG, @INST)";
             SqlCommand cmd;
-            if (sqlDB == null || sqlDB.State != ConnectionState.Open)
+            if ( sqlDB == null || sqlDB.State != ConnectionState.Open )
             {
-                cmd = new SqlCommand(query, GetConnection());
+                cmd = new SqlCommand (query, (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB));
             }
             else
             {
-                cmd = new SqlCommand(query, sqlDB);
+                cmd = new SqlCommand (query, sqlDB);
             }
 
             // cmd.CommandText = query;
             //cmd.Connection = GetConnection();
-            cmd.Parameters.AddWithValue("@Inv", sr.InvoiceNo);
-            cmd.Parameters.AddWithValue("@InvD", sr.InvDate);
-            cmd.Parameters.AddWithValue("@InvT", sr.InvType);
-            cmd.Parameters.AddWithValue("@QTY", sr.QTY);
-            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
-            cmd.Parameters.AddWithValue("@Dis", sr.Discount);
-            cmd.Parameters.AddWithValue("@BAMT", sr.BasicRate);
-            cmd.Parameters.AddWithValue("@TAMT", sr.Tax);
-            cmd.Parameters.AddWithValue("@ROFF", sr.RoundOff);
-            cmd.Parameters.AddWithValue("@BILL", sr.BillAmnt);
-            cmd.Parameters.AddWithValue("@PM", sr.paymentType);
+            cmd.Parameters.AddWithValue ("@Inv", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@InvD", sr.InvDate);
+            cmd.Parameters.AddWithValue ("@InvT", sr.InvType);
+            cmd.Parameters.AddWithValue ("@QTY", sr.QTY);
+            cmd.Parameters.AddWithValue ("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue ("@Dis", sr.Discount);
+            cmd.Parameters.AddWithValue ("@BAMT", sr.BasicRate);
+            cmd.Parameters.AddWithValue ("@TAMT", sr.Tax);
+            cmd.Parameters.AddWithValue ("@ROFF", sr.RoundOff);
+            cmd.Parameters.AddWithValue ("@BILL", sr.BillAmnt);
+            cmd.Parameters.AddWithValue ("@PM", sr.paymentType);
             //cmd.Parameters.AddWithValue("@CO", sr.coupon);
             //cmd.Parameters.AddWithValue("@CAMT", sr.couponAmt);
             //cmd.Parameters.AddWithValue("@TFG", sr.Tailoring);
             //cmd.Parameters.AddWithValue("@INST", sr.instaorder);
-            return InsertQuerySql(cmd);
+            return InsertQuerySql (cmd);
         }
         public int SaveRowData(Purchase sr)
         {
@@ -198,30 +170,30 @@ namespace AprajitaRetails
                 "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt)" +
                 "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt)";
             SqlCommand cmd;
-            if (sqlDB == null || sqlDB.State != ConnectionState.Open)
+            if ( sqlDB == null || sqlDB.State != ConnectionState.Open )
             {
-                cmd = new SqlCommand(query, GetConnection());
+                cmd = new SqlCommand (query, (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB));
             }
             else
             {
-                cmd = new SqlCommand(query, sqlDB);
+                cmd = new SqlCommand (query, sqlDB);
             }
-            cmd.Parameters.AddWithValue("@GRNNo", sr.Grnno);
-            cmd.Parameters.AddWithValue("@GRNDate", sr.Grndate);
-            cmd.Parameters.AddWithValue("@InvoiceNo", sr.Invoiceno);
-            cmd.Parameters.AddWithValue("@InvoiceDate", sr.Invdate);
-            cmd.Parameters.AddWithValue("@SupplierName", sr.Suppliername);
-            cmd.Parameters.AddWithValue("@Barcode", sr.Barcode);
-            cmd.Parameters.AddWithValue("@ProductName", sr.Productname);
-            cmd.Parameters.AddWithValue("@StyleCode", sr.Stylecode);
-            cmd.Parameters.AddWithValue("@ItemDesc", sr.Itemdesc);
-            cmd.Parameters.AddWithValue("@Quantity", sr.Qty);
-            cmd.Parameters.AddWithValue("@MRP", sr.Mrp);
-            cmd.Parameters.AddWithValue("@MRPValue", sr.Mrpvalue);
-            cmd.Parameters.AddWithValue("@Cost", sr.Cost);
-            cmd.Parameters.AddWithValue("@CostValue", sr.Costvalue);
-            cmd.Parameters.AddWithValue("@TaxAmt", sr.Taxamt);
-            return InsertQuerySql(cmd);
+            cmd.Parameters.AddWithValue ("@GRNNo", sr.Grnno);
+            cmd.Parameters.AddWithValue ("@GRNDate", sr.Grndate);
+            cmd.Parameters.AddWithValue ("@InvoiceNo", sr.Invoiceno);
+            cmd.Parameters.AddWithValue ("@InvoiceDate", sr.Invdate);
+            cmd.Parameters.AddWithValue ("@SupplierName", sr.Suppliername);
+            cmd.Parameters.AddWithValue ("@Barcode", sr.Barcode);
+            cmd.Parameters.AddWithValue ("@ProductName", sr.Productname);
+            cmd.Parameters.AddWithValue ("@StyleCode", sr.Stylecode);
+            cmd.Parameters.AddWithValue ("@ItemDesc", sr.Itemdesc);
+            cmd.Parameters.AddWithValue ("@Quantity", sr.Qty);
+            cmd.Parameters.AddWithValue ("@MRP", sr.Mrp);
+            cmd.Parameters.AddWithValue ("@MRPValue", sr.Mrpvalue);
+            cmd.Parameters.AddWithValue ("@Cost", sr.Cost);
+            cmd.Parameters.AddWithValue ("@CostValue", sr.Costvalue);
+            cmd.Parameters.AddWithValue ("@TaxAmt", sr.Taxamt);
+            return InsertQuerySql (cmd);
         }
     }
 
@@ -237,15 +209,3 @@ namespace AprajitaRetails
         public static string qAllPurchase = "select * from Purchase";
     }
 }
-/*
- GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code
- Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt
-C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259105888
-Apparel/Mens Formal/Shirts	USSH3877XL	Shirts-FS-Black	1.00	1999.00	1999.00	1287.76	1287.76	0.00
- 
-
-
-
-    GRNNo,GRNDate,InvoiceNo,InvoiceDate,SupplierName,Barcode,ProductName,StyleCode,
-    ItemDesc,	Quantity,MRP,MRPValue,Cost,CostValue,TaxAmt
-    */

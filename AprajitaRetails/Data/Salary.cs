@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AprajitaRetails.Data;
 
-namespace AprajitaRetails.DataModel
-
+namespace AprajitaRetails.Data
 {
     
     class Salary

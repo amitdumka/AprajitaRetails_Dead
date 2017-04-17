@@ -5,7 +5,7 @@ namespace AprajitaRetails
     /// <summary>
     /// TableName: Purchase
     /// </summary>
-    public class PurchaseModel
+    public class Purchase
     {
         string grnno; DateTime grndate; string invoiceno; DateTime invdate;
         string suppliername; string barcode; string productname;

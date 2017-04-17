@@ -24,6 +24,10 @@ namespace AprajitaRetails
         String oleConStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + OleDBName + "; Jet OLEDB:Engine Type=5 ";
         OleDbConnection oleDB;
         SqlConnection sqlDB;
+        public DBHelper()
+        {
+            Logs.LogMe ("DBHelper:()");
+        }
         protected virtual void Dispose(bool disposing)
         {
             if ( disposing )

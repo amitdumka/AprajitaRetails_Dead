@@ -1,6 +1,6 @@
-﻿namespace AprajitaRetails.DataModel
+﻿namespace AprajitaRetails
 {
-    class AuthUsersDM
+    class AuthUsers
     {
         private int role;
         private string password;

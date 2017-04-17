@@ -409,6 +409,7 @@
             this.BTNAdd.TabIndex = 4;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNDelete
             // 
@@ -431,6 +432,7 @@
             this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // BTNUpdate
             // 
