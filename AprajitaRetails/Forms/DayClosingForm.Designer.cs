@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TLPCashDetails = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,7 +76,7 @@
             this.BTNDelete = new System.Windows.Forms.Button();
             this.BTNCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.TLPCashDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +85,7 @@
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Controls.Add(this.TLPCashDetails);
             this.groupBox1.Location = new System.Drawing.Point(21, 19);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
@@ -95,73 +95,73 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cash Details";
             // 
-            // tableLayoutPanel1
+            // TLPCashDetails
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.T2000, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.T1000, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.T500, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.T100, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.T50, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.T20, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.T10, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.T5, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.C2, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.C1, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.C5, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.C10, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.TT2000, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.TT1000, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.TT500, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.TT100, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.TT50, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.TT20, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.TT10, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.TT5, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.TC2, 2, 9);
-            this.tableLayoutPanel1.Controls.Add(this.TC1, 2, 10);
-            this.tableLayoutPanel1.Controls.Add(this.TC5, 2, 11);
-            this.tableLayoutPanel1.Controls.Add(this.TC10, 2, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LBTotalCount, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.LBTotalAmount, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 53);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 13;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 650);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.TLPCashDetails.AutoSize = true;
+            this.TLPCashDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TLPCashDetails.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.TLPCashDetails.ColumnCount = 3;
+            this.TLPCashDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPCashDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPCashDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPCashDetails.Controls.Add(this.label2, 0, 2);
+            this.TLPCashDetails.Controls.Add(this.label3, 0, 3);
+            this.TLPCashDetails.Controls.Add(this.label4, 0, 4);
+            this.TLPCashDetails.Controls.Add(this.label5, 0, 5);
+            this.TLPCashDetails.Controls.Add(this.label6, 0, 6);
+            this.TLPCashDetails.Controls.Add(this.label7, 0, 7);
+            this.TLPCashDetails.Controls.Add(this.label8, 0, 8);
+            this.TLPCashDetails.Controls.Add(this.label9, 0, 9);
+            this.TLPCashDetails.Controls.Add(this.T2000, 1, 1);
+            this.TLPCashDetails.Controls.Add(this.T1000, 1, 2);
+            this.TLPCashDetails.Controls.Add(this.T500, 1, 3);
+            this.TLPCashDetails.Controls.Add(this.T100, 1, 4);
+            this.TLPCashDetails.Controls.Add(this.T50, 1, 5);
+            this.TLPCashDetails.Controls.Add(this.T20, 1, 6);
+            this.TLPCashDetails.Controls.Add(this.T10, 1, 7);
+            this.TLPCashDetails.Controls.Add(this.T5, 1, 8);
+            this.TLPCashDetails.Controls.Add(this.C2, 1, 9);
+            this.TLPCashDetails.Controls.Add(this.C1, 1, 10);
+            this.TLPCashDetails.Controls.Add(this.C5, 1, 11);
+            this.TLPCashDetails.Controls.Add(this.C10, 1, 12);
+            this.TLPCashDetails.Controls.Add(this.label10, 0, 10);
+            this.TLPCashDetails.Controls.Add(this.label11, 0, 11);
+            this.TLPCashDetails.Controls.Add(this.label12, 0, 12);
+            this.TLPCashDetails.Controls.Add(this.TT2000, 2, 1);
+            this.TLPCashDetails.Controls.Add(this.TT1000, 2, 2);
+            this.TLPCashDetails.Controls.Add(this.TT500, 2, 3);
+            this.TLPCashDetails.Controls.Add(this.TT100, 2, 4);
+            this.TLPCashDetails.Controls.Add(this.TT50, 2, 5);
+            this.TLPCashDetails.Controls.Add(this.TT20, 2, 6);
+            this.TLPCashDetails.Controls.Add(this.TT10, 2, 7);
+            this.TLPCashDetails.Controls.Add(this.TT5, 2, 8);
+            this.TLPCashDetails.Controls.Add(this.TC2, 2, 9);
+            this.TLPCashDetails.Controls.Add(this.TC1, 2, 10);
+            this.TLPCashDetails.Controls.Add(this.TC5, 2, 11);
+            this.TLPCashDetails.Controls.Add(this.TC10, 2, 12);
+            this.TLPCashDetails.Controls.Add(this.label1, 0, 1);
+            this.TLPCashDetails.Controls.Add(this.label13, 0, 0);
+            this.TLPCashDetails.Controls.Add(this.LBTotalCount, 1, 0);
+            this.TLPCashDetails.Controls.Add(this.LBTotalAmount, 2, 0);
+            this.TLPCashDetails.Location = new System.Drawing.Point(11, 53);
+            this.TLPCashDetails.Margin = new System.Windows.Forms.Padding(5);
+            this.TLPCashDetails.Name = "TLPCashDetails";
+            this.TLPCashDetails.RowCount = 13;
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.Size = new System.Drawing.Size(526, 650);
+            this.TLPCashDetails.TabIndex = 0;
             // 
             // label2
             // 
@@ -560,6 +560,7 @@
             this.BTNAdd.TabIndex = 0;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNUpdate
             // 
@@ -610,8 +611,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.TLPCashDetails.ResumeLayout(false);
+            this.TLPCashDetails.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -624,7 +625,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel TLPCashDetails;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

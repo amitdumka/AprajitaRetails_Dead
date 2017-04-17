@@ -25,9 +25,6 @@ namespace AprajitaRetails.Data
         public int Coin5 { set; get; }
         public int Coin2 { set; get; }
         public int Coin1 { set; get; }
-        /// <summary>
-        /// For Table Record Only
-        /// </summary>
-        public DateTime OnDate { set; get; }
+       
     }
 }

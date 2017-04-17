@@ -5,11 +5,9 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AprajitaRetails", "AprajitaRetails\AprajitaRetails.csproj", "{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel", "..\..\..\..\Desktop\Excel - Kopie\Excel.csproj", "{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "..\..\..\..\Desktop\Excel - Kopie\ExcelReader.csproj", "{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManager", "..\ClinicManager\ClinicManager\ClinicManager.csproj", "{40877CBA-3A08-4954-B242-44238717FBEA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicWPF", "..\ClinicManager\ClinicWPF\ClinicWPF.csproj", "{9E220636-CD5F-4D9C-95AD-934EBDF2BB8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberNBasicOperations", "CyberNBasicOperations\CyberNBasicOperations.csproj", "{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}"
 EndProject
@@ -33,10 +31,6 @@ Global
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40877CBA-3A08-4954-B242-44238717FBEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E220636-CD5F-4D9C-95AD-934EBDF2BB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E220636-CD5F-4D9C-95AD-934EBDF2BB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E220636-CD5F-4D9C-95AD-934EBDF2BB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E220636-CD5F-4D9C-95AD-934EBDF2BB8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BFEA521-EEA1-46A3-8254-5BF4C67ED182}.Release|Any CPU.ActiveCfg = Release|Any CPU

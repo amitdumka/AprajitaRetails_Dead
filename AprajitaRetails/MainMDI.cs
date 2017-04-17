@@ -170,5 +170,10 @@ namespace AprajitaRetails
         {
             ShowNewForm (new ExpensesForm ());
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new AboutBox1());
+        }
     }
 }

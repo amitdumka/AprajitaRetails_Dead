@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 
-namespace TableCreator
+namespace CyberN.TableCreator
 {
     /// <summary>
     /// Lib To Create SQL Query from Class.

@@ -15,9 +15,15 @@ namespace AprajitaRetails.Forms
     public partial class CustomersForm : Form
     {
         CustomerVM cVm;
+        public string CustomerMobileNo;
+        public string CustomerFirstName;
+        public string CustomerLastName;
+        public bool IsDailog = false;
+        public int CustomeID;
         public CustomersForm()
         {
             InitializeComponent ();
+
             cVm = new CustomerVM ();
         }
 
@@ -32,11 +38,19 @@ namespace AprajitaRetails.Forms
             {
                 PerformSave ();
             }
+            else if(BTNAdd.Text== "Save && Return")
+            {
+                PerformSave ();
+            }
         }
         void PerformAdd()
         {
-            BTNAdd.Text = "Save";
-           // Basic.ClearUIFields (tlpPersonal);
+            if ( IsDailog )
+                BTNAdd.Text = "Save && Return";
+
+            else
+                BTNAdd.Text = "Save";
+            // Basic.ClearUIFields (tlpPersonal);
         }
         void PerformSave()
         {
@@ -46,6 +60,15 @@ namespace AprajitaRetails.Forms
                 {
                     BTNAdd.Text = "Add";
                     MessageBox.Show ("Your Record got saved!", "Cusotmer Save");
+
+                    if ( IsDailog )
+                    {
+                        CustomerMobileNo = txtMobileNo.Text;
+                        CustomerFirstName = txtFirstName.Text;
+                        CustomerLastName = txtLastname.Text;
+                        this.Close ();
+                        DialogResult = DialogResult.OK;
+                    }
                 }
             }
 

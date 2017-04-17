@@ -20,17 +20,6 @@ namespace AprajitaRetails.Data
         public int PaymentMode { set; get; }
 
     }
-    public class NewCustomer
-    {
-        public int ID { set; get; }
-        public int CustomerID { set; get; }
-        public string InvoiceNo { set; get; }
-        public DateTime OnDate { set; get; }
-        public string CustomerFullName { get; set; }
-
-
-
-    }
     class Discounts
     {
         public int ID { set; get; }
@@ -42,9 +31,5 @@ namespace AprajitaRetails.Data
         public string DiscountCode { set; get; }
         public DateTime GenDate { set; get; }
         //TODO: Implement with full secure
-    }
-    class DayClosing
-    {
-
     }
 }

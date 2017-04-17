@@ -34,14 +34,18 @@
             this.MainMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIDailySale = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIManualInvoice = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.TSMIDayClosing = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIFootFall = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSMIExpenses = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSMIMonthClosing = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.customersDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,10 +94,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.TSMIMonthClosing = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.TSMIExpenses = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -158,6 +158,11 @@
             this.TSMIManualInvoice.Text = "Manual Invoice";
             this.TSMIManualInvoice.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(330, 6);
+            // 
             // TSMIDayClosing
             // 
             this.TSMIDayClosing.Name = "TSMIDayClosing";
@@ -172,15 +177,35 @@
             this.TSMIFootFall.Text = "Foot Fall";
             this.TSMIFootFall.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(330, 6);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(330, 6);
+            // 
+            // TSMIExpenses
+            // 
+            this.TSMIExpenses.AutoToolTip = true;
+            this.TSMIExpenses.Name = "TSMIExpenses";
+            this.TSMIExpenses.Size = new System.Drawing.Size(333, 46);
+            this.TSMIExpenses.Text = "Expenses";
+            this.TSMIExpenses.Click += new System.EventHandler(this.TSMIExpenses_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(330, 6);
+            // 
+            // TSMIMonthClosing
+            // 
+            this.TSMIMonthClosing.AutoToolTip = true;
+            this.TSMIMonthClosing.Name = "TSMIMonthClosing";
+            this.TSMIMonthClosing.Size = new System.Drawing.Size(333, 46);
+            this.TSMIMonthClosing.Text = "Month Closing";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(330, 6);
             // 
             // printToolStripMenuItem
             // 
@@ -206,10 +231,10 @@
             this.printSetupToolStripMenuItem.Size = new System.Drawing.Size(333, 46);
             this.printSetupToolStripMenuItem.Text = "Print Setup";
             // 
-            // toolStripSeparator5
+            // toolStripSeparator7
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(330, 6);
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(330, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -506,6 +531,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(369, 46);
             this.aboutToolStripMenuItem.Text = "&About ... ...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // toolStrip
             // 
@@ -579,31 +605,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(98, 41);
             this.toolStripStatusLabel.Text = "Status";
-            // 
-            // TSMIMonthClosing
-            // 
-            this.TSMIMonthClosing.AutoToolTip = true;
-            this.TSMIMonthClosing.Name = "TSMIMonthClosing";
-            this.TSMIMonthClosing.Size = new System.Drawing.Size(333, 46);
-            this.TSMIMonthClosing.Text = "Month Closing";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(330, 6);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(330, 6);
-            // 
-            // TSMIExpenses
-            // 
-            this.TSMIExpenses.AutoToolTip = true;
-            this.TSMIExpenses.Name = "TSMIExpenses";
-            this.TSMIExpenses.Size = new System.Drawing.Size(333, 46);
-            this.TSMIExpenses.Text = "Expenses";
-            this.TSMIExpenses.Click += new System.EventHandler(this.TSMIExpenses_Click);
             // 
             // MainMDI
             // 

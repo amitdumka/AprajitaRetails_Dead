@@ -134,5 +134,19 @@ namespace AprajitaRetails.Forms
         {
 
         }
+
+        private void BTNDelete_Click(object sender, EventArgs e)
+        {
+            CustomersForm c = new CustomersForm ();
+            c.IsDailog = true;
+            DialogResult r = c.ShowDialog ();
+            if ( c.DialogResult == DialogResult.OK )
+            {
+                TXTCustomerName.Text = c.CustomerFirstName + " " + c.CustomerLastName;
+                CBMobileNo.Text = c.CustomerMobileNo;
+
+            }
+            c.Dispose ();
+        }
     }
 }
