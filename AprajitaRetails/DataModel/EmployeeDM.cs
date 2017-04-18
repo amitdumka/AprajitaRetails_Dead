@@ -14,7 +14,6 @@ namespace AprajitaRetails.DataModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
@@ -23,7 +22,9 @@ namespace AprajitaRetails.DataModel
         public DateTime DateOfJoining { get; set; }
         public DateTime DateOfLeaving { get; set; }
         public string Status { get; set; }
-        public EmployeeType Category { get; set; }
+        public int EmpType { get; set; }
+        public int AttendenceId { set; get; }
+
         public EmployeeDM()
         {
 

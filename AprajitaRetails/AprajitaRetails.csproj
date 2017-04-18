@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,8 +28,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +48,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -57,8 +61,11 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Syncfusion.Diagram.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Diagram.Windows, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SfBarcode.Windows, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Shared.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Shared.Windows, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.SpellChecker.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -71,6 +78,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -97,7 +105,7 @@
     <Compile Include="DataModel\CashDetail.cs" />
     <Compile Include="DataModel\Customer.cs" />
     <Compile Include="DataModel\DailySaleDM.cs" />
-    <Compile Include="DataModel\Employee.cs" />
+    <Compile Include="DataModel\EmployeeDM.cs" />
     <Compile Include="DataModel\Expenses.cs" />
     <Compile Include="DataModel\FootFall.cs" />
     <Compile Include="DataModel\Purchase.cs" />
@@ -116,6 +124,12 @@
     </Compile>
     <Compile Include="Forms\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Expenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Expenses.designer.cs">
+      <DependentUpon>Expenses.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -175,12 +189,6 @@
     <Compile Include="Forms\DayClosingForm.Designer.cs">
       <DependentUpon>DayClosingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Expenses.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Expenses.Designer.cs">
-      <DependentUpon>Expenses.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FootFallForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +233,7 @@
     <Compile Include="ViewModel\DailySalesVM.cs" />
     <Compile Include="ViewModel\DataOps.cs" />
     <Compile Include="ViewModel\DayClosingVM.cs" />
+    <Compile Include="ViewModel\EmployeeVM.cs" />
     <Compile Include="ViewModel\Features.cs" />
     <Compile Include="ViewModel\iDatabase.cs" />
     <Compile Include="ViewModel\NewCustomerDB.cs" />
@@ -242,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DayClosingForm.resx">
       <DependentUpon>DayClosingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FootFallForm.resx">
       <DependentUpon>FootFallForm.cs</DependentUpon>
@@ -291,12 +303,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aprajitaRetails.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="aprajitaRetails.mdf" />
     <Content Include="aprajitaRetails_log.ldf">
       <DependentUpon>aprajitaRetails.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -312,8 +321,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Desktop\Excel - Kopie\ExcelReader.csproj">
-      <Project>{7CFF76B0-8947-4D04-817D-414CBE1FA8CD}</Project>
+    <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
+      <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
       <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>

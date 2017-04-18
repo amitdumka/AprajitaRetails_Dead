@@ -116,7 +116,7 @@
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(16, 5, 0, 5);
-            this.menuStrip.Size = new System.Drawing.Size(2229, 58);
+            this.menuStrip.Size = new System.Drawing.Size(2229, 55);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -140,7 +140,7 @@
             this.exitToolStripMenuItem});
             this.MainMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(96, 48);
+            this.MainMenu.Size = new System.Drawing.Size(96, 45);
             this.MainMenu.Text = "&Main";
             // 
             // TSMIDailySale
@@ -248,7 +248,7 @@
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customersDetailToolStripMenuItem});
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(172, 48);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(172, 45);
             this.toolStripMenuItem6.Text = "Customers";
             // 
             // customersDetailToolStripMenuItem
@@ -264,7 +264,7 @@
             this.stockInwardToolStripMenuItem,
             this.purchaseInvoiceToolStripMenuItem});
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(149, 48);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(149, 45);
             this.toolStripMenuItem9.Text = "Purchase";
             // 
             // stockInwardToolStripMenuItem
@@ -290,7 +290,7 @@
             this.attendenceToolStripMenuItem,
             this.salaryToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(174, 48);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(174, 45);
             this.toolStripMenuItem4.Text = "Employees";
             // 
             // payRollToolStripMenuItem
@@ -348,7 +348,7 @@
             this.uploadSaleRegisterToolStripMenuItem,
             this.uploadPurchaseInwardToolStripMenuItem});
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(117, 48);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(117, 45);
             this.toolStripMenuItem5.Text = "Admin";
             // 
             // updateEmployeeToolStripMenuItem
@@ -395,7 +395,7 @@
             this.toolBarToolStripMenuItem,
             this.statusBarToolStripMenuItem});
             this.viewMenu.Name = "viewMenu";
-            this.viewMenu.Size = new System.Drawing.Size(94, 48);
+            this.viewMenu.Size = new System.Drawing.Size(94, 45);
             this.viewMenu.Text = "&View";
             // 
             // toolBarToolStripMenuItem
@@ -423,7 +423,7 @@
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
-            this.toolsMenu.Size = new System.Drawing.Size(99, 48);
+            this.toolsMenu.Size = new System.Drawing.Size(99, 45);
             this.toolsMenu.Text = "&Tools";
             // 
             // optionsToolStripMenuItem
@@ -442,7 +442,7 @@
             this.closeAllToolStripMenuItem,
             this.arrangeIconsToolStripMenuItem});
             this.windowsMenu.Name = "windowsMenu";
-            this.windowsMenu.Size = new System.Drawing.Size(153, 48);
+            this.windowsMenu.Size = new System.Drawing.Size(153, 45);
             this.windowsMenu.Text = "&Windows";
             // 
             // newWindowToolStripMenuItem
@@ -495,7 +495,7 @@
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(92, 48);
+            this.helpMenu.Size = new System.Drawing.Size(92, 45);
             this.helpMenu.Text = "&Help";
             // 
             // contentsToolStripMenuItem
@@ -542,7 +542,7 @@
             this.printPreviewToolStripButton,
             this.toolStripSeparator2,
             this.helpToolStripButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 58);
+            this.toolStrip.Location = new System.Drawing.Point(0, 55);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.toolStrip.Size = new System.Drawing.Size(2229, 47);
@@ -621,6 +621,7 @@
             this.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.Name = "MainMDI";
             this.Text = "AprajitaRetails:The ArvindStore";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);

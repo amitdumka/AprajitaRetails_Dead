@@ -4,6 +4,10 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 
+//TODO: Create Function or class for Database Backup, Daily, Weekaly , Monthly, Quartaly, Yealry
+//TODO: While First Run Ask for location of the database. 
+//TODO: keep provising to change location of database. 
+// TODO: Add password to database
 namespace AprajitaRetails
 {
     class DataBase : IDisposable
@@ -256,6 +260,19 @@ namespace AprajitaRetails
         }
 
 
+        public void SetDataBasePath(string path)
+        {
+            //TODO:SetDatabasepath
+        }
+        public void SetConnectionString()
+        {
+            //TODO:SetConnnectionString
+        }
+        public void SetDataBasePassword(string username, string password)
+        {
+            //TODO:setdatabase password
+        }
+
 
         // Verson :1
 
@@ -383,7 +400,10 @@ namespace AprajitaRetails
         }
 
 
+    }
 
+    class BackupData
+    {
 
     }
 

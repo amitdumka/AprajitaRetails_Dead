@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AprajitaRetails.Data;
-
+ //TODO: Keep implementing this as others parts are completed
+ //TODO: keep and Collect Data now Onwarrds
 namespace AprajitaRetails.ViewModel
 {
     class DayClosingVM
@@ -160,7 +161,10 @@ namespace AprajitaRetails.ViewModel
         
         void SaleData()
         {
-                                                  
+
+            string totalSaleQuery = "select sum(BillAmount) from DailySale where SaleDate=@saledate";
+            string totalRMZ = "select Sum(RMZ),sum(Accessory), sum(Fabric), sum(Tailoring) from DailySale= where SaleDate=@saledate ";
+            string cardsale = "select sum(BillAmount) from DailySale where SaleDate=@saledate  groupby PayMode";
             //Total Sale, Total RMZ, Fabric, tailoring,
             //total card sale , debit card , credit card
             //total accessor sale

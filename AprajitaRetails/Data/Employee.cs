@@ -13,7 +13,6 @@ namespace AprajitaRetails.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
@@ -22,7 +21,8 @@ namespace AprajitaRetails.Data
         public DateTime DateOfJoining { get; set; }
         public DateTime DateOfLeaving { get; set; }
         public string Status { get; set; }
-        public EmployeeType Category { get; set; }
+        public int EmpType { get; set; }
+        public int AttendenceId { set; get; }
         public Employee()
         {
 
@@ -30,7 +30,7 @@ namespace AprajitaRetails.Data
         }
 
     }
-   public  class EmployeeType
+    public class EmployeeType
     {
         public static readonly int Owner = 1;
         public static readonly int StoreManager = 2;
@@ -39,12 +39,28 @@ namespace AprajitaRetails.Data
         public static readonly int HouseKeeping = 5;
         public static readonly int Accountant = 6;
         public static readonly int Others = 7;
-        public enum EmpType
+
+        public enum EmpType : int
         {
             Owner = 1, StoreManger = 2, AssistanceManager = 3, SalesMan = 4, Housekeeping = 5,
             Accountant = 6, Other = 7
 
         }
 
+    }
+    public class EmpCode
+    {
+        public string CategoryCode;
+        public string LevelCode;
+        public int SerialNo;
+        public override string ToString()
+        {
+            return CategoryCode + LevelCode + SerialNo;
+        }
+        public string GenerateEmpCode(string category, string level, int serial)
+        {
+            return "";
+            //TODO: Implemenent of Current Basic
+        }
     }
 }
