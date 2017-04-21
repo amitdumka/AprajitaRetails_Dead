@@ -13,8 +13,8 @@ namespace AprajitaRetails
     class DataBase : IDisposable
     {
         public static string DataBaseName = "aprajitaRetails";
-        DBHelper db;
-        public static int DBType = 1;
+        static DBHelper db;
+        public static int DBType = ConType.SQLDB;
         protected virtual void Dispose(bool disposing)
         {
             if ( disposing )
@@ -273,11 +273,59 @@ namespace AprajitaRetails
             //TODO:setdatabase password
         }
 
+        public static object QuerryReturn(String sql)
+        {
+            SqlCommand cmd;
+
+            if ( DBType == ConType.SQLDB )
+            {
+                cmd = db.QueryStrSql (sql);
+                return cmd.ExecuteScalar ();
+            }
+            else if ( DBType == ConType.OLEDB )
+            {
+                OleDbCommand ole = db.QueryStrOle (sql);
+                return ole.ExecuteScalar ();
+                //TODO: read operation
+            }
+            else
+                return -999;
+
+
+        }
+
+        /// <summary>
+        /// Single coloum result and int
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static int QuerryReturnInt(String sql)
+        {
+            SqlCommand cmd;
+
+            if ( DBType == ConType.SQLDB )
+            {
+                cmd = db.QueryStrSql (sql);
+                return (int) cmd.ExecuteScalar ();
+            }
+            else if ( DBType == ConType.OLEDB )
+            {
+                OleDbCommand ole = db.QueryStrOle (sql);
+                return (int) ole.ExecuteScalar ();
+                //TODO: read operation
+            }
+            else
+                return -1;
+
+
+        }
+
 
         // Verson :1
 
         public void Querry(String sql)
         {
+
             if ( DBType == ConType.SQLDB )
             {
                 db.QueryStrSql (sql);

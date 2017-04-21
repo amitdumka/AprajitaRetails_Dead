@@ -53,21 +53,21 @@
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.CBEmpCode = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.DTPJoiningDate = new System.Windows.Forms.DateTimePicker();
             this.TXTLastName = new System.Windows.Forms.TextBox();
             this.DTPBirthDate = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.CBCity = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cbState = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.CBCountry = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.CBEmpType = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.DTPJoiningDate = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.TXTAttendenceID = new System.Windows.Forms.TextBox();
             this.GBControls.SuspendLayout();
@@ -140,6 +140,7 @@
             this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // BTNUpdate
             // 
@@ -423,22 +424,6 @@
             this.CBEmpCode.Size = new System.Drawing.Size(193, 39);
             this.CBEmpCode.TabIndex = 11;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(550, 133);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(174, 32);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Joining Date";
-            // 
-            // DTPJoiningDate
-            // 
-            this.DTPJoiningDate.Location = new System.Drawing.Point(743, 136);
-            this.DTPJoiningDate.Name = "DTPJoiningDate";
-            this.DTPJoiningDate.Size = new System.Drawing.Size(272, 38);
-            this.DTPJoiningDate.TabIndex = 13;
-            // 
             // TXTLastName
             // 
             this.TLPEmployeeDetails.SetColumnSpan(this.TXTLastName, 2);
@@ -487,36 +472,17 @@
             // cbState
             // 
             this.cbState.FormattingEnabled = true;
-            this.cbState.Location = new System.Drawing.Point(744, 227);
+            this.cbState.Location = new System.Drawing.Point(744, 226);
             this.cbState.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbState.Name = "cbState";
             this.cbState.Size = new System.Drawing.Size(386, 39);
             this.cbState.TabIndex = 7;
             this.cbState.Text = "Jharkhand";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 314);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(143, 32);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Mobile No";
-            // 
-            // txtMobileNo
-            // 
-            this.txtMobileNo.Location = new System.Drawing.Point(155, 317);
-            this.txtMobileNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(386, 38);
-            this.txtMobileNo.TabIndex = 9;
-            this.txtMobileNo.Text = "7779997556";
-            // 
             // CBCountry
             // 
             this.CBCountry.FormattingEnabled = true;
-            this.CBCountry.Location = new System.Drawing.Point(744, 272);
+            this.CBCountry.Location = new System.Drawing.Point(744, 271);
             this.CBCountry.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBCountry.Name = "CBCountry";
             this.CBCountry.Size = new System.Drawing.Size(152, 39);
@@ -526,7 +492,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(551, 224);
+            this.label5.Location = new System.Drawing.Point(551, 223);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 32);
@@ -536,7 +502,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(550, 269);
+            this.label15.Location = new System.Drawing.Point(550, 268);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(114, 32);
             this.label15.TabIndex = 19;
@@ -558,6 +524,41 @@
             this.CBEmpType.Name = "CBEmpType";
             this.CBEmpType.Size = new System.Drawing.Size(272, 39);
             this.CBEmpType.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(550, 133);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(174, 32);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Joining Date";
+            // 
+            // DTPJoiningDate
+            // 
+            this.DTPJoiningDate.Location = new System.Drawing.Point(743, 136);
+            this.DTPJoiningDate.Name = "DTPJoiningDate";
+            this.DTPJoiningDate.Size = new System.Drawing.Size(272, 38);
+            this.DTPJoiningDate.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 314);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(143, 32);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Mobile No";
+            // 
+            // txtMobileNo
+            // 
+            this.txtMobileNo.Location = new System.Drawing.Point(155, 317);
+            this.txtMobileNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtMobileNo.Name = "txtMobileNo";
+            this.txtMobileNo.Size = new System.Drawing.Size(386, 38);
+            this.txtMobileNo.TabIndex = 9;
+            this.txtMobileNo.Text = "7779997556";
             // 
             // label14
             // 
@@ -585,6 +586,7 @@
             this.Controls.Add(this.GBEmployeeDetails);
             this.Name = "EmployeeForm";
             this.Text = "EmployeeForm";
+            this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.GBControls.ResumeLayout(false);
             this.GBControls.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
