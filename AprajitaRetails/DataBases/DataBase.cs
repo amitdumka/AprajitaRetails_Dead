@@ -148,6 +148,73 @@ namespace AprajitaRetails
             return data;
         }
 
+
+        public static List<string> GetQueryString(string sp, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            SqlCommand cmd = new SqlCommand ();
+            cmd.CommandText = sp;
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            List<string> data = new List<string> ();
+            ;
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((string) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
+
+        public static List<int> GetQueryInt(String storeProc, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            SqlCommand cmd = new SqlCommand ();
+            cmd.CommandText = storeProc;
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            List<int> data = new List<int> ();
+            ;
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((int) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
+
         public static List<int> GetSqlStoreProcedureInt(String storeProc, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
@@ -248,7 +315,8 @@ namespace AprajitaRetails
             catch ( Exception ex )
             {
                 count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message, "GetSqlStoreProcedure");
+                //TODO: remove mbox 
+                System.Windows.Forms.MessageBox.Show (cmd.CommandText+"\n" + ex.Message, "GetSqlStoreProcedure");
                 Logs.LogMe ("GetSqlStoreProcedure:Error= " + ex.Message);
             }
             finally
@@ -259,6 +327,61 @@ namespace AprajitaRetails
             return data;
         }
 
+        public static List<string> GetQueryString(SqlCommand cmd, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            int count = 0;
+            List<string> data = new List<string> ();
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+                while ( reader.Read () )
+                {
+                    data.Add ((string) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+            }
+            return data;
+        }
+
+        public static List<int> GetQueryInt(SqlCommand cmd, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            int count = 0;
+            List<int> data = new List<int> ();
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((int) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
 
         public void SetDataBasePath(string path)
         {

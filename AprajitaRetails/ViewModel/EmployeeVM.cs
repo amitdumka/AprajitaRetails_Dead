@@ -15,6 +15,19 @@ namespace AprajitaRetails.ViewModel
     {
         EmployeeDB eDM;
 
+        public int SetGenderList(ComboBox genderBox)
+        {
+            genderBox.Items.Add ("Male");
+            genderBox.Items.Add ("Female");
+            genderBox.Items.Add ("Transgender");
+            return genderBox.Items.Count;
+        }
+
+        public Employee GetEmployeeDetails(string empCode)
+        {
+            return eDM.GetByColName ("EMPCode", empCode);
+        }
+
         /// <summary>
         /// Get Employee Type List
         /// </summary>
@@ -23,9 +36,9 @@ namespace AprajitaRetails.ViewModel
         {
             List<string> empTypes = new List<string> ();
             Type t = typeof (EmployeeType);
-           
+
             foreach ( FieldInfo p in t.GetFields () )
-            {                 
+            {
                 empTypes.Add (p.Name);
             }
             return empTypes;
@@ -54,6 +67,13 @@ namespace AprajitaRetails.ViewModel
             eDM = new EmployeeDB ();
         }
 
+        public List<string> GetAllEmpCodes()
+        {
+            return eDM.GetEmpCodes ();
+
+
+        }
+
         /// <summary>
         /// Add Data Opertation
         /// </summary>
@@ -67,11 +87,11 @@ namespace AprajitaRetails.ViewModel
         /// </summary>
         /// <param name="empData">Employee Data</param>
         /// <returns>Returns no of recored added</returns>
-        public int SaveData(EmployeeDM empData)
+        public int SaveData(Employee empData)
         {
-            Employee emp = ToObjectEmployee (empData);
+            // Employee emp = ToObjectEmployee (empData);
 
-            return eDM.InsertData (emp);
+            return eDM.InsertData (empData);
 
         }
 
@@ -82,13 +102,23 @@ namespace AprajitaRetails.ViewModel
         /// <returns>Returns Employee Object</returns>
         public Employee ToObjectEmployee(EmployeeDM eDM)
         {
-            return new Employee () {
-                AddressLine1=eDM.AddressLine1,Age=eDM.Age,
-                AttendenceId=eDM.AttendenceId,City= eDM.City,Country= eDM.Country,
-                DateOfBirth= eDM.DateOfBirth, DateOfJoining= eDM.DateOfJoining,
-                DateOfLeaving= eDM.DateOfLeaving,EMPCode=eDM.EMPCode,
-                EmpType=eDM.EmpType,FirstName= eDM.FirstName,ID= eDM.ID,LastName= eDM.LastName,
-                State=eDM.State,Status= eDM.Status
+            return new Employee ()
+            {
+                AddressLine1 = eDM.AddressLine1,
+                Age = eDM.Age,
+                AttendenceId = eDM.AttendenceId,
+                City = eDM.City,
+                Country = eDM.Country,
+                DateOfBirth = eDM.DateOfBirth,
+                DateOfJoining = eDM.DateOfJoining,
+                DateOfLeaving = eDM.DateOfLeaving,
+                EMPCode = eDM.EMPCode,
+                EmpType = eDM.EmpType,
+                FirstName = eDM.FirstName,
+                ID = eDM.ID,
+                LastName = eDM.LastName,
+                State = eDM.State,
+                Status = eDM.Status
             };
 
         }
@@ -105,6 +135,9 @@ namespace AprajitaRetails.ViewModel
         {
             SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
             cmd.Parameters.AddWithValue ("@Age", obj.Age);
+            cmd.Parameters.AddWithValue ("@MobileNo", obj.MobileNo);
+            cmd.Parameters.AddWithValue ("@Gender", obj.Gender);
+
             cmd.Parameters.AddWithValue ("@City", obj.City);
             cmd.Parameters.AddWithValue ("@Country", obj.Country);
             cmd.Parameters.AddWithValue ("@DateOfBirth", obj.DateOfBirth);
@@ -133,14 +166,71 @@ namespace AprajitaRetails.ViewModel
             return data [index];
         }
 
-        public override Employee ResultToObject(SortedDictionary<string, string> data)
+        public override Employee ResultToObject(SortedDictionary<string, string> item)
         {
-            throw new NotImplementedException ();
+            Employee emp = new Employee ()
+            {
+                AddressLine1 = item ["AddressLine1"],
+                Age = Basic.ToInt (item ["Age"]),
+                AttendenceId = Basic.ToInt (item ["AttendenceId"]),
+                City = item ["City"],
+                Country = item ["Country"],
+                EMPCode = item ["EMPCode"],
+                Status = item ["Status"],
+                FirstName = item ["FirstName"],
+                LastName = item ["LastName"],
+                MobileNo = item ["MobileNo"],
+                State = item ["State"],
+                ID = Basic.ToInt (item ["ID"]),
+                EmpType = Basic.ToInt (item ["EmpType"]),
+                DateOfBirth = DateTime.Parse (item ["DateOfBirth"]),
+                DateOfJoining = DateTime.Parse (item ["DateOfJoining"]),
+                DateOfLeaving = DateTime.Parse (item ["DateOfLeaving"]),
+                Gender = Basic.ToInt (item ["Gender"])
+            };
+            return emp;
         }
 
         public override List<Employee> ResultToObject(List<SortedDictionary<string, string>> data)
         {
-            throw new NotImplementedException ();
+            List<Employee> emps = new List<Employee> ();
+            foreach ( SortedDictionary<string, string> item in data )
+            {
+                Employee emp = new Employee ()
+                {
+                    AddressLine1 = item ["AddressLine1"],
+                    Age = Basic.ToInt (item ["Age"]),
+                    AttendenceId = Basic.ToInt (item ["AttendenceId"]),
+                    City = item ["City"],
+                    Country = item ["Country"],
+                    EMPCode = item ["EMPCode"],
+                    Status = item ["Status"],
+                    FirstName = item ["FirstName"],
+                    LastName = item ["LastName"],
+                    MobileNo = item ["MobileNo"],
+                    State = item ["State"],
+                    ID = Basic.ToInt (item ["ID"]),
+                    EmpType = Basic.ToInt (item ["EmpType"]),
+                    DateOfBirth = DateTime.Parse (item ["DateOfBirth"]),
+                    DateOfJoining = DateTime.Parse (item ["DateOfJoining"]),
+                    DateOfLeaving = DateTime.Parse (item ["DateOfLeaving"]),
+                    Gender = Basic.ToInt (item ["Gender"])
+
+                };
+                emps.Add (emp);
+
+            }
+            return emps;
+        }
+
+        public List<string> GetEmpCodes()
+        {
+            List<string> empCode = new List<string> ();
+            string sql = "Select EMPCode from Employee";
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            empCode = DataBase.GetQueryString (cmd, "EMPCode");
+            return empCode;
+
         }
     }
 }

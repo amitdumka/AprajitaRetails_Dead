@@ -106,10 +106,11 @@
     <Compile Include="DataModel\Customer.cs" />
     <Compile Include="DataModel\DailySaleDM.cs" />
     <Compile Include="DataModel\EmployeeDM.cs" />
-    <Compile Include="DataModel\Expenses.cs" />
+    <Compile Include="DataModel\ExpensesDM.cs" />
     <Compile Include="DataModel\FootFall.cs" />
     <Compile Include="DataModel\Purchase.cs" />
     <Compile Include="DataModel\Salary.cs" />
+    <Compile Include="Data\Attendence.cs" />
     <Compile Include="Data\DayClosing.cs" />
     <Compile Include="Data\NewCustomer.cs" />
     <Compile Include="Excels\ExcelUploader.cs" />
@@ -119,17 +120,32 @@
     <Compile Include="Forms\AttendenceForm.Designer.cs">
       <DependentUpon>AttendenceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BankAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccountForm.Designer.cs">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BasicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Expenses.cs">
+    <Compile Include="Forms\ExpensesCategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Expenses.designer.cs">
-      <DependentUpon>Expenses.cs</DependentUpon>
+    <Compile Include="Forms\ExpensesCategoryForm.Designer.cs">
+      <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExpensesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExpensesForm.designer.cs">
+      <DependentUpon>ExpensesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -227,6 +243,7 @@
     <Compile Include="TableCreator\MainProgram.cs" />
     <Compile Include="TableCreator\TableClass.cs" />
     <Compile Include="DataBases\TableName.cs" />
+    <Compile Include="ViewModel\AttendenceVM.cs" />
     <Compile Include="ViewModel\CustomerDB.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\DailySaleDB.cs" />
@@ -234,6 +251,7 @@
     <Compile Include="ViewModel\DataOps.cs" />
     <Compile Include="ViewModel\DayClosingVM.cs" />
     <Compile Include="ViewModel\EmployeeVM.cs" />
+    <Compile Include="ViewModel\ExpensesVM.cs" />
     <Compile Include="ViewModel\Features.cs" />
     <Compile Include="ViewModel\iDatabase.cs" />
     <Compile Include="ViewModel\NewCustomerDB.cs" />
@@ -254,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExpensesForm.resx">
+      <DependentUpon>ExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FootFallForm.resx">
       <DependentUpon>FootFallForm.cs</DependentUpon>
@@ -287,6 +308,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -307,6 +329,8 @@
     <Content Include="aprajitaRetails_log.ldf">
       <DependentUpon>aprajitaRetails.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\vectorstock_85252.jpg" />
+    <None Include="Resources\CustomerLogo.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
@@ -325,6 +349,9 @@
       <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
       <Name>ExcelReader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBase\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

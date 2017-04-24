@@ -16,6 +16,7 @@ namespace AprajitaRetails.ViewModel
         protected DataBase Db;
         protected TableClass table;
         protected string InsertSqlQuery = "";
+
         public DataOps()
         {
             Db = new DataBase (ConType.SQLDB);
@@ -27,11 +28,19 @@ namespace AprajitaRetails.ViewModel
                 CreateTable ();
             }
         }
+
         public int CreateTable()
         {
             SqlCommand cmd = new SqlCommand (table.CreateTableScript (), Db.DBCon);
             return cmd.ExecuteNonQuery ();
         }
+
+        public int CreateTable(string insertquery)
+        {
+            SqlCommand cmd = new SqlCommand (insertquery, Db.DBCon);
+            return cmd.ExecuteNonQuery ();
+        }
+
 
         public int Delete(object obj)
         {
@@ -52,7 +61,7 @@ namespace AprajitaRetails.ViewModel
         }
 
 
-        public T GetByColName(string colName, Type colValue)
+        public T GetByColName(string colName, Object colValue)
         {
             SqlCommand cmd = new SqlCommand ();
             cmd.CommandText = "select * from " + Tablename + " where " + colName + "=@values";
@@ -90,6 +99,17 @@ namespace AprajitaRetails.ViewModel
             return DataBase.IsTableExit (Tablename);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        public bool IsTableExist(string table)
+        {
+            return DataBase.IsTableExit (table);
+        }
+
+
         public int UpdateData(T obj)
         {
             throw new NotImplementedException ();
@@ -99,7 +119,7 @@ namespace AprajitaRetails.ViewModel
 
         public abstract T ResultToObject(SortedDictionary<string, string> data);
 
-        public abstract List<T> ResultToObject(List<SortedDictionary<string, string>> data);
+        public abstract List<T> ResultToObject(List<SortedDictionary<string, string>> dataList);
 
     }
 }

@@ -257,6 +257,7 @@ namespace AprajitaRetails.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public int Gender { get; set; }
         public string AddressLine1 { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
@@ -266,6 +267,7 @@ namespace AprajitaRetails.Data
         public DateTime DateOfBirth { get; set; }
         public DateTime DateOfJoining { get; set; }
         public DateTime DateOfLeaving { get; set; }
+        public string MobileNo { set; get; }
         public string Status { get; set; }
     }
     public class EmployeeType

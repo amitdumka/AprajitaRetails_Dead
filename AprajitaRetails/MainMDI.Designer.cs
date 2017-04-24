@@ -608,9 +608,11 @@
             // 
             // MainMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
+            this.BackgroundImage = global::AprajitaRetails.Properties.Resources.CustomerLogo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(2229, 1080);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);

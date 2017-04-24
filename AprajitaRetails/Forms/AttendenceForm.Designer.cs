@@ -38,15 +38,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.TXTAttendenceNo = new System.Windows.Forms.TextBox();
+            this.LBAttenceDate = new System.Windows.Forms.Label();
+            this.CKAbesent = new System.Windows.Forms.CheckBox();
+            this.CKPaidLeaves = new System.Windows.Forms.CheckBox();
             this.GBControls = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.BTNAdd = new System.Windows.Forms.Button();
             this.BTNDelete = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
-            this.LBAttenceDate = new System.Windows.Forms.Label();
-            this.CKAbesent = new System.Windows.Forms.CheckBox();
-            this.CKPaidLeaves = new System.Windows.Forms.CheckBox();
             this.GBAttendence.SuspendLayout();
             this.TLPAttendence.SuspendLayout();
             this.GBControls.SuspendLayout();
@@ -59,8 +59,9 @@
             this.GBAttendence.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBAttendence.Controls.Add(this.TLPAttendence);
             this.GBAttendence.Location = new System.Drawing.Point(12, 12);
+            this.GBAttendence.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.GBAttendence.Name = "GBAttendence";
-            this.GBAttendence.Size = new System.Drawing.Size(860, 179);
+            this.GBAttendence.Size = new System.Drawing.Size(865, 182);
             this.GBAttendence.TabIndex = 0;
             this.GBAttendence.TabStop = false;
             this.GBAttendence.Text = "Attendence";
@@ -70,7 +71,8 @@
             this.TLPAttendence.AutoScroll = true;
             this.TLPAttendence.AutoSize = true;
             this.TLPAttendence.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.TLPAttendence.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.TLPAttendence.BackColor = System.Drawing.Color.LightPink;
+            this.TLPAttendence.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.TLPAttendence.ColumnCount = 4;
             this.TLPAttendence.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TLPAttendence.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -99,13 +101,13 @@
             this.TLPAttendence.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.TLPAttendence.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.TLPAttendence.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPAttendence.Size = new System.Drawing.Size(854, 142);
+            this.TLPAttendence.Size = new System.Drawing.Size(859, 145);
             this.TLPAttendence.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 2);
+            this.label1.Location = new System.Drawing.Point(6, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 32);
             this.label1.TabIndex = 0;
@@ -114,15 +116,16 @@
             // CBEmpCode
             // 
             this.CBEmpCode.FormattingEnabled = true;
-            this.CBEmpCode.Location = new System.Drawing.Point(237, 5);
+            this.CBEmpCode.Location = new System.Drawing.Point(239, 6);
             this.CBEmpCode.Name = "CBEmpCode";
             this.CBEmpCode.Size = new System.Drawing.Size(190, 39);
             this.CBEmpCode.TabIndex = 1;
+            this.CBEmpCode.SelectedIndexChanged += new System.EventHandler(this.CBEmpCode_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 50);
+            this.label2.Location = new System.Drawing.Point(6, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(224, 32);
             this.label2.TabIndex = 2;
@@ -130,14 +133,14 @@
             // 
             // TXTFirstName
             // 
-            this.TXTFirstName.Location = new System.Drawing.Point(237, 53);
+            this.TXTFirstName.Location = new System.Drawing.Point(239, 54);
             this.TXTFirstName.Name = "TXTFirstName";
             this.TXTFirstName.Size = new System.Drawing.Size(211, 38);
             this.TXTFirstName.TabIndex = 3;
             // 
             // TXTLastName
             // 
-            this.TXTLastName.Location = new System.Drawing.Point(456, 53);
+            this.TXTLastName.Location = new System.Drawing.Point(459, 54);
             this.TXTLastName.Name = "TXTLastName";
             this.TXTLastName.Size = new System.Drawing.Size(174, 38);
             this.TXTLastName.TabIndex = 4;
@@ -145,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(456, 2);
+            this.label3.Location = new System.Drawing.Point(459, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 32);
             this.label3.TabIndex = 5;
@@ -154,7 +157,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 96);
+            this.label5.Location = new System.Drawing.Point(6, 98);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(144, 32);
             this.label5.TabIndex = 9;
@@ -162,18 +165,47 @@
             // 
             // TXTAttendenceNo
             // 
-            this.TXTAttendenceNo.Location = new System.Drawing.Point(237, 99);
+            this.TXTAttendenceNo.Location = new System.Drawing.Point(239, 101);
             this.TXTAttendenceNo.Name = "TXTAttendenceNo";
             this.TXTAttendenceNo.Size = new System.Drawing.Size(211, 38);
             this.TXTAttendenceNo.TabIndex = 10;
+            // 
+            // LBAttenceDate
+            // 
+            this.LBAttenceDate.AutoSize = true;
+            this.LBAttenceDate.Location = new System.Drawing.Point(642, 3);
+            this.LBAttenceDate.Name = "LBAttenceDate";
+            this.LBAttenceDate.Size = new System.Drawing.Size(211, 32);
+            this.LBAttenceDate.TabIndex = 29;
+            this.LBAttenceDate.Text = "Attendece Date";
+            // 
+            // CKAbesent
+            // 
+            this.CKAbesent.AutoSize = true;
+            this.CKAbesent.Location = new System.Drawing.Point(459, 101);
+            this.CKAbesent.Name = "CKAbesent";
+            this.CKAbesent.Size = new System.Drawing.Size(142, 36);
+            this.CKAbesent.TabIndex = 30;
+            this.CKAbesent.Text = "Absent";
+            this.CKAbesent.UseVisualStyleBackColor = true;
+            // 
+            // CKPaidLeaves
+            // 
+            this.CKPaidLeaves.AutoSize = true;
+            this.CKPaidLeaves.Location = new System.Drawing.Point(642, 101);
+            this.CKPaidLeaves.Name = "CKPaidLeaves";
+            this.CKPaidLeaves.Size = new System.Drawing.Size(210, 36);
+            this.CKPaidLeaves.TabIndex = 31;
+            this.CKPaidLeaves.Text = "Paid Leaves";
+            this.CKPaidLeaves.UseVisualStyleBackColor = true;
             // 
             // GBControls
             // 
             this.GBControls.AutoSize = true;
             this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(38, 209);
-            this.GBControls.Margin = new System.Windows.Forms.Padding(5);
+            this.GBControls.Location = new System.Drawing.Point(38, 226);
+            this.GBControls.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.GBControls.Name = "GBControls";
             this.GBControls.Padding = new System.Windows.Forms.Padding(5);
             this.GBControls.Size = new System.Drawing.Size(788, 116);
@@ -206,6 +238,7 @@
             this.BTNAdd.TabIndex = 4;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNDelete
             // 
@@ -228,6 +261,7 @@
             this.Cancel.TabIndex = 7;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // BTNUpdate
             // 
@@ -240,35 +274,6 @@
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
             // 
-            // LBAttenceDate
-            // 
-            this.LBAttenceDate.AutoSize = true;
-            this.LBAttenceDate.Location = new System.Drawing.Point(638, 2);
-            this.LBAttenceDate.Name = "LBAttenceDate";
-            this.LBAttenceDate.Size = new System.Drawing.Size(211, 32);
-            this.LBAttenceDate.TabIndex = 29;
-            this.LBAttenceDate.Text = "Attendece Date";
-            // 
-            // CKAbesent
-            // 
-            this.CKAbesent.AutoSize = true;
-            this.CKAbesent.Location = new System.Drawing.Point(456, 99);
-            this.CKAbesent.Name = "CKAbesent";
-            this.CKAbesent.Size = new System.Drawing.Size(142, 36);
-            this.CKAbesent.TabIndex = 30;
-            this.CKAbesent.Text = "Absent";
-            this.CKAbesent.UseVisualStyleBackColor = true;
-            // 
-            // CKPaidLeaves
-            // 
-            this.CKPaidLeaves.AutoSize = true;
-            this.CKPaidLeaves.Location = new System.Drawing.Point(638, 99);
-            this.CKPaidLeaves.Name = "CKPaidLeaves";
-            this.CKPaidLeaves.Size = new System.Drawing.Size(210, 36);
-            this.CKPaidLeaves.TabIndex = 31;
-            this.CKPaidLeaves.Text = "Paid Leaves";
-            this.CKPaidLeaves.UseVisualStyleBackColor = true;
-            // 
             // AttendenceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -276,8 +281,10 @@
             this.ClientSize = new System.Drawing.Size(925, 379);
             this.Controls.Add(this.GBControls);
             this.Controls.Add(this.GBAttendence);
+            this.MaximizeBox = false;
             this.Name = "AttendenceForm";
             this.Text = "Attendence";
+            this.Load += new System.EventHandler(this.AttendenceForm_Load);
             this.GBAttendence.ResumeLayout(false);
             this.GBAttendence.PerformLayout();
             this.TLPAttendence.ResumeLayout(false);

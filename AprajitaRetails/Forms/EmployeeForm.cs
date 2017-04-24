@@ -11,11 +11,15 @@ using AprajitaRetails.Data;
 using AprajitaRetails.DataModel;
 using AprajitaRetails.ViewModel;
 
+//TODO: Bug EmpType on Load Emp Details .Check 
+
+
 namespace AprajitaRetails.Forms
 {
     public partial class EmployeeForm : Form
     {
         EmployeeVM eVM = new EmployeeVM ();
+        Employee emp;
 
         public EmployeeForm()
         {
@@ -30,14 +34,13 @@ namespace AprajitaRetails.Forms
             }
             else if ( BTNAdd.Text == "Save" )
             {
-
                 PerformSave ();
             }
         }
         private void PerformAdd()
         {
             BTNAdd.Text = "Save";
-            // Basic.ClearUIFields (TLPEmployeeDetails);
+            //TODO: removecoment Basic.ClearUIFields (TLPEmployeeDetails);
 
         }
         private void PerformSave()
@@ -48,6 +51,8 @@ namespace AprajitaRetails.Forms
                 {
                     BTNAdd.Text = "Add";
                     MessageBox.Show ("Your Record got Saved", "Employee");
+                    LoadEmpCode ();
+                    Basic.ClearUIFields (TLPEmployeeDetails);
                 }
                 else
                 {
@@ -62,13 +67,15 @@ namespace AprajitaRetails.Forms
 
         }
 
-        private EmployeeDM ReadFields()
+        private Employee ReadFields()
         {
-            EmployeeDM eDM = new EmployeeDM ()
+            Employee eDM = new Employee ()
             {
                 ID = -1,
                 Age = Basic.ToInt (txtAge.Text.Trim ()),
                 AddressLine1 = txtAddress.Text,
+                Gender = Gender.GetGenderId (cbGender.Text),
+                MobileNo = txtMobileNo.Text,
                 City = CBCity.Text,
                 Country = CBCountry.Text,
                 Status = "Normal",
@@ -90,14 +97,63 @@ namespace AprajitaRetails.Forms
         private void EmployeeForm_Load(object sender, EventArgs e)
         {
             int x = eVM.GetEmployeeTypeList (CBEmpType);
-            Console.WriteLine ("Emptye list count={0}", x);
-        }
+            LoadUiItems ();
 
+        }
+        private void LoadUiItems()
+        {
+            LoadEmpCode ();
+            eVM.SetGenderList (cbGender);
+        }
         private void Cancel_Click(object sender, EventArgs e)
         {
             BTNAdd.Text = "Add";
             BTNUpdate.Text = "Update";
             Basic.ClearUIFields (TLPEmployeeDetails);
+        }
+
+        private void LoadEmpCode()
+        {
+            List<string> ecodes = eVM.GetAllEmpCodes ();
+            CBEmpCode.Items.Clear ();
+            foreach ( string item in ecodes )
+            {
+
+                CBEmpCode.Items.Add (item);
+            }
+        }
+        private void OnEmpCodeChange(int index)
+        {
+            emp = eVM.GetEmployeeDetails (CBEmpCode.Items [index].ToString ());
+            DisplayEmployeeData ();
+
+        }
+        private void DisplayEmployeeData()
+        {
+            if ( emp != null )
+            {
+                TXTFirstName.Text = emp.FirstName;
+                TXTLastName.Text = emp.LastName;
+                txtMobileNo.Text = emp.MobileNo;
+                CBCity.Text = emp.City;
+                CBCountry.Text = emp.Country;
+                cbState.Text = emp.State;
+                CBEmpCode.Text = emp.EMPCode;
+                txtAddress.Text = emp.AddressLine1;
+                txtAge.Text = "" + emp.Age;
+                TXTAttendenceID.Text = "" + emp.AttendenceId;
+                DTPBirthDate.Value = emp.DateOfBirth;
+                DTPJoiningDate.Value = emp.DateOfJoining;
+                cbGender.Text = Gender.GetGender (emp.Gender);
+                CBEmpType.Text = EmpCode.EmpTypeToCategory (emp.EmpType);
+            }
+
+        }
+
+        private void CBEmpCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = ( (ComboBox) sender ).SelectedIndex;
+            OnEmpCodeChange (idx);
         }
     }
 }

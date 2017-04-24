@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace AprajitaRetails.Forms
 {
-    public partial class ExpensesForm : Form
+    public partial class BankAccountForm : Form
     {
-        public ExpensesForm()
+        public BankAccountForm()
         {
-            InitializeComponent();
+            InitializeComponent ();
         }
     }
 }
