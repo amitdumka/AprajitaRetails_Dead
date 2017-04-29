@@ -55,14 +55,19 @@ namespace AprajitaRetails.Forms
         {
             if ( ValidateFields () )
             {
+                Console.WriteLine ("Validation done");
                 if ( vIsBankDetails )
+                {
+                    Console.WriteLine ("Getting bank details");
                     vBankDetailsID = eVM.SaveBankDetails (ReadBankDetails ());
+                    Console.WriteLine ("Bank details id{0}", vBankDetailsID);
+                }
                 if ( vIsBankDetails && vBankDetailsID <= 0 )
                 {
                     MessageBox.Show ("An Error occured while saving Data, Kindly check and try again!");
 
                 }
-                else if ( vBankDetailsID > 0 && eVM.SaveData (ReadFields ()) > 0 )
+                else if ( eVM.SaveData (ReadFields ()) > 0 )
                 {
                     MessageBox.Show ("Your record is save!");
                     BTNAdd.Text = "Add";
@@ -177,6 +182,42 @@ namespace AprajitaRetails.Forms
 
         }
 
+        private void CBPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: Implement based on selected Different Mode.
+            if ( CBPaymentMode.Text != "Cash" )
+            {
+                EnableBankDetails (true);
+            }
+            else
+                EnableBankDetails (false);
+        }
+        private void EnableBankDetails(bool enable)
+        {
+            //TODO: Based on selected choice make visible element on context of 
+            //choice made
+            //TODO:Change Lable name based on the selection Made.
+            //TODO: disolve transcation type and use payment mode as trancation type
+            LBBankAccount.Visible = enable;
+            LBBankRef.Visible = enable;
+            LBTrType.Visible = enable;
+            LBTrRef.Visible = enable;
+            TXTBankRef.Visible = enable;
+            TXTTranscationRef.Visible = enable;
+            CBTranscationType.Visible = enable;
+            CBBankAccount.Visible = enable;
+            vIsBankDetails = enable;
 
+            if ( enable )
+            {
+
+                CBTranscationType.Text = CBPaymentMode.Text;
+                CBTranscationType.Enabled = false;
+            }
+            else
+                CBTranscationType.Enabled = true;
+
+
+        }
     }
 }

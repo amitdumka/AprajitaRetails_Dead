@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GBLogin = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.TLPLoginControls = new System.Windows.Forms.TableLayoutPanel();
@@ -38,26 +38,28 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PBLogo = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.GBLogin.SuspendLayout();
             this.TLPLoginControls.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // GBLogin
             // 
-            this.groupBox1.AutoSize = true;
-            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.TLPLoginControls);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 309);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1048, 402);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Login";
+            this.GBLogin.AutoSize = true;
+            this.GBLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.GBLogin.Controls.Add(this.label4);
+            this.GBLogin.Controls.Add(this.label3);
+            this.GBLogin.Controls.Add(this.TLPLoginControls);
+            this.GBLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GBLogin.Location = new System.Drawing.Point(0, 321);
+            this.GBLogin.Name = "GBLogin";
+            this.GBLogin.Size = new System.Drawing.Size(1048, 390);
+            this.GBLogin.TabIndex = 0;
+            this.GBLogin.TabStop = false;
+            this.GBLogin.Text = "Login";
             // 
             // label4
             // 
@@ -67,7 +69,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(219, 148);
+            this.label4.Location = new System.Drawing.Point(214, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(549, 39);
             this.label4.TabIndex = 2;
@@ -108,7 +110,7 @@
             this.TLPLoginControls.Controls.Add(this.txtPassword, 1, 1);
             this.TLPLoginControls.Controls.Add(this.label1, 0, 0);
             this.TLPLoginControls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.TLPLoginControls.Location = new System.Drawing.Point(275, 200);
+            this.TLPLoginControls.Location = new System.Drawing.Point(270, 200);
             this.TLPLoginControls.Name = "TLPLoginControls";
             this.TLPLoginControls.Padding = new System.Windows.Forms.Padding(10);
             this.TLPLoginControls.RowCount = 3;
@@ -152,6 +154,7 @@
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtUserName
             // 
@@ -183,15 +186,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "UserName";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.PBLogo);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1048, 237);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            // 
             // PBLogo
             // 
             this.PBLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PBLogo.Image = global::AprajitaRetails.Properties.Resources.CustomerLogo;
-            this.PBLogo.Location = new System.Drawing.Point(0, 0);
+            this.PBLogo.Location = new System.Drawing.Point(3, 34);
             this.PBLogo.Name = "PBLogo";
-            this.PBLogo.Size = new System.Drawing.Size(1048, 309);
+            this.PBLogo.Size = new System.Drawing.Size(1042, 200);
             this.PBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PBLogo.TabIndex = 1;
+            this.PBLogo.TabIndex = 2;
             this.PBLogo.TabStop = false;
             // 
             // LoginForm
@@ -204,18 +219,20 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1048, 711);
-            this.Controls.Add(this.PBLogo);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GBLogin);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1080, 799);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.LoginForm_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GBLogin.ResumeLayout(false);
+            this.GBLogin.PerformLayout();
             this.TLPLoginControls.ResumeLayout(false);
             this.TLPLoginControls.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,7 +241,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GBLogin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel TLPLoginControls;
         private System.Windows.Forms.Label label2;
@@ -234,6 +251,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox PBLogo;
     }
 }

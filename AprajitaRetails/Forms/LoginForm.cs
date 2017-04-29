@@ -46,5 +46,19 @@ namespace AprajitaRetails
             else
             { MessageBox.Show ("Kindly Enter Username and Password"); }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+           DialogResult result= MessageBox.Show ("Are Your sure to exit", "Aprajita Retails", MessageBoxButtons.YesNo);
+            if ( result == DialogResult.Yes )
+            {
+                this.Close ();
+                Application.Exit ();
+               
+            } else if ( result == DialogResult.No )
+            {
+                txtPassword.Text = ""; txtUserName.Text = "";
+            }
+        }
     }
 }

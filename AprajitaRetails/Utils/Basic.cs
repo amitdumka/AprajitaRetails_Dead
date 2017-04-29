@@ -30,7 +30,7 @@ namespace AprajitaRetails
     public class Basic
     {
 
-        
+
 
         /// <summary>
         /// set/update Checkbox State
@@ -121,7 +121,7 @@ namespace AprajitaRetails
             foreach ( var textBox in textBoxes )
             {
                 Console.WriteLine (textBox.Name);
-                if ( string.IsNullOrWhiteSpace (textBox.Text) )
+                if ( textBox.Visible == true && string.IsNullOrWhiteSpace (textBox.Text) )
                 {
                     textBox.Focus ();
 
@@ -135,7 +135,8 @@ namespace AprajitaRetails
             foreach ( var comBox in comBoxes )
             {
                 Console.WriteLine (comBox.Name);
-                if ( string.IsNullOrWhiteSpace (comBox.Text) )
+
+                if ( comBox.Visible == true && string.IsNullOrWhiteSpace (comBox.Text) )
                 {
                     comBox.Focus ();
 
@@ -149,7 +150,7 @@ namespace AprajitaRetails
             foreach ( var numf in numFiled )
             {
                 Console.WriteLine (numf.Name);
-                if ( string.IsNullOrWhiteSpace (numf.Text) )
+                if ( numf.Visible == true && string.IsNullOrWhiteSpace (numf.Text) )
                 {
                     numf.Focus ();
 
@@ -160,7 +161,7 @@ namespace AprajitaRetails
                     return false;
                 }
             }
-
+            Console.WriteLine ("Validate: true");
             return true;
         }
 

@@ -25,48 +25,38 @@ namespace AprajitaRetails
             // Form childForm = new Form ();
             childForm.MdiParent = this;
             //childForm.Text = "Window " + childFormNumber++;
+            childFormNumber++;
             childForm.Show ();
         }
+        /*
+         private void OpenFile(object sender, EventArgs e)
+         {
+             OpenFileDialog openFileDialog = new OpenFileDialog ();
+             openFileDialog.InitialDirectory = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+             openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+             if ( openFileDialog.ShowDialog (this) == DialogResult.OK )
+             {
+                 string FileName = openFileDialog.FileName;
+             }
+         }
 
-        private void OpenFile(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog ();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if ( openFileDialog.ShowDialog (this) == DialogResult.OK )
-            {
-                string FileName = openFileDialog.FileName;
-            }
-        }
-
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog ();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if ( saveFileDialog.ShowDialog (this) == DialogResult.OK )
-            {
-                string FileName = saveFileDialog.FileName;
-            }
-        }
-
+         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+         {
+             SaveFileDialog saveFileDialog = new SaveFileDialog ();
+             saveFileDialog.InitialDirectory = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+             saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+             if ( saveFileDialog.ShowDialog (this) == DialogResult.OK )
+             {
+                 string FileName = saveFileDialog.FileName;
+             }
+         }
+          */
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close ();
             Application.Exit ();
         }
 
-        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -128,7 +118,7 @@ namespace AprajitaRetails
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowNewForm (new AprajitaRetails.Forms.FormTest ());
+            ShowNewForm (new FormTest ());
         }
 
         private void customersDetailToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,7 +163,34 @@ namespace AprajitaRetails
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowNewForm (new AboutBox1());
+            ShowNewForm (new AboutBox1 ());
+        }
+
+
+
+        private void TSBDailySale_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new DailySaleForm ());
+        }
+
+        private void TSBDayClosing_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new DayClosingForm ());
+        }
+
+        private void TSBExpenses_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new ExpensesForm ());
+        }
+
+        private void TSBAttendence_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new AttendenceForm ());
+        }
+
+        private void uploadVoygerDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new UploaderForm (0));
         }
     }
 }

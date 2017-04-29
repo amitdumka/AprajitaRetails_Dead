@@ -10,66 +10,16 @@ using System.Data.SqlClient;
 // TODO: Add password to database
 namespace AprajitaRetails
 {
+    class BackupData
+    {
+
+    }
+
     class DataBase : IDisposable
     {
         public static string DataBaseName = "aprajitaRetails";
-        static DBHelper db;
         public static int DBType = ConType.SQLDB;
-        protected virtual void Dispose(bool disposing)
-        {
-            if ( disposing )
-            {
-                // dispose managed resources
-                db.Dispose ();
-            }
-            // free native resources
-        }
-        public void Dispose()
-        {
-            Dispose (true);
-            GC.SuppressFinalize (this);
-        }
-        //Version 2
-        public static int IsTableWithDefaultExit(string tablename)
-        {
-            string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
-                "  WHERE  TABLE_NAME = @tablename))" +
-                "SELECT 1 AS Result ELSE SELECT 0 AS Result;";
-            SqlCommand cmd = ( (SqlConnection) GetConnectionObject (ConType.SQLDB) ).CreateCommand ();
-            cmd.CommandText = query;
-            cmd.Parameters.AddWithValue ("@tablename", tablename);
-            int result = (int) cmd.ExecuteScalar ();
-            Console.WriteLine ("ok1=" + result);
-            if ( result == 1 )
-            {
-                cmd.CommandText = "Select Count(*)as CTR from " + tablename;
-                result = (int) cmd.ExecuteScalar ();
-                Console.WriteLine ("ok2=" + result);
-                if ( result > 0 )
-                    return 2;
-                else
-                    return -2;
-            }
-            else
-                return -1;
-        }
-        public static bool IsTableExit(string tableName)
-        {
-            string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
-                "  WHERE  TABLE_NAME = @tablename))" +
-                "SELECT 1 AS Result ELSE SELECT 0 AS Result;";
-            SqlCommand cmd = ( (SqlConnection) GetConnectionObject (ConType.SQLDB) ).CreateCommand ();
-            cmd.CommandText = query;
-            cmd.Parameters.AddWithValue ("@tablename", tableName);
-
-            int result = (int) cmd.ExecuteScalar ();
-            Console.WriteLine ("table check of {0} is result ={1}", tableName, result);
-            if ( result == 1 )
-                return true;
-            else
-                return false;
-        }
-        public SqlConnection DBCon { private set; get; }
+        static DBHelper db;
 
         public DataBase(int type)
         {
@@ -81,105 +31,13 @@ namespace AprajitaRetails
             Logs.LogMe ("DataBase(): Connection is Created");
 
         }
-        public void ConnnetDB()
-        {
-            db.ConnectDB (DBType);
 
-        }
-        public void CloseDB()
-        {
-            if ( DBType == ConType.SQLDB )
-            {
-                db.CloseDB ();
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                db.CloseDB ();
-            }
+        public SqlConnection DBCon { private set; get; }
 
-        }
         public static Object GetConnectionObject(int type)
         {
             Logs.LogMe ("DataBase.GetConnectionObject=" + type);
             return new DBHelper ().GetConnectioObject (type);
-        }
-        public static int GetSqlStoreProcedureReturnInt(SqlCommand cmd)
-        {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            cmd.Connection = con;
-            var returnParameter = cmd.Parameters.Add ("@ReturnVal", SqlDbType.Int);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            int ctr = cmd.ExecuteNonQuery ();
-            var result = returnParameter.Value;
-            con.Close ();
-            return Int32.Parse ("" + result);
-
-        }
-        public static List<string> GetSqlStoreProcedureString(string sp, string colName)
-        {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = sp;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            int count = 0;
-            List<string> data = new List<string> ();
-            ;
-            try
-            {
-                SqlDataReader reader = cmd.ExecuteReader ();
-
-                while ( reader.Read () )
-                {
-                    data.Add ((string) reader [colName]);
-                    count++;
-                }
-            }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-
-            }
-            return data;
-        }
-
-
-        public static List<string> GetQueryString(string sp, string colName)
-        {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = sp;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            int count = 0;
-            List<string> data = new List<string> ();
-            ;
-            try
-            {
-                SqlDataReader reader = cmd.ExecuteReader ();
-
-                while ( reader.Read () )
-                {
-                    data.Add ((string) reader [colName]);
-                    count++;
-                }
-            }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-
-            }
-            return data;
         }
 
         public static List<int> GetQueryInt(String storeProc, string colName)
@@ -215,16 +73,12 @@ namespace AprajitaRetails
             return data;
         }
 
-        public static List<int> GetSqlStoreProcedureInt(String storeProc, string colName)
+        public static List<int> GetQueryInt(SqlCommand cmd, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = storeProc;
             cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             int count = 0;
             List<int> data = new List<int> ();
-            ;
             try
             {
                 SqlDataReader reader = cmd.ExecuteReader ();
@@ -247,6 +101,145 @@ namespace AprajitaRetails
             }
             return data;
         }
+
+        public static List<string> GetQueryString(string sp, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            SqlCommand cmd = new SqlCommand ();
+            cmd.CommandText = sp;
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            List<string> data = new List<string> ();
+            ;
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((string) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
+
+        public static List<string> GetQueryString(SqlCommand cmd, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            int count = 0;
+            List<string> data = new List<string> ();
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+                while ( reader.Read () )
+                {
+                    data.Add ((string) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+            }
+            return data;
+        }
+
+        public static List<int> GetSqlStoreProcedureInt(String storeProc, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            SqlCommand cmd = new SqlCommand ();
+            cmd.CommandText = storeProc;
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            List<int> data = new List<int> ();   
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((int) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
+
+        public static int GetSqlStoreProcedureReturnInt(SqlCommand cmd)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            cmd.Connection = con;
+            var returnParameter = cmd.Parameters.Add ("@ReturnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            int ctr = cmd.ExecuteNonQuery ();
+            var result = returnParameter.Value;
+            con.Close ();
+            return Int32.Parse ("" + result);
+
+        }
+
+        public static List<string> GetSqlStoreProcedureString(string sp, string colName)
+        {
+            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
+            SqlCommand cmd = new SqlCommand ();
+            cmd.CommandText = sp;
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            int count = 0;
+            List<string> data = new List<string> ();
+
+            try
+            {
+                SqlDataReader reader = cmd.ExecuteReader ();
+
+                while ( reader.Read () )
+                {
+                    data.Add ((string) reader [colName]);
+                    count++;
+                }
+            }
+            catch ( Exception ex )
+            {
+                count = -2;
+                System.Windows.Forms.MessageBox.Show (ex.Message);
+            }
+            finally
+            {
+                con.Close ();
+
+            }
+            return data;
+        }
+
         public static List<SortedDictionary<string, string>> GetSqlStoreProcedureString(string sp)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
@@ -316,7 +309,7 @@ namespace AprajitaRetails
             {
                 count = -2;
                 //TODO: remove mbox 
-                System.Windows.Forms.MessageBox.Show (cmd.CommandText+"\n" + ex.Message, "GetSqlStoreProcedure");
+                System.Windows.Forms.MessageBox.Show (cmd.CommandText + "\n" + ex.Message, "GetSqlStoreProcedure");
                 Logs.LogMe ("GetSqlStoreProcedure:Error= " + ex.Message);
             }
             finally
@@ -327,73 +320,46 @@ namespace AprajitaRetails
             return data;
         }
 
-        public static List<string> GetQueryString(SqlCommand cmd, string colName)
+        public static bool IsTableExit(string tableName)
         {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            cmd.Connection = con;
-            int count = 0;
-            List<string> data = new List<string> ();
-            try
-            {
-                SqlDataReader reader = cmd.ExecuteReader ();
-                while ( reader.Read () )
-                {
-                    data.Add ((string) reader [colName]);
-                    count++;
-                }
-            }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-            }
-            return data;
+            string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
+                "  WHERE  TABLE_NAME = @tablename))" +
+                "SELECT 1 AS Result ELSE SELECT 0 AS Result;";
+            SqlCommand cmd = ( (SqlConnection) GetConnectionObject (ConType.SQLDB) ).CreateCommand ();
+            cmd.CommandText = query;
+            cmd.Parameters.AddWithValue ("@tablename", tableName);
+
+            int result = (int) cmd.ExecuteScalar ();
+            Console.WriteLine ("table check of {0} is result ={1}", tableName, result);
+            if ( result == 1 )
+                return true;
+            else
+                return false;
         }
 
-        public static List<int> GetQueryInt(SqlCommand cmd, string colName)
+        //Version 2
+        public static int IsTableWithDefaultExit(string tablename)
         {
-            SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            cmd.Connection = con;
-            int count = 0;
-            List<int> data = new List<int> ();
-            try
+            string query = "IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES " +
+                "  WHERE  TABLE_NAME = @tablename))" +
+                "SELECT 1 AS Result ELSE SELECT 0 AS Result;";
+            SqlCommand cmd = ( (SqlConnection) GetConnectionObject (ConType.SQLDB) ).CreateCommand ();
+            cmd.CommandText = query;
+            cmd.Parameters.AddWithValue ("@tablename", tablename);
+            int result = (int) cmd.ExecuteScalar ();
+            Console.WriteLine ("ok1=" + result);
+            if ( result == 1 )
             {
-                SqlDataReader reader = cmd.ExecuteReader ();
-
-                while ( reader.Read () )
-                {
-                    data.Add ((int) reader [colName]);
-                    count++;
-                }
+                cmd.CommandText = "Select Count(*)as CTR from " + tablename;
+                result = (int) cmd.ExecuteScalar ();
+                Console.WriteLine ("ok2=" + result);
+                if ( result > 0 )
+                    return 2;
+                else
+                    return -2;
             }
-            catch ( Exception ex )
-            {
-                count = -2;
-                System.Windows.Forms.MessageBox.Show (ex.Message);
-            }
-            finally
-            {
-                con.Close ();
-
-            }
-            return data;
-        }
-
-        public void SetDataBasePath(string path)
-        {
-            //TODO:SetDatabasepath
-        }
-        public void SetConnectionString()
-        {
-            //TODO:SetConnnectionString
-        }
-        public void SetDataBasePassword(string username, string password)
-        {
-            //TODO:setdatabase password
+            else
+                return -1;
         }
 
         public static object QuerryReturn(String sql)
@@ -443,35 +409,25 @@ namespace AprajitaRetails
 
         }
 
-
-        // Verson :1
-
-        public void Querry(String sql)
-        {
-
-            if ( DBType == ConType.SQLDB )
-            {
-                db.QueryStrSql (sql);
-            }
-            if ( DBType == ConType.OLEDB )
-            {
-                db.QueryStrSql (sql);
-            }
-
-        }
-        public int Insert(String sql)
+        public void CloseDB()
         {
             if ( DBType == ConType.SQLDB )
             {
-                return db.InsertQuerySql (sql);
-
+                db.CloseDB ();
             }
             if ( DBType == ConType.OLEDB )
             {
-                return db.InsertQueryOle (sql);
+                db.CloseDB ();
             }
-            return -1;
+
         }
+
+        public void ConnnetDB()
+        {
+            db.ConnectDB (DBType);
+
+        }
+
         public int Delete(String sql)
         {
             if ( DBType == ConType.SQLDB )
@@ -484,18 +440,25 @@ namespace AprajitaRetails
             }
             return -1;
         }
-        public int Update(String sql)
+
+        public void Dispose()
+        {
+            Dispose (true);
+            GC.SuppressFinalize (this);
+        }
+
+        public int Insert(String sql)
         {
             if ( DBType == ConType.SQLDB )
             {
-                return db.NonQuerySql (sql);
+                return db.InsertQuerySql (sql);
+
             }
             if ( DBType == ConType.OLEDB )
             {
-                return db.NonQueryOle (sql);
+                return db.InsertQueryOle (sql);
             }
             return -1;
-
         }
 
         public int Insert(System.Data.SqlClient.SqlCommand cmd)
@@ -570,14 +533,60 @@ namespace AprajitaRetails
 
         }
 
+        public void Querry(String sql)
+        {
 
+            if ( DBType == ConType.SQLDB )
+            {
+                db.QueryStrSql (sql);
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                db.QueryStrSql (sql);
+            }
+
+        }
+
+        public void SetConnectionString()
+        {
+            //TODO:SetConnnectionString
+        }
+
+        public void SetDataBasePassword(string username, string password)
+        {
+            //TODO:setdatabase password
+        }
+
+        public void SetDataBasePath(string path)
+        {
+            //TODO:SetDatabasepath
+        }
+
+        // Verson :1
+        public int Update(String sql)
+        {
+            if ( DBType == ConType.SQLDB )
+            {
+                return db.NonQuerySql (sql);
+            }
+            if ( DBType == ConType.OLEDB )
+            {
+                return db.NonQueryOle (sql);
+            }
+            return -1;
+
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if ( disposing )
+            {
+                // dispose managed resources
+                db.Dispose ();
+            }
+            // free native resources
+        }
     }
-
-    class BackupData
-    {
-
-    }
-
 }
 
 

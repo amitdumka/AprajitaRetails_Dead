@@ -136,13 +136,13 @@ namespace AprajitaRetails.ViewModel
         public int DefaultData()
         {
             //TODO: Remove in realse version 
-            
+
             SqlCommand cmd = new SqlCommand ("select count(ID) from " + Tablename, Db.DBCon);
 
             int x = (int) cmd.ExecuteScalar ();
             if ( x >= 7 )
                 return -1;
-            
+
 
 
             cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
@@ -194,9 +194,11 @@ namespace AprajitaRetails.ViewModel
 
         public override ExpensesCategory ResultToObject(SortedDictionary<string, string> data)
         {
-            ExpensesCategory cat = new ExpensesCategory () {
-                Category=data["Category"],ID=Basic.ToInt(data["ID"]),
-                Level=Basic.ToInt(data["Level"])
+            ExpensesCategory cat = new ExpensesCategory ()
+            {
+                Category = data ["Category"],
+                ID = Basic.ToInt (data ["ID"]),
+                Level = Basic.ToInt (data ["Level"])
             };
             return cat;
         }
@@ -212,7 +214,7 @@ namespace AprajitaRetails.ViewModel
                     ID = Basic.ToInt (data ["ID"]),
                     Level = Basic.ToInt (data ["Level"])
                 };
-                list.Add( cat);
+                list.Add (cat);
             }
             return list;
         }
@@ -250,7 +252,7 @@ namespace AprajitaRetails.ViewModel
                 while ( reader.Read () )
                 {
                     names.Add (reader ["FirstName"] + " " + reader ["LastName"]);
-                    Console.WriteLine ("name= {0}-{1}", reader ["FirstName"] , reader ["LastName"]);
+                    Console.WriteLine ("name= {0}-{1}", reader ["FirstName"], reader ["LastName"]);
                 }
                 return names;
 
@@ -261,6 +263,7 @@ namespace AprajitaRetails.ViewModel
 
 
         }
+        
         public BankDetails GetBankDetails(int bankDetailsID)
         {
             string sql = "select * from BankDetails where ID=" + bankDetailsID;
@@ -308,7 +311,15 @@ namespace AprajitaRetails.ViewModel
 
         public override int InsertData(Expenses obj)
         {
-            throw new NotImplementedException ();
+            SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
+            cmd.Parameters.AddWithValue ("@Amount", obj.Amount);
+            cmd.Parameters.AddWithValue ("@ApprovedBy", obj.ApprovedBy);
+            cmd.Parameters.AddWithValue ("@BankDetailsID", obj.BankDetailsID);
+            cmd.Parameters.AddWithValue ("@ExpensesCategoryID", obj.ExpensesCategoryID);
+            cmd.Parameters.AddWithValue ("@ExpensesReason", obj.ExpensesReason);
+            cmd.Parameters.AddWithValue ("@PaymentModeID", obj.PaymentModeID);
+            
+            return cmd.ExecuteNonQuery ();
         }
 
         public override Expenses ResultToObject(List<Expenses> data, int index)
@@ -380,12 +391,14 @@ namespace AprajitaRetails.ViewModel
 
         public int GetBankDetailsID(string text)
         {
-            throw new NotImplementedException ();
+            string []bankD  = text.Split (' ');
+            return Basic.ToInt (bankD [0].Trim ());
+
         }
 
         public int GetExpenseCategoryId(string category)
         {
-            return -1;
+            return cDB.GetID ("Category", category);
         }
 
         //End of load section
@@ -419,7 +432,7 @@ namespace AprajitaRetails.ViewModel
         public void LoadApprovedBy(ComboBox cBApprovedBy)
         {
             List<string> list = eDB.GetApprovedByList ();
-           // cBApprovedBy.Items.Add (list);
+            // cBApprovedBy.Items.Add (list);
             foreach ( string item in list )
             {
                 cBApprovedBy.Items.Add (item);
@@ -462,6 +475,7 @@ namespace AprajitaRetails.ViewModel
 
         public int SaveData(Expenses exp)
         {
+            Console.WriteLine ("Calling Save Data");
             return eDB.InsertData (exp);
         }
     }

@@ -33,5 +33,14 @@ namespace AprajitaRetails.Properties {
                 return ((string)(this["ConDB"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yes")]
+        public string IsFirstTime {
+            get {
+                return ((string)(this["IsFirstTime"]));
+            }
+        }
     }
 }

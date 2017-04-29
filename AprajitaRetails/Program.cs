@@ -19,7 +19,7 @@ namespace AprajitaRetails
             Logs.LogMe ("Application Started");
             DataBase.DataBaseName = "aprajitaRetails";
             DBHelper.SetDataBaseName (DataBase.DataBaseName);
-            Logs.LogMe ("Database Name is Set:"+DBHelper.SqlDBName);
+            Logs.LogMe ("Database Name is Set:" + DBHelper.SqlDBName);
             Application.Run (new LoginForm ());
             Logs.LogMe ("Loading login Form");
         }

@@ -147,7 +147,7 @@
             this.CBCategory.Location = new System.Drawing.Point(748, 3);
             this.CBCategory.Name = "CBCategory";
             this.CBCategory.Size = new System.Drawing.Size(303, 39);
-            this.CBCategory.TabIndex = 3;
+            this.CBCategory.TabIndex = 2;
             // 
             // label3
             // 
@@ -230,7 +230,7 @@
             this.TXTReason.Location = new System.Drawing.Point(199, 48);
             this.TXTReason.Name = "TXTReason";
             this.TXTReason.Size = new System.Drawing.Size(303, 38);
-            this.TXTReason.TabIndex = 12;
+            this.TXTReason.TabIndex = 3;
             // 
             // CBApprovedBy
             // 
@@ -238,28 +238,29 @@
             this.CBApprovedBy.Location = new System.Drawing.Point(748, 48);
             this.CBApprovedBy.Name = "CBApprovedBy";
             this.CBApprovedBy.Size = new System.Drawing.Size(303, 39);
-            this.CBApprovedBy.TabIndex = 13;
+            this.CBApprovedBy.TabIndex = 4;
             // 
             // TXTAmount
             // 
             this.TXTAmount.Location = new System.Drawing.Point(199, 93);
             this.TXTAmount.Name = "TXTAmount";
             this.TXTAmount.Size = new System.Drawing.Size(303, 38);
-            this.TXTAmount.TabIndex = 0;
+            this.TXTAmount.TabIndex = 5;
             // 
             // CBPaymentMode
             // 
             this.CBPaymentMode.Location = new System.Drawing.Point(748, 93);
             this.CBPaymentMode.Name = "CBPaymentMode";
             this.CBPaymentMode.Size = new System.Drawing.Size(303, 39);
-            this.CBPaymentMode.TabIndex = 0;
+            this.CBPaymentMode.TabIndex = 6;
+            this.CBPaymentMode.SelectedIndexChanged += new System.EventHandler(this.CBPaymentMode_SelectedIndexChanged);
             // 
             // CBBankAccount
             // 
             this.CBBankAccount.Location = new System.Drawing.Point(199, 138);
             this.CBBankAccount.Name = "CBBankAccount";
             this.CBBankAccount.Size = new System.Drawing.Size(303, 39);
-            this.CBBankAccount.TabIndex = 0;
+            this.CBBankAccount.TabIndex = 7;
             this.CBBankAccount.Visible = false;
             // 
             // CBTranscationType
@@ -267,7 +268,7 @@
             this.CBTranscationType.Location = new System.Drawing.Point(748, 138);
             this.CBTranscationType.Name = "CBTranscationType";
             this.CBTranscationType.Size = new System.Drawing.Size(303, 39);
-            this.CBTranscationType.TabIndex = 0;
+            this.CBTranscationType.TabIndex = 8;
             this.CBTranscationType.Visible = false;
             // 
             // TXTBankRef
@@ -275,7 +276,7 @@
             this.TXTBankRef.Location = new System.Drawing.Point(199, 183);
             this.TXTBankRef.Name = "TXTBankRef";
             this.TXTBankRef.Size = new System.Drawing.Size(303, 38);
-            this.TXTBankRef.TabIndex = 0;
+            this.TXTBankRef.TabIndex = 9;
             this.TXTBankRef.Visible = false;
             // 
             // TXTTranscationRef
@@ -283,7 +284,7 @@
             this.TXTTranscationRef.Location = new System.Drawing.Point(748, 183);
             this.TXTTranscationRef.Name = "TXTTranscationRef";
             this.TXTTranscationRef.Size = new System.Drawing.Size(303, 38);
-            this.TXTTranscationRef.TabIndex = 0;
+            this.TXTTranscationRef.TabIndex = 10;
             this.TXTTranscationRef.Visible = false;
             // 
             // GBControls
@@ -322,7 +323,7 @@
             this.BTNAdd.Margin = new System.Windows.Forms.Padding(5);
             this.BTNAdd.Name = "BTNAdd";
             this.BTNAdd.Size = new System.Drawing.Size(135, 65);
-            this.BTNAdd.TabIndex = 4;
+            this.BTNAdd.TabIndex = 11;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
             this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
@@ -334,7 +335,7 @@
             this.BTNDelete.Margin = new System.Windows.Forms.Padding(5);
             this.BTNDelete.Name = "BTNDelete";
             this.BTNDelete.Size = new System.Drawing.Size(192, 65);
-            this.BTNDelete.TabIndex = 6;
+            this.BTNDelete.TabIndex = 12;
             this.BTNDelete.Text = "Delete";
             this.BTNDelete.UseVisualStyleBackColor = true;
             // 
@@ -345,7 +346,7 @@
             this.Cancel.Margin = new System.Windows.Forms.Padding(5);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(203, 65);
-            this.Cancel.TabIndex = 7;
+            this.Cancel.TabIndex = 13;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -357,7 +358,7 @@
             this.BTNUpdate.Margin = new System.Windows.Forms.Padding(5);
             this.BTNUpdate.Name = "BTNUpdate";
             this.BTNUpdate.Size = new System.Drawing.Size(208, 65);
-            this.BTNUpdate.TabIndex = 5;
+            this.BTNUpdate.TabIndex = 14;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
             // 

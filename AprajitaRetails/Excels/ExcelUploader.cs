@@ -188,11 +188,11 @@ namespace AprajitaRetails
                     sr.Suppliername = cell.Text;
                     c++;
                     break;
-                case 6:
+                case 5:
                     sr.Barcode = cell.Text;
                     c++;
                     break;
-                case 5:
+                case 6:
                     sr.Productname = cell.Text;
                     c++;
                     break;
@@ -334,10 +334,7 @@ namespace AprajitaRetails
                                       pBar.PerformStep ();
                                   }));
                                 Logs.LogMe ("Row=" + r + " got saved");
-                                //if (InvokeRequired)
-                                //{
-                                //    this.Invoke((MethodInvoker)delegate { pBar.PerformStep(); });
-                                //}
+
                             }
                         }
                         Row++;

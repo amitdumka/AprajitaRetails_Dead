@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AprajitaRetails.Excels;
 
 namespace AprajitaRetails.Forms
 {
@@ -14,8 +15,9 @@ namespace AprajitaRetails.Forms
     {
         private int Mode;
         private List<string> itemlist = new List<string> ();
-        private ExcelUploader ER;
-        private ExcelToDB EDB;
+        private ExcelToDataBase ER;
+        //private ExcelToDB EDB;
+        private UploaderFormVM EDB;
         public int RecordCount = 0;
 
         public UploaderForm(int mode)
@@ -26,13 +28,14 @@ namespace AprajitaRetails.Forms
             ExcelFileOpenDialogg.FileName = "";
             itemlist.Add ("SaleRegister");
             itemlist.Add ("Sales");
+            itemlist.Add ("SaleItemWise");
             itemlist.Add ("Purchase");
-            CBUploadType.Items.Add (itemlist [0]);
-            CBUploadType.Items.Add (itemlist [1]);
-            CBUploadType.Items.Add (itemlist [2]);
+            itemlist.Add ("PurchaseRegister");
+            for ( int x = 0 ; x < itemlist.Count ; x++ )
+                CBUploadType.Items.Add (itemlist [x]);
             CBUploadType.SelectedIndex = 0;
-            ER = new ExcelUploader ();
-            EDB = new ExcelToDB ();
+            ER = new ExcelToDataBase ();
+            EDB = new UploaderFormVM ();
 
         }
 
@@ -59,14 +62,23 @@ namespace AprajitaRetails.Forms
             pBar.Maximum = Int32.Parse (TXTEnd.Text);
             Task t = null;
             if ( CBUploadType.Text == "SaleRegister" )
-                t = Task.Run (() => RecordCount = ER.ReadDataSaleRegister (TXTFileName.Text,
-                 Int32.Parse (TXTStart.Text.Trim ()),
-                 Int32.Parse (TXTEnd.Text.Trim ()), pBar));
+            { }
+            //t = Task.Run (() => RecordCount = ER.ReadDataSaleRegister (TXTFileName.Text,
+            // Int32.Parse (TXTStart.Text.Trim ()),
+            // Int32.Parse (TXTEnd.Text.Trim ()), pBar));
             else if ( CBUploadType.Text == "Purchase" )
                 t = Task.Run (() => RecordCount = ER.ReadPurchase (TXTFileName.Text,
                 Int32.Parse (TXTStart.Text.Trim ()),
-                Int32.Parse (TXTEnd.Text.Trim ()), pBar));
+                Int32.Parse (TXTEnd.Text.Trim ()), pBar, "Puchase"));
             else if ( CBUploadType.Text == "SaleItemWise" )
+            {
+                return;
+            }
+            else if ( CBUploadType.Text == "Sales" )
+            {
+                return;
+            }
+            else if ( CBUploadType.Text == "PurchaseRegister" )
             {
                 return;
             }

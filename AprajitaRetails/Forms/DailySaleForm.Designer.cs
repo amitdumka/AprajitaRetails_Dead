@@ -327,7 +327,7 @@
             this.GBControls.Margin = new System.Windows.Forms.Padding(5);
             this.GBControls.Name = "GBControls";
             this.GBControls.Padding = new System.Windows.Forms.Padding(5);
-            this.GBControls.Size = new System.Drawing.Size(788, 116);
+            this.GBControls.Size = new System.Drawing.Size(806, 116);
             this.GBControls.TabIndex = 4;
             this.GBControls.TabStop = false;
             this.GBControls.Text = "Controls";
@@ -344,7 +344,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 36);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(778, 75);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(796, 75);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // BTNAdd
@@ -365,16 +365,16 @@
             this.BTNDelete.Location = new System.Drawing.Point(150, 5);
             this.BTNDelete.Margin = new System.Windows.Forms.Padding(5);
             this.BTNDelete.Name = "BTNDelete";
-            this.BTNDelete.Size = new System.Drawing.Size(192, 65);
+            this.BTNDelete.Size = new System.Drawing.Size(210, 65);
             this.BTNDelete.TabIndex = 6;
-            this.BTNDelete.Text = "Delete";
+            this.BTNDelete.Text = "New Customer";
             this.BTNDelete.UseVisualStyleBackColor = true;
             this.BTNDelete.Click += new System.EventHandler(this.BTNDelete_Click);
             // 
             // Cancel
             // 
             this.Cancel.AutoSize = true;
-            this.Cancel.Location = new System.Drawing.Point(352, 5);
+            this.Cancel.Location = new System.Drawing.Point(370, 5);
             this.Cancel.Margin = new System.Windows.Forms.Padding(5);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(203, 65);
@@ -386,7 +386,7 @@
             // BTNUpdate
             // 
             this.BTNUpdate.AutoSize = true;
-            this.BTNUpdate.Location = new System.Drawing.Point(565, 5);
+            this.BTNUpdate.Location = new System.Drawing.Point(583, 5);
             this.BTNUpdate.Margin = new System.Windows.Forms.Padding(5);
             this.BTNUpdate.Name = "BTNUpdate";
             this.BTNUpdate.Size = new System.Drawing.Size(208, 65);

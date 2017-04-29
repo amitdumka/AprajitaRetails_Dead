@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aprajitaRetails.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="IsFirstTime" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Yes</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

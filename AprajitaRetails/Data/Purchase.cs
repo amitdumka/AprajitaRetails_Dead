@@ -32,6 +32,15 @@ namespace AprajitaRetails
 /*
  GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code
  Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt
-C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259105888
+
+    
+    C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259105888
 Apparel/Mens Formal/Shirts	USSH3877XL	Shirts-FS-Black	1.00	1999.00	1999.00	1287.76	1287.76	0.00
+
+    		
+ 
+
+
+ * 
+ * 
  */

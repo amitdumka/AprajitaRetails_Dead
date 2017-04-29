@@ -201,10 +201,11 @@
             // 
             // GBDataGrid
             // 
+            this.GBDataGrid.AutoSize = true;
             this.GBDataGrid.Controls.Add(this.DGVUploadedData);
             this.GBDataGrid.Location = new System.Drawing.Point(15, 318);
             this.GBDataGrid.Name = "GBDataGrid";
-            this.GBDataGrid.Size = new System.Drawing.Size(947, 392);
+            this.GBDataGrid.Size = new System.Drawing.Size(3259, 766);
             this.GBDataGrid.TabIndex = 1;
             this.GBDataGrid.TabStop = false;
             this.GBDataGrid.Text = "Uploaded Data";
@@ -216,7 +217,7 @@
             this.DGVUploadedData.Location = new System.Drawing.Point(3, 34);
             this.DGVUploadedData.Name = "DGVUploadedData";
             this.DGVUploadedData.RowTemplate.Height = 40;
-            this.DGVUploadedData.Size = new System.Drawing.Size(941, 355);
+            this.DGVUploadedData.Size = new System.Drawing.Size(3253, 729);
             this.DGVUploadedData.TabIndex = 0;
             // 
             // groupBox2
@@ -229,7 +230,7 @@
             this.groupBox2.Size = new System.Drawing.Size(628, 240);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Controls";
             // 
             // tableLayoutPanel2
             // 
@@ -330,12 +331,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1601, 854);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(2915, 854);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GBDataGrid);
             this.Controls.Add(this.groupBox1);
             this.Name = "UploaderForm";
             this.Text = "UploaderForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
