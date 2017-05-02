@@ -28,7 +28,7 @@
     <PublisherName>CyberN Systems</PublisherName>
     <SuiteName>Aprajita Retails</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -360,15 +360,23 @@
       <DependentUpon>aprajitaRetails.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\application-sub.png" />
+    <None Include="Resources\user_add.png" />
+    <None Include="Resources\user-worker.png" />
+    <None Include="Resources\user-green.png" />
+    <None Include="Resources\gender-female.png" />
+    <None Include="Resources\gender.png" />
+    <None Include="Resources\male.png" />
+    <None Include="Resources\cross-button.png" />
+    <None Include="Resources\calendar-insert.png" />
+    <None Include="Resources\monitor.png" />
+    <None Include="Resources\calculator--arrow.png" />
+    <None Include="Resources\money_add.png" />
+    <None Include="Resources\application-plus-red.png" />
     <None Include="Resources\vectorstock_85252.jpg" />
     <None Include="Resources\CustomerLogo.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
@@ -377,16 +385,6 @@
     <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.11.1">
       <Visible>False</Visible>
       <ProductName>SQL Server 2012 Express LocalDB</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x64">
-      <Visible>False</Visible>
-      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x86">
-      <Visible>False</Visible>
-      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x86%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

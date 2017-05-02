@@ -27,10 +27,10 @@ namespace AprajitaRetails.Forms
             ExcelFileOpenDialogg.InitialDirectory = "C:\\Users\\";
             ExcelFileOpenDialogg.FileName = "";
             itemlist.Add ("SaleRegister");
-            itemlist.Add ("Sales");
+            itemlist.Add ("Customer");
             itemlist.Add ("SaleItemWise");
             itemlist.Add ("Purchase");
-            itemlist.Add ("PurchaseRegister");
+            //itemlist.Add ("PurchaseRegister");
             for ( int x = 0 ; x < itemlist.Count ; x++ )
                 CBUploadType.Items.Add (itemlist [x]);
             CBUploadType.SelectedIndex = 0;
@@ -62,26 +62,29 @@ namespace AprajitaRetails.Forms
             pBar.Maximum = Int32.Parse (TXTEnd.Text);
             Task t = null;
             if ( CBUploadType.Text == "SaleRegister" )
-            { }
-            //t = Task.Run (() => RecordCount = ER.ReadDataSaleRegister (TXTFileName.Text,
-            // Int32.Parse (TXTStart.Text.Trim ()),
-            // Int32.Parse (TXTEnd.Text.Trim ()), pBar));
+                t = Task.Run (() => RecordCount = ER.ReadDataSaleRegister (TXTFileName.Text,
+                Int32.Parse (TXTStart.Text.Trim ()),
+                Int32.Parse (TXTEnd.Text.Trim ()), pBar, "SaleRegister"));
             else if ( CBUploadType.Text == "Purchase" )
                 t = Task.Run (() => RecordCount = ER.ReadPurchase (TXTFileName.Text,
                 Int32.Parse (TXTStart.Text.Trim ()),
                 Int32.Parse (TXTEnd.Text.Trim ()), pBar, "Puchase"));
             else if ( CBUploadType.Text == "SaleItemWise" )
             {
-                return;
+                t = Task.Run (() => RecordCount = ER.ReadDataSales (TXTFileName.Text,
+                Int32.Parse (TXTStart.Text.Trim ()),
+                Int32.Parse (TXTEnd.Text.Trim ()), pBar, "Sale"));
             }
-            else if ( CBUploadType.Text == "Sales" )
+            else if ( CBUploadType.Text == "Customer" )
             {
-                return;
+                t = Task.Run (() => RecordCount = ER.ReadCustomer (TXTFileName.Text,
+               Int32.Parse (TXTStart.Text.Trim ()),
+               Int32.Parse (TXTEnd.Text.Trim ()), pBar, "Customer"));
             }
-            else if ( CBUploadType.Text == "PurchaseRegister" )
-            {
-                return;
-            }
+            //else if ( CBUploadType.Text == "PurchaseRegister" )
+            //{
+            //    return;
+            //}
             else
             {
                 return;
@@ -94,6 +97,16 @@ namespace AprajitaRetails.Forms
                 if ( t.IsCompleted )
                 {
                     MessageBox.Show ("Record save, " + RecordCount);
+                    //
+                    pBar.BeginInvoke (new Action (() =>
+                    {
+                        pBar.Minimum = 0;
+                        pBar.Maximum = 0;
+                        pBar.Value = 0;
+                        pBar.Refresh ();
+
+                    }));
+
                 }
                 else
                 {
@@ -134,6 +147,35 @@ namespace AprajitaRetails.Forms
                 EDB.RefreshDGV (DGVUploadedData, Querys.qAllPurchase);
             else if ( CBUploadType.Text == "SaleRegister" )
                 EDB.RefreshDGV (DGVUploadedData, Querys.qAll);
+        }
+
+        private void BTNQuery_Click(object sender, EventArgs e)
+        {
+            EDB.RefreshDGV (DGVUploadedData, TXTFileName.Text);
+        }
+
+        private void CBUploadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ( CBUploadType.Text == "SaleRegister" )
+            {
+                TXTStart.Text = "7";
+                TXTEnd.Text = "10";
+            }
+            else if ( CBUploadType.Text == "SaleItemWise" )
+            {
+                TXTStart.Text = "7";
+                TXTEnd.Text = "10";
+            }
+            else if ( CBUploadType.Text == "Purchase" )
+            {
+                TXTStart.Text = "6";
+                TXTEnd.Text = "10";
+            }
+        }
+
+        private void UploaderForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

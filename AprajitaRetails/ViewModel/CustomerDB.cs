@@ -11,6 +11,29 @@ namespace AprajitaRetails.ViewModel
         {
 
         }
+
+        public List<string> GetMobileList()
+        {
+            SqlCommand cmd = new SqlCommand ("select MobileNo from Customer", Db.DBCon);
+            return DataBase.GetQueryString (cmd, "MobileNo");
+
+        }
+
+        public Customer GetCustomer(string mob)
+        {
+            return GetByColName ("MobileNo", mob);
+        }
+        public Customer GetCustomerByName(string name)
+        {
+            return GetByColName ("FirstName", name);
+        }
+        public List<Customer> GetCustomersByName(string name)
+        {
+            string Sql = "select * from Customer where FirstName='" + name + "'";
+            SqlCommand cmd = new SqlCommand (Sql, Db.DBCon);
+            List<SortedDictionary<string, string>> items = DataBase.GetSqlStoreProcedureString (cmd);
+            return ResultToObject (items);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -53,7 +76,7 @@ namespace AprajitaRetails.ViewModel
             {
                 Customer customer = new Customer ()
                 {
-                    FirstName = ele ["FistName"],
+                    FirstName = ele ["FirstName"],
                     LastName = ele ["LastName"],
                     MobileNo = ele ["MobileNo"],
                     Age = Int32.Parse (ele ["Age"]),
@@ -76,7 +99,7 @@ namespace AprajitaRetails.ViewModel
         {
             Customer customer = new Customer ()
             {
-                FirstName = data ["FistName"],
+                FirstName = data ["FirstName"],
                 LastName = data ["LastName"],
                 Age = Int32.Parse (data ["Age"]),
                 Gender = Int32.Parse (data ["Gender"]),

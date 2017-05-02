@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AprajitaRetails.Data;
@@ -19,6 +20,22 @@ namespace AprajitaRetails.ViewModel
         public CustomerVM()
         {
             DB = new CustomerDB ();
+        }
+        public List<string> GetMobileList()
+        {
+            return DB.GetMobileList ();
+        }
+        public Customer GetCustomer(string mob)
+        {
+            return DB.GetCustomer (mob);
+        }
+        public Customer GetCustomerByName(string name)
+        {
+            return DB.GetCustomerByName (name);
+        }
+        public List<Customer> GetCustomersByName(string name)
+        {
+            return DB.GetCustomersByName (name);
         }
     }
 }

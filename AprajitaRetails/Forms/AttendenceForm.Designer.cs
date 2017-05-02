@@ -250,6 +250,7 @@
             this.BTNDelete.TabIndex = 6;
             this.BTNDelete.Text = "Delete";
             this.BTNDelete.UseVisualStyleBackColor = true;
+            this.BTNDelete.Visible = false;
             // 
             // Cancel
             // 
@@ -273,6 +274,7 @@
             this.BTNUpdate.TabIndex = 5;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Visible = false;
             // 
             // AttendenceForm
             // 

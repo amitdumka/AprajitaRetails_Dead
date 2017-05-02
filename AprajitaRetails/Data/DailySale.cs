@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 using ObjectScriptingExtensions;
 namespace AprajitaRetails.Data
 {
+    public class SaleInfo
+    {
+        public string TodaySale { get; set; }
+        public string MonthlySale { get; set; }
+        public string YearlySale { get; set; }
+    }
     public class DailySale
     {
         public int ID { set; get; }

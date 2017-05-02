@@ -67,6 +67,7 @@
             this.uploadSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadSaleRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadPurchaseInwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadVoygerDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.uploadVoygerDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -148,6 +148,7 @@
             // TSMIDailySale
             // 
             this.TSMIDailySale.AutoToolTip = true;
+            this.TSMIDailySale.Image = global::AprajitaRetails.Properties.Resources.application_plus_red;
             this.TSMIDailySale.Name = "TSMIDailySale";
             this.TSMIDailySale.Size = new System.Drawing.Size(333, 46);
             this.TSMIDailySale.Text = "Daily Sale";
@@ -167,6 +168,7 @@
             // 
             // TSMIDayClosing
             // 
+            this.TSMIDayClosing.Image = global::AprajitaRetails.Properties.Resources.money_add;
             this.TSMIDayClosing.Name = "TSMIDayClosing";
             this.TSMIDayClosing.Size = new System.Drawing.Size(333, 46);
             this.TSMIDayClosing.Text = "Day Closing";
@@ -187,6 +189,7 @@
             // TSMIExpenses
             // 
             this.TSMIExpenses.AutoToolTip = true;
+            this.TSMIExpenses.Image = global::AprajitaRetails.Properties.Resources.calculator__arrow;
             this.TSMIExpenses.Name = "TSMIExpenses";
             this.TSMIExpenses.Size = new System.Drawing.Size(333, 46);
             this.TSMIExpenses.Text = "Expenses";
@@ -238,6 +241,7 @@
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.cross_button;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(333, 46);
             this.exitToolStripMenuItem.Text = "E&xit";
@@ -253,6 +257,7 @@
             // 
             // customersDetailToolStripMenuItem
             // 
+            this.customersDetailToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.user_green;
             this.customersDetailToolStripMenuItem.Name = "customersDetailToolStripMenuItem";
             this.customersDetailToolStripMenuItem.Size = new System.Drawing.Size(359, 46);
             this.customersDetailToolStripMenuItem.Text = "Customers Detail";
@@ -301,6 +306,7 @@
             // 
             // employeeDetailsToolStripMenuItem
             // 
+            this.employeeDetailsToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.user_worker;
             this.employeeDetailsToolStripMenuItem.Name = "employeeDetailsToolStripMenuItem";
             this.employeeDetailsToolStripMenuItem.Size = new System.Drawing.Size(361, 46);
             this.employeeDetailsToolStripMenuItem.Text = "Employee Details";
@@ -326,6 +332,7 @@
             // 
             // attendenceToolStripMenuItem
             // 
+            this.attendenceToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.calendar_insert;
             this.attendenceToolStripMenuItem.Name = "attendenceToolStripMenuItem";
             this.attendenceToolStripMenuItem.Size = new System.Drawing.Size(361, 46);
             this.attendenceToolStripMenuItem.Text = "Attendence";
@@ -361,6 +368,7 @@
             // 
             // usersToolStripMenuItem
             // 
+            this.usersToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.user_add;
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
             this.usersToolStripMenuItem.Size = new System.Drawing.Size(455, 46);
             this.usersToolStripMenuItem.Text = "Users";
@@ -389,6 +397,14 @@
             this.uploadPurchaseInwardToolStripMenuItem.Name = "uploadPurchaseInwardToolStripMenuItem";
             this.uploadPurchaseInwardToolStripMenuItem.Size = new System.Drawing.Size(455, 46);
             this.uploadPurchaseInwardToolStripMenuItem.Text = "Upload Purchase Inward";
+            // 
+            // uploadVoygerDataToolStripMenuItem
+            // 
+            this.uploadVoygerDataToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.application_sub;
+            this.uploadVoygerDataToolStripMenuItem.Name = "uploadVoygerDataToolStripMenuItem";
+            this.uploadVoygerDataToolStripMenuItem.Size = new System.Drawing.Size(455, 46);
+            this.uploadVoygerDataToolStripMenuItem.Text = "Upload Voyger Data";
+            this.uploadVoygerDataToolStripMenuItem.Click += new System.EventHandler(this.uploadVoygerDataToolStripMenuItem_Click);
             // 
             // viewMenu
             // 
@@ -564,7 +580,7 @@
             // TSBDailySale
             // 
             this.TSBDailySale.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBDailySale.Image = ((System.Drawing.Image)(resources.GetObject("TSBDailySale.Image")));
+            this.TSBDailySale.Image = global::AprajitaRetails.Properties.Resources.application_plus_red;
             this.TSBDailySale.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBDailySale.Name = "TSBDailySale";
             this.TSBDailySale.Size = new System.Drawing.Size(44, 44);
@@ -574,7 +590,7 @@
             // TSBDayClosing
             // 
             this.TSBDayClosing.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBDayClosing.Image = ((System.Drawing.Image)(resources.GetObject("TSBDayClosing.Image")));
+            this.TSBDayClosing.Image = global::AprajitaRetails.Properties.Resources.money_add;
             this.TSBDayClosing.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBDayClosing.Name = "TSBDayClosing";
             this.TSBDayClosing.Size = new System.Drawing.Size(44, 44);
@@ -584,7 +600,7 @@
             // TSBExpenses
             // 
             this.TSBExpenses.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBExpenses.Image = ((System.Drawing.Image)(resources.GetObject("TSBExpenses.Image")));
+            this.TSBExpenses.Image = global::AprajitaRetails.Properties.Resources.calculator__arrow;
             this.TSBExpenses.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBExpenses.Name = "TSBExpenses";
             this.TSBExpenses.Size = new System.Drawing.Size(44, 44);
@@ -594,7 +610,7 @@
             // TSBAttendence
             // 
             this.TSBAttendence.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBAttendence.Image = ((System.Drawing.Image)(resources.GetObject("TSBAttendence.Image")));
+            this.TSBAttendence.Image = global::AprajitaRetails.Properties.Resources.calendar_insert;
             this.TSBAttendence.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBAttendence.Name = "TSBAttendence";
             this.TSBAttendence.Size = new System.Drawing.Size(44, 44);
@@ -620,13 +636,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(98, 41);
             this.toolStripStatusLabel.Text = "Status";
-            // 
-            // uploadVoygerDataToolStripMenuItem
-            // 
-            this.uploadVoygerDataToolStripMenuItem.Name = "uploadVoygerDataToolStripMenuItem";
-            this.uploadVoygerDataToolStripMenuItem.Size = new System.Drawing.Size(455, 46);
-            this.uploadVoygerDataToolStripMenuItem.Text = "Upload Voyger Data";
-            this.uploadVoygerDataToolStripMenuItem.Click += new System.EventHandler(this.uploadVoygerDataToolStripMenuItem_Click);
             // 
             // MainMDI
             // 

@@ -34,23 +34,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastname = new System.Windows.Forms.TextBox();
             this.txtAge = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtMobileNo = new System.Windows.Forms.TextBox();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.CBCity = new System.Windows.Forms.ComboBox();
-            this.cbState = new System.Windows.Forms.ComboBox();
-            this.CBCountry = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CBMobileNos = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.CBNames = new System.Windows.Forms.ComboBox();
             this.BTNFind = new System.Windows.Forms.Button();
             this.GBControls = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -76,7 +72,7 @@
             this.gbPersonal.Margin = new System.Windows.Forms.Padding(18, 15, 18, 15);
             this.gbPersonal.Name = "gbPersonal";
             this.gbPersonal.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbPersonal.Size = new System.Drawing.Size(1027, 421);
+            this.gbPersonal.Size = new System.Drawing.Size(981, 296);
             this.gbPersonal.TabIndex = 1;
             this.gbPersonal.TabStop = false;
             this.gbPersonal.Text = "Personal Details";
@@ -93,17 +89,13 @@
             this.tlpPersonal.Controls.Add(this.label2, 0, 1);
             this.tlpPersonal.Controls.Add(this.label3, 0, 2);
             this.tlpPersonal.Controls.Add(this.label4, 0, 3);
-            this.tlpPersonal.Controls.Add(this.label5, 0, 4);
             this.tlpPersonal.Controls.Add(this.label6, 0, 5);
             this.tlpPersonal.Controls.Add(this.txtFirstName, 1, 0);
             this.tlpPersonal.Controls.Add(this.txtLastname, 2, 0);
             this.tlpPersonal.Controls.Add(this.txtAge, 1, 1);
-            this.tlpPersonal.Controls.Add(this.txtAddress, 1, 3);
             this.tlpPersonal.Controls.Add(this.txtMobileNo, 1, 5);
             this.tlpPersonal.Controls.Add(this.cbGender, 1, 2);
-            this.tlpPersonal.Controls.Add(this.CBCity, 2, 3);
-            this.tlpPersonal.Controls.Add(this.cbState, 1, 4);
-            this.tlpPersonal.Controls.Add(this.CBCountry, 2, 4);
+            this.tlpPersonal.Controls.Add(this.CBCity, 1, 3);
             this.tlpPersonal.Location = new System.Drawing.Point(5, 37);
             this.tlpPersonal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tlpPersonal.Name = "tlpPersonal";
@@ -136,7 +128,7 @@
             this.tlpPersonal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpPersonal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpPersonal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpPersonal.Size = new System.Drawing.Size(1014, 347);
+            this.tlpPersonal.Size = new System.Drawing.Size(968, 222);
             this.tlpPersonal.TabIndex = 0;
             // 
             // label1
@@ -179,20 +171,10 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Address";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 258);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(189, 32);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "State/Country";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 303);
+            this.label6.Location = new System.Drawing.Point(4, 178);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(143, 32);
@@ -201,7 +183,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(201, 3);
+            this.txtFirstName.Location = new System.Drawing.Point(155, 3);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(386, 38);
@@ -210,7 +192,7 @@
             // 
             // txtLastname
             // 
-            this.txtLastname.Location = new System.Drawing.Point(597, 3);
+            this.txtLastname.Location = new System.Drawing.Point(551, 3);
             this.txtLastname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtLastname.Name = "txtLastname";
             this.txtLastname.Size = new System.Drawing.Size(411, 38);
@@ -219,31 +201,16 @@
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(201, 47);
+            this.txtAge.Location = new System.Drawing.Point(155, 47);
             this.txtAge.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(386, 38);
             this.txtAge.TabIndex = 3;
             this.txtAge.Text = "29";
             // 
-            // txtAddress
-            // 
-            this.txtAddress.AcceptsReturn = true;
-            this.txtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
-            this.txtAddress.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAddress.Location = new System.Drawing.Point(201, 136);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtAddress.Size = new System.Drawing.Size(386, 119);
-            this.txtAddress.TabIndex = 5;
-            this.txtAddress.Text = "Dumka";
-            // 
             // txtMobileNo
             // 
-            this.txtMobileNo.Location = new System.Drawing.Point(201, 306);
+            this.txtMobileNo.Location = new System.Drawing.Point(155, 181);
             this.txtMobileNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtMobileNo.Name = "txtMobileNo";
             this.txtMobileNo.Size = new System.Drawing.Size(386, 38);
@@ -253,7 +220,7 @@
             // cbGender
             // 
             this.cbGender.FormattingEnabled = true;
-            this.cbGender.Location = new System.Drawing.Point(201, 91);
+            this.cbGender.Location = new System.Drawing.Point(155, 91);
             this.cbGender.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbGender.Name = "cbGender";
             this.cbGender.Size = new System.Drawing.Size(386, 39);
@@ -263,32 +230,12 @@
             // CBCity
             // 
             this.CBCity.FormattingEnabled = true;
-            this.CBCity.Location = new System.Drawing.Point(597, 136);
+            this.CBCity.Location = new System.Drawing.Point(155, 136);
             this.CBCity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBCity.Name = "CBCity";
-            this.CBCity.Size = new System.Drawing.Size(411, 39);
+            this.CBCity.Size = new System.Drawing.Size(388, 39);
             this.CBCity.TabIndex = 6;
             this.CBCity.Text = "Dumka";
-            // 
-            // cbState
-            // 
-            this.cbState.FormattingEnabled = true;
-            this.cbState.Location = new System.Drawing.Point(201, 261);
-            this.cbState.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbState.Name = "cbState";
-            this.cbState.Size = new System.Drawing.Size(386, 39);
-            this.cbState.TabIndex = 7;
-            this.cbState.Text = "Jharkhand";
-            // 
-            // CBCountry
-            // 
-            this.CBCountry.FormattingEnabled = true;
-            this.CBCountry.Location = new System.Drawing.Point(597, 261);
-            this.CBCountry.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.CBCountry.Name = "CBCountry";
-            this.CBCountry.Size = new System.Drawing.Size(411, 39);
-            this.CBCountry.TabIndex = 8;
-            this.CBCountry.Text = "India";
             // 
             // groupBox1
             // 
@@ -308,9 +255,9 @@
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this.label7);
-            this.flowLayoutPanel1.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel1.Controls.Add(this.CBMobileNos);
             this.flowLayoutPanel1.Controls.Add(this.label8);
-            this.flowLayoutPanel1.Controls.Add(this.comboBox2);
+            this.flowLayoutPanel1.Controls.Add(this.CBNames);
             this.flowLayoutPanel1.Controls.Add(this.BTNFind);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 36);
@@ -330,14 +277,15 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Mobile";
             // 
-            // comboBox1
+            // CBMobileNos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(146, 20);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(212, 39);
-            this.comboBox1.TabIndex = 1;
+            this.CBMobileNos.FormattingEnabled = true;
+            this.CBMobileNos.Location = new System.Drawing.Point(146, 20);
+            this.CBMobileNos.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
+            this.CBMobileNos.Name = "CBMobileNos";
+            this.CBMobileNos.Size = new System.Drawing.Size(212, 39);
+            this.CBMobileNos.TabIndex = 1;
+            this.CBMobileNos.SelectedIndexChanged += new System.EventHandler(this.CBMobileNos_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -349,14 +297,17 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Name";
             // 
-            // comboBox2
+            // CBNames
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(547, 20);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(212, 39);
-            this.comboBox2.TabIndex = 3;
+            this.CBNames.FormattingEnabled = true;
+            this.CBNames.Location = new System.Drawing.Point(547, 20);
+            this.CBNames.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
+            this.CBNames.Name = "CBNames";
+            this.CBNames.Size = new System.Drawing.Size(212, 39);
+            this.CBNames.TabIndex = 3;
+            this.CBNames.SelectedIndexChanged += new System.EventHandler(this.CBNames_SelectedIndexChanged);
+            this.CBNames.TextUpdate += new System.EventHandler(this.CBNames_SelectedIndexChanged);
+            this.CBNames.TextChanged += new System.EventHandler(this.CBNames_SelectedIndexChanged);
             // 
             // BTNFind
             // 
@@ -369,6 +320,7 @@
             this.BTNFind.TabIndex = 4;
             this.BTNFind.Text = "Find";
             this.BTNFind.UseVisualStyleBackColor = true;
+            this.BTNFind.Click += new System.EventHandler(this.BTNFind_Click);
             // 
             // GBControls
             // 
@@ -458,6 +410,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CustomersForm";
             this.Text = "CustomersForm";
+            this.Load += new System.EventHandler(this.CustomersForm_Load);
             this.gbPersonal.ResumeLayout(false);
             this.gbPersonal.PerformLayout();
             this.tlpPersonal.ResumeLayout(false);
@@ -483,23 +436,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastname;
         private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtMobileNo;
         private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.ComboBox CBCity;
-        private System.Windows.Forms.ComboBox cbState;
-        private System.Windows.Forms.ComboBox CBCountry;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CBMobileNos;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox CBNames;
         private System.Windows.Forms.Button BTNFind;
         private System.Windows.Forms.GroupBox GBControls;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;

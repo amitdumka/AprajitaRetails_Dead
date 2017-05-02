@@ -74,6 +74,7 @@ namespace AprajitaRetails
                 {
 
                     Logs.LogMe ("Exceptoin Happend! Exp:" +e.Message);
+                    Logs.LogMe ("Constr="+ConStr);
                     //throw;
                     return null;
                 }

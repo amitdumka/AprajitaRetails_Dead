@@ -17,7 +17,8 @@ namespace CyberN
 
         public static string DateFromExcelFormatString(string ExcelCellValue)
         {
-            DateTime dt = DateTime.FromOADate (Convert.ToDouble (ExcelCellValue));
+           DateTime dt = DateTime.FromOADate (Convert.ToDouble (ExcelCellValue));
+            //DateTime dt = DateTime.Parse (ExcelCellValue);
             return dt.ToShortDateString ();
         }
     }

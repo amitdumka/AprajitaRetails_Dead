@@ -1,0 +1,1 @@
+﻿select  MobileNo from Customer	  Where MobileNo <> 'NA'

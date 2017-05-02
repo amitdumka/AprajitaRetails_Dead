@@ -20,6 +20,8 @@ namespace AprajitaRetails
         }
         public static string GetGender(int i)
         {
+            if ( i <= 0 )
+                return genders [ 1];
             return ( genders [i - 1] );
         }
         public Gender()

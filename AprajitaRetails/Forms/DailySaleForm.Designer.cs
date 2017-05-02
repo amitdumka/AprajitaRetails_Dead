@@ -57,6 +57,18 @@
             this.BTNDelete = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
+            this.GBSaleReport = new System.Windows.Forms.GroupBox();
+            this.TLPSaleReport = new System.Windows.Forms.TableLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.LBTodaySale = new System.Windows.Forms.Label();
+            this.LBMontlySale = new System.Windows.Forms.Label();
+            this.LBYearlySale = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LVSaleList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.TLPInvoiceDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDRmz)).BeginInit();
@@ -64,6 +76,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUDTailoring)).BeginInit();
             this.GBControls.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.GBSaleReport.SuspendLayout();
+            this.TLPSaleReport.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -230,6 +245,10 @@
             this.CBMobileNo.Name = "CBMobileNo";
             this.CBMobileNo.Size = new System.Drawing.Size(310, 39);
             this.CBMobileNo.TabIndex = 10;
+            this.CBMobileNo.SelectedIndexChanged += new System.EventHandler(this.CBMobileNo_SelectedIndexChanged);
+            this.CBMobileNo.TextUpdate += new System.EventHandler(this.CBMobileNo_SelectedIndexChanged);
+            this.CBMobileNo.SelectedValueChanged += new System.EventHandler(this.CBMobileNo_SelectedIndexChanged);
+            this.CBMobileNo.TextChanged += new System.EventHandler(this.CBMobileNo_SelectedIndexChanged);
             // 
             // TXTCustomerName
             // 
@@ -394,11 +413,141 @@
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
             // 
+            // GBSaleReport
+            // 
+            this.GBSaleReport.AutoSize = true;
+            this.GBSaleReport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.GBSaleReport.Controls.Add(this.TLPSaleReport);
+            this.GBSaleReport.Location = new System.Drawing.Point(955, 307);
+            this.GBSaleReport.Name = "GBSaleReport";
+            this.GBSaleReport.Size = new System.Drawing.Size(229, 133);
+            this.GBSaleReport.TabIndex = 5;
+            this.GBSaleReport.TabStop = false;
+            this.GBSaleReport.Text = "Sale Info";
+            // 
+            // TLPSaleReport
+            // 
+            this.TLPSaleReport.AutoSize = true;
+            this.TLPSaleReport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.TLPSaleReport.ColumnCount = 2;
+            this.TLPSaleReport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPSaleReport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPSaleReport.Controls.Add(this.label10, 0, 0);
+            this.TLPSaleReport.Controls.Add(this.label11, 0, 1);
+            this.TLPSaleReport.Controls.Add(this.label12, 0, 2);
+            this.TLPSaleReport.Controls.Add(this.LBTodaySale, 1, 0);
+            this.TLPSaleReport.Controls.Add(this.LBMontlySale, 1, 1);
+            this.TLPSaleReport.Controls.Add(this.LBYearlySale, 1, 2);
+            this.TLPSaleReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TLPSaleReport.Location = new System.Drawing.Point(3, 34);
+            this.TLPSaleReport.Name = "TLPSaleReport";
+            this.TLPSaleReport.RowCount = 3;
+            this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPSaleReport.Size = new System.Drawing.Size(223, 96);
+            this.TLPSaleReport.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(159, 32);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Today Sale";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 32);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(180, 32);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Monthly Sale";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 64);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(161, 32);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Yearly Sale";
+            // 
+            // LBTodaySale
+            // 
+            this.LBTodaySale.AutoSize = true;
+            this.LBTodaySale.Location = new System.Drawing.Point(189, 0);
+            this.LBTodaySale.Name = "LBTodaySale";
+            this.LBTodaySale.Size = new System.Drawing.Size(31, 32);
+            this.LBTodaySale.TabIndex = 3;
+            this.LBTodaySale.Text = "0";
+            // 
+            // LBMontlySale
+            // 
+            this.LBMontlySale.AutoSize = true;
+            this.LBMontlySale.Location = new System.Drawing.Point(189, 32);
+            this.LBMontlySale.Name = "LBMontlySale";
+            this.LBMontlySale.Size = new System.Drawing.Size(31, 32);
+            this.LBMontlySale.TabIndex = 4;
+            this.LBMontlySale.Text = "0";
+            // 
+            // LBYearlySale
+            // 
+            this.LBYearlySale.AutoSize = true;
+            this.LBYearlySale.Location = new System.Drawing.Point(189, 64);
+            this.LBYearlySale.Name = "LBYearlySale";
+            this.LBYearlySale.Size = new System.Drawing.Size(31, 32);
+            this.LBYearlySale.TabIndex = 5;
+            this.LBYearlySale.Text = "0";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.LVSaleList);
+            this.groupBox2.Location = new System.Drawing.Point(1382, 307);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(500, 453);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Invoice List";
+            // 
+            // LVSaleList
+            // 
+            this.LVSaleList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.LVSaleList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LVSaleList.FullRowSelect = true;
+            this.LVSaleList.GridLines = true;
+            this.LVSaleList.Location = new System.Drawing.Point(3, 34);
+            this.LVSaleList.Name = "LVSaleList";
+            this.LVSaleList.Size = new System.Drawing.Size(494, 416);
+            this.LVSaleList.TabIndex = 0;
+            this.LVSaleList.UseCompatibleStateImageBehavior = false;
+            this.LVSaleList.View = System.Windows.Forms.View.Details;
+            this.LVSaleList.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "InvoiceDate";
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Amount";
+            this.columnHeader2.Width = 100;
+            // 
             // DailySaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2030, 800);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(2108, 800);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.GBSaleReport);
             this.Controls.Add(this.GBControls);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -417,6 +566,11 @@
             this.GBControls.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.GBSaleReport.ResumeLayout(false);
+            this.GBSaleReport.PerformLayout();
+            this.TLPSaleReport.ResumeLayout(false);
+            this.TLPSaleReport.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,5 +607,17 @@
         private System.Windows.Forms.Button BTNDelete;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button BTNUpdate;
+        private System.Windows.Forms.GroupBox GBSaleReport;
+        private System.Windows.Forms.TableLayoutPanel TLPSaleReport;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LBTodaySale;
+        private System.Windows.Forms.Label LBMontlySale;
+        private System.Windows.Forms.Label LBYearlySale;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView LVSaleList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AprajitaRetails.Data;
 using AprajitaRetails.DataModel;
-using AprajitaRetails.Utils;
 using AprajitaRetails.ViewModel;
 
 namespace AprajitaRetails.Forms
 {
     public partial class DailySaleForm : Form
     {
-        DailySalesVM viewModel;
+        private DailySalesVM viewModel;
+
         public DailySaleForm()
         {
             InitializeComponent ();
@@ -31,17 +25,14 @@ namespace AprajitaRetails.Forms
             foreach ( PaymentMode item in lists )
             {
                 CBPaymentMode.Items.Add (item);
-
             }
             Logs.LogMe ("DailySale: Loading Completed");
-
         }
 
         private void BTNAdd_Click(object sender, EventArgs e)
         {
             if ( BTNAdd.Text == "Add" )
             {
-
                 PerformAdd ();
             }
             else if ( BTNAdd.Text == "Save" )
@@ -49,12 +40,14 @@ namespace AprajitaRetails.Forms
                 PerformSave ();
             }
         }
+
         private void PerformAdd()
         {
             BTNAdd.Text = "Save";
             Basic.ClearUIFields (TLPInvoiceDetails);
             viewModel.AddData ();
         }
+
         private void PerformSave()
         {
             if ( ValidateFileds () )
@@ -63,14 +56,15 @@ namespace AprajitaRetails.Forms
                 {
                     BTNAdd.Text = "Add";
                     MessageBox.Show ("Your Record got Save!");
+                    RefreshSaleInfo ();
                 }
                 else
                 {
                     MessageBox.Show ("Failed to save data, kindly chech and try again!");
                 }
             }
-
         }
+
         private DailySaleDM ReadFiled()
         {
             DailySaleDM data = new DailySaleDM ()
@@ -87,12 +81,10 @@ namespace AprajitaRetails.Forms
                 PaymentMode = ( (PaymentMode) CBPaymentMode.SelectedItem ).ID,
                 SaleDate = DTPDate.Value,
                 ID = -1
-
             };
             return data;
-
-
         }
+
         private bool ValidateFileds()
         {
             bool status = false;
@@ -112,7 +104,6 @@ namespace AprajitaRetails.Forms
                 return false;
             }
             return status;
-
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -122,17 +113,34 @@ namespace AprajitaRetails.Forms
             if ( BTNUpdate.Text == "Save" )
                 BTNUpdate.Text = "Update";
             Basic.ClearUIFields (TLPInvoiceDetails);
+        }
 
+        public void RefreshSaleInfo()
+        {
+            SaleInfo info = viewModel.GetSaleInfo ();
+            if ( info != null )
+            {
+                if ( info.TodaySale != null )
+                    LBTodaySale.Text = info.TodaySale;
+
+                if ( info.MonthlySale != null )
+                    LBMontlySale.Text = info.MonthlySale;
+
+                if ( info.YearlySale != null )
+                    LBYearlySale.Text = info.YearlySale;
+            }
         }
 
         private void DailySaleForm_Load(object sender, EventArgs e)
         {
             LoadPaymentMode ();
+            LoadMobileNo ();
+            RefreshSaleInfo ();
+            LoadSaleList ();
         }
 
         private void CBPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void BTNDelete_Click(object sender, EventArgs e)
@@ -144,9 +152,49 @@ namespace AprajitaRetails.Forms
             {
                 TXTCustomerName.Text = c.CustomerFirstName + " " + c.CustomerLastName;
                 CBMobileNo.Text = c.CustomerMobileNo;
-
             }
             c.Dispose ();
+        }
+
+        private void CBMobileNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ( CBMobileNo.Text.Length >= 10 )
+            {
+                string mob = CBMobileNo.Text;
+                Logs.LogMe ("MobileN0: " + mob);
+                if ( !mob.StartsWith ("91") )
+                    mob = "91" + mob;
+                TXTCustomerName.Text = viewModel.GetCustomerName (mob);
+            }
+            else
+            {
+                Logs.LogMe ("Less: ");
+            }
+        }
+
+        public void LoadMobileNo()
+        {
+            List<string> list = viewModel.GetMobileNoList ();
+            for ( int i = 0 ; i < list.Count ; i++ )
+            {
+                CBMobileNo.Items.Add (list [i]);
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void LoadSaleList()
+        {
+            List<SortedDictionary<string, string>> listItem = viewModel.GetSaleList ();
+           
+            foreach ( var item in listItem )
+            { string [] it = { item ["InvoiceNo"] , item ["Amount"] };
+                LVSaleList.Items.Add (new ListViewItem (it));
+                    
+
+            }
         }
     }
 }

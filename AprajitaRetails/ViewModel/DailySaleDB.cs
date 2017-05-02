@@ -13,6 +13,33 @@ namespace AprajitaRetails.ViewModel
         TableClass t;
         string InsertSqlQuery = "";
 
+        public List<string> GetMobileNoList()
+        {
+            string sql = "select  MobileNo from Customer	  Where MobileNo <> 'NA'";
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            return DataBase.GetQueryString (cmd, "MobileNo");
+
+        }
+
+        public string GetCustomerName(string mobileno)
+        {
+            string sql = "select FirstName, LastName from Customer where MobileNo=@mob";
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            cmd.Parameters.AddWithValue ("@mob", mobileno);
+            SqlDataReader reader = cmd.ExecuteReader ();
+            string custname = "";
+            if ( reader != null && reader.HasRows )
+            {
+                reader.Read ();
+                custname = reader ["FirstName"] + " " + reader ["LastName"];
+                Logs.LogMe ("Cust " + reader [0]);
+            }
+            else
+                Logs.LogMe ("Customer: Error " + mobileno);
+            reader.Close ();
+            return custname;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -198,5 +225,83 @@ namespace AprajitaRetails.ViewModel
             return ToDailySales (resultData);
 
         }
+
+        public List<SortedDictionary<string, string>> GetSaleList()
+        {
+            string sql = " select  InvoiceNo, Amount from DailySale " +
+                    " where DATEDIFF(day, SaleDate,@dates)= 0 ";
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            cmd.Parameters.AddWithValue ("@dates", DateTime.Now.ToShortDateString ());
+
+            return DataBase.GetSqlStoreProcedureString (cmd);
+
+        }
+
+        public SaleInfo GetSaleInfo()
+        {
+            DateTime s = DateTime.Now;
+
+            string cd = DateTime.Now.ToShortDateString ();
+            string cy = "" + DateTime.Now.Year;
+            string cm = "" + DateTime.Now.Month;
+
+            SqlCommand cmd = new SqlCommand (SaleQuery.QueryAll, Db.DBCon);
+            cmd.Parameters.AddWithValue ("@CDate", cd);
+            cmd.Parameters.AddWithValue ("@CYear2", cy);
+            cmd.Parameters.AddWithValue ("@CMon", cm);
+            cmd.Parameters.AddWithValue ("@CYear", cy);
+            SqlDataReader reader = cmd.ExecuteReader ();
+            SaleInfo info = new SaleInfo ();
+            if ( reader != null && reader.HasRows )
+            {
+                reader.Read ();
+                info.MonthlySale = "" + reader ["MAmount"];
+                info.TodaySale = "" + reader ["TAmount"];
+                info.YearlySale = "" + reader ["YAmount"];
+
+            }
+            reader.Close ();
+            return info;
+
+        }
+    }
+    public static class SaleQuery
+    {
+        public static string qYearly = "select sum(Amount),DATEPART(YY,SaleDate) as Year from DailySale " +
+            "where DATEPART(YY, SaleDate)=@year group by DATEPART(YY, SaleDate)";
+        public static string QMontly = "select 	 sum(Amount) as TAmount,DATEPART(MM,SaleDate) as Months, " +
+            "DATEPART(YY,SaleDate) as Years from DailySale" +
+             "where DATEPART(YY, SaleDate)=@year    and DATEPART(MM, SaleDate)=@month" +
+              "group by DATEPART(MM, SaleDate)  , DATEPART(YY, SaleDate)";
+        public static string QDaily = "select  Sum(Amount) as TAmount  from DailySale "
+           + "where datediff(day, SaleDate,@date) = 0 ";
+
+        public static string QueryAll = "select TAmount, MAmount, YAmount  from " +
+        "(select Sum(Amount) as TAmount from DailySale  where datediff(day, SaleDate, @CDate) = 0  ) as DS," +
+         "(select Sum(Amount) as MAmount ,DatePart(MM, SaleDate) as Months, DatePart(YY, SaleDate) as Years from DailySale " +
+         "where    DatePart(MM, SaleDate)=@CMon	  and DatePart(YY, SaleDate)=@CYear " +
+         "Group By DatePart(MM, SaleDate) ,DatePart(YY, SaleDate) ) as MS , " +
+         " (  select Sum(Amount) as YAmount , DatePart(YY, SaleDate) as Years from DailySale " +
+         " where   DatePart(YY, SaleDate)=@CYear2   Group By DatePart(YY, SaleDate) ) as YS";
+
+
     }
 }
+
+
+/*
+ 
+select  Sum(Amount) as TAmount  from DailySale
+ where datediff(day, SaleDate, '2017/04/29') = 0
+
+
+ select Sum(Amount) as MAmount ,DatePart(MM, SaleDate) as Months, DatePart(YY, SaleDate) as Years from DailySale
+ where 	  DatePart(MM, SaleDate)=04	  and DatePart(YY, SaleDate)=2017
+ Group By DatePart(MM, SaleDate) ,DatePart(YY, SaleDate) ;
+
+
+ select Sum(Amount) as YAmount , DatePart(YY, SaleDate) as Years from DailySale
+ where 	 DatePart(YY, SaleDate)=2017
+ Group By DatePart(MM, SaleDate) ,DatePart(YY, SaleDate) ;
+ 
+    */

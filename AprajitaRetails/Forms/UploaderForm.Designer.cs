@@ -50,6 +50,7 @@
             this.BTNByYear = new System.Windows.Forms.Button();
             this.BTNByMonth = new System.Windows.Forms.Button();
             this.BTNByDay = new System.Windows.Forms.Button();
+            this.BTNQuery = new System.Windows.Forms.Button();
             this.ExcelFileOpenDialogg = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -178,8 +179,9 @@
             this.CBUploadType.Location = new System.Drawing.Point(188, 51);
             this.CBUploadType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.CBUploadType.Name = "CBUploadType";
-            this.CBUploadType.Size = new System.Drawing.Size(121, 39);
+            this.CBUploadType.Size = new System.Drawing.Size(287, 39);
             this.CBUploadType.TabIndex = 4;
+            this.CBUploadType.SelectedIndexChanged += new System.EventHandler(this.CBUploadType_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -246,6 +248,7 @@
             this.tableLayoutPanel2.Controls.Add(this.BTNByYear, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.BTNByMonth, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.BTNByDay, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.BTNQuery, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 34);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -323,6 +326,16 @@
             this.BTNByDay.UseVisualStyleBackColor = true;
             this.BTNByDay.Click += new System.EventHandler(this.BTNByDay_Click);
             // 
+            // BTNQuery
+            // 
+            this.BTNQuery.Location = new System.Drawing.Point(431, 94);
+            this.BTNQuery.Name = "BTNQuery";
+            this.BTNQuery.Size = new System.Drawing.Size(166, 48);
+            this.BTNQuery.TabIndex = 12;
+            this.BTNQuery.Text = "Query";
+            this.BTNQuery.UseVisualStyleBackColor = true;
+            this.BTNQuery.Click += new System.EventHandler(this.BTNQuery_Click);
+            // 
             // ExcelFileOpenDialogg
             // 
             this.ExcelFileOpenDialogg.FileName = "ExcelFileOpenDialogg";
@@ -339,6 +352,7 @@
             this.Name = "UploaderForm";
             this.Text = "UploaderForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.UploaderForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -379,5 +393,6 @@
         private System.Windows.Forms.Button BTNByYear;
         private System.Windows.Forms.Button BTNByDay;
         private System.Windows.Forms.OpenFileDialog ExcelFileOpenDialogg;
+        private System.Windows.Forms.Button BTNQuery;
     }
 }

@@ -19,6 +19,16 @@ namespace AprajitaRetails.ViewModel
             Logs.LogMe ("DailySaleVM: DailySaleDB object created");
         }
 
+        public List<SortedDictionary<string,string>> GetSaleList()
+        {
+            return DB.GetSaleList ();
+        }
+
+        public List<string> GetMobileNoList()
+        {
+            return DB.GetMobileNoList ();
+        }
+
         public string AddData()
         {
             return "";
@@ -37,6 +47,15 @@ namespace AprajitaRetails.ViewModel
             CustomerDB cDM = new CustomerDB ();
             return cDM.GetID ("MobileNo", mobile);
 
+        }
+        public SaleInfo GetSaleInfo()
+        {
+         return    DB.GetSaleInfo ();
+        }
+
+        public string GetCustomerName(string mobileNo)
+        {
+            return DB.GetCustomerName (mobileNo);
         }
 
         public bool SaveData(DailySaleDM data)
