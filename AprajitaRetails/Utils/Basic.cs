@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace AprajitaRetails
@@ -32,6 +33,16 @@ namespace AprajitaRetails
     public class Basic
     {
 
+        public static void AddListToComboBox(ComboBox cb, List<string> list)
+        {
+            if(list!=null && list.Count > 0 )
+            {
+                for ( int i = 0 ; i < list.Count ; i++ )
+                {
+                    cb.Items.Add (list [i]);
+                }
+            }
+        }
 
 
         /// <summary>
@@ -73,12 +84,6 @@ namespace AprajitaRetails
             else
                 return -999;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="val"></param>
-        /// <returns></returns>
         public static bool IsNumeric(string val)
         {
             bool status = false;
@@ -89,6 +94,34 @@ namespace AprajitaRetails
                 try
                 {
                     Int64 num = Int64.Parse (val);
+                    status = true;
+                }
+                catch ( Exception )
+                {
+
+                    status = false;
+                }
+
+            }
+
+            return status;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static bool IsDecimal(string val)
+        {
+            bool status = false;
+            if ( val != null && val != "" )
+            {
+                val = val.Trim ();
+
+                try
+                {
+                    Double num = Double.Parse (val);
                     status = true;
                 }
                 catch ( Exception )
@@ -200,5 +233,25 @@ namespace AprajitaRetails
 
             return true;
         }
+
+        public static List<string> PropertyList(Type t)
+        {
+            List<string> list = new List<string> ();
+            foreach ( PropertyInfo p in t.GetProperties () )
+            {  
+                list.Add (p.Name);
+            }
+            return list;
+        }
+        public static List<string> FeildList(Type t)
+        {
+            List<string> list = new List<string> ();
+            foreach ( FieldInfo p in t.GetFields () )
+            {
+                list.Add (p.Name);
+            }
+            return list;
+        }
+
     }
 }

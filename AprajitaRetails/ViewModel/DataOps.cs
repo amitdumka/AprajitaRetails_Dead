@@ -67,15 +67,18 @@ namespace AprajitaRetails.ViewModel
             cmd.CommandText = "select * from " + Tablename + " where " + colName + "=@values";
             cmd.Parameters.AddWithValue ("@values", colValue);
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
-            return ResultToObject (resultData [0]);
+                return ResultToObject (resultData [0]);
+                
 
         }
 
 
         public T GetByID(int id)
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename + " where ID =" + id;
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = "select * from " + Tablename + " where ID =" + id
+            };
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             return ResultToObject (resultData [0]);
         }

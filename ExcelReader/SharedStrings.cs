@@ -13,8 +13,8 @@ namespace CyberN
     /// </summary>
     [Serializable()]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot("sst", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    public class sst
+    [XmlRoot("SST", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    public class SST
     {
         [XmlAttribute]
         public string uniqueCount;
@@ -23,7 +23,7 @@ namespace CyberN
         [XmlElement("si")]
         public SharedString[] si;
 
-        public sst()
+        public SST()
         {
         }
     }

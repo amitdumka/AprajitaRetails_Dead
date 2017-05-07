@@ -233,6 +233,7 @@
             this.BTNFind.TabIndex = 3;
             this.BTNFind.Text = "Find";
             this.BTNFind.UseVisualStyleBackColor = true;
+            this.BTNFind.Click += new System.EventHandler(this.BTNFind_Click);
             // 
             // GBEmployeeDetails
             // 

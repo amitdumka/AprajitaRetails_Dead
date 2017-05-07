@@ -16,5 +16,10 @@ namespace AprajitaRetails.Forms
         {
             InitializeComponent ();
         }
+
+        private void BTNAdd_Click(object sender, EventArgs e)
+        {
+            //TODO: write it
+        }
     }
 }

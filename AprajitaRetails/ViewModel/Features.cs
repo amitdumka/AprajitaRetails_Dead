@@ -8,16 +8,17 @@ namespace AprajitaRetails.ViewModel
 {
     class Features
     {
-        bool DailySale = true;
-        bool DayClosing = false;
-        bool Employee;
-        bool Expenses;
-        bool customer;
-        bool attendence;
-        bool footfall;
-        bool purchaseinvoice;
-        bool salary;
-        bool uploaderform;
+        public bool DailySale = true;
+        public bool DayClosing = false;
+        public bool Employee = false;
+        public bool Expenses = false;
+        public bool customer = false;
+        public bool attendence = false;
+        public bool footfall = false;
+        public bool purchaseinvoice = false;
+        public bool salary = false;
+        public bool uploaderform = false;
 
+       
     }
 }

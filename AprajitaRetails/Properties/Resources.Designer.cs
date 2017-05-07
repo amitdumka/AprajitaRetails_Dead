@@ -123,6 +123,26 @@ namespace AprajitaRetails.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap footprint {
+            get {
+                object obj = ResourceManager.GetObject("footprint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap footprints {
+            get {
+                object obj = ResourceManager.GetObject("footprints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gender {
             get {
                 object obj = ResourceManager.GetObject("gender", resourceCulture);
@@ -173,6 +193,16 @@ namespace AprajitaRetails.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap shopping_basket__plus {
+            get {
+                object obj = ResourceManager.GetObject("shopping-basket--plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user_add {
             get {
                 object obj = ResourceManager.GetObject("user_add", resourceCulture);
@@ -206,6 +236,16 @@ namespace AprajitaRetails.Properties {
         internal static System.Drawing.Bitmap vectorstock_85252 {
             get {
                 object obj = ResourceManager.GetObject("vectorstock_85252", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vectorstock_967 {
+            get {
+                object obj = ResourceManager.GetObject("vectorstock_967", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,2 +1,2 @@
 ﻿Select InvoiceNo, SaleDate, Amount  from DailySale
- where DATEDIFF(Day, SaleDate, '4/30/2017')=0
+where DATEDIFF(Day, SaleDate, '5/2/2017')=0

@@ -14,20 +14,22 @@ namespace CyberN.TableCreator
         private List<KeyValuePair<String, Type>> _fieldInfo = new List<KeyValuePair<String, Type>> ();
         private string _className = String.Empty;
 
-        private Dictionary<Type, String> dataMapper
+        private Dictionary<Type, String> DataMapper
         {
             get
             {
                 // Add the rest of your CLR Types to SQL Types mapping here
-                Dictionary<Type, String> dataMapper = new Dictionary<Type, string> ();
-                dataMapper.Add (typeof (int), "INT");//BIGINT
-                dataMapper.Add (typeof (string), "VARCHAR(100)");
-                dataMapper.Add (typeof (bool), "BIT");
-                dataMapper.Add (typeof (DateTime), "DATETIME");
-                dataMapper.Add (typeof (float), "FLOAT");
-                dataMapper.Add (typeof (decimal), "DECIMAL(18,0)");
-                dataMapper.Add (typeof (Guid), "UNIQUEIDENTIFIER");
-                dataMapper.Add (typeof (double), "Money");
+                Dictionary<Type, String> dataMapper = new Dictionary<Type, string>
+                {
+                    { typeof (int), "INT" },//BIGINT
+                    { typeof (string), "VARCHAR(100)" },
+                    { typeof (bool), "BIT" },
+                    { typeof (DateTime), "DATETIME" },
+                    { typeof (float), "FLOAT" },
+                    { typeof (decimal), "DECIMAL(18,0)" },
+                    { typeof (Guid), "UNIQUEIDENTIFIER" },
+                    { typeof (double), "Money" }
+                };
 
                 return dataMapper;
             }
@@ -89,7 +91,7 @@ namespace CyberN.TableCreator
             {
                 //KeyValuePair<String, Type> field = this.Fields [i];
 
-                //if ( dataMapper.ContainsKey (field.Value) )
+                //if ( DataMapper.ContainsKey (field.Value) )
                 //{
                 script.Append ("\t @" + Fields [i].Key);
                 //}
@@ -129,9 +131,9 @@ namespace CyberN.TableCreator
             {
                 KeyValuePair<String, Type> field = this.Fields [i];
 
-                if ( dataMapper.ContainsKey (field.Value) )
+                if ( DataMapper.ContainsKey (field.Value) )
                 {
-                    script.Append ("\t " + field.Key + " " + dataMapper [field.Value]);
+                    script.Append ("\t " + field.Key + " " + DataMapper [field.Value]);
                 }
                 else
                 {

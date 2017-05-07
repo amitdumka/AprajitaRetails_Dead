@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AprajitaRetails.Data;
 
 namespace AprajitaRetails.ViewModel
 {
@@ -131,15 +132,23 @@ namespace AprajitaRetails.ViewModel
     //-----------------------------------------------------------------------
 
     class SaleInvoiceVM
-    {   //Fields
+    {
+        //Fields
         SaleInvoiceDB sDB;
+        ProductItemsDB pDB;
+        private const string ManualSeries = "MI";
+        private const long SeriesStart = 10000000;
 
         //Constructor
         public SaleInvoiceVM()
         {
             sDB = new SaleInvoiceDB ();
+            pDB = new ProductItemsDB ();
         }
-
+        public List<string> GetBarCodesList(int x)
+        {
+            return pDB.GetBarCodeList (x);
+        }
         //Functions/Methods
         public void AddData() { }
         public int SaveData(SaleInvoice obj) { return sDB.InsertData (obj); }
@@ -151,7 +160,6 @@ namespace AprajitaRetails.ViewModel
         {
             return sDB.GetInvoiceList ();
         }
-
         public List<SortedDictionary<string, string>> GetCustomerInfo(string mobileNo)
         {
             if ( mobileNo.Trim ().Length <= 0 )
@@ -162,15 +170,15 @@ namespace AprajitaRetails.ViewModel
         {
             return sDB.GetCustomerInfo (custId, "", 1);
         }
-
         public List<string> GetCustomerMobileNoList() { return sDB.GetCustomerMobileList (); }
-
         public List<SortedDictionary<string, string>> GetItemDetails(string barcode)
         {
             return sDB.GetItemDetails (barcode);
         }
-
-
+        public ProductItems GetProductItemDetais(string barcode)
+        {
+            return pDB.GetProductItemDetais (barcode);
+        }
         //Calucation Section 
         public void CalculateTotalSaleAmount() { }
         public void CalculateTotalTaxAmount() { }
@@ -180,7 +188,6 @@ namespace AprajitaRetails.ViewModel
         {
             throw new NotImplementedException ();
         }
-
         public int GetInvoiceNoList(ComboBox cBInvoiceNo)
         {
             List<string> itemList = GetInvoiceNoList ();
@@ -190,7 +197,6 @@ namespace AprajitaRetails.ViewModel
             }
             return itemList.Count;
         }
-
         public int GetCustomerMobileNoList(ComboBox cBMobileNo)
         {
             List<string> itemList = GetCustomerMobileNoList ();
@@ -200,6 +206,35 @@ namespace AprajitaRetails.ViewModel
             }
             return itemList.Count;
         }
+        public InvoiceNo GenerateInvoiceNo()
+        {
+            InvoiceNo inv = new InvoiceNo (ManualSeries);
+            //TODO: series Start should be changed every Finnical Year;
+            //TODO: Should have option to check data and based on that generate it 
+            string iNo = sDB.GetLastInvoiceNo ();
+            if ( iNo.Length > 0 )
+            {
+                if ( iNo != "0" )
+                {
+                    Logs.LogMe ("Inv=" + iNo);
+                    iNo = iNo.Substring (5);
+                    Logs.LogMe ("Inv=" + iNo);
+                    long i = long.Parse (iNo);
+                    Logs.LogMe ("Inv=" + i);
+                    inv.TP = i + 1;
+                }
+                else
+                { inv.TP = SeriesStart + 1; }
+            }
+            else
+            {
+                //TODO: check future what happens and what condtion  come here
+                inv.TP = SeriesStart + 1;
+                Logs.LogMe ("Future check :Inv=" + inv.TP);
+
+            }
+            return inv;
+        }
     }
 
     //-------------------------------------------------------------------------
@@ -208,22 +243,46 @@ namespace AprajitaRetails.ViewModel
     {
         public List<SortedDictionary<string, string>> GetItemDetails(string barcode)
         {
+
             string sql = "select * from ProductItem where BarCode=@barcode ";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             cmd.Parameters.AddWithValue ("@barcode", barcode);
             return DataBase.GetSqlStoreProcedureString (cmd);
         }
 
+        public string GetLastInvoiceNo()
+        {
+            string sql = "select ISNULL( Max(ID),0) from  " + Tablename;
+            string inv = "";
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            int ids = (int) cmd.ExecuteScalar ();
+
+            if ( ids > 0 )
+            {
+                sql = "select InvoiceNo from " + Tablename + " where ID=" + ids;
+                cmd.CommandText = sql;
+                inv = (string) cmd.ExecuteScalar ();
+
+            }
+            else
+            {
+                inv = "0";
+            }
+
+
+            return inv;
+        }
+
 
         public List<string> GetCustomerMobileList()
         {
-            string sql = "select MobileNo from Customers";
+            string sql = "select MobileNo from Customer";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             return DataBase.GetQueryString (cmd, "MobileNo");
         }
         public List<SortedDictionary<string, string>> GetCustomerInfo(int id, string mobileno, int searchMode)
         {   //TODO: Make it to send only one row.
-            string sql = "select FirstName, LastName, MobileNo from Customers where ";
+            string sql = "select ID, FirstName, LastName, MobileNo from Customer where ";
             if ( searchMode == 1 )
             {
                 sql = sql + " ID=" + id;
@@ -266,6 +325,13 @@ namespace AprajitaRetails.ViewModel
 
     class ProductItemsDB : DataOps<ProductItems>
     {
+        public List<string> GetBarCodeList(int x)
+        {
+            string sql = "select BarCode from " + this.Tablename + " where  Size = '44'";
+            //select* from ProductItems where Size = '44'
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            return DataBase.GetQueryString (cmd, "BarCode");
+        }
         public List<string> GetItemsList()
         {
             string sql = "select StyleCode from " + this.Tablename;
@@ -309,7 +375,7 @@ namespace AprajitaRetails.ViewModel
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             cmd.Parameters.AddWithValue ("@code", styleCode);
 
-            object count =  cmd.ExecuteScalar ();
+            object count = cmd.ExecuteScalar ();
             Console.WriteLine ("Qty={0}", count);
             double c = double.Parse ("" + count);
             return c;
@@ -364,11 +430,11 @@ namespace AprajitaRetails.ViewModel
 
         public override ProductItems ResultToObject(SortedDictionary<string, string> data)
         {
-            ProductItems pItem = new ProductItems ()
+           ProductItems pItem = new ProductItems ()
             {
                 ID = Basic.ToInt (data ["ID"]),
                 Tax = double.Parse (data ["Tax"]),
-                SupplierId = data ["SupploerId"],
+                SupplierId = data ["SupplierId"],
                 StyleCode = data ["StyleCode"],
                 Size = data ["Size"],
                 Qty = double.Parse (data ["Qty"]),

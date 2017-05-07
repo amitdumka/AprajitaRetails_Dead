@@ -1,0 +1,1 @@
+﻿	 select ISNULL( Max(ID),0) from Customer

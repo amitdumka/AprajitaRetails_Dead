@@ -39,6 +39,23 @@ namespace AprajitaRetails.ViewModel
             reader.Close ();
             return custname;
         }
+        public string GetCustomerName(int Id)
+        {
+            string sql = "select FirstName, LastName, MobileNo from Customer where ID=" + Id;
+            SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
+            SqlDataReader reader = cmd.ExecuteReader ();
+            string custname = "";
+            if ( reader != null && reader.HasRows )
+            {
+                reader.Read ();
+                custname = reader ["MobileNo"] + " " + reader ["FirstName"] + " " + reader ["LastName"] + "  ";
+                Logs.LogMe ("Cust " + reader [0]);
+            }
+            else
+                Logs.LogMe ("Customer: Error " + Id);
+            reader.Close ();
+            return custname;
+        }
 
         /// <summary>
         /// 
@@ -67,8 +84,12 @@ namespace AprajitaRetails.ViewModel
 
             dailySale = new DailySale ()
             {
+                Fabric = Basic.ToInt (element ["Fabric"]),
+                PaymentMode = Basic.ToInt (element ["PaymentMode"]),
+                RMZ = Basic.ToInt (element ["RMZ"]),
+                Tailoring = Basic.ToInt (element ["Tailoring"]),
                 Amount = Double.Parse (element ["Amount"]),
-                CustomerID = Basic.ToInt (element ["CustomerId"]),
+                CustomerID = Basic.ToInt (element ["CustomerID"]),
                 Discount = Double.Parse (element ["Discount"]),
                 ID = Basic.ToInt (element ["ID"]),
                 InvoiceNo = element ["InvoiceNo"],
@@ -192,8 +213,10 @@ namespace AprajitaRetails.ViewModel
         /// <returns></returns>
         public int InsertData(DailySale obj)
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = InsertSqlQuery;
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = InsertSqlQuery
+            };
             cmd.Parameters.AddWithValue ("@CustomerId", obj.CustomerID);
             cmd.Parameters.AddWithValue ("@Amount", obj.Amount);
             cmd.Parameters.AddWithValue ("@Discount", obj.Discount);
@@ -228,8 +251,8 @@ namespace AprajitaRetails.ViewModel
 
         public List<SortedDictionary<string, string>> GetSaleList()
         {
-            string sql = " select  InvoiceNo, Amount from DailySale " +
-                    " where DATEDIFF(day, SaleDate,@dates)= 0 ";
+            string sql = " select  InvoiceNo, Amount, ID from DailySale " +
+                    " where DATEDIFF(day, SaleDate,@dates)= 0 order by ID Desc ";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             cmd.Parameters.AddWithValue ("@dates", DateTime.Now.ToShortDateString ());
 
@@ -237,13 +260,14 @@ namespace AprajitaRetails.ViewModel
 
         }
 
-        public SaleInfo GetSaleInfo()
+        public SaleInfo GetSaleInfo(DateTime saleDate)
         {
-            DateTime s = DateTime.Now;
 
-            string cd = DateTime.Now.ToShortDateString ();
-            string cy = "" + DateTime.Now.Year;
-            string cm = "" + DateTime.Now.Month;
+            Logs.LogMe ("Sale Info Date: " + saleDate.ToShortDateString ());
+            string cd = "" + saleDate.Month + "/" + saleDate.Day + "/" + saleDate.Year;
+            string cy = "" + saleDate.Year;
+            string cm = "" + saleDate.Month;
+            Logs.LogMe ("Date " + cd + "=" + saleDate.ToLongDateString ());
 
             SqlCommand cmd = new SqlCommand (SaleQuery.QueryAll, Db.DBCon);
             cmd.Parameters.AddWithValue ("@CDate", cd);
@@ -258,6 +282,37 @@ namespace AprajitaRetails.ViewModel
                 info.MonthlySale = "" + reader ["MAmount"];
                 info.TodaySale = "" + reader ["TAmount"];
                 info.YearlySale = "" + reader ["YAmount"];
+                Logs.LogMe ("Sale Info: " + reader ["TAmount"] + "==" + reader ["MAmount"] + "==" + reader ["YAmount"]);
+
+            }
+            reader.Close ();
+            return info;
+
+        }
+
+        public SaleInfo GetSaleInfo()
+        {
+            DateTime s = DateTime.Now;
+            Logs.LogMe ("Sale Info Date: " + s.ToShortDateString ());
+            string cd = "" + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+            string cy = "" + DateTime.Now.Year;
+            string cm = "" + DateTime.Now.Month;
+            Logs.LogMe ("Date " + cd + "=" + DateTime.Now.ToLongDateString ());
+
+            SqlCommand cmd = new SqlCommand (SaleQuery.QueryAll, Db.DBCon);
+            cmd.Parameters.AddWithValue ("@CDate", cd);
+            cmd.Parameters.AddWithValue ("@CYear2", cy);
+            cmd.Parameters.AddWithValue ("@CMon", cm);
+            cmd.Parameters.AddWithValue ("@CYear", cy);
+            SqlDataReader reader = cmd.ExecuteReader ();
+            SaleInfo info = new SaleInfo ();
+            if ( reader != null && reader.HasRows )
+            {
+                reader.Read ();
+                info.MonthlySale = "" + reader ["MAmount"];
+                info.TodaySale = "" + reader ["TAmount"];
+                info.YearlySale = "" + reader ["YAmount"];
+                Logs.LogMe ("Sale Info: " + reader ["TAmount"] + "==" + reader ["MAmount"] + "==" + reader ["YAmount"]);
 
             }
             reader.Close ();

@@ -343,6 +343,7 @@
             this.BTNAdd.TabIndex = 4;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNDelete
             // 

@@ -360,6 +360,10 @@
       <DependentUpon>aprajitaRetails.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\vectorstock_967.jpg" />
+    <None Include="Resources\shopping-basket--plus.png" />
+    <None Include="Resources\footprints.png" />
+    <None Include="Resources\footprint.png" />
     <None Include="Resources\application-sub.png" />
     <None Include="Resources\user_add.png" />
     <None Include="Resources\user-worker.png" />
@@ -381,11 +385,6 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.11.1">
-      <Visible>False</Visible>
-      <ProductName>SQL Server 2012 Express LocalDB</ProductName>
-      <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>

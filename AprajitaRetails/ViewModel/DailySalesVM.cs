@@ -19,7 +19,7 @@ namespace AprajitaRetails.ViewModel
             Logs.LogMe ("DailySaleVM: DailySaleDB object created");
         }
 
-        public List<SortedDictionary<string,string>> GetSaleList()
+        public List<SortedDictionary<string, string>> GetSaleList()
         {
             return DB.GetSaleList ();
         }
@@ -50,7 +50,11 @@ namespace AprajitaRetails.ViewModel
         }
         public SaleInfo GetSaleInfo()
         {
-         return    DB.GetSaleInfo ();
+            return DB.GetSaleInfo ();
+        }
+        public string GetCustomerName(int id)
+        {
+            return DB.GetCustomerName (id);
         }
 
         public string GetCustomerName(string mobileNo)
@@ -111,9 +115,13 @@ namespace AprajitaRetails.ViewModel
 
         }
 
-        public void GetInvoiceDetails(string invoiceno)
+        public DailySale GetInvoiceDetails(string invoiceno)
         {
-
+            return DB.GetByColName ("InvoiceNo", invoiceno);
+        }
+        public DailySale GetInvoiceDetails(int id)
+        {
+            return DB.GetByID (id);
         }
 
         public void UpdateInvoiceDetails(DailySaleDM data)

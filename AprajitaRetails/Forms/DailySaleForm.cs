@@ -46,8 +46,17 @@ namespace AprajitaRetails.Forms
             BTNAdd.Text = "Save";
             Basic.ClearUIFields (TLPInvoiceDetails);
             viewModel.AddData ();
-        }
+            CKNewCustomer.Checked = false;
+            TXTInvoiceNo.Focus ();
 
+        }
+        private void RefeshUI()
+        {
+            RefreshSaleInfo ();
+            LoadSaleList ();
+
+
+        }
         private void PerformSave()
         {
             if ( ValidateFileds () )
@@ -56,7 +65,7 @@ namespace AprajitaRetails.Forms
                 {
                     BTNAdd.Text = "Add";
                     MessageBox.Show ("Your Record got Save!");
-                    RefreshSaleInfo ();
+                    RefeshUI ();
                 }
                 else
                 {
@@ -135,8 +144,7 @@ namespace AprajitaRetails.Forms
         {
             LoadPaymentMode ();
             LoadMobileNo ();
-            RefreshSaleInfo ();
-            LoadSaleList ();
+            RefeshUI ();
         }
 
         private void CBPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,6 +162,7 @@ namespace AprajitaRetails.Forms
                 CBMobileNo.Text = c.CustomerMobileNo;
             }
             c.Dispose ();
+            CKNewCustomer.Checked = true;
         }
 
         private void CBMobileNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,21 +189,59 @@ namespace AprajitaRetails.Forms
                 CBMobileNo.Items.Add (list [i]);
             }
         }
+        private void ShowDailySaleData(DailySale saleD)
+        {
+            TXTBillAmount.Text = "" + saleD.Amount;
+
+            string s1 = viewModel.GetCustomerName (saleD.CustomerID);
+            string [] s = s1.Split (' ');
+            CBMobileNo.Text = s [0];
+            s [0] = "";
+            TXTCustomerName.Text = String.Join (" ", s);
+            Logs.LogMe ("CustN=" + s1);
+            //TODO: get Customer Details from Customer Table
+            TXTDiscount.Text = "" + saleD.Discount;
+            NUDFabric.Text = "" + saleD.Fabric;
+            TXTInvoiceNo.Text = saleD.InvoiceNo;
+            CBPaymentMode.SelectedIndex = saleD.PaymentMode;
+            NUDRmz.Text = "" + saleD.RMZ;
+            DTPDate.Value = saleD.SaleDate;
+            NUDTailoring.Text = "" + saleD.Tailoring;
+
+
+        }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if ( BTNAdd.Text != "Save" )
+            {
+                var item = LVSaleList.SelectedItems;
+                if ( item.Count > 0 )
+                {
+                    string s = item [0].SubItems [0].Text;
+                    //MessageBox.Show ("Selected Invocie No=" + s);
+                    ShowDailySaleData (viewModel.GetInvoiceDetails (s.Trim ()));
+                }
+            }
         }
         private void LoadSaleList()
         {
             List<SortedDictionary<string, string>> listItem = viewModel.GetSaleList ();
-           
             foreach ( var item in listItem )
-            { string [] it = { item ["InvoiceNo"] , item ["Amount"] };
+            {
+                string [] it = { item ["InvoiceNo"], item ["Amount"], item ["ID"] };
+
                 LVSaleList.Items.Add (new ListViewItem (it));
-                    
+
 
             }
+        }
+
+        private void DailySaleForm_Shown(object sender, EventArgs e)
+        {
+            //LoadPaymentMode ();
+            //LoadMobileNo ();
+            //RefeshUI ();
         }
     }
 }

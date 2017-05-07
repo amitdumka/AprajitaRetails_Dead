@@ -155,5 +155,10 @@ namespace AprajitaRetails.Forms
             int idx = ( (ComboBox) sender ).SelectedIndex;
             OnEmpCodeChange (idx);
         }
+
+        private void BTNFind_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

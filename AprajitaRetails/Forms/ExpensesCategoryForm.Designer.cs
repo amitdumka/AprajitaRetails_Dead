@@ -56,7 +56,7 @@
             this.GBExpenseCategory.Location = new System.Drawing.Point(36, 31);
             this.GBExpenseCategory.Name = "GBExpenseCategory";
             this.GBExpenseCategory.Padding = new System.Windows.Forms.Padding(15);
-            this.GBExpenseCategory.Size = new System.Drawing.Size(446, 196);
+            this.GBExpenseCategory.Size = new System.Drawing.Size(446, 195);
             this.GBExpenseCategory.TabIndex = 0;
             this.GBExpenseCategory.TabStop = false;
             this.GBExpenseCategory.Text = "Category";
@@ -81,7 +81,7 @@
             this.TLPExpensesCategory.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPExpensesCategory.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPExpensesCategory.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPExpensesCategory.Size = new System.Drawing.Size(416, 135);
+            this.TLPExpensesCategory.Size = new System.Drawing.Size(416, 134);
             this.TLPExpensesCategory.TabIndex = 0;
             // 
             // label1
@@ -173,6 +173,7 @@
             this.BTNAdd.TabIndex = 18;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
+            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
             // 
             // BTNDelete
             // 

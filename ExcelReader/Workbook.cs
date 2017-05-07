@@ -17,7 +17,7 @@ namespace CyberN
     /// </summary>
     public class Workbook
     {
-        public static sst SharedStrings;
+        public static SST SharedStrings;
 
         /// <summary>
         /// All worksheets in the Excel workbook deserialized
@@ -30,7 +30,7 @@ namespace CyberN
 
             using (ZipArchive zipArchive = ZipFile.Open(ExcelFileName, ZipArchiveMode.Read))
             {
-                SharedStrings = DeserializedZipEntry<sst>(GetZipArchiveEntry(zipArchive, @"xl/sharedStrings.xml"));
+                SharedStrings = DeserializedZipEntry<SST>(GetZipArchiveEntry(zipArchive, @"xl/sharedStrings.xml"));
                 foreach (var worksheetEntry in (WorkSheetFileNames(zipArchive)).OrderBy(x => x.FullName))
                 {
                     ws = DeserializedZipEntry<worksheet>(worksheetEntry);
