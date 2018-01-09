@@ -265,7 +265,6 @@ namespace AprajitaRetails.ViewModel
             if ( status > 0 )
             {
                 string invNo = sDB.GetLastInvoiceNo ();
-                //TODO: Send Invoce No with ItemTable
                 status = SaveItemsDetails (itemTable);
                 if ( status > 0 )
                 {
@@ -422,7 +421,7 @@ namespace AprajitaRetails.ViewModel
                 CommandText = InsertSqlQuery
             };
             cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
-            cmd.Parameters.AddWithValue ("@Amount", obj.CardAmount);
+            cmd.Parameters.AddWithValue ("@CardAmount", obj.CardAmount);
             cmd.Parameters.AddWithValue ("@CardDetailsID", obj.CardDetailsID);
             cmd.Parameters.AddWithValue ("@CashAmount", obj.CashAmount);
             cmd.Parameters.AddWithValue ("@PayMode", obj.PayMode);
@@ -548,7 +547,8 @@ namespace AprajitaRetails.ViewModel
             {
                 CommandText = InsertSqlQuery
             };
-            cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@CustomerId", obj.CustomerId);
+             cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
             cmd.Parameters.AddWithValue ("@OnDate", obj.OnDate);
             cmd.Parameters.AddWithValue ("@RoundOffAmount", obj.RoundOffAmount);
             cmd.Parameters.AddWithValue ("@TotalBillAmount", obj.TotalBillAmount);
@@ -736,15 +736,17 @@ namespace AprajitaRetails.ViewModel
             foreach ( DataRow dr in dt.Rows )
             {
                 SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
-                cmd.Parameters.AddWithValue ("InvoiceNo", dr ["InvoiceNo"]);
-                cmd.Parameters.AddWithValue ("BarCode", dr ["BarCode"]);
-                cmd.Parameters.AddWithValue ("Qty", dr ["Qty"]);
-                cmd.Parameters.AddWithValue ("MRP", dr ["MRP"]);
-                cmd.Parameters.AddWithValue ("BasicAmount", dr ["BasicAmount"]);
-                cmd.Parameters.AddWithValue ("Discount", dr ["Discount"]);
-                cmd.Parameters.AddWithValue ("Tax", dr ["Tax"]);
-                cmd.Parameters.AddWithValue ("BillAmount", dr ["BillAmount"]);
-                cmd.Parameters.AddWithValue ("SalesmanID", dr ["SalesmanID"]);
+                cmd.Parameters.AddWithValue ("@InvoiceNo", dr ["InvoiceNo"]);
+                cmd.Parameters.AddWithValue ("@BarCode", dr ["BarCode"]);
+                cmd.Parameters.AddWithValue ("@Qty", dr ["Qty"]);
+                cmd.Parameters.AddWithValue ("@MRP", dr ["MRP"]);
+                cmd.Parameters.AddWithValue ("@BasicAmount", dr ["MRP"]);
+                //TODO:urgent basic amount cal
+                cmd.Parameters.AddWithValue ("@Discount", dr ["Discount"]);
+                cmd.Parameters.AddWithValue ("@Tax", dr ["Tax"]);
+                cmd.Parameters.AddWithValue ("@BillAmount", dr ["Amount"]);
+                cmd.Parameters.AddWithValue ("@SalesmanID", "001");
+                //TODO: saleman need to add up 
 
                 if ( cmd.ExecuteNonQuery () > 0 )
                     ctr++;
@@ -755,15 +757,15 @@ namespace AprajitaRetails.ViewModel
         {
             SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
 
-            cmd.Parameters.AddWithValue ("InvoiceNo", dr.InvoiceNo);
-            cmd.Parameters.AddWithValue ("BarCode", dr.BarCode);
-            cmd.Parameters.AddWithValue ("Qty", dr.Qty);
-            cmd.Parameters.AddWithValue ("MRP", dr.MRP);
-            cmd.Parameters.AddWithValue ("BasicAmount", dr.BasicAmount);
-            cmd.Parameters.AddWithValue ("Discount", dr.Discount);
-            cmd.Parameters.AddWithValue ("Tax", dr.Tax);
-            cmd.Parameters.AddWithValue ("BillAmount", dr.BillAmount);
-            cmd.Parameters.AddWithValue ("SalesmanID", dr.SalesmanID);
+            cmd.Parameters.AddWithValue ("@InvoiceNo", dr.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@BarCode", dr.BarCode);
+            cmd.Parameters.AddWithValue ("@Qty", dr.Qty);
+            cmd.Parameters.AddWithValue ("@MRP", dr.MRP);
+            cmd.Parameters.AddWithValue ("@BasicAmount", dr.BasicAmount);
+            cmd.Parameters.AddWithValue ("@Discount", dr.Discount);
+            cmd.Parameters.AddWithValue ("@Tax", dr.Tax);
+            cmd.Parameters.AddWithValue ("@BillAmount", dr.BillAmount);
+            cmd.Parameters.AddWithValue ("@SalesmanID", dr.SalesmanID);
             return cmd.ExecuteNonQuery ();
 
         }

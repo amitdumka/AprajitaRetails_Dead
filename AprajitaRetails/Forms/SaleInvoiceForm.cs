@@ -155,7 +155,7 @@ namespace AprajitaRetails.Forms
             vsItemTable.Columns.Add ("BarCode", typeof (string));
             vsItemTable.Columns.Add ("StyleCode", typeof (string));
             vsItemTable.Columns.Add ("QTY", typeof (double));
-            vsItemTable.Columns.Add ("Rate", typeof (double));
+            vsItemTable.Columns.Add ("MRP", typeof (double));
             vsItemTable.Columns.Add ("Discount", typeof (double));
             vsItemTable.Columns.Add ("Tax", typeof (double));
             vsItemTable.Columns.Add ("Amount", typeof (double));
@@ -203,7 +203,7 @@ namespace AprajitaRetails.Forms
             vItemTable.Columns.Add ("BarCode", typeof (string));
             vItemTable.Columns.Add ("StyleCode", typeof (string));
             vItemTable.Columns.Add ("QTY", typeof (double));
-            vItemTable.Columns.Add ("Rate", typeof (double));
+            vItemTable.Columns.Add ("MRP", typeof (double));
             vItemTable.Columns.Add ("Discount", typeof (double));
             vItemTable.Columns.Add ("Tax", typeof (double));
             vItemTable.Columns.Add ("Amount", typeof (double));
@@ -226,12 +226,28 @@ namespace AprajitaRetails.Forms
             CBInvoiceNo.Text = sVM.GenerateInvoiceNo ().ToString ();
         }
 
+        private void ResetForm()
+        {
+            Basic.ClearUIFields (TLPInvoiceDetails);
+           // DGVSaleItems.Rows.Clear ();
+            DataTable dt = ( DGVSaleItems.DataSource as BindingSource ).DataSource as DataTable;
+            dt.Clear ();
+            BTNAdd.Text = "Add";
+            BTNUpdate.Text = "Update";
+        }
         private void PerformSave()
         {
             if ( ValidateInvoice () && ValidateSaleItems () )
             {
                 //TODO: make it work
-                MessageBox.Show ("Your Enter Details are Proper");
+                int status =ReadAllData ();
+                if ( status > 0 )
+                {
+                    vIsNew = false;
+                    BTNAdd.Text = "Add";
+                    ResetForm ();
+                }
+                MessageBox.Show ("Invoice is saved: "+status);
 
             }
             else
@@ -429,7 +445,8 @@ namespace AprajitaRetails.Forms
         // Events and Events Trigger functions
         private void CBInvoiceNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateSaleUI (CBInvoiceNo.Text);
+            //TODO: Urgently Display Invoice Details
+            //UpdateSaleUI (CBInvoiceNo.Text);
         }
 
         private void CBMobileNo_SelectedIndexChanged(object sender, EventArgs e)
