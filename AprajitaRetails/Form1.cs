@@ -25,9 +25,12 @@ namespace AprajitaRetails
             itemlist.Add ("SaleRegister");
             itemlist.Add ("Sales");
             itemlist.Add ("Purchase");
+            itemlist.Add ("VoyBill");
+
             comboBox1.Items.Add (itemlist [0]);
             comboBox1.Items.Add (itemlist [1]);
             comboBox1.Items.Add (itemlist [2]);
+            comboBox1.Items.Add (itemlist [3]);
             comboBox1.SelectedIndex = 0;
             ER = new ExcelUploader ();
             EDB = new ExcelToDB ();
@@ -63,9 +66,10 @@ namespace AprajitaRetails
                 t = Task.Run (() => RecordCount = ER.ReadPurchase (textBox1.Text,
                 Int32.Parse (textBox2.Text.Trim ()),
                 Int32.Parse (textBox3.Text.Trim ()), pBar));
-            else if ( comboBox1.Text == "SaleItemWise" )
+            else if ( comboBox1.Text == itemlist[3] )
             {
-                return;
+                t = Task.Run (() => Voy.VoyBillUpload.ReadVoyBillXML (textBox1.Text));
+                
             }
             else
             {
@@ -150,6 +154,11 @@ namespace AprajitaRetails
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -62,12 +62,15 @@ namespace AprajitaRetails.ViewModel
 
 
         public T GetByColName(string colName, Object colValue)
-        {
+        {     //TODO: Index out of bound error Handling to be done
             SqlCommand cmd = new SqlCommand ();
             cmd.CommandText = "select * from " + Tablename + " where " + colName + "=@values";
             cmd.Parameters.AddWithValue ("@values", colValue);
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
+            //if ( resultData.Count > 0 )
                 return ResultToObject (resultData [0]);
+            //else
+              //  return ResultToObject(null);
                 
 
         }

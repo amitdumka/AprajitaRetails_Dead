@@ -75,7 +75,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(971, 161);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(175, 36);
             this.checkBox1.TabIndex = 7;
@@ -85,7 +85,7 @@
             // pBar
             // 
             this.pBar.Location = new System.Drawing.Point(971, 56);
-            this.pBar.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pBar.Margin = new System.Windows.Forms.Padding(5);
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(612, 81);
             this.pBar.TabIndex = 6;
@@ -93,7 +93,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(2139, 56);
-            this.button4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button4.Margin = new System.Windows.Forms.Padding(5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(204, 46);
             this.button4.TabIndex = 5;
@@ -104,7 +104,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(1858, 56);
-            this.button3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button3.Margin = new System.Windows.Forms.Padding(5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(204, 46);
             this.button3.TabIndex = 4;
@@ -115,7 +115,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(1593, 56);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(204, 46);
             this.button2.TabIndex = 3;
@@ -128,7 +128,7 @@
             this.BTNReload.AutoSize = true;
             this.BTNReload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNReload.Location = new System.Drawing.Point(1593, 144);
-            this.BTNReload.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.BTNReload.Margin = new System.Windows.Forms.Padding(5);
             this.BTNReload.Name = "BTNReload";
             this.BTNReload.Size = new System.Drawing.Size(116, 42);
             this.BTNReload.TabIndex = 2;
@@ -141,7 +141,7 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(2, 332);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(3259, 766);
@@ -234,11 +234,12 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 39);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(449, 5);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(5);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(130, 38);
             this.textBox2.TabIndex = 6;
@@ -247,13 +248,13 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(449, 109);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(5);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(130, 38);
             this.textBox3.TabIndex = 7;
             this.textBox3.Text = "End";
             // 
-            // ExcelFileOpenDialogg
+            // openFileDialog1
             // 
             this.openFileDialog1.FileName = "ExcelFileOpenDialogg";
             // 

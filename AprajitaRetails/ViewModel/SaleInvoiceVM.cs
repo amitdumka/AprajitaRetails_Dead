@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,95 @@ using AprajitaRetails.Data;
 
 namespace AprajitaRetails.ViewModel
 {
+    public enum TaxType { Vat = 0, Gst = 1 }
+    public enum SalePayMode { Cash = 1, Card = 2, Mix = 3 }
+    public class UtilOps
+    {
+        /// <summary>
+        /// Get Sale Payment Mode
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns>return Mode in interger , on error returns 1(Cash)</returns>
+        public static int GetSalePayMode(SalePayMode mode)
+        {
+            if ( mode == SalePayMode.Card )
+                return 2;
+            if ( mode == SalePayMode.Cash )
+                return 1;
+            if ( mode == SalePayMode.Mix )
+                return 3;
+            return 1;
+        }
+        /// <summary>
+        /// SalePayMode
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns> Return Sale Payment mode, default or on error return cash</returns>
+        public static SalePayMode GetSalePayMode(int mode)
+        {
+            if ( mode == 1 )
+                return SalePayMode.Cash;
+            if ( mode == 2 )
+                return SalePayMode.Card;
+            if ( mode == 3 )
+                return SalePayMode.Mix;
+            return SalePayMode.Cash;
+
+        }
+    }
+
+    abstract class Taxes
+    {
+        public int ID { set; get; }
+        public TaxType TaxType { set; get; }
+        public double TotalTaxAmount { set; get; }
+        public abstract Taxes TaxAmount(TaxType type, double BillAmount, double rate);
+    }
+    class VAT : Taxes
+    {
+        //public int ID { set; get; }
+        public double VatRate { set; get; }
+        public double VatAmount { set; get; }
+
+        public override Taxes TaxAmount(TaxType type, double BillAmount, double rate)
+        {
+            if ( type == TaxType.Vat )
+            {
+                VatRate = rate;
+                VatAmount = BillAmount - ( ( BillAmount * rate ) / 100 );
+                TotalTaxAmount = VatAmount;
+                return this;
+            }
+            else
+            { return null; }
+        }
+    }
+    class GST : Taxes
+    {
+        // public int ID { set; get; }
+        public double CGSTRate { set; get; }
+        public double SGSTRate { set; get; }
+
+        public double CGSTAmount { set; get; }
+        public double SGSTAmount { set; get; }
+        public override Taxes TaxAmount(TaxType type, double BillAmount, double rate)
+        {   //TODO: Check and verify for GST Tax Calculation.
+            if ( type == TaxType.Gst )
+            {
+                CGSTRate = rate / 2;
+                SGSTRate = rate / 2;
+                TotalTaxAmount = BillAmount - ( ( BillAmount * rate ) / 100 );
+                CGSTAmount = TotalTaxAmount / 2;
+                SGSTAmount = CGSTAmount;
+                return this;
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
     class ProductCategory
     {
         public static readonly int Fabric = 1;
@@ -36,7 +126,7 @@ namespace AprajitaRetails.ViewModel
         public string ItemDesc { get; set; }
 
         public double MRP { get; set; }
-        public double Tax { get; set; }
+        public double Tax { get; set; }    // TODO:Need to Review in final Edition
         public double Cost { get; set; }
 
         public string Size { get; set; }
@@ -88,16 +178,28 @@ namespace AprajitaRetails.ViewModel
         public int PayMode { get; set; }
         public double CashAmount { get; set; }
         public double CardAmount { get; set; }
+        public int CardDetailsID { get; set; }
+
 
     }
-    class CardTypes
+    class SalePaymentDetails
+    {
+        public int ID { get; set; }
+        public string InvoiceNo { get; set; }
+        public int PayMode { get; set; }
+        public double CashAmount { get; set; }
+        public double CardAmount { get; set; }
+        public CardPaymentDetails CardDetails { get; set; }
+
+    }
+    class CardMode
     {
         public static readonly int DebitCard = 1;
         public static readonly int CreditCard = 2;
         public static readonly int AmexCard = 3;
     }
 
-    class Cards
+    class CardType
     {
         public static readonly int Visa = 1;
         public static readonly int MasterCard = 2;
@@ -120,14 +222,14 @@ namespace AprajitaRetails.ViewModel
     {
         public int ID { get; set; }
         public string InvoiceNo { get; set; }
-        public int ProcductID { get; set; }
+        public string BarCode { get; set; }
         public double Qty { get; set; }
+        public double MRP { get; set; }
         public double BasicAmount { get; set; }
-        public double DiscountAmount { get; set; }
-        public double TaxAmount { get; set; }
+        public double Discount { get; set; }
+        public double Tax { get; set; }
         public double BillAmount { get; set; }
         public int SalesmanID { get; set; }
-
     }
     //-----------------------------------------------------------------------
 
@@ -136,6 +238,9 @@ namespace AprajitaRetails.ViewModel
         //Fields
         SaleInvoiceDB sDB;
         ProductItemsDB pDB;
+        SaleItemsDB siDB;
+        CardPaymentDB cpDB;
+        PaymentDetailDB payDB;
         private const string ManualSeries = "MI";
         private const long SeriesStart = 10000000;
 
@@ -144,6 +249,9 @@ namespace AprajitaRetails.ViewModel
         {
             sDB = new SaleInvoiceDB ();
             pDB = new ProductItemsDB ();
+            siDB = new SaleItemsDB ();
+            payDB = new PaymentDetailDB ();
+            cpDB = new CardPaymentDB ();
         }
         public List<string> GetBarCodesList(int x)
         {
@@ -151,22 +259,88 @@ namespace AprajitaRetails.ViewModel
         }
         //Functions/Methods
         public void AddData() { }
+        public int SaveInvoiceData(SaleInvoice saleInv, DataTable itemTable, SalePaymentDetails payDetails)
+        {    //TODO: Urgent SaveInoviceData.
+            int status = SaveData (saleInv);
+            if ( status > 0 )
+            {
+                string invNo = sDB.GetLastInvoiceNo ();
+                //TODO: Send Invoce No with ItemTable
+                status = SaveItemsDetails (itemTable);
+                if ( status > 0 )
+                {
+                    payDetails.InvoiceNo = invNo;
+                    int status2 = -1;
+                    bool modef = false;
+                    if ( payDetails.PayMode == UtilOps.GetSalePayMode (SalePayMode.Card) || payDetails.PayMode == UtilOps.GetSalePayMode (SalePayMode.Mix) )
+                    {
+                        modef = true;
+                        payDetails.CardDetails.InvoiceNo = invNo;
+                        status2 = SaveCardDetails (payDetails.CardDetails);
+                        int cardDetailsId = 0;
+                        status = SavePaymentDetails (payDetails, cardDetailsId);
+                    }else
+                    {
+                        //For CashPayment
+                        status = SavePaymentDetails (payDetails,-1);
+
+                    }
+
+                    if ( modef && status > 0 && status2 > 0 )
+                    {
+                        return 1;
+                    }
+                    else if ( modef == false && status > 0 )
+                        return 1;
+                    else if ( modef && status <= 0 || status2 <= 0 )
+                        return -3;
+                    else
+                        return -4;
+                    //TODO: Make Error Code so easy to debug and handle
+                }
+                else
+                    return -2;
+            }
+            else
+            {
+                return -1;
+            }
+        }
         public int SaveData(SaleInvoice obj) { return sDB.InsertData (obj); }
-        public void SaveItemsDetails() { }
-        public void SavePaymentDetails() { }
-        public void SaveCardDetails() { }
+        public int SaveItemsDetails(DataTable itemTable)
+        {
+            return siDB.InsertData (itemTable);
+
+        }
+        public int SavePaymentDetails(SalePaymentDetails pd, int cardDetailsID)
+        {
+            PaymentDetails payDetails = new PaymentDetails ()
+            {
+                CardAmount = pd.CardAmount,
+                CashAmount = pd.CashAmount,
+                InvoiceNo = pd.InvoiceNo,
+                PayMode = pd.PayMode,
+                CardDetailsID = cardDetailsID,
+                ID = pd.ID
+            };
+            return payDB.InsertData (payDetails);
+        }
+        public int SaveCardDetails(CardPaymentDetails cardDetails)
+        {
+            return cpDB.InsertData (cardDetails);
+        }
 
         public List<string> GetInvoiceNoList()
         {
             return sDB.GetInvoiceList ();
         }
-        public List<SortedDictionary<string, string>> GetCustomerInfo(string mobileNo)
+        public SortedDictionary<string, string> GetCustomerInfo(string mobileNo)
         {
             if ( mobileNo.Trim ().Length <= 0 )
                 return null;
             return sDB.GetCustomerInfo (0, mobileNo, 2);
         }
-        public List<SortedDictionary<string, string>> GetCustomerInfo(int custId)
+        public SortedDictionary<string, string> GetCustomerInfo(int custId)
         {
             return sDB.GetCustomerInfo (custId, "", 1);
         }
@@ -239,6 +413,71 @@ namespace AprajitaRetails.ViewModel
 
     //-------------------------------------------------------------------------
 
+    class PaymentDetailDB : DataOps<PaymentDetails>
+    {
+        public override int InsertData(PaymentDetails obj)
+        {
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = InsertSqlQuery
+            };
+            cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@Amount", obj.CardAmount);
+            cmd.Parameters.AddWithValue ("@CardDetailsID", obj.CardDetailsID);
+            cmd.Parameters.AddWithValue ("@CashAmount", obj.CashAmount);
+            cmd.Parameters.AddWithValue ("@PayMode", obj.PayMode);
+            return Db.Insert (cmd);
+        }
+
+        public override PaymentDetails ResultToObject(List<PaymentDetails> data, int index)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override PaymentDetails ResultToObject(SortedDictionary<string, string> data)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override List<PaymentDetails> ResultToObject(List<SortedDictionary<string, string>> dataList)
+        {
+            throw new NotImplementedException ();
+        }
+    }
+
+    class CardPaymentDB : DataOps<CardPaymentDetails>
+    {
+        public override int InsertData(CardPaymentDetails obj)
+        {
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = InsertSqlQuery
+            };
+            cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@Amount", obj.Amount);
+            cmd.Parameters.AddWithValue ("@AuthCode", obj.AuthCode);
+            cmd.Parameters.AddWithValue ("@CardType", obj.CardType);
+            cmd.Parameters.AddWithValue ("@LastDigit", obj.LastDigit);
+            return Db.Insert (cmd);
+
+            //throw new NotImplementedException ();
+        }
+
+        public override CardPaymentDetails ResultToObject(List<CardPaymentDetails> data, int index)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override CardPaymentDetails ResultToObject(SortedDictionary<string, string> data)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override List<CardPaymentDetails> ResultToObject(List<SortedDictionary<string, string>> dataList)
+        {
+            throw new NotImplementedException ();
+        }
+    }
     class SaleInvoiceDB : DataOps<SaleInvoice>
     {
         public List<SortedDictionary<string, string>> GetItemDetails(string barcode)
@@ -280,8 +519,8 @@ namespace AprajitaRetails.ViewModel
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             return DataBase.GetQueryString (cmd, "MobileNo");
         }
-        public List<SortedDictionary<string, string>> GetCustomerInfo(int id, string mobileno, int searchMode)
-        {   //TODO: Make it to send only one row.
+        public SortedDictionary<string, string> GetCustomerInfo(int id, string mobileno, int searchMode)
+        {
             string sql = "select ID, FirstName, LastName, MobileNo from Customer where ";
             if ( searchMode == 1 )
             {
@@ -292,19 +531,33 @@ namespace AprajitaRetails.ViewModel
                 sql = sql + "MobileNo='" + mobileno + "'";
             }
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
-            return DataBase.GetSqlStoreProcedureString (cmd);
-
+            SortedDictionary<string, string> result = DataBase.GetSqlStoreProcedureString (cmd) [0];
+            return result;
         }
         public List<string> GetInvoiceList()
         {
-            string sql = "select InvoiceNo from SaleInvoice";//TODO: Urgent where OnDate=Year(2017)
+            string sql = "select InvoiceNo from SaleInvoice";
+            //TODO: Urgent where OnDate=Year(2017)
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             return DataBase.GetQueryString (cmd, "InvoiceNo");
         }
 
         public override int InsertData(SaleInvoice obj)
         {
-            throw new NotImplementedException ();
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = InsertSqlQuery
+            };
+            cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@OnDate", obj.OnDate);
+            cmd.Parameters.AddWithValue ("@RoundOffAmount", obj.RoundOffAmount);
+            cmd.Parameters.AddWithValue ("@TotalBillAmount", obj.TotalBillAmount);
+            cmd.Parameters.AddWithValue ("@TotalDiscountAmount", obj.TotalDiscountAmount);
+            cmd.Parameters.AddWithValue ("@TotalItems", obj.TotalItems);
+            cmd.Parameters.AddWithValue ("@TotalQty", obj.TotalQty);
+            cmd.Parameters.AddWithValue ("@TotalTaxAmount", obj.TotalTaxAmount);
+            return Db.Insert (cmd);
+            // throw new NotImplementedException ();
         }
 
         public override SaleInvoice ResultToObject(List<SaleInvoice> data, int index)
@@ -430,7 +683,7 @@ namespace AprajitaRetails.ViewModel
 
         public override ProductItems ResultToObject(SortedDictionary<string, string> data)
         {
-           ProductItems pItem = new ProductItems ()
+            ProductItems pItem = new ProductItems ()
             {
                 ID = Basic.ToInt (data ["ID"]),
                 Tax = double.Parse (data ["Tax"]),
@@ -475,4 +728,59 @@ namespace AprajitaRetails.ViewModel
         }
     }
 
+    class SaleItemsDB : DataOps<SaleItem>
+    {
+        public int InsertData(DataTable dt)
+        {
+            int ctr = 0;
+            foreach ( DataRow dr in dt.Rows )
+            {
+                SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
+                cmd.Parameters.AddWithValue ("InvoiceNo", dr ["InvoiceNo"]);
+                cmd.Parameters.AddWithValue ("BarCode", dr ["BarCode"]);
+                cmd.Parameters.AddWithValue ("Qty", dr ["Qty"]);
+                cmd.Parameters.AddWithValue ("MRP", dr ["MRP"]);
+                cmd.Parameters.AddWithValue ("BasicAmount", dr ["BasicAmount"]);
+                cmd.Parameters.AddWithValue ("Discount", dr ["Discount"]);
+                cmd.Parameters.AddWithValue ("Tax", dr ["Tax"]);
+                cmd.Parameters.AddWithValue ("BillAmount", dr ["BillAmount"]);
+                cmd.Parameters.AddWithValue ("SalesmanID", dr ["SalesmanID"]);
+
+                if ( cmd.ExecuteNonQuery () > 0 )
+                    ctr++;
+            }
+            return ctr;
+        }
+        public override int InsertData(SaleItem dr)
+        {
+            SqlCommand cmd = new SqlCommand (InsertSqlQuery, Db.DBCon);
+
+            cmd.Parameters.AddWithValue ("InvoiceNo", dr.InvoiceNo);
+            cmd.Parameters.AddWithValue ("BarCode", dr.BarCode);
+            cmd.Parameters.AddWithValue ("Qty", dr.Qty);
+            cmd.Parameters.AddWithValue ("MRP", dr.MRP);
+            cmd.Parameters.AddWithValue ("BasicAmount", dr.BasicAmount);
+            cmd.Parameters.AddWithValue ("Discount", dr.Discount);
+            cmd.Parameters.AddWithValue ("Tax", dr.Tax);
+            cmd.Parameters.AddWithValue ("BillAmount", dr.BillAmount);
+            cmd.Parameters.AddWithValue ("SalesmanID", dr.SalesmanID);
+            return cmd.ExecuteNonQuery ();
+
+        }
+
+        public override SaleItem ResultToObject(List<SaleItem> data, int index)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override SaleItem ResultToObject(SortedDictionary<string, string> data)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override List<SaleItem> ResultToObject(List<SortedDictionary<string, string>> dataList)
+        {
+            throw new NotImplementedException ();
+        }
+    }
 }

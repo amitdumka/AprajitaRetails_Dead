@@ -76,6 +76,8 @@
             this.TXTRate = new System.Windows.Forms.TextBox();
             this.TXTAmount = new System.Windows.Forms.TextBox();
             this.BTNItemAdd = new System.Windows.Forms.Button();
+            this.BTNDiscount = new System.Windows.Forms.Button();
+            this.TXTItemDiscount = new System.Windows.Forms.TextBox();
             this.GBInvoiceDetails.SuspendLayout();
             this.TLPInvoiceDetails.SuspendLayout();
             this.GBProductDetails.SuspendLayout();
@@ -350,6 +352,7 @@
             this.TXTCardAmount.Name = "TXTCardAmount";
             this.TXTCardAmount.Size = new System.Drawing.Size(239, 38);
             this.TXTCardAmount.TabIndex = 9;
+            this.TXTCardAmount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TXTCardAmount_MouseClick);
             this.TXTCardAmount.TextChanged += new System.EventHandler(this.TXTCardAmount_TextChanged);
             // 
             // label11
@@ -393,6 +396,7 @@
             this.RBDebitCard.TabStop = true;
             this.RBDebitCard.Text = "Debit Card";
             this.RBDebitCard.UseVisualStyleBackColor = true;
+            this.RBDebitCard.CheckedChanged += new System.EventHandler(this.RBDebitCard_CheckedChanged);
             // 
             // RBCreditCard
             // 
@@ -405,6 +409,7 @@
             this.RBCreditCard.TabStop = true;
             this.RBCreditCard.Text = "Credit Card";
             this.RBCreditCard.UseVisualStyleBackColor = true;
+            this.RBCreditCard.CheckedChanged += new System.EventHandler(this.RBCreditCard_CheckedChanged);
             // 
             // label12
             // 
@@ -439,6 +444,7 @@
             this.CBCardType.Name = "CBCardType";
             this.CBCardType.Size = new System.Drawing.Size(249, 39);
             this.CBCardType.TabIndex = 12;
+//            this.CBCardType.SelectedIndexChanged += new System.EventHandler(this.CBCardType_SelectedIndexChanged);
             // 
             // GBProductDetails
             // 
@@ -553,18 +559,19 @@
             this.GBItemDetails.Controls.Add(this.TLPItemDetails);
             this.GBItemDetails.Location = new System.Drawing.Point(23, 823);
             this.GBItemDetails.Name = "GBItemDetails";
-            this.GBItemDetails.Size = new System.Drawing.Size(1270, 91);
+            this.GBItemDetails.Size = new System.Drawing.Size(1621, 91);
             this.GBItemDetails.TabIndex = 6;
             this.GBItemDetails.TabStop = false;
             this.GBItemDetails.Text = "Item Details";
-            this.GBItemDetails.Enter += new System.EventHandler(this.GBItemDetails_Enter);
             // 
             // TLPItemDetails
             // 
             this.TLPItemDetails.AutoSize = true;
             this.TLPItemDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TLPItemDetails.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.TLPItemDetails.ColumnCount = 6;
+            this.TLPItemDetails.ColumnCount = 8;
+            this.TLPItemDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TLPItemDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TLPItemDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TLPItemDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TLPItemDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -576,21 +583,25 @@
             this.TLPItemDetails.Controls.Add(this.TXTQty, 2, 0);
             this.TLPItemDetails.Controls.Add(this.TXTRate, 3, 0);
             this.TLPItemDetails.Controls.Add(this.TXTAmount, 4, 0);
-            this.TLPItemDetails.Controls.Add(this.BTNItemAdd, 5, 0);
+            this.TLPItemDetails.Controls.Add(this.BTNItemAdd, 6, 0);
+            this.TLPItemDetails.Controls.Add(this.BTNDiscount, 7, 0);
+            this.TLPItemDetails.Controls.Add(this.TXTItemDiscount, 5, 0);
             this.TLPItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TLPItemDetails.Location = new System.Drawing.Point(3, 34);
             this.TLPItemDetails.Name = "TLPItemDetails";
             this.TLPItemDetails.RowCount = 1;
             this.TLPItemDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TLPItemDetails.Size = new System.Drawing.Size(1264, 54);
+            this.TLPItemDetails.Size = new System.Drawing.Size(1615, 54);
             this.TLPItemDetails.TabIndex = 0;
             // 
             // TXTBarCode
             // 
+            this.TXTBarCode.AccessibleName = "BarCode";
             this.TXTBarCode.Location = new System.Drawing.Point(6, 6);
             this.TXTBarCode.Name = "TXTBarCode";
             this.TXTBarCode.Size = new System.Drawing.Size(276, 38);
             this.TXTBarCode.TabIndex = 4;
+            this.TXTBarCode.Tag = "Bar Code";
             this.TXTBarCode.TextChanged += new System.EventHandler(this.TXTBarCode_TextChanged);
             // 
             // TXTItemDetail
@@ -601,6 +612,7 @@
             this.TXTItemDetail.ReadOnly = true;
             this.TXTItemDetail.Size = new System.Drawing.Size(325, 38);
             this.TXTItemDetail.TabIndex = 1;
+            this.TXTItemDetail.Tag = "Item Details";
             // 
             // TXTQty
             // 
@@ -608,6 +620,7 @@
             this.TXTQty.Name = "TXTQty";
             this.TXTQty.Size = new System.Drawing.Size(136, 38);
             this.TXTQty.TabIndex = 6;
+            this.TXTQty.Tag = "Qty";
             this.TXTQty.TextChanged += new System.EventHandler(this.TXTQty_TextChanged);
             // 
             // TXTRate
@@ -617,6 +630,7 @@
             this.TXTRate.ReadOnly = true;
             this.TXTRate.Size = new System.Drawing.Size(197, 38);
             this.TXTRate.TabIndex = 3;
+            this.TXTRate.Tag = "Rate";
             // 
             // TXTAmount
             // 
@@ -625,17 +639,39 @@
             this.TXTAmount.ReadOnly = true;
             this.TXTAmount.Size = new System.Drawing.Size(197, 38);
             this.TXTAmount.TabIndex = 4;
+            this.TXTAmount.Tag = "Amount";
             // 
             // BTNItemAdd
             // 
             this.BTNItemAdd.AutoSize = true;
-            this.BTNItemAdd.Location = new System.Drawing.Point(1182, 6);
+            this.BTNItemAdd.Location = new System.Drawing.Point(1388, 6);
             this.BTNItemAdd.Name = "BTNItemAdd";
             this.BTNItemAdd.Size = new System.Drawing.Size(76, 42);
             this.BTNItemAdd.TabIndex = 7;
             this.BTNItemAdd.Text = "Add";
             this.BTNItemAdd.UseVisualStyleBackColor = true;
             this.BTNItemAdd.Click += new System.EventHandler(this.BTNItemAdd_Click);
+            // 
+            // BTNDiscount
+            // 
+            this.BTNDiscount.AutoSize = true;
+            this.BTNDiscount.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BTNDiscount.Location = new System.Drawing.Point(1473, 6);
+            this.BTNDiscount.Name = "BTNDiscount";
+            this.BTNDiscount.Size = new System.Drawing.Size(136, 42);
+            this.BTNDiscount.TabIndex = 8;
+            this.BTNDiscount.Text = "Discount";
+            this.BTNDiscount.UseVisualStyleBackColor = true;
+            this.BTNDiscount.Click += new System.EventHandler(this.BTNDiscount_Click);
+            // 
+            // TXTItemDiscount
+            // 
+            this.TXTItemDiscount.Location = new System.Drawing.Point(1182, 6);
+            this.TXTItemDiscount.Name = "TXTItemDiscount";
+            this.TXTItemDiscount.ReadOnly = true;
+            this.TXTItemDiscount.Size = new System.Drawing.Size(197, 38);
+            this.TXTItemDiscount.TabIndex = 9;
+            this.TXTItemDiscount.Text = "0.0";
             // 
             // SaleInvoiceForm
             // 
@@ -648,8 +684,11 @@
             this.Controls.Add(this.GBInvoiceDetails);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SaleInvoiceForm";
-            this.Text = "SaleInvoiceForm";
+            this.Text = "Manual Sale Invoice";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.SaleInvoiceForm_Activated);
             this.Load += new System.EventHandler(this.SaleInvoiceForm_Load);
+            this.Shown += new System.EventHandler(this.SaleInvoiceForm_Shown);
             this.GBInvoiceDetails.ResumeLayout(false);
             this.TLPInvoiceDetails.ResumeLayout(false);
             this.TLPInvoiceDetails.PerformLayout();
@@ -718,5 +757,7 @@
         private System.Windows.Forms.TextBox TXTRate;
         private System.Windows.Forms.TextBox TXTAmount;
         private System.Windows.Forms.Button BTNItemAdd;
+        private System.Windows.Forms.Button BTNDiscount;
+        private System.Windows.Forms.TextBox TXTItemDiscount;
     }
 }
