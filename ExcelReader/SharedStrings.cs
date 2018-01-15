@@ -13,7 +13,8 @@ namespace CyberN
     /// </summary>
     [Serializable()]
     [XmlType(Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
-    [XmlRoot("SST", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    //[XmlRoot("SST", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
+    [XmlRoot ("sst", Namespace = "http://schemas.openxmlformats.org/spreadsheetml/2006/main")]
     public class SST
     {
         [XmlAttribute]

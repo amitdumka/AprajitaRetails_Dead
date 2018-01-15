@@ -429,6 +429,8 @@ namespace AprajitaRetails.Excels
                                 if ( cell != null )
                                 {
                                     c = AddColPurchase (cell, ref sr, c);
+                                    //TODO: GST Do GST/Vat Calulation and update Purchase object "sr"
+                                    TaxUpdate ( ref sr);     //TODO: gst problem taxation
                                 }
                                 else
                                 {
@@ -517,7 +519,35 @@ namespace AprajitaRetails.Excels
             Logs.LogMe ("End of line");
             return r;
         }
+        public void TaxUpdate(ref Purchase sr )
+        {
+            //TODO; GST NEED    to lookinto this 
+            sr.TaxType = -999;
+            sr.HSNCode = -999;
+            sr.TaxRate = -999;
+            sr.TaxAmount = -999;
 
+        }
+        public int CalculateTaxes(ref Purchase sr, int c)
+        {
+            if ( sr.HSNCode != -999 )
+            {
+                //GST
+                sr.TaxType = UtilOps.TaxMode (TaxType.Gst);
+
+            }
+            else if(sr.HSNCode==-999  && sr.Taxamt<1 && sr.Taxamt>-1)
+            {
+                //Vat
+                //Fabric  not taxable
+                sr.TaxType = UtilOps.TaxMode( TaxType.Vat);
+            }
+            else
+            {   // RMZ        and all taxable
+                sr.TaxType = UtilOps.TaxMode (TaxType.Vat);
+            }
+            return -1;
+        }
 
     }
 
@@ -730,7 +760,7 @@ namespace AprajitaRetails.Excels
             cmd.Parameters.AddWithValue ("@CostValue", sr.Costvalue);
             cmd.Parameters.AddWithValue ("@TaxAmt", sr.Taxamt);
             int x = InsertQuerySql (cmd);
-            //TODO: do it thread 
+            //TODO: do it in thread 
             vOti.PurchaseToStock (sr);
             return x;
         }
@@ -808,7 +838,10 @@ namespace AprajitaRetails.Excels
                 ProductName = p.Productname,
                 Size = ToSize (p.Stylecode),
                 StyleCode = p.Stylecode,
-                Tax = p.Taxamt
+                Tax = p.Taxamt  ,
+                //TODO: GST Correct It
+                /*CGST =p.TaxRate,      HSNCode=p.HSNCode,
+                IGST=p.TaxRate,SGST=p.TaxRate,PreGST=p.TaxType*/
             };
             Logs.LogMe ("Insert of Data is " + pIDB.InsertDataWithVerify (pItem));
 

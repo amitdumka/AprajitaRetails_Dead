@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using AprajitaRetails.ViewModel;
+using AprajitaRetails.Printers;
+
 
 namespace AprajitaRetails.Forms
 {
@@ -26,11 +28,27 @@ namespace AprajitaRetails.Forms
         double vTotalQty = 0;
         double vTotalRoundOff = 0.0;
         double vTotalTax = 0.0;
+        double vTotalGST = 0.0;
+        //Recipt Printing Delcartation
+        bool wantToPrint = true;
+        ReceiptFooter vReciptFooter;
+        ReceiptHeader vReciptHeader;
+        ReceiptDetails vReciptDetails;
+        ReceiptItemDetails [] vReciptItems;
+        ReceiptItemTotal vReciptItemTotal;
+        const int MinimumSize = 10;
+        int ItemCount = 0;
+
+
         public SaleInvoiceForm()
         {
             InitializeComponent ();
             //sVM = new SaleInvoiceVM ();
             //itemTable = new DataTable ();
+        }
+        private void AddPrintInvoiceTotalItem()
+        {   //TODO: Recipt Printer Do it First
+            
         }
         private void AddItemRow()
         {
@@ -46,7 +64,6 @@ namespace AprajitaRetails.Forms
                 double vAmtWhole = Math.Round (vAmtd);
                 vRoundOffAmt = vAmtWhole - vAmtd;
                 double vDiscount = double.Parse (TXTItemDiscount.Text.Trim ());
-
                 //ID, InvoiceNo, ItemCode, BarCode, StyleCode,  Qty, Rate, Discount, Tax, Amount         
                 nRow [0] = ( ++ItemID );
                 nRow [1] = CBInvoiceNo.Text;
@@ -56,10 +73,11 @@ namespace AprajitaRetails.Forms
                 nRow [5] = vQty;
                 nRow [6] = vItem.MRP;
                 nRow [7] = vDiscount;
-                nRow [8] = vItem.Tax;
+                nRow [8] = vItem.Tax; //TODO: GST ChangesTax need to update
                 nRow [9] = double.Parse (vAmount);
-                //nRow [10] = DateTime.Now;
+                nRow [10] = "SM001";
                 dt.Rows.Add (nRow);
+
 
                 vTotalItems++;
                 vTotalQty = vTotalQty + double.Parse (vQty);
@@ -75,6 +93,40 @@ namespace AprajitaRetails.Forms
                 TXTTaxAmount.Text = "" + vTotalTax;
                 TXTDiscount.Text = "" + vTotalDiscount;
                 TXTSubTotal.Text = "" + vTotalAmount;
+                double gstRate = 0.00;
+                double basicrate = 0.00;
+                double gstAmount = 0.00;
+                if ( vItem.Tax > 0 )
+                {
+                    gstRate = 5.00;
+                }
+                else
+                {       //TODO: make 1000 as readable from GST Table and parameterised and make cosnt vairable while load app
+                    if ( vItem.MRP <= 1000 || double.Parse (vAmount) <= 1000 )
+                    {
+                        gstRate = 5.00;
+                    }
+                    else
+                    {
+                        gstRate = 12.00;
+                    }
+                }
+                basicrate = double.Parse (vAmount) / ( 1 + ( gstRate / 100 ) );
+                gstAmount = (basicrate * gstRate / 100)/2;
+
+                vReciptItems [ItemCount] = new ReceiptItemDetails ()
+                {       //TODO: Need to Implement GST  and Make Int/Double
+                    QTY = vQty,
+                    Discount = "" + vDiscount,
+                    MRP = "" + vItem.MRP,
+                    SKU_Description = vItem.Barcode + " / " + vItem.ItemDesc,
+                    HSN = "00000000",
+                    GSTAmount = "" + Math.Round( (gstAmount),2),
+                    BasicPrice = "" + Math.Round(basicrate,2),
+                    GSTPercentage = "" + Math.Round (( gstRate/2),2)
+                };
+                vTotalGST += gstAmount;//TODO: GST Update
+                ItemCount++; //Incrementing InvoiceCount.
 
                 Basic.ClearUIFields (TLPItemDetails);
             }
@@ -85,6 +137,7 @@ namespace AprajitaRetails.Forms
             if ( BTNAdd.Text == "Add" )
             {
                 PerformAdd ();
+                InitPrintInvoice ();//Init Print Serive
             }
             else if ( BTNAdd.Text == "Save" )
             {
@@ -100,6 +153,7 @@ namespace AprajitaRetails.Forms
         private void BTNDiscount_Click(object sender, EventArgs e)
         {
             //TODO: Implement Discount
+            PdfPrinter.PrintRecipts ();
         }
 
         private void BTNItemAdd_Click(object sender, EventArgs e)
@@ -159,7 +213,7 @@ namespace AprajitaRetails.Forms
             vsItemTable.Columns.Add ("Discount", typeof (double));
             vsItemTable.Columns.Add ("Tax", typeof (double));
             vsItemTable.Columns.Add ("Amount", typeof (double));
-            //vItemTable.Columns.Add ("Date", typeof (DateTime));
+            vItemTable.Columns.Add ("Salesman", typeof (string));
 
             return vsItemTable;
             //vBsource.DataSource = vItemTable;
@@ -207,6 +261,7 @@ namespace AprajitaRetails.Forms
             vItemTable.Columns.Add ("Discount", typeof (double));
             vItemTable.Columns.Add ("Tax", typeof (double));
             vItemTable.Columns.Add ("Amount", typeof (double));
+            vItemTable.Columns.Add ("Salesman", typeof (string));
             //vItemTable.Columns.Add ("Date", typeof (DateTime));
 
             vBsource.DataSource = vItemTable;
@@ -229,7 +284,7 @@ namespace AprajitaRetails.Forms
         private void ResetForm()
         {
             Basic.ClearUIFields (TLPInvoiceDetails);
-           // DGVSaleItems.Rows.Clear ();
+            // DGVSaleItems.Rows.Clear ();
             DataTable dt = ( DGVSaleItems.DataSource as BindingSource ).DataSource as DataTable;
             dt.Clear ();
             BTNAdd.Text = "Add";
@@ -239,15 +294,26 @@ namespace AprajitaRetails.Forms
         {
             if ( ValidateInvoice () && ValidateSaleItems () )
             {
+                
                 //TODO: make it work
-                int status =ReadAllData ();
+                int status = ReadAllData ();
                 if ( status > 0 )
                 {
                     vIsNew = false;
                     BTNAdd.Text = "Add";
                     ResetForm ();
+                    if ( wantToPrint )
+                    {
+                        vReciptDetails.BillDate = DTPInvoiceDate.Value.ToShortDateString ();
+                        vReciptDetails.BillTime = DTPInvoiceDate.Value.ToShortTimeString ();
+                        vReciptDetails.BillNo = "Bill No: " + CBInvoiceNo.Text;
+                        vReciptItemTotal.ItemCount = "" + ItemCount;
+                        vReciptItemTotal.TotalItem = "" + vTotalQty;
+                        vReciptItemTotal.NetAmount = "" + vTotalAmount;
+                        vReciptItemTotal.CashAmount = "" + vTotalAmount;
+                        PrintRecipts (); }
                 }
-                MessageBox.Show ("Invoice is saved: "+status);
+                MessageBox.Show ("Invoice is saved: " + status);
 
             }
             else
@@ -322,8 +388,8 @@ namespace AprajitaRetails.Forms
         //Saving All Data to Database
         private int SaveAllData(SaleInvoice inv, SalePaymentDetails payments, DataTable saleItemDataTable)
         {
-           return sVM.SaveInvoiceData (inv, saleItemDataTable,payments);
-           
+            return sVM.SaveInvoiceData (inv, saleItemDataTable, payments);
+
         }
         //Reading data for Entry
 
@@ -405,7 +471,7 @@ namespace AprajitaRetails.Forms
         }
         private SalePaymentDetails ReadPaymentDetails()
         {
-           SalePaymentDetails payDetails = new SalePaymentDetails ()
+            SalePaymentDetails payDetails = new SalePaymentDetails ()
             {
                 ID = -1,
                 CardAmount = double.Parse (TXTCardAmount.Text),
@@ -475,7 +541,8 @@ namespace AprajitaRetails.Forms
         }
 
         private void TXTBarCode_TextChanged(object sender, EventArgs e)
-        {   // TODO: Check Constrainst so that only select Barcode will go
+        {
+            // TODO: Check Constrainst so that only select Barcode will go
             if ( TXTBarCode.Text.Length >= 10 )
                 GetItemDetais (TXTBarCode.Text);
             TXTItemDiscount.Text = "0.00";
@@ -533,6 +600,22 @@ namespace AprajitaRetails.Forms
 
 
         }
+        
+        private void CBPrintButton_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox) sender;
+            if ( cb.Checked )
+            {
+                cb.Text = "Print Invoice On";
+                wantToPrint = true;
+            }
+            if ( !cb.Checked )
+            {
+                cb.Text = "Print Invoice Off";
+                wantToPrint = false;
+            }
+        }
+
         // end of Events and Events Trigger functions
 
         // UI Update and refresh Section
@@ -544,6 +627,7 @@ namespace AprajitaRetails.Forms
                 TXTFirstName.Text = cust ["FirstName"];
                 TXTLastName.Text = cust ["LastName"];
                 vCustId = Basic.ToInt (cust ["ID"]);
+                this.vReciptDetails.CustomerName = cust ["FirstName"] + cust ["LastName"];
             }
         }
         private void UpdateSaleUI(string invoiceNo)
@@ -564,8 +648,25 @@ namespace AprajitaRetails.Forms
                 TXTFourDigit.Text = saleInfo ["FourDigit"];
             }
         }
-
         // End of UI Update and refresh Section
+
+        //Print Invoice Section 
+        private void InitPrintInvoice()
+        {   //TODO: Print Invoice
+
+            vReciptHeader = new ReceiptHeader ();
+            vReciptFooter = new ReceiptFooter ();
+            vReciptDetails = new ReceiptDetails ();
+            vReciptItems = new ReceiptItemDetails [MinimumSize];
+            vReciptItemTotal = new ReceiptItemTotal ();
+        }
+        private void PrintRecipts()
+        {
+            PdfPrinter.PrintRecipts (vReciptHeader, vReciptFooter, vReciptItemTotal, vReciptDetails, vReciptItems);
+
+        }
+        //End of Invoice Print Section 
+
 
     }
 }

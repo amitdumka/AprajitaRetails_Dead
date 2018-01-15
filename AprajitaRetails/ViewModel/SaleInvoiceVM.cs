@@ -10,10 +10,49 @@ using AprajitaRetails.Data;
 
 namespace AprajitaRetails.ViewModel
 {
-    public enum TaxType { Vat = 0, Gst = 1 }
+    public enum TaxType { Vat = 0, Gst = 1, SGST = 2, CGST = 3, IGST = 4 }
     public enum SalePayMode { Cash = 1, Card = 2, Mix = 3 }
     public class UtilOps
     {
+        public static int TaxMode(TaxType taxType)
+        {
+            switch ( taxType )
+            {
+                case TaxType.IGST:
+                    return 4;
+                case TaxType.Gst:
+                    return 1;
+                case TaxType.CGST:
+                    return 3;
+                case TaxType.SGST:
+                    return 2;
+                case TaxType.Vat:
+                    return 0;
+                default:
+                    return -999;
+
+            }
+        }
+        public static TaxType TaxMode(int taxType)
+        {
+            switch ( taxType )
+            {
+                case 4:
+                    return TaxType.IGST;
+                case 1:
+                    return TaxType.Gst;
+                case 3:
+                    return TaxType.CGST;
+                case 2:
+                    return TaxType.SGST;
+                case 0:
+                    return TaxType.Vat;
+                default:
+                    return TaxType.Gst;
+
+            }
+        }
+
         /// <summary>
         /// Get Sale Payment Mode
         /// </summary>
@@ -78,7 +117,9 @@ namespace AprajitaRetails.ViewModel
         // public int ID { set; get; }
         public double CGSTRate { set; get; }
         public double SGSTRate { set; get; }
+        public double IGSTRate { set; get; }
 
+        public double IGSTAmount { set; get; }
         public double CGSTAmount { set; get; }
         public double SGSTAmount { set; get; }
         public override Taxes TaxAmount(TaxType type, double BillAmount, double rate)
@@ -92,6 +133,22 @@ namespace AprajitaRetails.ViewModel
                 SGSTAmount = CGSTAmount;
                 return this;
 
+            }
+            else if ( type == TaxType.SGST || type == TaxType.CGST )
+            {
+                CGSTRate = rate / 2;
+                SGSTRate = rate / 2;
+                TotalTaxAmount = BillAmount - ( ( BillAmount * rate ) / 100 );
+                CGSTAmount = TotalTaxAmount / 2;
+                SGSTAmount = CGSTAmount;
+                return this;
+
+            }
+
+            else if ( type == TaxType.IGST )
+            {
+                TotalTaxAmount = BillAmount - ( ( BillAmount * rate ) / 100 );
+                return this;
             }
             else
             {
@@ -131,6 +188,14 @@ namespace AprajitaRetails.ViewModel
 
         public string Size { get; set; }
         public double Qty { get; set; }
+        //GST Implementation    Version 1.0
+        //TODO: GST implementation should use Taxes Class
+        //public double HSNCode { get; set; }
+        //public int PreGST { get; set; }
+        //public double SGST { get; set; }
+        //public double CGST { get; set; }
+        //public double IGST { get; set; }
+
 
     }
 
@@ -278,10 +343,11 @@ namespace AprajitaRetails.ViewModel
                         status2 = SaveCardDetails (payDetails.CardDetails);
                         int cardDetailsId = 0;
                         status = SavePaymentDetails (payDetails, cardDetailsId);
-                    }else
+                    }
+                    else
                     {
                         //For CashPayment
-                        status = SavePaymentDetails (payDetails,-1);
+                        status = SavePaymentDetails (payDetails, -1);
 
                     }
 
@@ -443,7 +509,6 @@ namespace AprajitaRetails.ViewModel
             throw new NotImplementedException ();
         }
     }
-
     class CardPaymentDB : DataOps<CardPaymentDetails>
     {
         public override int InsertData(CardPaymentDetails obj)
@@ -479,15 +544,22 @@ namespace AprajitaRetails.ViewModel
     }
     class SaleInvoiceDB : DataOps<SaleInvoice>
     {
+        /// <summary>
+        /// Get Item Details Based on BarCode
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <returns></returns>
         public List<SortedDictionary<string, string>> GetItemDetails(string barcode)
-        {
-
+        { //TODO: VerifY Uses.
             string sql = "select * from ProductItem where BarCode=@barcode ";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             cmd.Parameters.AddWithValue ("@barcode", barcode);
             return DataBase.GetSqlStoreProcedureString (cmd);
         }
-
+        /// <summary>
+        /// Get Last Invoice No
+        /// </summary>
+        /// <returns></returns>
         public string GetLastInvoiceNo()
         {
             string sql = "select ISNULL( Max(ID),0) from  " + Tablename;
@@ -500,24 +572,30 @@ namespace AprajitaRetails.ViewModel
                 sql = "select InvoiceNo from " + Tablename + " where ID=" + ids;
                 cmd.CommandText = sql;
                 inv = (string) cmd.ExecuteScalar ();
-
             }
             else
             {
                 inv = "0";
             }
-
-
             return inv;
         }
-
-
+        /// <summary>
+        /// Get Customer Mobile List
+        /// </summary>
+        /// <returns>Its return list of Mobile no of Customer</returns>
         public List<string> GetCustomerMobileList()
         {
             string sql = "select MobileNo from Customer";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
             return DataBase.GetQueryString (cmd, "MobileNo");
         }
+        /// <summary>
+        /// Get Customer Infomarion based on MobileNo or ID  Based on search mode
+        /// </summary>
+        /// <param name="id">CustomerID</param>
+        /// <param name="mobileno">MobileNo</param>
+        /// <param name="searchMode">Search Mode ID/Mobile</param>
+        /// <returns></returns>
         public SortedDictionary<string, string> GetCustomerInfo(int id, string mobileno, int searchMode)
         {
             string sql = "select ID, FirstName, LastName, MobileNo from Customer where ";
@@ -533,6 +611,10 @@ namespace AprajitaRetails.ViewModel
             SortedDictionary<string, string> result = DataBase.GetSqlStoreProcedureString (cmd) [0];
             return result;
         }
+        /// <summary>
+        /// Get Invoice List
+        /// </summary>
+        /// <returns>returns List of Invoice</returns>
         public List<string> GetInvoiceList()
         {
             string sql = "select InvoiceNo from SaleInvoice";
@@ -548,7 +630,7 @@ namespace AprajitaRetails.ViewModel
                 CommandText = InsertSqlQuery
             };
             cmd.Parameters.AddWithValue ("@CustomerId", obj.CustomerId);
-             cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
+            cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
             cmd.Parameters.AddWithValue ("@OnDate", obj.OnDate);
             cmd.Parameters.AddWithValue ("@RoundOffAmount", obj.RoundOffAmount);
             cmd.Parameters.AddWithValue ("@TotalBillAmount", obj.TotalBillAmount);
@@ -575,7 +657,6 @@ namespace AprajitaRetails.ViewModel
             throw new NotImplementedException ();
         }
     }
-
     class ProductItemsDB : DataOps<ProductItems>
     {
         public List<string> GetBarCodeList(int x)
@@ -673,6 +754,13 @@ namespace AprajitaRetails.ViewModel
             cmd.Parameters.AddWithValue ("@SupplierId", obj.SupplierId);
             cmd.Parameters.AddWithValue ("@Tax", obj.Tax);
 
+            //GST Implementation 
+           /* cmd.Parameters.AddWithValue ("@CGST", obj.CGST);
+            cmd.Parameters.AddWithValue ("@SGST", obj.SGST);
+            cmd.Parameters.AddWithValue ("@IGST", obj.IGST);
+            cmd.Parameters.AddWithValue ("@PreGST", obj.PreGST);
+            cmd.Parameters.AddWithValue ("@HSNCode", obj.HSNCode);
+             */
             return cmd.ExecuteNonQuery ();
         }
 
@@ -697,6 +785,11 @@ namespace AprajitaRetails.ViewModel
                 ItemDesc = data ["ItemDesc"],
                 MRP = double.Parse (data ["MRP"]),
                 ProductName = data ["ProductName"]
+               /* CGST = double.Parse (data ["CGST"]),
+                HSNCode = double.Parse (data ["HSNCode"]),
+                IGST = double.Parse (data ["IGST"]),
+                SGST = double.Parse (data ["SGST"]),
+                PreGST = Int32.Parse (data ["PreGST"])*/
             };
             return pItem;
         }
@@ -719,7 +812,12 @@ namespace AprajitaRetails.ViewModel
                     Cost = double.Parse (data ["Cost"]),
                     ItemDesc = data ["ItemDesc"],
                     MRP = double.Parse (data ["MRP"]),
-                    ProductName = data ["ProductName"]
+                    ProductName = data ["ProductName"]/*,
+                    CGST = double.Parse (data ["CGST"]),
+                    HSNCode = double.Parse (data ["HSNCode"]),
+                    IGST = double.Parse (data ["IGST"]),
+                    SGST = double.Parse (data ["SGST"]),
+                    PreGST = Int32.Parse (data ["PreGST"])*/
                 };
                 listItem.Add (pItem);
 
@@ -727,7 +825,6 @@ namespace AprajitaRetails.ViewModel
             return listItem;
         }
     }
-
     class SaleItemsDB : DataOps<SaleItem>
     {
         public int InsertData(DataTable dt)

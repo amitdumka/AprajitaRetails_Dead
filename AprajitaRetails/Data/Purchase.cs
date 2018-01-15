@@ -7,10 +7,21 @@ namespace AprajitaRetails
     /// </summary>
     public class Purchase
     {
-        string grnno; DateTime grndate; string invoiceno; DateTime invdate;
-        string suppliername; string barcode; string productname;
-        string stylecode; string itemdesc; double qty; double mrp; double mrpvalue;
-        double cost; double costvalue; double taxamt;
+        string grnno;
+        DateTime grndate;
+        string invoiceno;
+        DateTime invdate;
+        string suppliername;
+        string barcode;
+        string productname;
+        string stylecode;
+        string itemdesc;
+        double qty;
+        double mrp;
+        double mrpvalue;
+        double cost;
+        double costvalue;
+        double taxamt;
 
         public string Grnno { get => grnno; set => grnno = value; }
         public DateTime Grndate { get => grndate; set => grndate = value; }
@@ -27,6 +38,22 @@ namespace AprajitaRetails
         public double Cost { get => cost; set => cost = value; }
         public double Costvalue { get => costvalue; set => costvalue = value; }
         public double Taxamt { get => taxamt; set => taxamt = value; }
+        //TODO: GST Implementation
+        public double HSNCode { get; set; }
+        public double TaxRate { get; set; }
+        public int TaxType { get; set; }
+        public double TaxAmount { get; set; }
+        /*
+        public double IGSTRate { get; set; }
+        public double CSGTRate { get; set; }
+        public double SGSTRate { get; set; }
+
+        public double IGSTAmt { get; set; }
+        public double CSGTAmt { get; set; }
+        public double SGSTAmt { get; set; }
+        */
+
+
     }
 }
 /*
