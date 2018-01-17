@@ -105,7 +105,7 @@ namespace AprajitaRetails
             {
                 // System.Windows.Forms.MessageBox.Show(username+"/"+password+"/"+role);
                 SqlConnection con = (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB);
-                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand ("AddUser", con);
+                SqlCommand cmd = new SqlCommand ("AddUser", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add (new SqlParameter ("@username", username));
                 cmd.Parameters.Add (new SqlParameter ("@passwd", password));

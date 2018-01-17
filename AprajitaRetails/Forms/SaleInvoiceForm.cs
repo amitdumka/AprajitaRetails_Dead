@@ -34,12 +34,33 @@ namespace AprajitaRetails.Forms
         ReceiptFooter vReciptFooter;
         ReceiptHeader vReciptHeader;
         ReceiptDetails vReciptDetails;
-        ReceiptItemDetails [] vReciptItems;
+        List<ReceiptItemDetails> vReciptItems;
         ReceiptItemTotal vReciptItemTotal;
         const int MinimumSize = 10;
+        private int CurrentSize = MinimumSize;
         int ItemCount = 0;
-
-
+        /// <summary>
+        /// Reset of variable which controls UI and Data
+        /// </summary>
+        private void ResetVariables()
+        {
+            ItemID = 0;
+            vCustId = -1;
+            vGrandTotal = 0.0;
+            vIsNew = false;
+            vPayMode = SalePayMode.Cash;
+            vRoundOffAmt = 0.0;
+            vTotalAmount = 0.0;
+            vTotalDiscount = 0.0;
+            vTotalItems = 0;
+            vTotalQty = 0;
+            vTotalRoundOff = 0.0;
+            vTotalTax = 0.0;
+            vTotalGST = 0.0;
+            wantToPrint = true;
+            CurrentSize = MinimumSize;
+            ItemCount = 0;
+        }
         public SaleInvoiceForm()
         {
             InitializeComponent ();
@@ -48,7 +69,7 @@ namespace AprajitaRetails.Forms
         }
         private void AddPrintInvoiceTotalItem()
         {   //TODO: Recipt Printer Do it First
-            
+
         }
         private void AddItemRow()
         {
@@ -59,7 +80,6 @@ namespace AprajitaRetails.Forms
                 string vAmount = TXTAmount.Text;
                 DataTable dt = ( DGVSaleItems.DataSource as BindingSource ).DataSource as DataTable;
                 DataRow nRow = dt.NewRow ();
-
                 double vAmtd = double.Parse (vAmount);
                 double vAmtWhole = Math.Round (vAmtd);
                 vRoundOffAmt = vAmtWhole - vAmtd;
@@ -112,19 +132,19 @@ namespace AprajitaRetails.Forms
                     }
                 }
                 basicrate = double.Parse (vAmount) / ( 1 + ( gstRate / 100 ) );
-                gstAmount = (basicrate * gstRate / 100)/2;
+                gstAmount = ( basicrate * gstRate / 100 ) / 2;
 
-                vReciptItems [ItemCount] = new ReceiptItemDetails ()
+                vReciptItems.Add(  new ReceiptItemDetails ()
                 {       //TODO: Need to Implement GST  and Make Int/Double
                     QTY = vQty,
                     Discount = "" + vDiscount,
                     MRP = "" + vItem.MRP,
                     SKU_Description = vItem.Barcode + " / " + vItem.ItemDesc,
                     HSN = "00000000",
-                    GSTAmount = "" + Math.Round( (gstAmount),2),
-                    BasicPrice = "" + Math.Round(basicrate,2),
-                    GSTPercentage = "" + Math.Round (( gstRate/2),2)
-                };
+                    GSTAmount = "" + Math.Round (( gstAmount ), 2),
+                    BasicPrice = "" + Math.Round (basicrate, 2),
+                    GSTPercentage = "" + Math.Round (( gstRate / 2 ), 2)
+                } );
                 vTotalGST += gstAmount;//TODO: GST Update
                 ItemCount++; //Incrementing InvoiceCount.
 
@@ -289,12 +309,13 @@ namespace AprajitaRetails.Forms
             dt.Clear ();
             BTNAdd.Text = "Add";
             BTNUpdate.Text = "Update";
+            ResetVariables ();
         }
         private void PerformSave()
         {
             if ( ValidateInvoice () && ValidateSaleItems () )
             {
-                
+
                 //TODO: make it work
                 int status = ReadAllData ();
                 if ( status > 0 )
@@ -311,7 +332,9 @@ namespace AprajitaRetails.Forms
                         vReciptItemTotal.TotalItem = "" + vTotalQty;
                         vReciptItemTotal.NetAmount = "" + vTotalAmount;
                         vReciptItemTotal.CashAmount = "" + vTotalAmount;
-                        PrintRecipts (); }
+                        PrintRecipts ();
+                    }
+                    ResetVariables ();
                 }
                 MessageBox.Show ("Invoice is saved: " + status);
 
@@ -380,6 +403,12 @@ namespace AprajitaRetails.Forms
                     MessageBox.Show ("Select Card type");
                     return false;
                 }
+            }
+            else if(TXTCashAmount.Text=="")
+            {
+                TXTCashAmount.Focus ();
+                MessageBox.Show ("Enter Cash Amount");
+                return false;
             }
             return true;
         }
@@ -600,7 +629,7 @@ namespace AprajitaRetails.Forms
 
 
         }
-        
+
         private void CBPrintButton_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox cb = (CheckBox) sender;
@@ -657,8 +686,9 @@ namespace AprajitaRetails.Forms
             vReciptHeader = new ReceiptHeader ();
             vReciptFooter = new ReceiptFooter ();
             vReciptDetails = new ReceiptDetails ();
-            vReciptItems = new ReceiptItemDetails [MinimumSize];
+            vReciptItems = new List<ReceiptItemDetails> ();
             vReciptItemTotal = new ReceiptItemTotal ();
+            CurrentSize = MinimumSize;
         }
         private void PrintRecipts()
         {

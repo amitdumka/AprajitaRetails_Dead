@@ -199,7 +199,7 @@ namespace AprajitaRetails.Printers
             }
         }
 
-        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, ReceiptItemDetails [] itemDetail)
+        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails>  itemDetail)
         {
             //Exporting to PDF
             string folderPath = "D:\\pdf\\";
