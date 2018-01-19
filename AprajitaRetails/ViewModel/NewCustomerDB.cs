@@ -37,8 +37,10 @@ namespace AprajitaRetails.ViewModel
         }
         public int Insert(NewCustomer obj)
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = InsertSqlQuery;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = InsertSqlQuery
+            };
             cmd.Parameters.AddWithValue ("@CustomerID", obj.CustomerID);
             cmd.Parameters.AddWithValue ("@InvoiceNo", obj.InvoiceNo);
             cmd.Parameters.AddWithValue ("@OnDate", obj.OnDate);

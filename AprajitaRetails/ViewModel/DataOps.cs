@@ -54,8 +54,10 @@ namespace AprajitaRetails.ViewModel
 
         public List<T> GetAllRecord()
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "select * from " + Tablename
+            };
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             return ResultToObject (resultData);
         }
@@ -68,8 +70,10 @@ namespace AprajitaRetails.ViewModel
         /// <returns>return data, if not found then send null</returns>
         public T GetByColName(string colName, Object colValue)
         {     //TODO: Index out of bound error Handling to be done
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename + " where " + colName + "=@values";
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "select * from " + Tablename + " where " + colName + "=@values"
+            };
             cmd.Parameters.AddWithValue ("@values", colValue);
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             if ( resultData.Count > 0 )

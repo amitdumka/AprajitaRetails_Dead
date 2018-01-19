@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AprajitaRetails.Forms;
+using AprajitaRetails.Utils;
 
 namespace AprajitaRetails
 {
@@ -192,5 +193,29 @@ namespace AprajitaRetails
         {
             ShowNewForm (new UploaderForm (0));
         }
+
+        private void TSBManualInvoice_Click(object sender, EventArgs e)
+        {
+            ShowNewForm (new SaleInvoiceForm ());
+        }
+        //TODO: All UI Control Code from here
+        Clients clients = Client.GetClientDetails();
+        private void UpdateUiData()
+        {
+            this.Text = clients.ClientName + ":The Arvind Store, " + clients.ClientCity + "(" + clients.ClientCode + ")";
+            //TODO: in StatusBar UserName must be shown
+            //TODO: show Time, Open Form, Progress bar
+        }
+
+        private void statusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void MainMDI_Load(object sender, EventArgs e)
+        {
+            UpdateUiData ();
+        }
+        // end of UI Controls
     }
 }

@@ -7,21 +7,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AprajitaRetails.Utils;
 
 namespace AprajitaRetails
 {
     public partial class LoginForm : Form
     {
+        Clients clients = null;
         public LoginForm()
         {
             InitializeComponent ();
             Logs.LogMe ("Login Form Loaded..");
             int x = Setups.IsUserTableExit ();
-            Logs.LogMe ("Check User Table Exist or not: x="+x);
+            Logs.LogMe ("Check User Table Exist or not: x=" + x);
             if ( x < 0 )
             {
                 Logs.LogMe ("Creating AuthTable");
                 AuthUser.CreateAuthUserTable (x);
+            }
+            //TODO: Create Client 
+            if ( Client.IsClientExist () )
+            {
+                clients = Client.GetClientDetails ();
+                Logs.LogMe ("Cleint Details Exist");
+
+            }
+            else
+            {
+                Logs.LogMe ("Creating Client Details");
+                if ( Client.DefaultClient () )
+                    clients = Client.GetClientDetails ();
+            }
+            UpdateUiWithClientInfo ();
+        }
+        private void UpdateUiWithClientInfo()
+        {
+            if ( clients != null )
+            {
+                LBStoreName.Text = clients.ClientName;
+                LBStoreCity.Text = "The Arvind Store, " + clients.ClientCity + "(" + clients.ClientCode + ")";
+                Logs.LogMe ("Client Details Updated");
+
             }
         }
 
@@ -49,15 +75,17 @@ namespace AprajitaRetails
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-           DialogResult result= MessageBox.Show ("Are Your sure to exit", "Aprajita Retails", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show ("Are Your sure to exit", "Aprajita Retails", MessageBoxButtons.YesNo);
             if ( result == DialogResult.Yes )
             {
                 this.Close ();
                 Application.Exit ();
-               
-            } else if ( result == DialogResult.No )
+
+            }
+            else if ( result == DialogResult.No )
             {
-                txtPassword.Text = ""; txtUserName.Text = "";
+                txtPassword.Text = "";
+                txtUserName.Text = "";
             }
         }
     }

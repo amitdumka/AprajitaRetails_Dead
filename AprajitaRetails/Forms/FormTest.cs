@@ -23,15 +23,17 @@ namespace AprajitaRetails.Forms
 
         public FormTest()
         {
-            this.printPreviewButton = new System.Windows.Forms.Button ();
-            this.printPreviewButton.Location = new System.Drawing.Point (12, 12);
-            this.printPreviewButton.Size = new System.Drawing.Size (125, 23);
-            this.printPreviewButton.Text = "Print Preview";
-            this.printPreviewButton.Click += new System.EventHandler (this.printPreviewButton_Click);
+            this.printPreviewButton = new System.Windows.Forms.Button
+            {
+                Location = new System.Drawing.Point (12, 12),
+                Size = new System.Drawing.Size (125, 23),
+                Text = "Print Preview"
+            };
+            this.printPreviewButton.Click += new System.EventHandler (this.PrintPreviewButton_Click);
             this.ClientSize = new System.Drawing.Size (292, 266);
             this.Controls.Add (this.printPreviewButton);
             printDocument1.PrintPage +=
-                new PrintPageEventHandler (printDocument1_PrintPage);
+                new PrintPageEventHandler (PrintDocument1_PrintPage);
         }
         private void ReadDocument()
         {
@@ -46,16 +48,14 @@ namespace AprajitaRetails.Forms
             stringToPrint = documentContents;
         }
 
-        void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            int charactersOnPage = 0;
-            int linesPerPage = 0;
 
             // Sets the value of charactersOnPage to the number of characters 
             // of stringToPrint that will fit within the bounds of the page.
             e.Graphics.MeasureString (stringToPrint, this.Font,
                 e.MarginBounds.Size, StringFormat.GenericTypographic,
-                out charactersOnPage, out linesPerPage);
+                out int charactersOnPage, out int linesPerPage);
 
             // Draws the string within the bounds of the page.
             e.Graphics.DrawString (stringToPrint, this.Font, Brushes.Black,
@@ -71,7 +71,7 @@ namespace AprajitaRetails.Forms
             if ( !e.HasMorePages )
                 stringToPrint = documentContents;
         }
-        private void printPreviewButton_Click(object sender, EventArgs e)
+        private void PrintPreviewButton_Click(object sender, EventArgs e)
         {
             ReadDocument ();
             printPreviewDialog1.Document = printDocument1;

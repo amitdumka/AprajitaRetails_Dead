@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.GBLogin = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LBStoreCity = new System.Windows.Forms.Label();
+            this.LBStoreName = new System.Windows.Forms.Label();
             this.TLPLoginControls = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -50,46 +50,46 @@
             // 
             this.GBLogin.AutoSize = true;
             this.GBLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.GBLogin.Controls.Add(this.label4);
-            this.GBLogin.Controls.Add(this.label3);
+            this.GBLogin.Controls.Add(this.LBStoreCity);
+            this.GBLogin.Controls.Add(this.LBStoreName);
             this.GBLogin.Controls.Add(this.TLPLoginControls);
             this.GBLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GBLogin.Location = new System.Drawing.Point(0, 321);
+            this.GBLogin.Location = new System.Drawing.Point(0, 342);
             this.GBLogin.Name = "GBLogin";
-            this.GBLogin.Size = new System.Drawing.Size(1048, 390);
+            this.GBLogin.Size = new System.Drawing.Size(1128, 369);
             this.GBLogin.TabIndex = 0;
             this.GBLogin.TabStop = false;
             this.GBLogin.Text = "Login";
             // 
-            // label4
+            // LBStoreCity
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LBStoreCity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(214, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(549, 39);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "The Arvind Store, Dumka(JH006)";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LBStoreCity.AutoSize = true;
+            this.LBStoreCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.900001F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBStoreCity.ForeColor = System.Drawing.Color.Red;
+            this.LBStoreCity.Location = new System.Drawing.Point(214, 148);
+            this.LBStoreCity.Name = "LBStoreCity";
+            this.LBStoreCity.Size = new System.Drawing.Size(549, 39);
+            this.LBStoreCity.TabIndex = 2;
+            this.LBStoreCity.Text = "The Arvind Store, Dumka(JH006)";
+            this.LBStoreCity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // LBStoreName
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LBStoreName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe Print", 15.9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DarkRed;
-            this.label3.Location = new System.Drawing.Point(260, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(456, 94);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Aprajita Retails";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LBStoreName.AutoSize = true;
+            this.LBStoreName.Font = new System.Drawing.Font("Segoe Print", 15.9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBStoreName.ForeColor = System.Drawing.Color.DarkRed;
+            this.LBStoreName.Location = new System.Drawing.Point(260, 35);
+            this.LBStoreName.Name = "LBStoreName";
+            this.LBStoreName.Size = new System.Drawing.Size(456, 94);
+            this.LBStoreName.TabIndex = 1;
+            this.LBStoreName.Text = "Aprajita Retails";
+            this.LBStoreName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TLPLoginControls
             // 
@@ -194,17 +194,17 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1048, 237);
+            this.groupBox1.Size = new System.Drawing.Size(1128, 320);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // PBLogo
             // 
             this.PBLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PBLogo.Image = global::AprajitaRetails.Properties.Resources.CustomerLogo;
+            this.PBLogo.Image = global::AprajitaRetails.Properties.Resources.logo;
             this.PBLogo.Location = new System.Drawing.Point(3, 34);
             this.PBLogo.Name = "PBLogo";
-            this.PBLogo.Size = new System.Drawing.Size(1042, 200);
+            this.PBLogo.Size = new System.Drawing.Size(1122, 283);
             this.PBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PBLogo.TabIndex = 2;
             this.PBLogo.TabStop = false;
@@ -218,11 +218,11 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1048, 711);
+            this.ClientSize = new System.Drawing.Size(1128, 711);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GBLogin);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1080, 799);
+            this.MinimumSize = new System.Drawing.Size(1160, 799);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -249,8 +249,8 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LBStoreCity;
+        private System.Windows.Forms.Label LBStoreName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox PBLogo;
     }

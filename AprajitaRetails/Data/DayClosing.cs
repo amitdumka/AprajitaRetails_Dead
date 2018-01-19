@@ -7,6 +7,7 @@ namespace AprajitaRetails.Data
         public DateTime OnDate { set; get; }
         public int TotalAmount { set; get; }
         public int C2000 { set; get; }
+        public int C200 { get; set; }//TODO: Implement this
         public int C1000 { set; get; }
         public int C500 { set; get; }
         public int C100 { set; get; }

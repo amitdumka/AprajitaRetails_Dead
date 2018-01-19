@@ -43,10 +43,12 @@ namespace AprajitaRetails
         public static List<int> GetQueryInt(String storeProc, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = storeProc;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = storeProc,
+                Connection = con,
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             int count = 0;
             List<int> data = new List<int> ();
             ;
@@ -105,10 +107,12 @@ namespace AprajitaRetails
         public static List<string> GetQueryString(string sp, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = sp;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = sp,
+                Connection = con,
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             int count = 0;
             List<string> data = new List<string> ();
             ;
@@ -165,10 +169,12 @@ namespace AprajitaRetails
         public static List<int> GetSqlStoreProcedureInt(String storeProc, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = storeProc;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = storeProc,
+                Connection = con,
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             int count = 0;
             List<int> data = new List<int> ();   
             try
@@ -210,10 +216,12 @@ namespace AprajitaRetails
         public static List<string> GetSqlStoreProcedureString(string sp, string colName)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = sp;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = sp,
+                Connection = con,
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             int count = 0;
             List<string> data = new List<string> ();
 
@@ -243,10 +251,12 @@ namespace AprajitaRetails
         public static List<SortedDictionary<string, string>> GetSqlStoreProcedureString(string sp)
         {
             SqlConnection con = (SqlConnection) GetConnectionObject (ConType.SQLDB);
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = sp;
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = sp,
+                Connection = con,
+                CommandType = System.Data.CommandType.StoredProcedure
+            };
             int count = 0;
             List<SortedDictionary<string, string>> data = new List<SortedDictionary<string, string>> ();
             ;

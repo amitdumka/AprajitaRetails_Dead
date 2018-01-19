@@ -75,6 +75,9 @@
             this.BTNUpdate = new System.Windows.Forms.Button();
             this.BTNDelete = new System.Windows.Forms.Button();
             this.BTNCancel = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.T200 = new System.Windows.Forms.TextBox();
+            this.TT200 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.TLPCashDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -90,7 +93,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(547, 744);
+            this.groupBox1.Size = new System.Drawing.Size(547, 795);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cash Details";
@@ -106,47 +109,50 @@
             this.TLPCashDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TLPCashDetails.Controls.Add(this.label2, 0, 2);
             this.TLPCashDetails.Controls.Add(this.label3, 0, 3);
-            this.TLPCashDetails.Controls.Add(this.label4, 0, 4);
-            this.TLPCashDetails.Controls.Add(this.label5, 0, 5);
-            this.TLPCashDetails.Controls.Add(this.label6, 0, 6);
-            this.TLPCashDetails.Controls.Add(this.label7, 0, 7);
-            this.TLPCashDetails.Controls.Add(this.label8, 0, 8);
-            this.TLPCashDetails.Controls.Add(this.label9, 0, 9);
+            this.TLPCashDetails.Controls.Add(this.label4, 0, 5);
+            this.TLPCashDetails.Controls.Add(this.label5, 0, 6);
+            this.TLPCashDetails.Controls.Add(this.label6, 0, 7);
+            this.TLPCashDetails.Controls.Add(this.label7, 0, 8);
+            this.TLPCashDetails.Controls.Add(this.label8, 0, 9);
+            this.TLPCashDetails.Controls.Add(this.label9, 0, 10);
             this.TLPCashDetails.Controls.Add(this.T2000, 1, 1);
             this.TLPCashDetails.Controls.Add(this.T1000, 1, 2);
             this.TLPCashDetails.Controls.Add(this.T500, 1, 3);
-            this.TLPCashDetails.Controls.Add(this.T100, 1, 4);
-            this.TLPCashDetails.Controls.Add(this.T50, 1, 5);
-            this.TLPCashDetails.Controls.Add(this.T20, 1, 6);
-            this.TLPCashDetails.Controls.Add(this.T10, 1, 7);
-            this.TLPCashDetails.Controls.Add(this.T5, 1, 8);
-            this.TLPCashDetails.Controls.Add(this.C2, 1, 9);
-            this.TLPCashDetails.Controls.Add(this.C1, 1, 10);
-            this.TLPCashDetails.Controls.Add(this.C5, 1, 11);
-            this.TLPCashDetails.Controls.Add(this.C10, 1, 12);
-            this.TLPCashDetails.Controls.Add(this.label10, 0, 10);
-            this.TLPCashDetails.Controls.Add(this.label11, 0, 11);
-            this.TLPCashDetails.Controls.Add(this.label12, 0, 12);
+            this.TLPCashDetails.Controls.Add(this.T100, 1, 5);
+            this.TLPCashDetails.Controls.Add(this.T50, 1, 6);
+            this.TLPCashDetails.Controls.Add(this.T20, 1, 7);
+            this.TLPCashDetails.Controls.Add(this.T10, 1, 8);
+            this.TLPCashDetails.Controls.Add(this.T5, 1, 9);
+            this.TLPCashDetails.Controls.Add(this.C2, 1, 10);
+            this.TLPCashDetails.Controls.Add(this.C1, 1, 11);
+            this.TLPCashDetails.Controls.Add(this.C5, 1, 12);
+            this.TLPCashDetails.Controls.Add(this.C10, 1, 13);
+            this.TLPCashDetails.Controls.Add(this.label10, 0, 11);
+            this.TLPCashDetails.Controls.Add(this.label11, 0, 12);
+            this.TLPCashDetails.Controls.Add(this.label12, 0, 13);
             this.TLPCashDetails.Controls.Add(this.TT2000, 2, 1);
             this.TLPCashDetails.Controls.Add(this.TT1000, 2, 2);
             this.TLPCashDetails.Controls.Add(this.TT500, 2, 3);
-            this.TLPCashDetails.Controls.Add(this.TT100, 2, 4);
-            this.TLPCashDetails.Controls.Add(this.TT50, 2, 5);
-            this.TLPCashDetails.Controls.Add(this.TT20, 2, 6);
-            this.TLPCashDetails.Controls.Add(this.TT10, 2, 7);
-            this.TLPCashDetails.Controls.Add(this.TT5, 2, 8);
-            this.TLPCashDetails.Controls.Add(this.TC2, 2, 9);
-            this.TLPCashDetails.Controls.Add(this.TC1, 2, 10);
-            this.TLPCashDetails.Controls.Add(this.TC5, 2, 11);
-            this.TLPCashDetails.Controls.Add(this.TC10, 2, 12);
+            this.TLPCashDetails.Controls.Add(this.TT100, 2, 5);
+            this.TLPCashDetails.Controls.Add(this.TT50, 2, 6);
+            this.TLPCashDetails.Controls.Add(this.TT20, 2, 7);
+            this.TLPCashDetails.Controls.Add(this.TT10, 2, 8);
+            this.TLPCashDetails.Controls.Add(this.TT5, 2, 9);
+            this.TLPCashDetails.Controls.Add(this.TC2, 2, 10);
+            this.TLPCashDetails.Controls.Add(this.TC1, 2, 11);
+            this.TLPCashDetails.Controls.Add(this.TC5, 2, 12);
+            this.TLPCashDetails.Controls.Add(this.TC10, 2, 13);
             this.TLPCashDetails.Controls.Add(this.label1, 0, 1);
             this.TLPCashDetails.Controls.Add(this.label13, 0, 0);
             this.TLPCashDetails.Controls.Add(this.LBTotalCount, 1, 0);
             this.TLPCashDetails.Controls.Add(this.LBTotalAmount, 2, 0);
+            this.TLPCashDetails.Controls.Add(this.label14, 0, 4);
+            this.TLPCashDetails.Controls.Add(this.T200, 1, 4);
+            this.TLPCashDetails.Controls.Add(this.TT200, 2, 4);
             this.TLPCashDetails.Location = new System.Drawing.Point(11, 53);
             this.TLPCashDetails.Margin = new System.Windows.Forms.Padding(5);
             this.TLPCashDetails.Name = "TLPCashDetails";
-            this.TLPCashDetails.RowCount = 13;
+            this.TLPCashDetails.RowCount = 14;
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -160,7 +166,9 @@
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPCashDetails.Size = new System.Drawing.Size(526, 650);
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TLPCashDetails.Size = new System.Drawing.Size(526, 701);
             this.TLPCashDetails.TabIndex = 0;
             // 
             // label2
@@ -186,7 +194,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 191);
+            this.label4.Location = new System.Drawing.Point(8, 242);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 32);
@@ -196,7 +204,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 242);
+            this.label5.Location = new System.Drawing.Point(8, 293);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 32);
@@ -206,7 +214,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 293);
+            this.label6.Location = new System.Drawing.Point(8, 344);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 32);
@@ -216,7 +224,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 344);
+            this.label7.Location = new System.Drawing.Point(8, 395);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 32);
@@ -226,7 +234,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 395);
+            this.label8.Location = new System.Drawing.Point(8, 446);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 32);
@@ -236,7 +244,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 446);
+            this.label9.Location = new System.Drawing.Point(8, 497);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(31, 32);
@@ -272,7 +280,7 @@
             // 
             // T100
             // 
-            this.T100.Location = new System.Drawing.Point(100, 196);
+            this.T100.Location = new System.Drawing.Point(100, 247);
             this.T100.Margin = new System.Windows.Forms.Padding(5);
             this.T100.Name = "T100";
             this.T100.Size = new System.Drawing.Size(175, 38);
@@ -281,7 +289,7 @@
             // 
             // T50
             // 
-            this.T50.Location = new System.Drawing.Point(100, 247);
+            this.T50.Location = new System.Drawing.Point(100, 298);
             this.T50.Margin = new System.Windows.Forms.Padding(5);
             this.T50.Name = "T50";
             this.T50.Size = new System.Drawing.Size(175, 38);
@@ -290,7 +298,7 @@
             // 
             // T20
             // 
-            this.T20.Location = new System.Drawing.Point(100, 298);
+            this.T20.Location = new System.Drawing.Point(100, 349);
             this.T20.Margin = new System.Windows.Forms.Padding(5);
             this.T20.Name = "T20";
             this.T20.Size = new System.Drawing.Size(175, 38);
@@ -299,7 +307,7 @@
             // 
             // T10
             // 
-            this.T10.Location = new System.Drawing.Point(100, 349);
+            this.T10.Location = new System.Drawing.Point(100, 400);
             this.T10.Margin = new System.Windows.Forms.Padding(5);
             this.T10.Name = "T10";
             this.T10.Size = new System.Drawing.Size(175, 38);
@@ -308,7 +316,7 @@
             // 
             // T5
             // 
-            this.T5.Location = new System.Drawing.Point(100, 400);
+            this.T5.Location = new System.Drawing.Point(100, 451);
             this.T5.Margin = new System.Windows.Forms.Padding(5);
             this.T5.Name = "T5";
             this.T5.Size = new System.Drawing.Size(175, 38);
@@ -317,7 +325,7 @@
             // 
             // C2
             // 
-            this.C2.Location = new System.Drawing.Point(100, 451);
+            this.C2.Location = new System.Drawing.Point(100, 502);
             this.C2.Margin = new System.Windows.Forms.Padding(5);
             this.C2.Name = "C2";
             this.C2.Size = new System.Drawing.Size(175, 38);
@@ -326,7 +334,7 @@
             // 
             // C1
             // 
-            this.C1.Location = new System.Drawing.Point(100, 502);
+            this.C1.Location = new System.Drawing.Point(100, 553);
             this.C1.Margin = new System.Windows.Forms.Padding(5);
             this.C1.Name = "C1";
             this.C1.Size = new System.Drawing.Size(175, 38);
@@ -335,7 +343,7 @@
             // 
             // C5
             // 
-            this.C5.Location = new System.Drawing.Point(100, 553);
+            this.C5.Location = new System.Drawing.Point(100, 604);
             this.C5.Margin = new System.Windows.Forms.Padding(5);
             this.C5.Name = "C5";
             this.C5.Size = new System.Drawing.Size(175, 38);
@@ -344,7 +352,7 @@
             // 
             // C10
             // 
-            this.C10.Location = new System.Drawing.Point(100, 604);
+            this.C10.Location = new System.Drawing.Point(100, 655);
             this.C10.Margin = new System.Windows.Forms.Padding(5);
             this.C10.Name = "C10";
             this.C10.Size = new System.Drawing.Size(175, 38);
@@ -354,7 +362,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 497);
+            this.label10.Location = new System.Drawing.Point(8, 548);
             this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 32);
@@ -364,7 +372,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 548);
+            this.label11.Location = new System.Drawing.Point(8, 599);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(31, 32);
@@ -374,7 +382,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 599);
+            this.label12.Location = new System.Drawing.Point(8, 650);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 32);
@@ -407,7 +415,7 @@
             // 
             // TT100
             // 
-            this.TT100.Location = new System.Drawing.Point(288, 196);
+            this.TT100.Location = new System.Drawing.Point(288, 247);
             this.TT100.Margin = new System.Windows.Forms.Padding(5);
             this.TT100.Name = "TT100";
             this.TT100.Size = new System.Drawing.Size(230, 38);
@@ -415,7 +423,7 @@
             // 
             // TT50
             // 
-            this.TT50.Location = new System.Drawing.Point(288, 247);
+            this.TT50.Location = new System.Drawing.Point(288, 298);
             this.TT50.Margin = new System.Windows.Forms.Padding(5);
             this.TT50.Name = "TT50";
             this.TT50.Size = new System.Drawing.Size(230, 38);
@@ -423,7 +431,7 @@
             // 
             // TT20
             // 
-            this.TT20.Location = new System.Drawing.Point(288, 298);
+            this.TT20.Location = new System.Drawing.Point(288, 349);
             this.TT20.Margin = new System.Windows.Forms.Padding(5);
             this.TT20.Name = "TT20";
             this.TT20.Size = new System.Drawing.Size(230, 38);
@@ -431,7 +439,7 @@
             // 
             // TT10
             // 
-            this.TT10.Location = new System.Drawing.Point(288, 349);
+            this.TT10.Location = new System.Drawing.Point(288, 400);
             this.TT10.Margin = new System.Windows.Forms.Padding(5);
             this.TT10.Name = "TT10";
             this.TT10.Size = new System.Drawing.Size(230, 38);
@@ -440,7 +448,7 @@
             // 
             // TT5
             // 
-            this.TT5.Location = new System.Drawing.Point(288, 400);
+            this.TT5.Location = new System.Drawing.Point(288, 451);
             this.TT5.Margin = new System.Windows.Forms.Padding(5);
             this.TT5.Name = "TT5";
             this.TT5.Size = new System.Drawing.Size(230, 38);
@@ -448,7 +456,7 @@
             // 
             // TC2
             // 
-            this.TC2.Location = new System.Drawing.Point(288, 451);
+            this.TC2.Location = new System.Drawing.Point(288, 502);
             this.TC2.Margin = new System.Windows.Forms.Padding(5);
             this.TC2.Name = "TC2";
             this.TC2.Size = new System.Drawing.Size(230, 38);
@@ -456,7 +464,7 @@
             // 
             // TC1
             // 
-            this.TC1.Location = new System.Drawing.Point(288, 502);
+            this.TC1.Location = new System.Drawing.Point(288, 553);
             this.TC1.Margin = new System.Windows.Forms.Padding(5);
             this.TC1.Name = "TC1";
             this.TC1.Size = new System.Drawing.Size(230, 38);
@@ -464,7 +472,7 @@
             // 
             // TC5
             // 
-            this.TC5.Location = new System.Drawing.Point(288, 553);
+            this.TC5.Location = new System.Drawing.Point(288, 604);
             this.TC5.Margin = new System.Windows.Forms.Padding(5);
             this.TC5.Name = "TC5";
             this.TC5.Size = new System.Drawing.Size(230, 38);
@@ -472,7 +480,7 @@
             // 
             // TC10
             // 
-            this.TC10.Location = new System.Drawing.Point(288, 604);
+            this.TC10.Location = new System.Drawing.Point(288, 655);
             this.TC10.Margin = new System.Windows.Forms.Padding(5);
             this.TC10.Name = "TC10";
             this.TC10.Size = new System.Drawing.Size(230, 38);
@@ -598,6 +606,32 @@
             this.BTNCancel.Text = "Cancel";
             this.BTNCancel.UseVisualStyleBackColor = true;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 191);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 32);
+            this.label14.TabIndex = 42;
+            this.label14.Text = "200";
+            // 
+            // T200
+            // 
+            this.T200.Location = new System.Drawing.Point(100, 196);
+            this.T200.Margin = new System.Windows.Forms.Padding(5);
+            this.T200.Name = "T200";
+            this.T200.Size = new System.Drawing.Size(175, 38);
+            this.T200.TabIndex = 43;
+            // 
+            // TT200
+            // 
+            this.TT200.Location = new System.Drawing.Point(288, 196);
+            this.TT200.Margin = new System.Windows.Forms.Padding(5);
+            this.TT200.Name = "TT200";
+            this.TT200.Size = new System.Drawing.Size(230, 38);
+            this.TT200.TabIndex = 44;
+            // 
             // DayClosingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -671,5 +705,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label LBTotalCount;
         private System.Windows.Forms.Label LBTotalAmount;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox T200;
+        private System.Windows.Forms.TextBox TT200;
     }
 }

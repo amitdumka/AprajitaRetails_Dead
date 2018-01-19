@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AprajitaRetails.Data;
- //TODO: Keep implementing this as others parts are completed
- //TODO: keep and Collect Data now Onwarrds
+//TODO: Keep implementing this as others parts are completed
+//TODO: keep and Collect Data now Onwarrds
 namespace AprajitaRetails.ViewModel
 {
     class DayClosingVM
@@ -43,6 +43,8 @@ namespace AprajitaRetails.ViewModel
             cmd.Parameters.AddWithValue ("@C500", days.C500);
             cmd.Parameters.AddWithValue ("@C50", days.C50);
             cmd.Parameters.AddWithValue ("@C5", days.C5);
+
+            cmd.Parameters.AddWithValue ("@C200", days.C200);
             cmd.Parameters.AddWithValue ("@C2000", days.C2000);
             cmd.Parameters.AddWithValue ("@C20", days.C20);
             cmd.Parameters.AddWithValue ("@C1000", days.C1000);
@@ -71,6 +73,8 @@ namespace AprajitaRetails.ViewModel
         {
             DayClosing ele = new DayClosing ()
             {
+                C200 = Int32.Parse (rootEle ["C200"]),
+
                 C10 = Int32.Parse (rootEle ["C10"]),
                 C100 = Int32.Parse (rootEle ["C100"]),
                 C1000 = Int32.Parse (rootEle ["C1000"]),
@@ -107,6 +111,8 @@ namespace AprajitaRetails.ViewModel
                     C100 = Int32.Parse (rootEle ["C100"]),
                     C1000 = Int32.Parse (rootEle ["C1000"]),
                     C20 = Int32.Parse (rootEle ["C20"]),
+                    C200 = Int32.Parse (rootEle ["C200"]),
+
                     C2000 = Int32.Parse (rootEle ["C2000"]),
                     C5 = Int32.Parse (rootEle ["C5"]),
                     C50 = Int32.Parse (rootEle ["C50"]),
@@ -158,7 +164,7 @@ namespace AprajitaRetails.ViewModel
             con = Db.DBCon;
             dayEnd = new DayEndDetails ();
         }
-        
+
         void SaleData()
         {
 

@@ -38,20 +38,26 @@ namespace AprajitaRetails.Data
 
         public static string GetInvoiceNo(int old, int newno)
         {  //C33 IN 500001
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = newno;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = newno
+            };
             return inv.ToString ();
         }
         public static string GetInvoiceNo(int nos)
         {  //C33 IN 500001
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = nos;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = nos
+            };
             return inv.ToString ();
         }
         public static InvoiceNo GetNewInvoviceNo(int oldinv)
         {
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = oldinv + 1;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = oldinv + 1
+            };
             return inv;
         }
         public static InvoiceNo GetNewInvoviceNo(InvoiceNo oldinv)
@@ -84,23 +90,29 @@ namespace AprajitaRetails.Data
         }
         public static string GetInvoiceNo(int old, int newno, string sp)
         {  //C33 IN 500001
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = newno;
-            inv.SP = sp;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = newno,
+                SP = sp
+            };
             return inv.ToString ();
         }
         public static string GetInvoiceNo(int nos, string sp)
         {  //C33 IN 500001
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = nos;
-            inv.SP = sp;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = nos,
+                SP = sp
+            };
             return inv.ToString ();
         }
         public static InvoiceNo GetNewInvoviceNo(int oldinv, string sp)
         {
-            InvoiceNo inv = new InvoiceNo ();
-            inv.TP = oldinv + 1;
-            inv.SP = sp;
+            InvoiceNo inv = new InvoiceNo
+            {
+                TP = oldinv + 1,
+                SP = sp
+            };
             return inv;
         }
 

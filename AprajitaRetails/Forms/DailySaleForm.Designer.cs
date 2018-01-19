@@ -543,7 +543,7 @@
             this.LVSaleList.TabIndex = 0;
             this.LVSaleList.UseCompatibleStateImageBehavior = false;
             this.LVSaleList.View = System.Windows.Forms.View.Details;
-            this.LVSaleList.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.LVSaleList.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 

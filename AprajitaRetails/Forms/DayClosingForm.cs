@@ -109,6 +109,8 @@ namespace AprajitaRetails.Forms
                 C1000 = Basic.ToInt (T1000.Text.Trim ()),
                 C20 = Basic.ToInt (T20.Text.Trim ()),
                 C2000 = Basic.ToInt (T2000.Text.Trim ()),
+                C200 = Basic.ToInt (T200.Text.Trim ()),
+
                 C5 = Basic.ToInt (T5.Text.Trim ()),
                 C50 = Basic.ToInt (T50.Text.Trim ()),
                 C500 = Basic.ToInt (T500.Text.Trim ()),

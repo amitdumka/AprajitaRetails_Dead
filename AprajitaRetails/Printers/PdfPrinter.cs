@@ -86,7 +86,7 @@ namespace AprajitaRetails.Printers
         public string ItemLine1 = "SKU Code/Description";
         public string ItemLine2 = "HSN      MRP     Qty     Disc";
         public string ItemLine3 = "cgst%    AMT     sgst%   AMT";
-        
+
     }
     class ReceiptHeader
     {
@@ -113,6 +113,9 @@ namespace AprajitaRetails.Printers
     {
         public static void PrintRecipts()
         {
+            MessageBox.Show (new PrintDocument ().PrinterSettings.PrinterName);
+            MessageBox.Show (PrinterSettings.InstalledPrinters [0].ToString ());
+
         }
         public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, ReceiptItemDetails itemDetails)
         {
@@ -128,8 +131,10 @@ namespace AprajitaRetails.Printers
                 PdfWriter.GetInstance (pdfDoc, stream);
                 pdfDoc.Open ();
                 //Header
-                Paragraph p = new Paragraph (header.StoreName);
-                p.Alignment = PdfAppearance.ALIGN_CENTER;
+                Paragraph p = new Paragraph (header.StoreName)
+                {
+                    Alignment = PdfAppearance.ALIGN_CENTER
+                };
                 p.Add (header.StoreAddress + "\n");
                 p.Add (header.StoreCity + "\n");
                 p.Add (header.StorePhoneNo + "\n");
@@ -139,34 +144,38 @@ namespace AprajitaRetails.Printers
                 p.Add (PrintLine.DotedLine);
                 pdfDoc.Add (p);
                 //Details
-                Paragraph dP = new Paragraph ();
-                dP.Add (details.Employee + "\n");
-                dP.Add (details.BillNo + "\n");
-                dP.Add (details.BillDate + "\n");
-                dP.Add (details.BillTime + "\n");
-                dP.Add (details.CustomerName + "\n");
-                dP.Add (PrintLine.DotedLine);
-                dP.Add (details.ItemLine1 + "\n");
-                dP.Add (details.ItemLine2 + "\n");
-                dP.Add (details.ItemLine3 + "\n");
-                dP.Add (PrintLine.DotedLine);
-                dP.Add ("\n");
+                Paragraph dP = new Paragraph
+                {
+                    details.Employee + "\n",
+                    details.BillNo + "\n",
+                    details.BillDate + "\n",
+                    details.BillTime + "\n",
+                    details.CustomerName + "\n",
+                    PrintLine.DotedLine,
+                    details.ItemLine1 + "\n",
+                    details.ItemLine2 + "\n",
+                    details.ItemLine3 + "\n",
+                    PrintLine.DotedLine,
+                    "\n"
+                };
                 pdfDoc.Add (dP);
                 //ItemDetails
                 //TODO: Need to iterate for Each Item
-                Paragraph ip = new Paragraph ();
-                ip.Add (itemDetails.SKU_Description + "\n");
-                ip.Add (itemDetails.HSN + "\t" + itemDetails.MRP + "\t");
-                ip.Add (itemDetails.QTY + "\t" + itemDetails.Discount + "\n");
-                ip.Add (itemDetails.GSTPercentage + "\t" + itemDetails.GSTAmount + "\t");
-                ip.Add (itemDetails.GSTPercentage + "\t" + itemDetails.GSTAmount + "\n");
-                ip.Add (PrintLine.DotedLine);
-                ip.Add ("Total: " + itemTotals.TotalItem + "\t\t\t" + itemTotals.NetAmount + "\n");
+                Paragraph ip = new Paragraph
+                {
+                    itemDetails.SKU_Description + "\n",
+                    itemDetails.HSN + "\t" + itemDetails.MRP + "\t",
+                    itemDetails.QTY + "\t" + itemDetails.Discount + "\n",
+                    itemDetails.GSTPercentage + "\t" + itemDetails.GSTAmount + "\t",
+                    itemDetails.GSTPercentage + "\t" + itemDetails.GSTAmount + "\n",
+                    PrintLine.DotedLine,
+                    "Total: " + itemTotals.TotalItem + "\t\t\t" + itemTotals.NetAmount + "\n",
 
-                ip.Add ("item(s): " + itemTotals.ItemCount + "\tNet Amount:\t" + itemTotals.NetAmount + "\n");
-                ip.Add (PrintLine.DotedLine);
-                ip.Add ("Tender\n Cash Amount:\t\t Rs. " + itemTotals.CashAmount);
-                ip.Add (PrintLine.DotedLine);
+                    "item(s): " + itemTotals.ItemCount + "\tNet Amount:\t" + itemTotals.NetAmount + "\n",
+                    PrintLine.DotedLine,
+                    "Tender\n Cash Amount:\t\t Rs. " + itemTotals.CashAmount,
+                    PrintLine.DotedLine
+                };
                 double gstPrice = 0.00;    //TODO: Add Item Price
                 ip.Add ("Basic Price:\t\t" + itemDetails.BasicPrice);
                 ip.Add ("CGST:\t\t" + gstPrice);
@@ -179,13 +188,15 @@ namespace AprajitaRetails.Printers
 
                 pdfDoc.Add (ip);
                 //Footer
-                Paragraph foot = new Paragraph (PrintLine.DotedLine);
-                foot.Add (footer.FirstMessage);
-                foot.Add (PrintLine.DotedLine);
-                foot.Add (footer.ThanksMessage);
-                foot.Add (footer.LastMessage);
-                foot.Add (PrintLine.DotedLine);
-                foot.Add ("\n");// Just to Check;
+                Paragraph foot = new Paragraph (PrintLine.DotedLine)
+                {
+                    footer.FirstMessage,
+                    PrintLine.DotedLine,
+                    footer.ThanksMessage,
+                    footer.LastMessage,
+                    PrintLine.DotedLine,
+                    "\n"// Just to Check;
+                };
                 pdfDoc.Add (foot);
                 pdfDoc.Close ();
                 stream.Close ();
@@ -199,7 +210,7 @@ namespace AprajitaRetails.Printers
             }
         }
 
-        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails>  itemDetail)
+        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails> itemDetail)
         {
             //Exporting to PDF
             string folderPath = "D:\\pdf\\";
@@ -213,8 +224,10 @@ namespace AprajitaRetails.Printers
                 PdfWriter.GetInstance (pdfDoc, stream);
                 pdfDoc.Open ();
                 //Header
-                Paragraph p = new Paragraph (header.StoreName+"\n");
-                p.Alignment = PdfAppearance.ALIGN_CENTER;
+                Paragraph p = new Paragraph (header.StoreName + "\n")
+                {
+                    Alignment = PdfAppearance.ALIGN_CENTER
+                };
                 p.Add (header.StoreAddress + "\n");
                 p.Add (header.StoreCity + "\n");
                 p.Add (header.StorePhoneNo + "\n");
@@ -224,24 +237,26 @@ namespace AprajitaRetails.Printers
                 p.Add (PrintLine.DotedLine);
                 pdfDoc.Add (p);
                 //Details
-                Paragraph dP = new Paragraph ();
-                //dP.Alignment = PdfAppearance.ALIGN_CENTER;
-                dP.Add (details.Employee + "\n");
-                dP.Add (details.BillNo + "\n");
-                dP.Add (details.BillDate + "\n");
-                dP.Add (details.BillTime + "\n");
-                dP.Add (details.CustomerName + "\n");
-                dP.Add (PrintLine.DotedLine);
-                dP.Add (details.ItemLine1 + "\n");
-                dP.Add (details.ItemLine2 + "\n");
-                dP.Add (details.ItemLine3 + "\n");
-                dP.Add (PrintLine.DotedLine);
-                dP.Add ("\n");
+                Paragraph dP = new Paragraph
+                {
+                    //dP.Alignment = PdfAppearance.ALIGN_CENTER;
+                    details.Employee + "\n",
+                    details.BillNo + "\n",
+                    details.BillDate + "\n",
+                    details.BillTime + "\n",
+                    details.CustomerName + "\n",
+                    PrintLine.DotedLine,
+                    details.ItemLine1 + "\n",
+                    details.ItemLine2 + "\n",
+                    details.ItemLine3 + "\n",
+                    PrintLine.DotedLine,
+                    "\n"
+                };
                 pdfDoc.Add (dP);
                 //ItemDetails
 
                 Paragraph ip = new Paragraph ();
-              // ip.Alignment = PdfAppearance.ALIGN_CENTER;
+                // ip.Alignment = PdfAppearance.ALIGN_CENTER;
                 double gstPrice = 0.00;
                 double basicPrice = 0.00;
                 string tab = "    ";
@@ -250,29 +265,31 @@ namespace AprajitaRetails.Printers
                     if ( itemDetails != null )
                     {
                         ip.Add (itemDetails.SKU_Description + "\n");
-                        ip.Add (itemDetails.HSN + tab+tab  +itemDetails.MRP + tab + tab);
-                        ip.Add (itemDetails.QTY + tab+tab + itemDetails.Discount + "\n");
-                        ip.Add (itemDetails.GSTPercentage + "%"+tab+tab + itemDetails.GSTAmount + tab+tab);
-                        ip.Add (itemDetails.GSTPercentage + "%"+tab+tab + itemDetails.GSTAmount + "\n");
+                        ip.Add (itemDetails.HSN + tab + tab + itemDetails.MRP + tab + tab);
+                        ip.Add (itemDetails.QTY + tab + tab + itemDetails.Discount + "\n");
+                        ip.Add (itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + tab + tab);
+                        ip.Add (itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + "\n");
                         gstPrice += Double.Parse (itemDetails.GSTAmount);
                         basicPrice += Double.Parse (itemDetails.BasicPrice);
                     }
                 }
-                ip.Add ("\n"+PrintLine.DotedLine);
-                ip.Add ("Total: " + itemTotals.TotalItem + tab + tab+tab + itemTotals.NetAmount + "\n");
-                ip.Add ("item(s): " + itemTotals.ItemCount + tab+"Net Amount:"+tab + itemTotals.NetAmount + "\n");
+                ip.Add ("\n" + PrintLine.DotedLine);
+                ip.Add ("Total: " + itemTotals.TotalItem + tab + tab + tab + itemTotals.NetAmount + "\n");
+                ip.Add ("item(s): " + itemTotals.ItemCount + tab + "Net Amount:" + tab + itemTotals.NetAmount + "\n");
                 ip.Add (PrintLine.DotedLine);
                 ip.Add ("Tender\n Cash Amount:\t\t Rs. " + itemTotals.CashAmount);
-                ip.Add ("\n"+PrintLine.DotedLine);
+                ip.Add ("\n" + PrintLine.DotedLine);
                 ip.Add ("Basic Price:\t\t" + basicPrice);
                 ip.Add ("\nCGST:\t\t" + gstPrice);
-                ip.Add ("\nSGST:\t\t" + gstPrice+"\n");
+                ip.Add ("\nSGST:\t\t" + gstPrice + "\n");
                 //ip.Add (PrintLine.DotedLine);
-               pdfDoc.Add (ip);
+                pdfDoc.Add (ip);
                 //Footer
-                Paragraph foot = new Paragraph (PrintLine.DotedLine);
-                foot.Alignment = PdfAppearance.ALIGN_CENTER;
-                foot.Add (footer.FirstMessage+"\n");
+                Paragraph foot = new Paragraph (PrintLine.DotedLine)
+                {
+                    Alignment = PdfAppearance.ALIGN_CENTER
+                };
+                foot.Add (footer.FirstMessage + "\n");
                 foot.Add (PrintLine.DotedLine);
                 foot.Add (footer.ThanksMessage + "\n");
                 foot.Add (footer.LastMessage + "\n");
@@ -281,13 +298,11 @@ namespace AprajitaRetails.Printers
                 pdfDoc.Add (foot);
                 pdfDoc.Close ();
                 stream.Close ();
-
-                string PrinterName = "Microsoft Print to PDF";
                 // Create an instance of the Printer
                 IPrinter printer = new Printer ();
                 // Print the file
-                printer.PrintRawFile (PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
-                // printer.PrintRawFile()
+                printer.PrintRawFile (ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
+                
             }
         }
 

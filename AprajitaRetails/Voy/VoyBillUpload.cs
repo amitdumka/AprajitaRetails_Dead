@@ -178,9 +178,11 @@ namespace AprajitaRetails.Voy
                     switch ( reader.Name )
                     {
                         case VBEle.line_item:
-                            lItems = new LineItems ();
-                            lItems.ID = ++ids;
-                            lItems.VoyBillId = -1;
+                            lItems = new LineItems
+                            {
+                                ID = ++ids,
+                                VoyBillId = -1
+                            };
                             ws.WriteLine (" Line Item:{0},", ids);
                             break;
 
@@ -287,8 +289,10 @@ namespace AprajitaRetails.Voy
                     switch ( reader.Name )
                     {
                         case VBEle.Payment_detail:
-                            vPay = new VPaymentMode ();
-                            vPay.ID = -1;
+                            vPay = new VPaymentMode
+                            {
+                                ID = -1
+                            };
                             ws.WriteLine ("Payment mode.");
 
                             break;

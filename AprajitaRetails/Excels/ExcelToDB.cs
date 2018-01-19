@@ -28,8 +28,10 @@ namespace AprajitaRetails
                 {
                     dataAdapter = new SqlDataAdapter (query, sqlDB);
                     SqlCommandBuilder commandBuilder = new SqlCommandBuilder (dataAdapter);
-                    table = new DataTable ();
-                    table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                    table = new DataTable
+                    {
+                        Locale = System.Globalization.CultureInfo.InvariantCulture
+                    };
                     dataAdapter.Fill (table);
                     UploadedDataTable = table;
                     UploadedDataGrid.AutoResizeColumns (DataGridViewAutoSizeColumnsMode.AllCells);

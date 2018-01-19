@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace AprajitaRetails.ViewModel
     public enum SalePayMode { Cash = 1, Card = 2, Mix = 3 }
     public class UtilOps
     {
+        public static string PrinterName = new PrintDocument ().PrinterSettings.PrinterName;
+
         public static int TaxMode(TaxType taxType)
         {
             switch ( taxType )
@@ -197,6 +200,15 @@ namespace AprajitaRetails.ViewModel
         //public double IGST { get; set; }
 
 
+    }
+    class Salesman
+    {
+        public int ID
+        {
+            set; get;
+        }
+        public string SMCode { get; set; }
+        public string SalesmanName { get; set; }
     }
 
     class Supplier
@@ -477,7 +489,28 @@ namespace AprajitaRetails.ViewModel
     }
 
     //-------------------------------------------------------------------------
+    class SalesmanDB : DataOps<Salesman>
+    {
+        public override int InsertData(Salesman obj)
+        {
+            throw new NotImplementedException ();
+        }
 
+        public override Salesman ResultToObject(List<Salesman> data, int index)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override Salesman ResultToObject(SortedDictionary<string, string> data)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public override List<Salesman> ResultToObject(List<SortedDictionary<string, string>> dataList)
+        {
+            throw new NotImplementedException ();
+        }
+    }
     class PaymentDetailDB : DataOps<PaymentDetails>
     {
         public override int InsertData(PaymentDetails obj)
@@ -755,12 +788,12 @@ namespace AprajitaRetails.ViewModel
             cmd.Parameters.AddWithValue ("@Tax", obj.Tax);
 
             //GST Implementation 
-           /* cmd.Parameters.AddWithValue ("@CGST", obj.CGST);
-            cmd.Parameters.AddWithValue ("@SGST", obj.SGST);
-            cmd.Parameters.AddWithValue ("@IGST", obj.IGST);
-            cmd.Parameters.AddWithValue ("@PreGST", obj.PreGST);
-            cmd.Parameters.AddWithValue ("@HSNCode", obj.HSNCode);
-             */
+            /* cmd.Parameters.AddWithValue ("@CGST", obj.CGST);
+             cmd.Parameters.AddWithValue ("@SGST", obj.SGST);
+             cmd.Parameters.AddWithValue ("@IGST", obj.IGST);
+             cmd.Parameters.AddWithValue ("@PreGST", obj.PreGST);
+             cmd.Parameters.AddWithValue ("@HSNCode", obj.HSNCode);
+              */
             return cmd.ExecuteNonQuery ();
         }
 
@@ -785,11 +818,11 @@ namespace AprajitaRetails.ViewModel
                 ItemDesc = data ["ItemDesc"],
                 MRP = double.Parse (data ["MRP"]),
                 ProductName = data ["ProductName"]
-               /* CGST = double.Parse (data ["CGST"]),
-                HSNCode = double.Parse (data ["HSNCode"]),
-                IGST = double.Parse (data ["IGST"]),
-                SGST = double.Parse (data ["SGST"]),
-                PreGST = Int32.Parse (data ["PreGST"])*/
+                /* CGST = double.Parse (data ["CGST"]),
+                 HSNCode = double.Parse (data ["HSNCode"]),
+                 IGST = double.Parse (data ["IGST"]),
+                 SGST = double.Parse (data ["SGST"]),
+                 PreGST = Int32.Parse (data ["PreGST"])*/
             };
             return pItem;
         }

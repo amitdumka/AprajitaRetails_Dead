@@ -173,6 +173,7 @@ namespace AprajitaRetails.Forms
         private void BTNDiscount_Click(object sender, EventArgs e)
         {
             //TODO: Implement Discount
+              
             PdfPrinter.PrintRecipts ();
         }
 
@@ -696,7 +697,10 @@ namespace AprajitaRetails.Forms
 
         }
         //End of Invoice Print Section 
+         private void LoadSalesman()
+        {
 
+        }
 
     }
 }

@@ -64,8 +64,10 @@ namespace AprajitaRetails.ViewModel
         /// <returns></returns>
         public List<SortedDictionary<string, string>> GetDataFrom(string tabName)
         {   //TODO: Move to Static one
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + tabName;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "select * from " + tabName
+            };
             Logs.LogMe ("GetDataFrom:TableName=" + tabName);
             return DataBase.GetSqlStoreProcedureString (cmd);
 
@@ -171,8 +173,10 @@ namespace AprajitaRetails.ViewModel
         /// <returns></returns>
         public DailySale GetByColName(string colName, Object colValue)
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename + " where " + colName + "=@values";
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "select * from " + Tablename + " where " + colName + "=@values"
+            };
             cmd.Parameters.AddWithValue ("@values", colValue);
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             DailySale dailySale = ToDailySale (resultData);
@@ -185,8 +189,8 @@ namespace AprajitaRetails.ViewModel
         /// <returns></returns>
         public DailySale GetByID(int id)
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename + " where ID =" + id;
+            SqlCommand cmd = new SqlCommand ()
+            { CommandText = "select * from " + Tablename + " where ID =" + id};
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             DailySale dailySale = ToDailySale (resultData);
             return dailySale;
@@ -242,8 +246,10 @@ namespace AprajitaRetails.ViewModel
 
         public List<DailySale> GetAllRecord()
         {
-            SqlCommand cmd = new SqlCommand ();
-            cmd.CommandText = "select * from " + Tablename;
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = "select * from " + Tablename
+            };
             List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString (cmd);
             return ToDailySales (resultData);
 

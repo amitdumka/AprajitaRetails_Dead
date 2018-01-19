@@ -153,8 +153,10 @@ namespace AprajitaRetails.Forms
 
         private void BTNDelete_Click(object sender, EventArgs e)
         {
-            CustomersForm c = new CustomersForm ();
-            c.IsDailog = true;
+            CustomersForm c = new CustomersForm ()
+            {
+                IsDailog = true
+            };
             DialogResult r = c.ShowDialog ();
             if ( c.DialogResult == DialogResult.OK )
             {
@@ -211,7 +213,7 @@ namespace AprajitaRetails.Forms
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ( BTNAdd.Text != "Save" )
             {
