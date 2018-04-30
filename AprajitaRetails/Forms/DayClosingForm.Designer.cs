@@ -69,15 +69,15 @@
             this.label13 = new System.Windows.Forms.Label();
             this.LBTotalCount = new System.Windows.Forms.Label();
             this.LBTotalAmount = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.T200 = new System.Windows.Forms.TextBox();
+            this.TT200 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BTNAdd = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
             this.BTNDelete = new System.Windows.Forms.Button();
             this.BTNCancel = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.T200 = new System.Windows.Forms.TextBox();
-            this.TT200 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.TLPCashDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -284,7 +284,7 @@
             this.T100.Margin = new System.Windows.Forms.Padding(5);
             this.T100.Name = "T100";
             this.T100.Size = new System.Drawing.Size(175, 38);
-            this.T100.TabIndex = 12;
+            this.T100.TabIndex = 13;
             this.T100.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // T50
@@ -293,7 +293,7 @@
             this.T50.Margin = new System.Windows.Forms.Padding(5);
             this.T50.Name = "T50";
             this.T50.Size = new System.Drawing.Size(175, 38);
-            this.T50.TabIndex = 13;
+            this.T50.TabIndex = 14;
             this.T50.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // T20
@@ -302,7 +302,7 @@
             this.T20.Margin = new System.Windows.Forms.Padding(5);
             this.T20.Name = "T20";
             this.T20.Size = new System.Drawing.Size(175, 38);
-            this.T20.TabIndex = 14;
+            this.T20.TabIndex = 15;
             this.T20.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // T10
@@ -311,7 +311,7 @@
             this.T10.Margin = new System.Windows.Forms.Padding(5);
             this.T10.Name = "T10";
             this.T10.Size = new System.Drawing.Size(175, 38);
-            this.T10.TabIndex = 15;
+            this.T10.TabIndex = 16;
             this.T10.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // T5
@@ -320,7 +320,7 @@
             this.T5.Margin = new System.Windows.Forms.Padding(5);
             this.T5.Name = "T5";
             this.T5.Size = new System.Drawing.Size(175, 38);
-            this.T5.TabIndex = 16;
+            this.T5.TabIndex = 17;
             this.T5.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // C2
@@ -329,7 +329,7 @@
             this.C2.Margin = new System.Windows.Forms.Padding(5);
             this.C2.Name = "C2";
             this.C2.Size = new System.Drawing.Size(175, 38);
-            this.C2.TabIndex = 17;
+            this.C2.TabIndex = 18;
             this.C2.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // C1
@@ -338,7 +338,7 @@
             this.C1.Margin = new System.Windows.Forms.Padding(5);
             this.C1.Name = "C1";
             this.C1.Size = new System.Drawing.Size(175, 38);
-            this.C1.TabIndex = 18;
+            this.C1.TabIndex = 19;
             this.C1.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // C5
@@ -347,7 +347,7 @@
             this.C5.Margin = new System.Windows.Forms.Padding(5);
             this.C5.Name = "C5";
             this.C5.Size = new System.Drawing.Size(175, 38);
-            this.C5.TabIndex = 19;
+            this.C5.TabIndex = 20;
             this.C5.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // C10
@@ -356,7 +356,7 @@
             this.C10.Margin = new System.Windows.Forms.Padding(5);
             this.C10.Name = "C10";
             this.C10.Size = new System.Drawing.Size(175, 38);
-            this.C10.TabIndex = 20;
+            this.C10.TabIndex = 21;
             this.C10.TextChanged += new System.EventHandler(this.TextChangedUpdate);
             // 
             // label10
@@ -526,6 +526,33 @@
             this.LBTotalAmount.TabIndex = 38;
             this.LBTotalAmount.Text = "Total Amount";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 191);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 32);
+            this.label14.TabIndex = 42;
+            this.label14.Text = "200";
+            // 
+            // T200
+            // 
+            this.T200.Location = new System.Drawing.Point(100, 196);
+            this.T200.Margin = new System.Windows.Forms.Padding(5);
+            this.T200.Name = "T200";
+            this.T200.Size = new System.Drawing.Size(175, 38);
+            this.T200.TabIndex = 12;
+            this.T200.TextChanged += new System.EventHandler(this.TextChangedUpdate);
+            // 
+            // TT200
+            // 
+            this.TT200.Location = new System.Drawing.Point(288, 196);
+            this.TT200.Margin = new System.Windows.Forms.Padding(5);
+            this.TT200.Name = "TT200";
+            this.TT200.Size = new System.Drawing.Size(230, 38);
+            this.TT200.TabIndex = 27;
+            // 
             // groupBox2
             // 
             this.groupBox2.AutoSize = true;
@@ -605,32 +632,6 @@
             this.BTNCancel.TabIndex = 3;
             this.BTNCancel.Text = "Cancel";
             this.BTNCancel.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 191);
-            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 32);
-            this.label14.TabIndex = 42;
-            this.label14.Text = "200";
-            // 
-            // T200
-            // 
-            this.T200.Location = new System.Drawing.Point(100, 196);
-            this.T200.Margin = new System.Windows.Forms.Padding(5);
-            this.T200.Name = "T200";
-            this.T200.Size = new System.Drawing.Size(175, 38);
-            this.T200.TabIndex = 43;
-            // 
-            // TT200
-            // 
-            this.TT200.Location = new System.Drawing.Point(288, 196);
-            this.TT200.Margin = new System.Windows.Forms.Padding(5);
-            this.TT200.Name = "TT200";
-            this.TT200.Size = new System.Drawing.Size(230, 38);
-            this.TT200.TabIndex = 44;
             // 
             // DayClosingForm
             // 

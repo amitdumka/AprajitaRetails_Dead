@@ -23,7 +23,10 @@ namespace AprajitaRetails.Forms
             DCVm = new DayClosingVM ();
         }
 
-
+        private void CalculateTotalAmount()
+        {
+           // (TextBox)this.Controls.Find("T"+
+        }
 
         private void TextChangedUpdate(object sender, EventArgs e)
         {
@@ -51,7 +54,7 @@ namespace AprajitaRetails.Forms
             }
             LBTotalAmount.Text = "" + vTotalAmount;
             LBTotalCount.Text = "" + vTotalCount;
-
+            
         }
 
         private void TT10_TextChanged(object sender, EventArgs e)
@@ -83,8 +86,12 @@ namespace AprajitaRetails.Forms
             {
                 if ( DCVm.SaveData (ReadFields ()) > 0 )
                 {
-                    BTNAdd.Text = "Save";
+                    BTNAdd.Text = "Add";
                     MessageBox.Show ("Your Record got Saved", "DayClosing");
+                    LBTotalAmount.Text = "0";LBTotalCount.Text = "0";
+                    vTotalCount = vTotalAmount = 0;
+
+
 
                 }
                 else

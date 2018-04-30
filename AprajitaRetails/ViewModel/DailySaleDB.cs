@@ -260,7 +260,7 @@ namespace AprajitaRetails.ViewModel
             string sql = " select  InvoiceNo, Amount, ID from DailySale " +
                     " where DATEDIFF(day, SaleDate,@dates)= 0 order by ID Desc ";
             SqlCommand cmd = new SqlCommand (sql, Db.DBCon);
-            cmd.Parameters.AddWithValue ("@dates", DateTime.Now.ToShortDateString ());
+            cmd.Parameters.AddWithValue ("@dates", DateTime.Now);
 
             return DataBase.GetSqlStoreProcedureString (cmd);
 

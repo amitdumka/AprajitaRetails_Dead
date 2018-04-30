@@ -213,14 +213,16 @@ namespace AprajitaRetails.Printers
         public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails> itemDetail)
         {
             //Exporting to PDF
-            string folderPath = "D:\\pdf\\";
-            if ( !Directory.Exists (folderPath) )
-            {
-                Directory.CreateDirectory (folderPath);
-            }
+            //string folderPath = "c:\\pdf\\";
+            //if ( !Directory.Exists (folderPath) )
+            //{
+            //    Directory.CreateDirectory (folderPath);
+            //}
             using ( FileStream stream = new FileStream (Application.CommonAppDataPath + "\\reciptsPrint.pdf", FileMode.Create) )
             {
-                Document pdfDoc = new Document (PageSize.A6, 10f, 10f, 10f, 0f);
+                System.Console.WriteLine (Application.CommonAppDataPath);
+                                                
+                Document pdfDoc = new Document (new Rectangle(225,5000), 10f, 10f, 10f, 0f);
                 PdfWriter.GetInstance (pdfDoc, stream);
                 pdfDoc.Open ();
                 //Header
@@ -277,7 +279,7 @@ namespace AprajitaRetails.Printers
                 ip.Add ("Total: " + itemTotals.TotalItem + tab + tab + tab + itemTotals.NetAmount + "\n");
                 ip.Add ("item(s): " + itemTotals.ItemCount + tab + "Net Amount:" + tab + itemTotals.NetAmount + "\n");
                 ip.Add (PrintLine.DotedLine);
-                ip.Add ("Tender\n Cash Amount:\t\t Rs. " + itemTotals.CashAmount);
+                ip.Add ("Tender\n Paid Amount:\t\t Rs. " + itemTotals.CashAmount);
                 ip.Add ("\n" + PrintLine.DotedLine);
                 ip.Add ("Basic Price:\t\t" + basicPrice);
                 ip.Add ("\nCGST:\t\t" + gstPrice);
@@ -296,13 +298,16 @@ namespace AprajitaRetails.Printers
                 foot.Add (PrintLine.DotedLine);
                 foot.Add ("\n");// Just to Check;
                 pdfDoc.Add (foot);
+                pdfDoc.NewPage ();
+                
                 pdfDoc.Close ();
+                
                 stream.Close ();
                 // Create an instance of the Printer
                 IPrinter printer = new Printer ();
                 // Print the file
                 printer.PrintRawFile (ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
-                
+              
             }
         }
 

@@ -1,0 +1,8 @@
+﻿tailor Bill
+Path D:\VoyagerRetail\TabletSale
+File TabletBill.xml
+
+D:\VoyagerRetail\Capillary
+voyBill.xml
+
+C:\Capillary

@@ -68,6 +68,7 @@
             this.BTNDelete = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.BTNUpdate = new System.Windows.Forms.Button();
+            this.CBPrintButton = new System.Windows.Forms.CheckBox();
             this.GBItemDetails = new System.Windows.Forms.GroupBox();
             this.TLPItemDetails = new System.Windows.Forms.TableLayoutPanel();
             this.TXTBarCode = new System.Windows.Forms.TextBox();
@@ -79,7 +80,6 @@
             this.BTNDiscount = new System.Windows.Forms.Button();
             this.TXTItemDiscount = new System.Windows.Forms.TextBox();
             this.CBSalesman = new System.Windows.Forms.ComboBox();
-            this.CBPrintButton = new System.Windows.Forms.CheckBox();
             this.GBInvoiceDetails.SuspendLayout();
             this.TLPInvoiceDetails.SuspendLayout();
             this.GBProductDetails.SuspendLayout();
@@ -490,7 +490,6 @@
             this.GBControls.TabIndex = 5;
             this.GBControls.TabStop = false;
             this.GBControls.Text = "Controls";
-//            this.GBControls.Enter += new System.EventHandler(this.GBControls_Enter);
             // 
             // flowLayoutPanel2
             // 
@@ -554,6 +553,23 @@
             this.BTNUpdate.TabIndex = 19;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
+            // 
+            // CBPrintButton
+            // 
+            this.CBPrintButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CBPrintButton.AutoSize = true;
+            this.CBPrintButton.Checked = true;
+            this.CBPrintButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CBPrintButton.Location = new System.Drawing.Point(781, 3);
+            this.CBPrintButton.MinimumSize = new System.Drawing.Size(293, 65);
+            this.CBPrintButton.Name = "CBPrintButton";
+            this.CBPrintButton.Size = new System.Drawing.Size(293, 65);
+            this.CBPrintButton.TabIndex = 21;
+            this.CBPrintButton.Text = "Print Invoice On";
+            this.CBPrintButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CBPrintButton.UseVisualStyleBackColor = true;
+            this.CBPrintButton.CheckedChanged += new System.EventHandler(this.CBPrintButton_CheckedChanged);
             // 
             // GBItemDetails
             // 
@@ -686,23 +702,7 @@
             this.CBSalesman.Name = "CBSalesman";
             this.CBSalesman.Size = new System.Drawing.Size(197, 39);
             this.CBSalesman.TabIndex = 10;
-            // 
-            // CBPrintButton
-            // 
-            this.CBPrintButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CBPrintButton.AutoEllipsis = true;
-            this.CBPrintButton.AutoSize = true;
-            this.CBPrintButton.Checked = true;
-            this.CBPrintButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CBPrintButton.Location = new System.Drawing.Point(781, 3);
-            this.CBPrintButton.MinimumSize = new System.Drawing.Size(293, 65);
-            this.CBPrintButton.Name = "CBPrintButton";
-            this.CBPrintButton.Size = new System.Drawing.Size(293, 65);
-            this.CBPrintButton.TabIndex = 21;
-            this.CBPrintButton.Text = "Print Invoice On";
-            this.CBPrintButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CBPrintButton.UseVisualStyleBackColor = true;
-            this.CBPrintButton.CheckedChanged += new System.EventHandler(this.CBPrintButton_CheckedChanged);
+            this.CBSalesman.SelectedIndexChanged += new System.EventHandler(this.CBSalesman_SelectedIndexChanged);
             // 
             // SaleInvoiceForm
             // 

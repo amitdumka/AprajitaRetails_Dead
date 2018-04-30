@@ -2,6 +2,8 @@
 
 namespace AprajitaRetails.Voy
 {
+    public enum BillType { SA=0, Regular=1}
+    
     class VBEle
     {
 
@@ -34,6 +36,16 @@ namespace AprajitaRetails.Voy
         public const string Payvalue = "value";
         public const string notes = "notes";
 
+        public const string attributes = "attributes";
+        public const string attribute = "attribute";
+        public const string name = "name";
+        public const string values = "value";
+
+        //Bill Type Service
+        public const string PayMode_Type_Details = "PayMode_Type_Details";
+        public const string PayMode_Value = "PayMode_Value";
+        public const string PayMode_Details = "PayMode_Details";
+        public const string bill_store_id = "bill_store_id";
 
 
     }
@@ -48,6 +60,7 @@ namespace AprajitaRetails.Voy
         public double BillDiscount { get; set; }
         public string CustomerName { get; set; }
         public string CustomerMobile { get; set; }
+        public string StoreCode { get; set; }
 
 
 

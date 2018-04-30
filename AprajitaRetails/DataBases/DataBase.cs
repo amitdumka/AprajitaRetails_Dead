@@ -327,6 +327,7 @@ namespace AprajitaRetails
                 con.Close ();
 
             }
+            //System.Windows.Forms.MessageBox.Show ("Data Count=" + data.Count);
             return data;
         }
 

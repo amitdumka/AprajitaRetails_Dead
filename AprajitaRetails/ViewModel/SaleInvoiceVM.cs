@@ -313,6 +313,7 @@ namespace AprajitaRetails.ViewModel
     class SaleInvoiceVM
     {
         //Fields
+        SalesmanDB smDB;
         SaleInvoiceDB sDB;
         ProductItemsDB pDB;
         SaleItemsDB siDB;
@@ -324,11 +325,68 @@ namespace AprajitaRetails.ViewModel
         //Constructor
         public SaleInvoiceVM()
         {
+            smDB = new SalesmanDB ();
             sDB = new SaleInvoiceDB ();
             pDB = new ProductItemsDB ();
             siDB = new SaleItemsDB ();
             payDB = new PaymentDetailDB ();
             cpDB = new CardPaymentDB ();
+        }
+
+        public void SampleSalesman()
+        {
+            smDB.SampleData ();
+        }
+        public List<Salesman> GetSalesmanList()
+        {
+            return smDB.GetAllRecord ();
+        }
+        public List<string> GetSalesmanNameList()
+        {
+            List<string> list = new List<string> ();
+            List<Salesman> salesman = smDB.GetAllRecord ();
+            foreach ( Salesman data in salesman )
+            {
+                list.Add (data.SalesmanName);
+            }
+            return list;
+        }
+        public string GetSalesmanName(int id)
+        {
+            if ( id > 0 )
+                return smDB.GetByID (id).SalesmanName;
+            else
+                return "NotFound";
+        }
+        public string GetSalesmanName(string smcode)
+        {
+            if ( smcode != null && smcode != "" )
+                return smDB.GetByColName ("SMCode", smcode).SalesmanName;
+            return "NotFound";
+        }
+        public int GetSalesmanID(string salesmanname, string smcode)
+        {
+            if ( salesmanname != null && salesmanname != "" )
+                return smDB.GetID ("SalesmanName", salesmanname);
+
+            if ( smcode != null && smcode != "" )
+                return smDB.GetID ("SMCode", smcode);
+            return -1;
+        }
+        public string GetSalesmanCode(int id)
+        {
+            if ( id > 0 )
+                return smDB.GetByID (id).SMCode;
+            else
+                return "NotFound";
+
+
+        }
+        public string GetSalesmanCode(string salesman)
+        {
+            if ( salesman != null && salesman != "" )
+                return smDB.GetByColName ("SalesmanName", salesman).SMCode;
+            return "NotFound";
         }
         public List<string> GetBarCodesList(int x)
         {
@@ -491,24 +549,54 @@ namespace AprajitaRetails.ViewModel
     //-------------------------------------------------------------------------
     class SalesmanDB : DataOps<Salesman>
     {
+        public void SampleData()
+        {
+            InsertData( new Salesman { ID = -1, SalesmanName = "Sanjeev", SMCode = "SM001" });
+            InsertData (new Salesman { ID = -1, SalesmanName = "Mukesh", SMCode = "SM002" });
+            InsertData (new Salesman { ID = -1, SalesmanName = "Santosh", SMCode = "SM003" });
+            
+        }
         public override int InsertData(Salesman obj)
         {
-            throw new NotImplementedException ();
+            SqlCommand cmd = new SqlCommand ()
+            {
+                CommandText = InsertSqlQuery
+            };
+            cmd.Parameters.AddWithValue ("@SalesmanName", obj.SalesmanName);
+            cmd.Parameters.AddWithValue ("@SMCode", obj.SMCode);
+            return Db.Insert (cmd);
         }
 
         public override Salesman ResultToObject(List<Salesman> data, int index)
         {
-            throw new NotImplementedException ();
+            return data [index];
         }
 
         public override Salesman ResultToObject(SortedDictionary<string, string> data)
         {
-            throw new NotImplementedException ();
+            Salesman salesman = new Salesman
+            {
+                ID = int.Parse (data ["ID"]),
+                SalesmanName = data ["SalesmanName"],
+                SMCode = data ["SMCode"]
+            };
+            return salesman;
         }
 
         public override List<Salesman> ResultToObject(List<SortedDictionary<string, string>> dataList)
         {
-            throw new NotImplementedException ();
+            List<Salesman> list = new List<Salesman> ();
+            foreach ( var data in dataList )
+            {
+                Salesman salesman = new Salesman
+                {
+                    ID = int.Parse (data ["ID"]),
+                    SalesmanName = data ["SalesmanName"],
+                    SMCode = data ["SMCode"]
+                };
+                list.Add (salesman);
+            }
+            return list;
         }
     }
     class PaymentDetailDB : DataOps<PaymentDetails>
@@ -804,6 +892,8 @@ namespace AprajitaRetails.ViewModel
 
         public override ProductItems ResultToObject(SortedDictionary<string, string> data)
         {
+            if ( data == null )
+                return null;
             ProductItems pItem = new ProductItems ()
             {
                 ID = Basic.ToInt (data ["ID"]),

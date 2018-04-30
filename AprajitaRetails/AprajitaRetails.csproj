@@ -474,6 +474,7 @@
     <Content Include="Localization\uk.xml" />
     <Content Include="Localization\zh-CHS.xml" />
     <Content Include="Localization\zh-CHT.xml" />
+    <Content Include="TextFile1.txt" />
     <None Include="Resources\Image1.png" />
     <None Include="Resources\Icon2.ico" />
     <None Include="Resources\Icon1.ico" />

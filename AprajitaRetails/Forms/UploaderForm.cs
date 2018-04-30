@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AprajitaRetails.Excels;
+using AprajitaRetails.Voy;
 
 namespace AprajitaRetails.Forms
 {
@@ -30,6 +31,8 @@ namespace AprajitaRetails.Forms
             itemlist.Add ("Customer");
             itemlist.Add ("SaleItemWise");
             itemlist.Add ("Purchase");
+            itemlist.Add ("VoyBill");
+
             //itemlist.Add ("PurchaseRegister");
             for ( int x = 0 ; x < itemlist.Count ; x++ )
                 CBUploadType.Items.Add (itemlist [x]);
@@ -81,6 +84,12 @@ namespace AprajitaRetails.Forms
                Int32.Parse (TXTStart.Text.Trim ()),
                Int32.Parse (TXTEnd.Text.Trim ()), pBar, "Customer"));
             }
+            else if ( CBUploadType.Text == "VoyBill" )
+            {   //Current Process
+                t = Task.Run (()=>VoyBillUpload.ReadVoyBillXML(TXTFileName.Text ));
+                //return;
+            }
+
             //else if ( CBUploadType.Text == "PurchaseRegister" )
             //{
             //    return;

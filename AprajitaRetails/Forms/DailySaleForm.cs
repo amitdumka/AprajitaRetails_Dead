@@ -26,7 +26,7 @@ namespace AprajitaRetails.Forms
             {
                 CBPaymentMode.Items.Add (item);
             }
-            Logs.LogMe ("DailySale: Loading Completed");
+            Logs.LogMe ("DailySale:PaymentMode Loading is Completed");
         }
 
         private void BTNAdd_Click(object sender, EventArgs e)
@@ -205,7 +205,7 @@ namespace AprajitaRetails.Forms
             TXTDiscount.Text = "" + saleD.Discount;
             NUDFabric.Text = "" + saleD.Fabric;
             TXTInvoiceNo.Text = saleD.InvoiceNo;
-            CBPaymentMode.SelectedIndex = saleD.PaymentMode;
+            CBPaymentMode.SelectedIndex = saleD.PaymentMode-1;
             NUDRmz.Text = "" + saleD.RMZ;
             DTPDate.Value = saleD.SaleDate;
             NUDTailoring.Text = "" + saleD.Tailoring;
@@ -229,6 +229,7 @@ namespace AprajitaRetails.Forms
         private void LoadSaleList()
         {
             List<SortedDictionary<string, string>> listItem = viewModel.GetSaleList ();
+            LVSaleList.Items.Clear ();
             foreach ( var item in listItem )
             {
                 string [] it = { item ["InvoiceNo"], item ["Amount"], item ["ID"] };

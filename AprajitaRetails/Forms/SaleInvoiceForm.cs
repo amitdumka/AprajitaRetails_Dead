@@ -20,7 +20,7 @@ namespace AprajitaRetails.Forms
         private ProductItems vItem;
         private DataTable vItemTable;
         SalePayMode vPayMode = SalePayMode.Cash;
-
+        string vSMCode = "NotFound";
         double vRoundOffAmt = 0.0;
         double vTotalAmount = 0.0;
         double vTotalDiscount = 0.0;
@@ -47,6 +47,7 @@ namespace AprajitaRetails.Forms
             ItemID = 0;
             vCustId = -1;
             vGrandTotal = 0.0;
+
             vIsNew = false;
             vPayMode = SalePayMode.Cash;
             vRoundOffAmt = 0.0;
@@ -95,7 +96,7 @@ namespace AprajitaRetails.Forms
                 nRow [7] = vDiscount;
                 nRow [8] = vItem.Tax; //TODO: GST ChangesTax need to update
                 nRow [9] = double.Parse (vAmount);
-                nRow [10] = "SM001";
+                nRow [10] = vSMCode;
                 dt.Rows.Add (nRow);
 
 
@@ -134,7 +135,7 @@ namespace AprajitaRetails.Forms
                 basicrate = double.Parse (vAmount) / ( 1 + ( gstRate / 100 ) );
                 gstAmount = ( basicrate * gstRate / 100 ) / 2;
 
-                vReciptItems.Add(  new ReceiptItemDetails ()
+                vReciptItems.Add (new ReceiptItemDetails ()
                 {       //TODO: Need to Implement GST  and Make Int/Double
                     QTY = vQty,
                     Discount = "" + vDiscount,
@@ -144,7 +145,7 @@ namespace AprajitaRetails.Forms
                     GSTAmount = "" + Math.Round (( gstAmount ), 2),
                     BasicPrice = "" + Math.Round (basicrate, 2),
                     GSTPercentage = "" + Math.Round (( gstRate / 2 ), 2)
-                } );
+                });
                 vTotalGST += gstAmount;//TODO: GST Update
                 ItemCount++; //Incrementing InvoiceCount.
 
@@ -156,6 +157,7 @@ namespace AprajitaRetails.Forms
         {
             if ( BTNAdd.Text == "Add" )
             {
+                EnableEditUI (true);
                 PerformAdd ();
                 InitPrintInvoice ();//Init Print Serive
             }
@@ -168,13 +170,14 @@ namespace AprajitaRetails.Forms
         private void BTNDelete_Click(object sender, EventArgs e)
         {
             //TODO: Implement delete
+            MessageBox.Show ("You are not allowed to delete record");
         }
 
         private void BTNDiscount_Click(object sender, EventArgs e)
         {
             //TODO: Implement Discount
-              
-            PdfPrinter.PrintRecipts ();
+            MessageBox.Show ("Discount Bill in manual is not allowed");
+           // PdfPrinter.PrintRecipts ();
         }
 
         private void BTNItemAdd_Click(object sender, EventArgs e)
@@ -206,6 +209,7 @@ namespace AprajitaRetails.Forms
             Basic.ClearUIFields (TLPInvoiceDetails);
             BTNAdd.Text = "Add";
             BTNUpdate.Text = "Update";
+            EnableEditUI (false);
         }
         //End of Mouse Click Operations
 
@@ -267,6 +271,8 @@ namespace AprajitaRetails.Forms
             LoadMobileNoList ();
             LoadCardTypes ();
             MakeTableReady ();
+            LoadSalesmanList ();
+            EnableEditUI (false);//TODO: Move to onLoad Function
         }
 
         private void MakeTableReady()
@@ -293,6 +299,25 @@ namespace AprajitaRetails.Forms
             DGVSaleItems.Columns [2].Visible = false;
             //DGVSaleItems.Columns [6].Visible = false;
             //ID, InvoiceNo, ItemCode, BarCode, StyleCode,  Qty, Rate, Discount, Tax, Amount
+        }
+
+        private void LoadSalesmanList()
+        {
+            List<string> list = sVM.GetSalesmanNameList ();
+            if ( list.Count <= 0 )
+            {   //TODO: replace to prompt to enter salesman names , show popup
+                sVM.SampleSalesman ();
+                list = sVM.GetSalesmanNameList ();
+                Logs.LogMe ("Creating default salesman");
+            }
+
+            foreach ( string name in list )
+                CBSalesman.Items.Add (name);
+
+        }
+        private void UpdateSalesmanList(string smcode)
+        {
+            vSMCode = smcode;
         }
 
         private void PerformAdd()
@@ -323,7 +348,6 @@ namespace AprajitaRetails.Forms
                 {
                     vIsNew = false;
                     BTNAdd.Text = "Add";
-                    ResetForm ();
                     if ( wantToPrint )
                     {
                         vReciptDetails.BillDate = DTPInvoiceDate.Value.ToShortDateString ();
@@ -335,9 +359,11 @@ namespace AprajitaRetails.Forms
                         vReciptItemTotal.CashAmount = "" + vTotalAmount;
                         PrintRecipts ();
                     }
+                    ResetForm ();
                     ResetVariables ();
+                    EnableEditUI (false);
                 }
-                MessageBox.Show ("Invoice is saved: " + status);
+                MessageBox.Show ("Invoice is saved!");
 
             }
             else
@@ -405,7 +431,7 @@ namespace AprajitaRetails.Forms
                     return false;
                 }
             }
-            else if(TXTCashAmount.Text=="")
+            else if ( TXTCashAmount.Text == "" )
             {
                 TXTCashAmount.Focus ();
                 MessageBox.Show ("Enter Cash Amount");
@@ -544,7 +570,10 @@ namespace AprajitaRetails.Forms
             //TODO: Urgently Display Invoice Details
             //UpdateSaleUI (CBInvoiceNo.Text);
         }
-
+        private void CBSalesman_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateSalesmanList (sVM.GetSalesmanCode (CBSalesman.Text));
+        }
         private void CBMobileNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateCustomerField (sVM.GetCustomerInfo (CBMobileNo.Text));
@@ -657,7 +686,8 @@ namespace AprajitaRetails.Forms
                 TXTFirstName.Text = cust ["FirstName"];
                 TXTLastName.Text = cust ["LastName"];
                 vCustId = Basic.ToInt (cust ["ID"]);
-                this.vReciptDetails.CustomerName = cust ["FirstName"] + cust ["LastName"];
+                if ( vReciptDetails != null )
+                    this.vReciptDetails.CustomerName = cust ["FirstName"] + cust ["LastName"];
             }
         }
         private void UpdateSaleUI(string invoiceNo)
@@ -697,10 +727,29 @@ namespace AprajitaRetails.Forms
 
         }
         //End of Invoice Print Section 
-         private void LoadSalesman()
-        {
+        private void EnableEditUI(bool enable)
+        {   // Enabling UI Elements for Adding or disabling when not requried
+            CBMobileNo.Enabled = enable;
+            TXTCashAmount.Enabled = enable;
+            TXTCardAmount.Enabled = enable;
+            TXTFourDigit.Enabled = enable;
+            CBCardType.Enabled = enable;
+            TXTAuthCode.Enabled = enable;
+            RBCreditCard.Enabled = enable;
+            RBDebitCard.Enabled = enable;
+            TXTBarCode.Enabled = enable;
+            CBSalesman.Enabled = enable;
+            TXTQty.Enabled = enable;
+            BTNItemAdd.Enabled = enable;
+            BTNDiscount.Enabled = enable;
 
         }
 
+        private void BTNUpdate_Click(object sender, EventArgs e)
+        {
+            //TODO: Implements Update
+
+            MessageBox.Show ("You are not allowed to update record");
+        }
     }
 }
