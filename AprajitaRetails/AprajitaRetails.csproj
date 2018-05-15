@@ -190,9 +190,11 @@
     <Compile Include="DataModel\FootFall.cs" />
     <Compile Include="DataModel\Purchase.cs" />
     <Compile Include="DataModel\Salary.cs" />
+    <Compile Include="DataModel\StoresDM.cs" />
     <Compile Include="Data\Attendence.cs" />
     <Compile Include="Data\DayClosing.cs" />
     <Compile Include="Data\NewCustomer.cs" />
+    <Compile Include="Data\Stores.cs" />
     <Compile Include="Excels\ExcelToDataBase.cs" />
     <Compile Include="Excels\ExcelUploader.cs" />
     <Compile Include="Forms\AttendenceForm.cs">
@@ -344,6 +346,7 @@
     <Compile Include="ViewModel\iDatabase.cs" />
     <Compile Include="ViewModel\NewCustomerDB.cs" />
     <Compile Include="ViewModel\SaleInvoiceVM.cs" />
+    <Compile Include="ViewModel\StoresVM.cs" />
     <Compile Include="Voy\VoyBill.cs" />
     <Compile Include="Voy\VoyBillUpload.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
