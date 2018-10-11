@@ -26,7 +26,13 @@ namespace AprajitaRetails
         public double IGSTAmt { get; set; }
         public double CSGTAmt { get; set; }
         public double SGSTAmt { get; set; }
-
+        public DateTime ImportTime { get; set; } // Date of Import
+        public string IsDataConsumed { get; set; }// is data imported to relevent table
+        public Purchase()
+        {
+            IsDataConsumed = "NO";
+            ImportTime = DateTime.Now;
+        }
 
 
 

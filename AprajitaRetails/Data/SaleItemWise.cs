@@ -1,4 +1,5 @@
-﻿namespace AprajitaRetails
+﻿using System;
+namespace AprajitaRetails
 {
 
     /// <summary>
@@ -30,6 +31,9 @@
         public double SGST { get; set; }       
         public string StyleCode { get; set; }
         public double Tax { get; set; } // Can be use for IGST
+        public DateTime ImportTime { get; set; } // Date of Import
+        public string IsDataConsumed { get; set; }// is data imported to relevent table
+        
      
         public SaleItemWise()
         {
@@ -37,6 +41,8 @@
             CGST=SGST=Tax = 0.00;
             LineTotal = 0.00;
             PaymentType = "";
+            IsDataConsumed = "NO";
+            ImportTime = DateTime.Now;
         }
     }
 }

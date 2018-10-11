@@ -766,8 +766,8 @@ namespace AprajitaRetails.Excels
         public int SaveRowData(Purchase sr)
         {
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
-                "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt)" +
-                "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt)";
+                "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt,ImportTime, IsDataConsumed)" +
+                "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt, @ImportTime, @IsConsumed)";
             SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
 
             cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo );
@@ -785,6 +785,8 @@ namespace AprajitaRetails.Excels
             cmd.Parameters.AddWithValue("@Cost", sr.Cost);
             cmd.Parameters.AddWithValue("@CostValue", sr.CostValue);
             cmd.Parameters.AddWithValue("@TaxAmt", sr.TaxAmt);
+            cmd.Parameters.AddWithValue("@ImportTime", sr.ImportTime);
+            cmd.Parameters.AddWithValue("@IsConsumed", sr.IsDataConsumed);
             int x = InsertQuerySql(cmd);
             //TODO: do it in thread 
             vOti.PurchaseToStock(sr);
@@ -909,8 +911,8 @@ namespace AprajitaRetails.Excels
         public override int InsertData(Purchase sr)
         {
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
-                "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt)" +
-                "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt)";
+              "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt,ImportTime, IsDataConsumed)" +
+              "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt, @ImportTime, @IsConsumed)";
             SqlCommand cmd = new SqlCommand(query, Db.DBCon);
 
             cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo);
@@ -928,6 +930,8 @@ namespace AprajitaRetails.Excels
             cmd.Parameters.AddWithValue("@Cost", sr.Cost);
             cmd.Parameters.AddWithValue("@CostValue", sr.CostValue);
             cmd.Parameters.AddWithValue("@TaxAmt", sr.TaxAmt);
+            cmd.Parameters.AddWithValue("@ImportTime", sr.ImportTime);
+            cmd.Parameters.AddWithValue("@IsConsumed", sr.IsDataConsumed);
             return cmd.ExecuteNonQuery();
         }
 
