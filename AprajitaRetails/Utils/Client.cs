@@ -60,6 +60,12 @@ namespace AprajitaRetails.Utils
         }
 
     }
+
+    class CurrentClient
+    {
+        public static Clients LoggedClient = Client.GetClientDetails();
+
+    }
     class ClientDB : DataOps<Clients>
     {
 

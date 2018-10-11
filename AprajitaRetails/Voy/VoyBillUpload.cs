@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AprajitaRetails.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -9,6 +10,8 @@ namespace AprajitaRetails.Voy
     class VBillToDB
     {
         DataTable vbTable;
+        static Clients client = CurrentClient.LoggedClient;
+
         public VBillToDB()
         {
             vbTable = new DataTable ("VoyBill");

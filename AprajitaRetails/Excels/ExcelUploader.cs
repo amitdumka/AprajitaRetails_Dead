@@ -169,23 +169,23 @@ namespace AprajitaRetails
             switch ( cell.ColumnIndex )
             {
                 case 0:
-                    sr.Grnno = cell.Text;
+                    sr.GRNNo  = cell.Text;
                     c++;
                     break;
                 case 1:
-                    sr.Grndate = DataConvertor.DateFromExcelFormat (cell.Text);
+                    sr.GRNDate = DataConvertor.DateFromExcelFormat (cell.Text);
                     c++;
                     break;
                 case 2:
-                    sr.Invoiceno = cell.Text;
+                    sr.InvoiceNo = cell.Text;
                     c++;
                     break;
                 case 3:
-                    sr.Invdate = DataConvertor.DateFromExcelFormat (cell.Text);
+                    sr.InvoiceDate = DataConvertor.DateFromExcelFormat (cell.Text);
                     c++;
                     break;
                 case 4:
-                    sr.Suppliername = cell.Text;
+                    sr.SupplierName = cell.Text;
                     c++;
                     break;
                 case 5:
@@ -193,27 +193,27 @@ namespace AprajitaRetails
                     c++;
                     break;
                 case 6:
-                    sr.Productname = cell.Text;
+                    sr.ProductName = cell.Text;
                     c++;
                     break;
                 case 7:
-                    sr.Stylecode = cell.Text;
+                    sr.StyleCode = cell.Text;
                     c++;
                     break;
                 case 8:
-                    sr.Itemdesc = cell.Text;
+                    sr.ItemDesc = cell.Text;
                     c++;
                     break;
                 case 9:
-                    sr.Qty = cell.Amount;
+                    sr.Quantity = cell.Amount;
                     c++;
                     break;
                 case 10:
-                    sr.Mrp = cell.Amount;
+                    sr.MRP = cell.Amount;
                     c++;
                     break;
                 case 11:
-                    sr.Mrpvalue = cell.Amount;
+                    sr.MRPValue = cell.Amount;
                     c++;
                     break;
                 case 12:
@@ -221,11 +221,11 @@ namespace AprajitaRetails
                     c++;
                     break;
                 case 13:
-                    sr.Costvalue = cell.Amount;
+                    sr.CostValue = cell.Amount;
                     c++;
                     break;
                 case 14:
-                    sr.Taxamt = cell.Amount;
+                    sr.TaxAmt = cell.Amount;
                     c++;
                     break;
             }

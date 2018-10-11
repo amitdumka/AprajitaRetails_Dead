@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace AprajitaRetails
 {
+    //This Class is Obsolute and Use as base class to redesign Excel to DataBase
     public class ExcelToDB
     {
         private SqlConnection sqlDB;
@@ -180,22 +181,21 @@ namespace AprajitaRetails
             {
                 cmd = new SqlCommand (query, sqlDB);
             }
-            cmd.Parameters.AddWithValue ("@GRNNo", sr.Grnno);
-            cmd.Parameters.AddWithValue ("@GRNDate", sr.Grndate);
-            cmd.Parameters.AddWithValue ("@InvoiceNo", sr.Invoiceno);
-            cmd.Parameters.AddWithValue ("@InvoiceDate", sr.Invdate);
-            cmd.Parameters.AddWithValue ("@SupplierName", sr.Suppliername);
-            cmd.Parameters.AddWithValue ("@Barcode", sr.Barcode);
-            cmd.Parameters.AddWithValue ("@ProductName", sr.Productname);
-            cmd.Parameters.AddWithValue ("@StyleCode", sr.Stylecode);
-            cmd.Parameters.AddWithValue ("@ItemDesc", sr.Itemdesc);
-            cmd.Parameters.AddWithValue ("@Quantity", sr.Qty);
-            cmd.Parameters.AddWithValue ("@MRP", sr.Mrp);
-            cmd.Parameters.AddWithValue ("@MRPValue", sr.Mrpvalue);
-            cmd.Parameters.AddWithValue ("@Cost", sr.Cost);
-            cmd.Parameters.AddWithValue ("@CostValue", sr.Costvalue);
-            cmd.Parameters.AddWithValue ("@TaxAmt", sr.Taxamt);
-            return InsertQuerySql (cmd);
+            cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo);
+            cmd.Parameters.AddWithValue("@GRNDate", sr.GRNDate);
+            cmd.Parameters.AddWithValue("@InvoiceNo", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue("@InvoiceDate", sr.InvoiceDate);
+            cmd.Parameters.AddWithValue("@SupplierName", sr.SupplierName);
+            cmd.Parameters.AddWithValue("@Barcode", sr.Barcode);
+            cmd.Parameters.AddWithValue("@ProductName", sr.ProductName);
+            cmd.Parameters.AddWithValue("@StyleCode", sr.StyleCode);
+            cmd.Parameters.AddWithValue("@ItemDesc", sr.ItemDesc);
+            cmd.Parameters.AddWithValue("@Quantity", sr.Quantity);
+            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue("@MRPValue", sr.MRPValue);
+            cmd.Parameters.AddWithValue("@Cost", sr.Cost);
+            cmd.Parameters.AddWithValue("@CostValue", sr.CostValue);
+            cmd.Parameters.AddWithValue("@TaxAmt", sr.TaxAmt); return InsertQuerySql (cmd);
         }
     }
 

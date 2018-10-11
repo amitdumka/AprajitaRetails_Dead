@@ -12,23 +12,366 @@ using CyberN;
 
 namespace AprajitaRetails.Excels
 {
+    public class Querys
+    {
+        // TODO: Not be part of final realse. 
+        //TODO: better verison of reporting can be done on based on this
+        public static string qAll = "select* from SalesRegister";
+        public static string qAllPurchase = "select * from Purchase";
+        public static string qByDay = "select InvoiceDate, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by InvoiceDate";
+        public static string qByDayP = "select InvoiceDate , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by InvoiceDate";
+        public static string qByMonth = "select  DATEPART(MM, InvoiceDate)as Month, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(MM, InvoiceDate)";
+        public static string qByMonthP = "select DATEPART(MM, InvoiceDate)as Month , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by DATEPART(MM, InvoiceDate)";
+        public static string qByYear = "select  DATEPART(YEAR, InvoiceDate)as Year, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(YEAR, InvoiceDate)";
+        public static string qByYearP = "select DATEPART(YEAR, InvoiceDate)as Year,  Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by DATEPART(Year, InvoiceDate)";
+    }
+
+    public class QuerySales
+    {
+        // TODO: Not be part of final realse. 
+        //TODO: better verison of reporting can be done on based on this
+        public static string qAll = "select* from Sales";
+        public static string qByDay = "select InvoiceDate, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from Sales group by InvoiceDate";
+        public static string qByDayP = "select InvoiceDate , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From Sales Group by InvoiceDate";
+        public static string qByMonth = "select  DATEPART(MM, InvoiceDate)as Month, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(MM, InvoiceDate)";
+        public static string qByMonthP = "select DATEPART(MM, InvoiceDate)as Month , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From Sales Group by DATEPART(MM, InvoiceDate)";
+        public static string qByYear = "select  DATEPART(YEAR, InvoiceDate)as Year, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(YEAR, InvoiceDate)";
+        public static string qByYearP = "select DATEPART(YEAR, InvoiceDate)as Year,  Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From Sales Group by DATEPART(Year, InvoiceDate)";
+        //public static string qAllPurchase = "select * from Purchase";
+    }
+
+    class Cust
+    {
+        public Cust()
+        {
+            Gen = 0;
+            FirstName = "";
+            LastName = "";
+            Address = "";
+            MobileNo = "";
+        }
+
+        public string Address { get; set; }
+        public string FirstName { get; set; }
+        public int Gen { get; set; }
+        public string LastName { get; set; }
+        public string MobileNo { get; set; }
+    }
+
     class ExcelToDataBase
     {
-        public string FileName { get; set; }
         ObjectToDataBase Db;
-
         public ExcelToDataBase()
         {
-            Db = new ObjectToDataBase ();
+            Db = new ObjectToDataBase();
         }
-        private int I(string num)
+
+        public string FileName { get; set; }
+                public int ReadCustomer(string fname, int start, int end, ProgressBar pBar, string tablename)
         {
-            return Int32.Parse (num.Trim ());
+            DataTable dt = new DataTable(tablename);
+            int Row = 0;
+            int r = 0, c = 0;
+            Cust sr;
+            Logs.LogMe("Started Reading Excel Sheet for table: " + tablename);
+            foreach (var worksheet in Workbook.Worksheets(fname))
+            {
+                Logs.LogMe(worksheet.ToString());
+
+                foreach (var row in worksheet.Rows)
+                {
+                    Logs.LogMe("Row=" + row.ToString() + "RowNo=" + Row);
+                    if (Row <= end)
+                    {
+                        if (Row >= start)
+                        {
+                            Logs.LogMe("iRow=" + r);
+                            sr = new Cust();
+                            c = 0;
+                            foreach (var cell in row.Cells)
+                            {
+                                if (cell != null)
+                                {
+                                    c = AddColCustomer(cell, ref sr, c);
+                                }
+                                else
+                                {
+                                    Logs.LogMe("C=" + c + "Null");
+                                }
+                                c++;
+                            }
+                            if (Db.SaveRowData(sr) > 0)
+                            {
+                                r++;
+                                pBar.BeginInvoke(new Action(() =>
+                              {
+                                  pBar.PerformStep();
+                              }));
+                                Logs.LogMe("Row=" + r + " got saved");
+
+                            }
+                        }
+                        Row++;
+                        Logs.LogMe("Row will be" + Row + "\tr=" + r);
+                    }
+                    else
+                    {
+                        Logs.LogMe("End Target Matched , Breaking out now");
+                        break;
+                    }
+                }
+            }
+            Logs.LogMe("End of line");
+            return r;
         }
+
+        // Reader Caller Section Start Here 
+        public int ReadDataSaleRegister(string fname, int start, int end, ProgressBar pBar, string tablename)
+        {
+            //GST Features Added
+            DataTable dt = new DataTable(tablename);
+            int Row = 0;
+            int r = 0, c = 0;
+            SaleRegister sr;
+            Logs.LogMe("Started reading");
+            foreach (var worksheet in Workbook.Worksheets(fname))
+            {
+                Logs.LogMe(worksheet.ToString());
+
+                foreach (var row in worksheet.Rows)
+                {
+                    //Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
+                    if (Row <= end)
+                    {
+                        if (Row >= start)
+                        {
+                            Logs.LogMe("iRow=" + r);
+                            sr = new SaleRegister();
+                            c = 0;
+                            foreach (var cell in row.Cells)
+                            {
+                                if (cell != null)
+                                {
+                                    c = AddCol(cell, ref sr, c);
+                                }
+                                else
+                                {
+                                    Logs.LogMe("C=" + c + "Null");
+                                }
+                                c++;
+                            }
+                            if (Db.SaveRowData(sr) > 0)
+                            {
+                                r++;
+                                pBar.BeginInvoke(new Action(() =>
+                              {
+                                  pBar.PerformStep();
+                              }));
+                                Logs.LogMe("Row=" + r + " got saved");
+
+                            }
+                        }
+                        Row++;
+                        // Logs.LogMe ("Row will be" + Row + "\tr=" + r);
+                    }
+                    else
+                    {
+                        Logs.LogMe("End Target Matched , Breaking out now");
+                        break;
+                    }
+                }
+            }
+            Logs.LogMe("end , record=" + r);
+            return r;
+        }
+
+        public int ReadDataSales(string fname, int start, int end, ProgressBar pBar, string tablename)
+        {
+            //TODO: GST Sale Invoice is implemented. Fine tune can be done in future.
+            DataTable dt = new DataTable(tablename);
+
+            int Row = 0;
+            int r = 0, c = 0;
+            SaleItemWise sr;
+            Logs.LogMe("Started reading");
+            foreach (var worksheet in Workbook.Worksheets(fname))
+            {
+
+                foreach (var row in worksheet.Rows)
+                {
+                    // Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
+                    if (Row <= end)
+                    {
+                        if (Row >= start)// TODO: It will Start from 8 . Do check execl file
+                        {
+                            //       Logs.LogMe ("iRow=" + r);
+                            sr = new SaleItemWise();
+                            c = 0;
+                            foreach (var cell in row.Cells)
+                            {
+                                if (cell != null)
+                                {
+                                    c = AddColSale(cell, ref sr, c);
+                                }
+                                else
+                                {
+                                    if (c == 6)
+                                        Logs.LogMe("C=" + c + " is Null");
+                                    c++;
+
+                                }
+
+                            }
+                            if (Db.SaveRowData(sr) > 0)
+                            {
+                                r++;
+                                pBar.BeginInvoke(new Action(() =>
+                              {
+                                  pBar.PerformStep();
+                              }));
+                                Logs.LogMe("Row=" + r + " got saved");
+
+                            }
+                        }
+                        Row++;
+                        // Logs.LogMe ("Row will be" + Row + "\tr=" + r);
+                    }
+                    else
+                    {
+                        Logs.LogMe("End Target Matched , Breaking out now");
+                        break;
+                    }
+                }
+                break;
+            }
+            Logs.LogMe("end , record=" + r);
+            return r;
+        }
+
+        public int ReadPurchase(string fname, int start, int end, ProgressBar pBar, string tablename)
+        {
+            DataTable dt = new DataTable(tablename);
+            int Row = 0;
+            int r = 0, c = 0;
+            Purchase sr;
+            Logs.LogMe("Started Reading Excel Sheet");
+            foreach (var worksheet in Workbook.Worksheets(fname))
+            {
+                Logs.LogMe(worksheet.ToString());
+
+                foreach (var row in worksheet.Rows)
+                {
+                    Logs.LogMe("Row=" + row.ToString() + "RowNo=" + Row);
+                    if (Row <= end)
+                    {
+                        if (Row >= start)
+                        {
+                            Logs.LogMe("iRow=" + r);
+                            sr = new Purchase();
+                            c = 0;
+                            foreach (var cell in row.Cells)
+                            {
+                                if (cell != null)
+                                {
+                                    c = AddColPurchase(cell, ref sr, c);
+                                    
+                                }
+                                else
+                                {
+                                    Logs.LogMe("C=" + c + "Null");
+                                }
+                                c++;
+                            }
+                            if (Db.SaveRowData(sr) > 0)
+                            {
+                                r++;
+                                pBar.BeginInvoke(new Action(() =>
+                              {
+                                  pBar.PerformStep();
+                              }));
+                                Logs.LogMe("Row=" + r + " got saved");
+
+                            }
+                        }
+                        Row++;
+                        Logs.LogMe("Row will be" + Row + "\tr=" + r);
+                    }
+                    else
+                    {
+                        Logs.LogMe("End Target Matched , Breaking out now");
+                        break;
+                    }
+                }
+            }
+            Logs.LogMe("End of line");
+            return r;
+        }
+
+        // Extra Functions start from here
+        
+
+        private int AddCol(Cell cell, ref SaleRegister sr, int c)
+        {
+            //Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
+            switch (cell.ColumnIndex)
+            {
+                case 0:
+                    sr.InvoiceNo = cell.Text;
+                    c++;
+                    break;
+                case 1:
+                    sr.InvDate = DataConvertor.DateFromExcelFormatString(cell.Text);
+                    c++;
+                    break;
+                case 2:
+                    sr.InvType = cell.Text;
+                    c++;
+                    break;
+                case 3:
+                    sr.QTY = (int)cell.Amount;
+                    c++;
+                    break;
+                case 4:
+                    sr.MRP = cell.Amount;
+                    c++;
+                    break;
+                case 6:
+                    sr.BasicRate = cell.Amount;
+                    c++;
+                    break;
+                case 5:
+                    sr.Discount = cell.Amount;
+                    c++;
+                    break;
+                case 7:
+                    sr.Tax = cell.Amount;
+                    c++;
+                    break;
+                case 8:
+                    sr.RoundOff = cell.Amount;
+                    c++;
+                    break;
+                case 9:
+                    sr.BillAmnt = cell.Amount;
+                    c++;
+                    break;
+                case 10:
+                    sr.paymentType = cell.Text;
+                    c++;
+                    break;
+                    // case 11: sr.coupon = cell.Text; c++; break; case 12: sr.couponAmt = cell.Text;
+                    // c++; break; case 13: sr.LP = cell.Value; c++; break; case 14: sr.instaorder =
+                    // cell.Text; c++; break; case 15: sr.Tailoring = cell.Text; c++; break;
+            }
+
+            return c;
+        }
+
+        // Adding Col start from Here
         private int AddColCustomer(Cell cell, ref Cust sr, int c)
         {
-            Logs.LogMe ("Customer:cell(" + cell.ColumnIndex + ")=" + cell.Text);
-            switch ( cell.ColumnIndex )
+            Logs.LogMe("Customer:cell(" + cell.ColumnIndex + ")=" + cell.Text);
+            switch (cell.ColumnIndex)
             {
                 case 6:
                     sr.FirstName = cell.Text;
@@ -81,17 +424,88 @@ namespace AprajitaRetails.Excels
 
             return c;
         }
-        private int AddColSale(Cell cell, ref SaleItemWise sr, int c)
+
+        private int AddColPurchase(Cell cell, ref Purchase sr, int c)
         {
-            switch ( cell.ColumnIndex )
+            Logs.LogMe("cell(" + cell.ColumnIndex + ")=" + cell.Text);
+            switch (cell.ColumnIndex)
             {
                 case 0:
-                    Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
+                    sr.GRNNo = cell.Text;
+                    c++;
+                    break;
+                case 1:
+                    sr.GRNDate = DataConvertor.DateFromExcelFormat(cell.Text);
+                    c++;
+                    break;
+                case 2:
+                    sr.InvoiceNo = cell.Text;
+                    c++;
+                    break;
+                case 3:
+                    sr.InvoiceDate = DataConvertor.DateFromExcelFormat(cell.Text);
+                    c++;
+                    break;
+                case 4:
+                    sr.SupplierName = cell.Text;
+                    c++;
+                    break;
+                case 5:
+                    sr.Barcode = cell.Text;
+                    c++;
+                    break;
+                case 6:
+                    sr.ProductName= cell.Text;
+                    c++;
+                    break;
+                case 7:
+                    sr.StyleCode = cell.Text;
+                    c++;
+                    break;
+                case 8:
+                    sr.ItemDesc = cell.Text;
+                    c++;
+                    break;
+                case 9:
+                    sr.Quantity = cell.Amount;
+                    c++;
+                    break;
+                case 10:
+                    sr.MRP = cell.Amount;
+                    c++;
+                    break;
+                case 11:
+                    sr.MRPValue = cell.Amount;
+                    c++;
+                    break;
+                case 12:
+                    sr.Cost = cell.Amount;
+                    c++;
+                    break;
+                case 13:
+                    sr.CostValue = cell.Amount;
+                    c++;
+                    break;
+                case 14:
+                    sr.TaxAmt = cell.Amount;
+                    c++;
+                    break;
+            }
+
+            return c;
+        }
+
+        private int AddColSale(Cell cell, ref SaleItemWise sr, int c)
+        {
+            switch (cell.ColumnIndex)
+            {
+                case 0:
+                    //Logs.LogMe("cell(" + cell.ColumnIndex + ")=" + cell.Text);
                     sr.InvoiceNo = cell.Text;
                     c++;
                     break;
                 case 1:
-                    Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
+                    //Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
                     sr.InvDate = cell.Text; //DataConvertor.DateFromExcelFormatString (cell.Text);
                     c++;
                     break;
@@ -112,23 +526,25 @@ namespace AprajitaRetails.Excels
                     c++;
                     break;
                 case 6:
+                    sr.HSNCode = cell.Text;
+                    //Logs.LogMe("HSNCode:'" + cell.Text + "'");
+                    c++;
+                    break;
+
+                case 7:
                     sr.Barcode = cell.Text;
                     c++;
                     break;
-                case 7:
+                case 8:
                     sr.StyleCode = cell.Text;
                     c++;
                     break;
-                case 8:
-                    sr.QTY = (int) cell.Amount;
-                    c++;
-                    break;
                 case 9:
-                    sr.MRP = cell.Amount;
+                    sr.QTY = (int)cell.Amount;
                     c++;
                     break;
                 case 10:
-                    sr.BasicRate = cell.Amount;
+                    sr.MRP = cell.Amount;
                     c++;
                     break;
                 case 11:
@@ -136,467 +552,73 @@ namespace AprajitaRetails.Excels
                     c++;
                     break;
                 case 12:
+                    sr.BasicRate = cell.Amount;
+                    c++;
+                    break;
+
+                case 13:
                     sr.Tax = cell.Amount;
                     c++;
                     break;
-                case 14:
-                    sr.RoundOff = cell.Amount;
-                    c++;
-                    break;
-                case 13:
-                    sr.LineTotal = cell.Amount;
-                    c++;
-                    break;
-                case 15:
-                    sr.BillAmnt = cell.Amount;
-                    c++;
-                    break;
+                case 14: sr.SGST = cell.Amount; c++; break;
+                case 15: sr.CGST = cell.Amount; c++; break;
+
                 case 16:
-                    sr.Saleman = cell.Text;
+                    sr.RoundOff = cell.Amount;
                     c++;
                     break;
                 case 17:
-                    sr.PaymentType = cell.Text;
+                    sr.LineTotal = cell.Amount;
                     c++;
                     break;
-            }
-
-            return c;
-        }
-        private int AddCol(Cell cell, ref SaleRegister sr, int c)
-        {
-            //Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
-            switch ( cell.ColumnIndex )
-            {
-                case 0:
-                    sr.InvoiceNo = cell.Text;
-                    c++;
-                    break;
-                case 1:
-                    sr.InvDate = DataConvertor.DateFromExcelFormatString (cell.Text);
-                    c++;
-                    break;
-                case 2:
-                    sr.InvType = cell.Text;
-                    c++;
-                    break;
-                case 3:
-                    sr.QTY = (int) cell.Amount;
-                    c++;
-                    break;
-                case 4:
-                    sr.MRP = cell.Amount;
-                    c++;
-                    break;
-                case 6:
-                    sr.BasicRate = cell.Amount;
-                    c++;
-                    break;
-                case 5:
-                    sr.Discount = cell.Amount;
-                    c++;
-                    break;
-                case 7:
-                    sr.Tax = cell.Amount;
-                    c++;
-                    break;
-                case 8:
-                    sr.RoundOff = cell.Amount;
-                    c++;
-                    break;
-                case 9:
+                case 18:
                     sr.BillAmnt = cell.Amount;
                     c++;
                     break;
-                case 10:
-                    sr.paymentType = cell.Text;
+                case 19:
+                    sr.PaymentType = cell.Text;
                     c++;
                     break;
-                    // case 11: sr.coupon = cell.Text; c++; break; case 12: sr.couponAmt = cell.Text;
-                    // c++; break; case 13: sr.LP = cell.Value; c++; break; case 14: sr.instaorder =
-                    // cell.Text; c++; break; case 15: sr.Tailoring = cell.Text; c++; break;
+                case 20:
+                    sr.Saleman = cell.Text;
+                    c++;
+                    break;
+                case 25:
+                    sr.LP = cell.Text;
+                    c++;
+                    break;
+
             }
 
             return c;
         }
-        private int AddColPurchase(Cell cell, ref Purchase sr, int c)
+
+        private int I(string num)
         {
-            Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
-            switch ( cell.ColumnIndex )
-            {
-                case 0:
-                    sr.Grnno = cell.Text;
-                    c++;
-                    break;
-                case 1:
-                    sr.Grndate = DataConvertor.DateFromExcelFormat (cell.Text);
-                    c++;
-                    break;
-                case 2:
-                    sr.Invoiceno = cell.Text;
-                    c++;
-                    break;
-                case 3:
-                    sr.Invdate = DataConvertor.DateFromExcelFormat (cell.Text);
-                    c++;
-                    break;
-                case 4:
-                    sr.Suppliername = cell.Text;
-                    c++;
-                    break;
-                case 5:
-                    sr.Barcode = cell.Text;
-                    c++;
-                    break;
-                case 6:
-                    sr.Productname = cell.Text;
-                    c++;
-                    break;
-                case 7:
-                    sr.Stylecode = cell.Text;
-                    c++;
-                    break;
-                case 8:
-                    sr.Itemdesc = cell.Text;
-                    c++;
-                    break;
-                case 9:
-                    sr.Qty = cell.Amount;
-                    c++;
-                    break;
-                case 10:
-                    sr.Mrp = cell.Amount;
-                    c++;
-                    break;
-                case 11:
-                    sr.Mrpvalue = cell.Amount;
-                    c++;
-                    break;
-                case 12:
-                    sr.Cost = cell.Amount;
-                    c++;
-                    break;
-                case 13:
-                    sr.Costvalue = cell.Amount;
-                    c++;
-                    break;
-                case 14:
-                    sr.Taxamt = cell.Amount;
-                    c++;
-                    break;
-            }
-
-            return c;
+            return Int32.Parse(num.Trim());
         }
-        public int ReadDataSaleRegister(string fname, int start, int end, ProgressBar pBar, string tablename)
-        {
-            DataTable dt = new DataTable (tablename);
-            int Row = 0;
-            int r = 0, c = 0;
-            SaleRegister sr;
-            Logs.LogMe ("Started reading");
-            foreach ( var worksheet in Workbook.Worksheets (fname) )
-            {
-                Logs.LogMe (worksheet.ToString ());
-
-                foreach ( var row in worksheet.Rows )
-                {
-                    //Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
-                    if ( Row <= end )
-                    {
-                        if ( Row >= start )
-                        {
-                            //Logs.LogMe ("iRow=" + r);
-                            sr = new SaleRegister ();
-                            c = 0;
-                            foreach ( var cell in row.Cells )
-                            {
-                                if ( cell != null )
-                                {
-                                    c = AddCol (cell, ref sr, c);
-                                }
-                                else
-                                {
-                                    Logs.LogMe ("C=" + c + "Null");
-                                }
-                                c++;
-                            }
-                            if ( Db.SaveRowData (sr) > 0 )
-                            {
-                                r++;
-                                pBar.BeginInvoke (new Action (() =>
-                                {
-                                    pBar.PerformStep ();
-                                }));
-                                //  Logs.LogMe ("Row=" + r + " got saved");
-
-                            }
-                        }
-                        Row++;
-                        // Logs.LogMe ("Row will be" + Row + "\tr=" + r);
-                    }
-                    else
-                    {
-                        Logs.LogMe ("End Target Matched , Breaking out now");
-                        break;
-                    }
-                }
-            }
-            Logs.LogMe ("end , record=" + r);
-            return r;
-        }
-        public int ReadDataSales(string fname, int start, int end, ProgressBar pBar, string tablename)
-        {
-            DataTable dt = new DataTable (tablename);
-
-            int Row = 0;
-            int r = 0, c = 0;
-            SaleItemWise sr;
-            Logs.LogMe ("Started reading");
-            foreach ( var worksheet in Workbook.Worksheets (fname) )
-            {
-                Logs.LogMe (worksheet.ToString ());
-
-                foreach ( var row in worksheet.Rows )
-                {
-                    // Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
-                    if ( Row <= end )
-                    {
-                        if ( Row >= start )
-                        {
-                            //       Logs.LogMe ("iRow=" + r);
-                            sr = new SaleItemWise ();
-                            c = 0;
-                            foreach ( var cell in row.Cells )
-                            {
-                                if ( cell != null )
-                                {
-                                    c = AddColSale (cell, ref sr, c);
-                                }
-                                else
-                                {
-                                    Logs.LogMe ("C=" + c + "Null");
-                                }
-                                c++;
-                            }
-                            if ( Db.SaveRowData (sr) > 0 )
-                            {
-                                r++;
-                                pBar.BeginInvoke (new Action (() =>
-                                {
-                                    pBar.PerformStep ();
-                                }));
-                                //         Logs.LogMe ("Row=" + r + " got saved");
-
-                            }
-                        }
-                        Row++;
-                        // Logs.LogMe ("Row will be" + Row + "\tr=" + r);
-                    }
-                    else
-                    {
-                        Logs.LogMe ("End Target Matched , Breaking out now");
-                        break;
-                    }
-                }
-            }
-            Logs.LogMe ("end , record=" + r);
-            return r;
-        }
-        public int ReadPurchase(string fname, int start, int end, ProgressBar pBar, string tablename)
-        {
-            DataTable dt = new DataTable (tablename);
-            int Row = 0;
-            int r = 0, c = 0;
-            Purchase sr;
-            Logs.LogMe ("Started Reading Excel Sheet");
-            foreach ( var worksheet in Workbook.Worksheets (fname) )
-            {
-                Logs.LogMe (worksheet.ToString ());
-
-                foreach ( var row in worksheet.Rows )
-                {
-                    Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
-                    if ( Row <= end )
-                    {
-                        if ( Row >= start )
-                        {
-                            Logs.LogMe ("iRow=" + r);
-                            sr = new Purchase ();
-                            c = 0;
-                            foreach ( var cell in row.Cells )
-                            {
-                                if ( cell != null )
-                                {
-                                    c = AddColPurchase (cell, ref sr, c);
-                                    //TODO: GST Do GST/Vat Calulation and update Purchase object "sr"
-                                    TaxUpdate ( ref sr);     //TODO: gst problem taxation
-                                }
-                                else
-                                {
-                                    Logs.LogMe ("C=" + c + "Null");
-                                }
-                                c++;
-                            }
-                            if ( Db.SaveRowData (sr) > 0 )
-                            {
-                                r++;
-                                pBar.BeginInvoke (new Action (() =>
-                                {
-                                    pBar.PerformStep ();
-                                }));
-                                Logs.LogMe ("Row=" + r + " got saved");
-
-                            }
-                        }
-                        Row++;
-                        Logs.LogMe ("Row will be" + Row + "\tr=" + r);
-                    }
-                    else
-                    {
-                        Logs.LogMe ("End Target Matched , Breaking out now");
-                        break;
-                    }
-                }
-            }
-            Logs.LogMe ("End of line");
-            return r;
-        }
-        public int ReadCustomer(string fname, int start, int end, ProgressBar pBar, string tablename)
-        {
-            DataTable dt = new DataTable (tablename);
-            int Row = 0;
-            int r = 0, c = 0;
-            Cust sr;
-            Logs.LogMe ("Started Reading Excel Sheet for table: " + tablename);
-            foreach ( var worksheet in Workbook.Worksheets (fname) )
-            {
-                Logs.LogMe (worksheet.ToString ());
-
-                foreach ( var row in worksheet.Rows )
-                {
-                    Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
-                    if ( Row <= end )
-                    {
-                        if ( Row >= start )
-                        {
-                            Logs.LogMe ("iRow=" + r);
-                            sr = new Cust ();
-                            c = 0;
-                            foreach ( var cell in row.Cells )
-                            {
-                                if ( cell != null )
-                                {
-                                    c = AddColCustomer (cell, ref sr, c);
-                                }
-                                else
-                                {
-                                    Logs.LogMe ("C=" + c + "Null");
-                                }
-                                c++;
-                            }
-                            if ( Db.SaveRowData (sr) > 0 )
-                            {
-                                r++;
-                                pBar.BeginInvoke (new Action (() =>
-                                {
-                                    pBar.PerformStep ();
-                                }));
-                                Logs.LogMe ("Row=" + r + " got saved");
-
-                            }
-                        }
-                        Row++;
-                        Logs.LogMe ("Row will be" + Row + "\tr=" + r);
-                    }
-                    else
-                    {
-                        Logs.LogMe ("End Target Matched , Breaking out now");
-                        break;
-                    }
-                }
-            }
-            Logs.LogMe ("End of line");
-            return r;
-        }
-        public void TaxUpdate(ref Purchase sr )
-        {
-            //TODO; GST NEED    to lookinto this 
-            sr.TaxType = -999;
-            sr.HSNCode = -999;
-            sr.TaxRate = -999;
-            sr.TaxAmount = -999;
-
-        }
-        public int CalculateTaxes(ref Purchase sr, int c)
-        {
-            if ( sr.HSNCode != -999 )
-            {
-                //GST
-                sr.TaxType = UtilOps.TaxMode (TaxType.Gst);
-
-            }
-            else if(sr.HSNCode==-999  && sr.Taxamt<1 && sr.Taxamt>-1)
-            {
-                //Vat
-                //Fabric  not taxable
-                sr.TaxType = UtilOps.TaxMode( TaxType.Vat);
-            }
-            else
-            {   // RMZ        and all taxable
-                sr.TaxType = UtilOps.TaxMode (TaxType.Vat);
-            }
-            return -1;
-        }
-
     }
 
     class ObjectToDataBase
     {
+        //TODO: Implementing GST Features in All Area. Remove line if completed
         DataBase vDb;
         ObjectToItem vOti;
         public ObjectToDataBase()
         {
-            vDb = new DataBase (ConType.SQLDB);
-            vOti = new ObjectToItem ();
+            vDb = new DataBase(ConType.SQLDB);
+            vOti = new ObjectToItem();
         }
 
-        /// <summary>
-        /// Insert Query Sql
-        /// </summary>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
-        private int InsertQuerySql(SqlCommand cmd)
-        {
-            try
-            {
-                int status = cmd.ExecuteNonQuery ();
-                if ( status > 0 )
-                {
-                    Logs.LogMe ("Insert done ");
-                    return 1;
-                }
-                else
-                {
-                    Logs.LogMe ("Insert Failed :" + cmd.CommandText);
-                    return 0;
-                }
-            }
-            catch ( Exception e )
-            {
-                Logs.LogMe ("Insert Error: " + e.Message + "\n\tCommandText" + cmd.CommandText);
-                return -1;
-            }
-        }
         public bool IsCustomer(string mobile)
         {
-            if ( mobile == null || mobile.Length <= 0 )
+            if (mobile == null || mobile.Length <= 0)
                 return false;
             string sql = "select count(ID) from Customer where MobileNo=@mob";
-            SqlCommand cmd = new SqlCommand (sql, vDb.DBCon);
-            cmd.Parameters.AddWithValue ("@mob", mobile);
-            int x = (int) cmd.ExecuteScalar ();
-            if ( x > 0 )
+            SqlCommand cmd = new SqlCommand(sql, vDb.DBCon);
+            cmd.Parameters.AddWithValue("@mob", mobile);
+            int x = (int)cmd.ExecuteScalar();
+            if (x > 0)
                 return true;
             else
                 return false;
@@ -609,25 +631,25 @@ namespace AprajitaRetails.Excels
         /// <returns></returns>
         public int SaveRowData(Cust sr)
         {
-            Logs.LogMe ("SaveRowData: Customer");
-            string [] s;
+            Logs.LogMe("SaveRowData: Customer");
+            string[] s;
             //TODO: Cust Insert
-            if ( sr != null && sr.FirstName.Trim ().Length > 0 )
+            if (sr != null && sr.FirstName.Trim().Length > 0)
             {
-                if ( !IsCustomer (sr.MobileNo) )
+                if (!IsCustomer(sr.MobileNo))
                 {
-                    s = sr.FirstName.Split (' ');
-                    if ( s.Length > 0 )
-                        sr.FirstName = s [0] + " " + s [1];
-                    if ( s [0].ToLower ().Contains ("mr.") )
+                    s = sr.FirstName.Split(' ');
+                    if (s.Length > 0)
+                        sr.FirstName = s[0] + " " + s[1];
+                    if (s[0].ToLower().Contains("mr."))
                         sr.Gen = 1;
-                    else if ( s [0].ToLower ().Contains ("mrs.") || s [0].ToLower ().Contains ("miss.") )
+                    else if (s[0].ToLower().Contains("mrs.") || s[0].ToLower().Contains("miss."))
                         sr.Gen = 2;
-                    for ( int i = 2 ; i < s.Length ; i++ )
+                    for (int i = 2; i < s.Length; i++)
                     {
-                        sr.LastName = sr.LastName + " " + s [i];
+                        sr.LastName = sr.LastName + " " + s[i];
                     }
-                    if ( sr.MobileNo.Length <= 0 )
+                    if (sr.MobileNo.Length <= 0)
                         sr.MobileNo = "NA";
                 }
                 else
@@ -646,18 +668,18 @@ namespace AprajitaRetails.Excels
                 "[City], [MobileNo], [Gender], [NoOfBills], [TotalAmount]) " +
                 " VALUES (@Age,@fname , @lname, @city, @Mob, @gen, @nof, " +
                 "@TAMT)";
-            SqlCommand cmd = new SqlCommand (query, vDb.DBCon);
+            SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
 
-            cmd.Parameters.AddWithValue ("@fname", sr.FirstName);
-            cmd.Parameters.AddWithValue ("@lname", sr.LastName);
-            cmd.Parameters.AddWithValue ("@Mob", sr.MobileNo);
-            cmd.Parameters.AddWithValue ("@Age", 0);
-            cmd.Parameters.AddWithValue ("@gen", sr.Gen);
-            cmd.Parameters.AddWithValue ("@city", sr.Address);
-            cmd.Parameters.AddWithValue ("@nof", 0);
-            cmd.Parameters.AddWithValue ("@TAMT", 0);
-            Logs.LogMe ("Customer:Querry:=>" + query);
-            return InsertQuerySql (cmd);
+            cmd.Parameters.AddWithValue("@fname", sr.FirstName);
+            cmd.Parameters.AddWithValue("@lname", sr.LastName);
+            cmd.Parameters.AddWithValue("@Mob", sr.MobileNo);
+            cmd.Parameters.AddWithValue("@Age", 0);
+            cmd.Parameters.AddWithValue("@gen", sr.Gen);
+            cmd.Parameters.AddWithValue("@city", sr.Address);
+            cmd.Parameters.AddWithValue("@nof", 0);
+            cmd.Parameters.AddWithValue("@TAMT", 0);
+            Logs.LogMe("Customer:Querry:=>" + query);
+            return InsertQuerySql(cmd);
         }
 
         /// <summary>
@@ -668,33 +690,37 @@ namespace AprajitaRetails.Excels
         public int SaveRowData(SaleItemWise sr)
         {
             string query = "INSERT INTO [dbo].[Sales] " +
-                "( [InvoiceNo], [InvoiceDate], [InvoiceType],  " +
-                "BrandName,ProductName,ItemDescrpetion,BarCode,StyleCode," +
-                "[Qty], [MRP], [Discount], [BasicAmt], [TaxAmount], " +
-                "[RoundOff], LineTotal,[BillAmount], Salesman,[PaymentMode]) " +
-                " VALUES (@Inv,@InvD , @InvT, @BName,@PName,@IDes,@BCode,@SCode," +
-                "@QTY, @MRP, @Dis, @BAMT, @TAMT,  @ROFF,@Ltotal, @BILL,@Sman,  @PM)";
-
-            SqlCommand cmd = new SqlCommand (query, vDb.DBCon);
-            cmd.Parameters.AddWithValue ("@Inv", sr.InvoiceNo);
-            cmd.Parameters.AddWithValue ("@InvD", sr.InvDate);
-            cmd.Parameters.AddWithValue ("@InvT", sr.InvType);
-            cmd.Parameters.AddWithValue ("@QTY", sr.QTY);
-            cmd.Parameters.AddWithValue ("@MRP", sr.MRP);
-            cmd.Parameters.AddWithValue ("@Dis", sr.Discount);
-            cmd.Parameters.AddWithValue ("@BAMT", sr.BasicRate);
-            cmd.Parameters.AddWithValue ("@TAMT", sr.Tax);
-            cmd.Parameters.AddWithValue ("@ROFF", sr.RoundOff);
-            cmd.Parameters.AddWithValue ("@BILL", sr.BillAmnt);
-            cmd.Parameters.AddWithValue ("@PM", sr.PaymentType);
-            cmd.Parameters.AddWithValue ("@Sman", sr.Saleman);
-            cmd.Parameters.AddWithValue ("@BCode", sr.Barcode);
-            cmd.Parameters.AddWithValue ("@SCode", sr.StyleCode);
-            cmd.Parameters.AddWithValue ("@Ltotal", sr.LineTotal);
-            cmd.Parameters.AddWithValue ("@BName", sr.Barcode);
-            cmd.Parameters.AddWithValue ("@PName", sr.StyleCode);
-            cmd.Parameters.AddWithValue ("@IDes", sr.LineTotal);
-            return InsertQuerySql (cmd);
+                "( InvoiceNo, InvoiceDate, InvoiceType,  " +
+                "BrandName,ProductName,ItemDescrpetion,HSNCode,BarCode,StyleCode," +
+                "Qty, MRP, Discount, BasicAmt, TaxAmount,SGST,CGST, " +
+                "RoundOff, LineTotal,BillAmount, Salesman,PaymentMode,LP) " +
+                " VALUES (@Inv,@InvD , @InvT, @BName,@PName,@IDes,@hsnCode,@BCode,@SCode," +
+                "@QTY, @MRP, @Dis, @BAMT, @TAMT,@SGST, @CGST,  @ROFF,@Ltotal, @BILL,@Sman,  @PM, @lp)";
+            Logs.LogMe("SqlQuery=" + query);
+            SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
+            cmd.Parameters.AddWithValue("@Inv", sr.InvoiceNo);//ok
+            cmd.Parameters.AddWithValue("@InvD", sr.InvDate);//ok
+            cmd.Parameters.AddWithValue("@InvT", sr.InvType);//ok
+            cmd.Parameters.AddWithValue("@hsnCode", sr.HSNCode);//ok
+            cmd.Parameters.AddWithValue("@QTY", sr.QTY);//ok
+            cmd.Parameters.AddWithValue("@MRP", sr.MRP);//ok
+            cmd.Parameters.AddWithValue("@Dis", sr.Discount);//ok
+            cmd.Parameters.AddWithValue("@BAMT", sr.BasicRate);//ok
+            cmd.Parameters.AddWithValue("@TAMT", sr.Tax);//ok
+            cmd.Parameters.AddWithValue("@ROFF", sr.RoundOff);//ok
+            cmd.Parameters.AddWithValue("@BILL", sr.BillAmnt);//ok
+            cmd.Parameters.AddWithValue("@PM", sr.PaymentType);//ok
+            cmd.Parameters.AddWithValue("@Sman", sr.Saleman);//ok
+            cmd.Parameters.AddWithValue("@BCode", sr.Barcode);//ok
+            cmd.Parameters.AddWithValue("@SCode", sr.StyleCode);//ok
+            cmd.Parameters.AddWithValue("@Ltotal", sr.LineTotal);//ok
+            cmd.Parameters.AddWithValue("@BName", sr.BrandName);//ok
+            cmd.Parameters.AddWithValue("@PName", sr.ProductName);//ok
+            cmd.Parameters.AddWithValue("@IDes", sr.ItemDesc);//ok
+            cmd.Parameters.AddWithValue("@SGST", sr.SGST);//ok
+            cmd.Parameters.AddWithValue("@CGST", sr.CGST);//ok
+            cmd.Parameters.AddWithValue("@lp", sr.LP);//ok
+            return InsertQuerySql(cmd);
         }
 
         /// <summary>
@@ -712,24 +738,24 @@ namespace AprajitaRetails.Excels
                 "[InstOrderCD])" +*/
                 " VALUES (@Inv,@InvD , @InvT, @QTY, @MRP, @Dis, @BAMT, " +
                 "@TAMT,  @ROFF, @BILL,  @PM)";//, @CO,@CAMT,  @TFG, @INST)";
-            SqlCommand cmd = new SqlCommand (query, vDb.DBCon);
+            SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
 
-            cmd.Parameters.AddWithValue ("@Inv", sr.InvoiceNo);
-            cmd.Parameters.AddWithValue ("@InvD", sr.InvDate);
-            cmd.Parameters.AddWithValue ("@InvT", sr.InvType);
-            cmd.Parameters.AddWithValue ("@QTY", sr.QTY);
-            cmd.Parameters.AddWithValue ("@MRP", sr.MRP);
-            cmd.Parameters.AddWithValue ("@Dis", sr.Discount);
-            cmd.Parameters.AddWithValue ("@BAMT", sr.BasicRate);
-            cmd.Parameters.AddWithValue ("@TAMT", sr.Tax);
-            cmd.Parameters.AddWithValue ("@ROFF", sr.RoundOff);
-            cmd.Parameters.AddWithValue ("@BILL", sr.BillAmnt);
-            cmd.Parameters.AddWithValue ("@PM", sr.paymentType);
+            cmd.Parameters.AddWithValue("@Inv", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue("@InvD", sr.InvDate);
+            cmd.Parameters.AddWithValue("@InvT", sr.InvType);
+            cmd.Parameters.AddWithValue("@QTY", sr.QTY);
+            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue("@Dis", sr.Discount);
+            cmd.Parameters.AddWithValue("@BAMT", sr.BasicRate);
+            cmd.Parameters.AddWithValue("@TAMT", sr.Tax);
+            cmd.Parameters.AddWithValue("@ROFF", sr.RoundOff);
+            cmd.Parameters.AddWithValue("@BILL", sr.BillAmnt);
+            cmd.Parameters.AddWithValue("@PM", sr.paymentType);
             //cmd.Parameters.AddWithValue("@CO", sr.coupon);
             //cmd.Parameters.AddWithValue("@CAMT", sr.couponAmt);
             //cmd.Parameters.AddWithValue("@TFG", sr.Tailoring);
             //cmd.Parameters.AddWithValue("@INST", sr.instaorder);
-            return InsertQuerySql (cmd);
+            return InsertQuerySql(cmd);
         }
 
         /// <summary>
@@ -742,27 +768,55 @@ namespace AprajitaRetails.Excels
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
                 "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt)" +
                 "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt)";
-            SqlCommand cmd = new SqlCommand (query, vDb.DBCon);
+            SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
 
-            cmd.Parameters.AddWithValue ("@GRNNo", sr.Grnno);
-            cmd.Parameters.AddWithValue ("@GRNDate", sr.Grndate);
-            cmd.Parameters.AddWithValue ("@InvoiceNo", sr.Invoiceno);
-            cmd.Parameters.AddWithValue ("@InvoiceDate", sr.Invdate);
-            cmd.Parameters.AddWithValue ("@SupplierName", sr.Suppliername);
-            cmd.Parameters.AddWithValue ("@Barcode", sr.Barcode);
-            cmd.Parameters.AddWithValue ("@ProductName", sr.Productname);
-            cmd.Parameters.AddWithValue ("@StyleCode", sr.Stylecode);
-            cmd.Parameters.AddWithValue ("@ItemDesc", sr.Itemdesc);
-            cmd.Parameters.AddWithValue ("@Quantity", sr.Qty);
-            cmd.Parameters.AddWithValue ("@MRP", sr.Mrp);
-            cmd.Parameters.AddWithValue ("@MRPValue", sr.Mrpvalue);
-            cmd.Parameters.AddWithValue ("@Cost", sr.Cost);
-            cmd.Parameters.AddWithValue ("@CostValue", sr.Costvalue);
-            cmd.Parameters.AddWithValue ("@TaxAmt", sr.Taxamt);
-            int x = InsertQuerySql (cmd);
+            cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo );
+            cmd.Parameters.AddWithValue("@GRNDate", sr.GRNDate );
+            cmd.Parameters.AddWithValue("@InvoiceNo", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue("@InvoiceDate", sr.InvoiceDate);
+            cmd.Parameters.AddWithValue("@SupplierName", sr.SupplierName);
+            cmd.Parameters.AddWithValue("@Barcode", sr.Barcode);
+            cmd.Parameters.AddWithValue("@ProductName", sr.ProductName);
+            cmd.Parameters.AddWithValue("@StyleCode", sr.StyleCode);
+            cmd.Parameters.AddWithValue("@ItemDesc", sr.ItemDesc);
+            cmd.Parameters.AddWithValue("@Quantity", sr.Quantity);
+            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue("@MRPValue", sr.MRPValue);
+            cmd.Parameters.AddWithValue("@Cost", sr.Cost);
+            cmd.Parameters.AddWithValue("@CostValue", sr.CostValue);
+            cmd.Parameters.AddWithValue("@TaxAmt", sr.TaxAmt);
+            int x = InsertQuerySql(cmd);
             //TODO: do it in thread 
-            vOti.PurchaseToStock (sr);
+            vOti.PurchaseToStock(sr);
             return x;
+        }
+
+        /// <summary>
+        /// Insert Query Sql
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        private int InsertQuerySql(SqlCommand cmd)
+        {
+            try
+            {
+                int status = cmd.ExecuteNonQuery();
+                if (status > 0)
+                {
+                    Logs.LogMe("Insert done ");
+                    return 1;
+                }
+                else
+                {
+                    Logs.LogMe("Insert Failed :" + cmd.CommandText);
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                Logs.LogMe("Insert Error: " + e.Message + "\n\tCommandText" + cmd.CommandText);
+                return -1;
+            }
         }
     }
 
@@ -771,14 +825,39 @@ namespace AprajitaRetails.Excels
         ProductItemsDB pIDB;
         public ObjectToItem()
         {
-            pIDB = new ProductItemsDB ();
+            pIDB = new ProductItemsDB();
         }
+        public void PurchaseToStock(Purchase p)
+        {
+            ProductItems pItem = new ProductItems()
+            {
+                Barcode = p.Barcode,
+                Cost = p.Cost,
+                SupplierId = p.SupplierName,
+                BrandName = "",
+                ID = -1,
+                ItemDesc = p.ItemDesc,
+                MRP = p.MRP,
+                Qty = p.Quantity,
+                ProductName = p.ProductName,
+                Size = ToSize(p.StyleCode),
+                StyleCode = p.StyleCode,
+                Tax = p.TaxAmt,
+                //TODO: GST Correct It
+                /*CGST =p.TaxRate,      HSNCode=p.HSNCode,
+                IGST=p.TaxRate,SGST=p.TaxRate,PreGST=p.TaxType*/
+            };
+            Logs.LogMe("Insert of Data is " + pIDB.InsertDataWithVerify(pItem));
+
+
+        }
+
         protected string Sizes(string s)
         {
             string r = "";
-            s = s.Trim ();
-            s = s.ToLower ();
-            switch ( s.Length )
+            s = s.Trim();
+            s = s.ToLower();
+            switch (s.Length)
             {
                 case 1:
                     r = s;
@@ -798,16 +877,16 @@ namespace AprajitaRetails.Excels
         }
         protected string ToSize(string stylecode)
         {
-            if ( Basic.IsNumeric (stylecode) )
+            if (Basic.IsNumeric(stylecode))
             {
                 return "-1";
             }
-            else if ( stylecode.Length > 8 )
+            else if (stylecode.Length > 8)
             {
                 //TODO: do verification for is style code.
-                string s1 = stylecode.Substring (0, 4);
-                string s2 = stylecode.Substring (4, 4);
-                string s3 = stylecode.Substring (8);
+                string s1 = stylecode.Substring(0, 4);
+                string s2 = stylecode.Substring(4, 4);
+                string s3 = stylecode.Substring(8);
                 return s3;
             }
             //else if ( stylecode.Length > 10 )
@@ -822,94 +901,6 @@ namespace AprajitaRetails.Excels
                 return "-2";
             }
         }
-
-        public void PurchaseToStock(Purchase p)
-        {
-            ProductItems pItem = new ProductItems ()
-            {
-                Barcode = p.Barcode,
-                Cost = p.Cost,
-                SupplierId = p.Suppliername,
-                BrandName = "",
-                ID = -1,
-                ItemDesc = p.Itemdesc,
-                MRP = p.Mrp,
-                Qty = p.Qty,
-                ProductName = p.Productname,
-                Size = ToSize (p.Stylecode),
-                StyleCode = p.Stylecode,
-                Tax = p.Taxamt  ,
-                //TODO: GST Correct It
-                /*CGST =p.TaxRate,      HSNCode=p.HSNCode,
-                IGST=p.TaxRate,SGST=p.TaxRate,PreGST=p.TaxType*/
-            };
-            Logs.LogMe ("Insert of Data is " + pIDB.InsertDataWithVerify (pItem));
-
-
-        }
-    }
-
-    class UploaderFormVM
-    {
-        private BindingSource UploaedDataBindingSource;
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter ();
-        private DataTable UploadedDataTable;
-        public DataGridView UploadedDataGrid { get; private set; }
-        public void RefreshDGV(DataGridView dgv, string query)
-        {
-            UploadedDataGrid = dgv;
-            UploaedDataBindingSource = new BindingSource ();
-            UploadedDataGrid.DataSource = UploaedDataBindingSource;
-            try
-            {
-                DataTable table;
-                dataAdapter = new SqlDataAdapter (query, (SqlConnection) DataBase.GetConnectionObject (ConType.SQLDB));
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder (dataAdapter);
-                table = new DataTable
-                {
-                    Locale = System.Globalization.CultureInfo.InvariantCulture
-                };
-                dataAdapter.Fill (table);
-                UploadedDataTable = table;
-                UploadedDataGrid.AutoResizeColumns (DataGridViewAutoSizeColumnsMode.AllCells);
-                UploaedDataBindingSource.DataSource = UploadedDataTable;
-
-            }
-            catch ( Exception )
-            {
-                return;
-            }
-        }
-
-
-    }
-    public class Querys
-    {
-        public static string qAll = "select* from SalesRegister";
-        public static string qByDay = "select InvoiceDate, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by InvoiceDate";
-        public static string qByYear = "select  DATEPART(YEAR, InvoiceDate)as Year, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(YEAR, InvoiceDate)";
-        public static string qByMonth = "select  DATEPART(MM, InvoiceDate)as Month, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(MM, InvoiceDate)";
-        public static string qByDayP = "select InvoiceDate , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by InvoiceDate";
-        public static string qByMonthP = "select DATEPART(MM, InvoiceDate)as Month , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by DATEPART(MM, InvoiceDate)";
-        public static string qByYearP = "select DATEPART(YEAR, InvoiceDate)as Year,  Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by DATEPART(Year, InvoiceDate)";
-        public static string qAllPurchase = "select * from Purchase";
-    }
-
-    class Cust
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string MobileNo { get; set; }
-        public int Gen { get; set; }
-        public Cust()
-        {
-            Gen = 0;
-            FirstName = "";
-            LastName = "";
-            Address = "";
-            MobileNo = "";
-        }
     }
 
     //TODO: Implement in second stage
@@ -920,39 +911,74 @@ namespace AprajitaRetails.Excels
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
                 "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt)" +
                 "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt)";
-            SqlCommand cmd = new SqlCommand (query, Db.DBCon);
+            SqlCommand cmd = new SqlCommand(query, Db.DBCon);
 
-            cmd.Parameters.AddWithValue ("@GRNNo", sr.Grnno);
-            cmd.Parameters.AddWithValue ("@GRNDate", sr.Grndate);
-            cmd.Parameters.AddWithValue ("@InvoiceNo", sr.Invoiceno);
-            cmd.Parameters.AddWithValue ("@InvoiceDate", sr.Invdate);
-            cmd.Parameters.AddWithValue ("@SupplierName", sr.Suppliername);
-            cmd.Parameters.AddWithValue ("@Barcode", sr.Barcode);
-            cmd.Parameters.AddWithValue ("@ProductName", sr.Productname);
-            cmd.Parameters.AddWithValue ("@StyleCode", sr.Stylecode);
-            cmd.Parameters.AddWithValue ("@ItemDesc", sr.Itemdesc);
-            cmd.Parameters.AddWithValue ("@Quantity", sr.Qty);
-            cmd.Parameters.AddWithValue ("@MRP", sr.Mrp);
-            cmd.Parameters.AddWithValue ("@MRPValue", sr.Mrpvalue);
-            cmd.Parameters.AddWithValue ("@Cost", sr.Cost);
-            cmd.Parameters.AddWithValue ("@CostValue", sr.Costvalue);
-            cmd.Parameters.AddWithValue ("@TaxAmt", sr.Taxamt);
-            return cmd.ExecuteNonQuery ();
+            cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo);
+            cmd.Parameters.AddWithValue("@GRNDate", sr.GRNDate);
+            cmd.Parameters.AddWithValue("@InvoiceNo", sr.InvoiceNo);
+            cmd.Parameters.AddWithValue("@InvoiceDate", sr.InvoiceDate);
+            cmd.Parameters.AddWithValue("@SupplierName", sr.SupplierName);
+            cmd.Parameters.AddWithValue("@Barcode", sr.Barcode);
+            cmd.Parameters.AddWithValue("@ProductName", sr.ProductName);
+            cmd.Parameters.AddWithValue("@StyleCode", sr.StyleCode);
+            cmd.Parameters.AddWithValue("@ItemDesc", sr.ItemDesc);
+            cmd.Parameters.AddWithValue("@Quantity", sr.Quantity);
+            cmd.Parameters.AddWithValue("@MRP", sr.MRP);
+            cmd.Parameters.AddWithValue("@MRPValue", sr.MRPValue);
+            cmd.Parameters.AddWithValue("@Cost", sr.Cost);
+            cmd.Parameters.AddWithValue("@CostValue", sr.CostValue);
+            cmd.Parameters.AddWithValue("@TaxAmt", sr.TaxAmt);
+            return cmd.ExecuteNonQuery();
         }
 
         public override Purchase ResultToObject(List<Purchase> data, int index)
         {
-            throw new NotImplementedException ();
+            throw new NotImplementedException();
         }
 
         public override Purchase ResultToObject(SortedDictionary<string, string> data)
         {
-            throw new NotImplementedException ();
+            throw new NotImplementedException();
         }
 
         public override List<Purchase> ResultToObject(List<SortedDictionary<string, string>> dataList)
         {
-            throw new NotImplementedException ();
+            throw new NotImplementedException();
         }
+    }
+
+    class UploaderFormVM
+    {
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        private DataTable UploadedDataTable;
+        private BindingSource UploaedDataBindingSource;
+        public DataGridView UploadedDataGrid { get; private set; }
+        public void RefreshDGV(DataGridView dgv, string query)
+        {
+            UploadedDataGrid = dgv;
+            UploaedDataBindingSource = new BindingSource();
+            UploadedDataGrid.DataSource = UploaedDataBindingSource;
+            try
+            {
+                DataTable table;
+                dataAdapter = new SqlDataAdapter(query, (SqlConnection)DataBase.GetConnectionObject(ConType.SQLDB));
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                table = new DataTable
+                {
+                    Locale = System.Globalization.CultureInfo.InvariantCulture
+                };
+                dataAdapter.Fill(table);
+                UploadedDataTable = table;
+                UploadedDataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                UploaedDataBindingSource.DataSource = UploadedDataTable;
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+
     }
 }

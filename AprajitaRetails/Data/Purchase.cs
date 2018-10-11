@@ -3,68 +3,40 @@
 namespace AprajitaRetails
 {
     /// <summary>
-    /// TableName: Purchase
+    /// TableName: Purchase 
+    /// GST Impemented
     /// </summary>
     public class Purchase
     {
-        string grnno;
-        DateTime grndate;
-        string invoiceno;
-        DateTime invdate;
-        string suppliername;
-        string barcode;
-        string productname;
-        string stylecode;
-        string itemdesc;
-        double qty;
-        double mrp;
-        double mrpvalue;
-        double cost;
-        double costvalue;
-        double taxamt;
-
-        public string Grnno { get => grnno; set => grnno = value; }
-        public DateTime Grndate { get => grndate; set => grndate = value; }
-        public string Invoiceno { get => invoiceno; set => invoiceno = value; }
-        public DateTime Invdate { get => invdate; set => invdate = value; }
-        public string Suppliername { get => suppliername; set => suppliername = value; }
-        public string Barcode { get => barcode; set => barcode = value; }
-        public string Productname { get => productname; set => productname = value; }
-        public string Stylecode { get => stylecode; set => stylecode = value; }
-        public string Itemdesc { get => itemdesc; set => itemdesc = value; }
-        public double Qty { get => qty; set => qty = value; }
-        public double Mrp { get => mrp; set => mrp = value; }
-        public double Mrpvalue { get => mrpvalue; set => mrpvalue = value; }
-        public double Cost { get => cost; set => cost = value; }
-        public double Costvalue { get => costvalue; set => costvalue = value; }
-        public double Taxamt { get => taxamt; set => taxamt = value; }
-        //TODO: GST Implementation
-        public double HSNCode { get; set; }
-        public double TaxRate { get; set; }
-        public int TaxType { get; set; }
-        public double TaxAmount { get; set; }
-        /*
-        public double IGSTRate { get; set; }
-        public double CSGTRate { get; set; }
-        public double SGSTRate { get; set; }
-
+        public string GRNNo { get; set; }
+        public DateTime GRNDate { get; set; }
+        public string InvoiceNo { get; set; }
+        public DateTime InvoiceDate { get; set; }
+        public string SupplierName { get; set; }
+        public string Barcode { get; set; }
+        public string ProductName { get; set; }
+        public string StyleCode { get; set; }
+        public string ItemDesc { get; set; }
+        public double Quantity { get; set; }
+        public double MRP { get; set; }
+        public double MRPValue { get; set; }
+        public double Cost { get; set; }
+        public double CostValue { get; set; }
+        public double TaxAmt { get; set; }
         public double IGSTAmt { get; set; }
         public double CSGTAmt { get; set; }
         public double SGSTAmt { get; set; }
-        */
+
+
 
 
     }
 }
 /*
- GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code
- Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt
-
-    
-    C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259105888
-Apparel/Mens Formal/Shirts	USSH3877XL	Shirts-FS-Black	1.00	1999.00	1999.00	1287.76	1287.76	0.00
-
-    		
+ 
+ GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code	Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt	ExmillCost	Excise1	Excise2	Excise3
+C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259107264	Apparel/Mens Formal/Shirts	USSH3887L	Shirts-FS-Red	2.00	2199.00	4398.00	1416.60	2833.20	0.00				
+   		
  
 
 

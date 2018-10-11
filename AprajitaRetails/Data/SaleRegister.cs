@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AprajitaRetails
+﻿namespace AprajitaRetails
 {
     /// <summary>
     /// TableName: SaleRegister
@@ -19,10 +17,5 @@ namespace AprajitaRetails
         public double RoundOff { get; set; }
         public double BillAmnt { get; set; }
         public string paymentType { get; set; }
-        //public string coupon { get; set; }
-        //public string couponAmt { get; set; }
-        //public string LP { get; set; }
-        //public string instaorder { get; set; }
-        //public string Tailoring { get; set; }
     }
 }

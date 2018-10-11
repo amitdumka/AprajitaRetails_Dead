@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AprajitaRetails")]
 [assembly: AssemblyDescription ("Store Management Software For The Arvind Store, Dumka, owned by Aprajita Retails")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany ("CyberN Systems")]
+[assembly: AssemblyCompany("CyberN Systems Inc.")]
 [assembly: AssemblyProduct("AprajitaRetails")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark ("CyberN")]
 [assembly: AssemblyCulture("")]
 

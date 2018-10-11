@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AprajitaRetails.Excels;
+using AprajitaRetails.Utils;
 using AprajitaRetails.Voy;
 
 namespace AprajitaRetails.Forms
@@ -20,6 +21,7 @@ namespace AprajitaRetails.Forms
         //private ExcelToDB EDB;
         private UploaderFormVM EDB;
         public int RecordCount = 0;
+        Clients clients= CurrentClient.LoggedClient;
 
         public UploaderForm(int mode)
         {
@@ -129,25 +131,28 @@ namespace AprajitaRetails.Forms
         private void BTNByMonth_Click(object sender, EventArgs e)
         {
             if ( CKWithProfit.Checked )
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByMonthP);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByMonthP);
+            else if (CBUploadType.Text == "SaleItemWise")
+                EDB.RefreshDGV(DGVUploadedData, QuerySales.qByMonth);
             else
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByMonth);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByMonth);
         }
 
         private void BTNByYear_Click(object sender, EventArgs e)
         {
             if ( CKWithProfit.Checked )
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByYearP);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByYearP);
+            
             else
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByYear);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByYear);
         }
 
         private void BTNByDay_Click(object sender, EventArgs e)
         {
             if ( CKWithProfit.Checked )
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByDayP);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByDayP);
             else
-                EDB.RefreshDGV (DGVUploadedData, Querys.qByDay);
+                EDB.RefreshDGV (DGVUploadedData, QuerySales.qByDay);
         }
 
         private void BTNReload_Click(object sender, EventArgs e)
@@ -156,6 +161,8 @@ namespace AprajitaRetails.Forms
                 EDB.RefreshDGV (DGVUploadedData, Querys.qAllPurchase);
             else if ( CBUploadType.Text == "SaleRegister" )
                 EDB.RefreshDGV (DGVUploadedData, Querys.qAll);
+            else if (CBUploadType.Text == "SaleItemWise")
+                EDB.RefreshDGV(DGVUploadedData, QuerySales.qAll);
         }
 
         private void BTNQuery_Click(object sender, EventArgs e)

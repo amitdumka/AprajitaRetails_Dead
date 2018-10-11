@@ -199,10 +199,10 @@ namespace AprajitaRetails
             ShowNewForm (new SaleInvoiceForm ());
         }
         //TODO: All UI Control Code from here
-        Clients clients = Client.GetClientDetails();
+        //Clients clients = Client.GetClientDetails();
         private void UpdateUiData()
         {
-            this.Text = clients.ClientName + ":The Arvind Store, " + clients.ClientCity + "(" + clients.ClientCode + ")";
+            this.Text = CurrentClient.LoggedClient.ClientName + ":The Arvind Store, " + CurrentClient.LoggedClient.ClientCity + "(" + CurrentClient.LoggedClient.ClientCode + ")";
             //TODO: in StatusBar UserName must be shown
             //TODO: show Time, Open Form, Progress bar
         }
