@@ -350,6 +350,7 @@
     <Compile Include="ViewModel\StoresVM.cs" />
     <Compile Include="Voy\VoyBill.cs" />
     <Compile Include="Voy\VoyBillUpload.cs" />
+    <Compile Include="Voy\VoygerXMLToDB.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -479,6 +480,7 @@
     <Content Include="Localization\zh-CHS.xml" />
     <Content Include="Localization\zh-CHT.xml" />
     <Content Include="TextFile1.txt" />
+    <Content Include="Voy\VoybillAnlisys.txt" />
     <None Include="Resources\Image1.png" />
     <None Include="Resources\Icon2.ico" />
     <None Include="Resources\Icon1.ico" />

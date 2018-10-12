@@ -64,9 +64,9 @@
             // 
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Location = new System.Drawing.Point(4, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox1.Size = new System.Drawing.Size(356, 101);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -160,7 +160,7 @@
             // TXTEnd
             // 
             this.TXTEnd.Location = new System.Drawing.Point(74, 76);
-            this.TXTEnd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TXTEnd.Margin = new System.Windows.Forms.Padding(2);
             this.TXTEnd.Name = "TXTEnd";
             this.TXTEnd.Size = new System.Drawing.Size(51, 20);
             this.TXTEnd.TabIndex = 7;
@@ -169,7 +169,7 @@
             // TXTStart
             // 
             this.TXTStart.Location = new System.Drawing.Point(74, 52);
-            this.TXTStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TXTStart.Margin = new System.Windows.Forms.Padding(2);
             this.TXTStart.Name = "TXTStart";
             this.TXTStart.Size = new System.Drawing.Size(51, 20);
             this.TXTStart.TabIndex = 6;
@@ -210,9 +210,9 @@
             this.GBDataGrid.AutoSize = true;
             this.GBDataGrid.Controls.Add(this.DGVUploadedData);
             this.GBDataGrid.Location = new System.Drawing.Point(6, 133);
-            this.GBDataGrid.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.GBDataGrid.Margin = new System.Windows.Forms.Padding(1);
             this.GBDataGrid.Name = "GBDataGrid";
-            this.GBDataGrid.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.GBDataGrid.Padding = new System.Windows.Forms.Padding(1);
             this.GBDataGrid.Size = new System.Drawing.Size(1222, 321);
             this.GBDataGrid.TabIndex = 1;
             this.GBDataGrid.TabStop = false;
@@ -223,7 +223,7 @@
             this.DGVUploadedData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVUploadedData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVUploadedData.Location = new System.Drawing.Point(1, 14);
-            this.DGVUploadedData.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.DGVUploadedData.Margin = new System.Windows.Forms.Padding(1);
             this.DGVUploadedData.Name = "DGVUploadedData";
             this.DGVUploadedData.RowTemplate.Height = 40;
             this.DGVUploadedData.Size = new System.Drawing.Size(1220, 306);
@@ -235,9 +235,9 @@
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
             this.groupBox2.Location = new System.Drawing.Point(363, 11);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox2.Size = new System.Drawing.Size(237, 103);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
@@ -260,7 +260,7 @@
             this.tableLayoutPanel2.Controls.Add(this.BTNQuery, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(1, 14);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -273,7 +273,7 @@
             // 
             this.CKWithProfit.AutoSize = true;
             this.CKWithProfit.Location = new System.Drawing.Point(162, 63);
-            this.CKWithProfit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CKWithProfit.Margin = new System.Windows.Forms.Padding(2);
             this.CKWithProfit.Name = "CKWithProfit";
             this.CKWithProfit.Size = new System.Drawing.Size(71, 17);
             this.CKWithProfit.TabIndex = 11;
@@ -285,7 +285,7 @@
             this.BTNReload.AutoSize = true;
             this.BTNReload.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNReload.Location = new System.Drawing.Point(82, 63);
-            this.BTNReload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BTNReload.Margin = new System.Windows.Forms.Padding(2);
             this.BTNReload.Name = "BTNReload";
             this.BTNReload.Size = new System.Drawing.Size(51, 23);
             this.BTNReload.TabIndex = 8;
@@ -297,7 +297,7 @@
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.pBar, 3);
             this.pBar.Location = new System.Drawing.Point(2, 2);
-            this.pBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pBar.Margin = new System.Windows.Forms.Padding(2);
             this.pBar.Name = "pBar";
             this.pBar.Size = new System.Drawing.Size(230, 34);
             this.pBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -306,7 +306,7 @@
             // BTNByYear
             // 
             this.BTNByYear.Location = new System.Drawing.Point(2, 63);
-            this.BTNByYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BTNByYear.Margin = new System.Windows.Forms.Padding(2);
             this.BTNByYear.Name = "BTNByYear";
             this.BTNByYear.Size = new System.Drawing.Size(76, 19);
             this.BTNByYear.TabIndex = 9;
@@ -317,7 +317,7 @@
             // BTNByMonth
             // 
             this.BTNByMonth.Location = new System.Drawing.Point(2, 40);
-            this.BTNByMonth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BTNByMonth.Margin = new System.Windows.Forms.Padding(2);
             this.BTNByMonth.Name = "BTNByMonth";
             this.BTNByMonth.Size = new System.Drawing.Size(76, 19);
             this.BTNByMonth.TabIndex = 8;
@@ -328,7 +328,7 @@
             // BTNByDay
             // 
             this.BTNByDay.Location = new System.Drawing.Point(82, 40);
-            this.BTNByDay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BTNByDay.Margin = new System.Windows.Forms.Padding(2);
             this.BTNByDay.Name = "BTNByDay";
             this.BTNByDay.Size = new System.Drawing.Size(76, 19);
             this.BTNByDay.TabIndex = 10;
@@ -339,7 +339,7 @@
             // BTNQuery
             // 
             this.BTNQuery.Location = new System.Drawing.Point(161, 39);
-            this.BTNQuery.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.BTNQuery.Margin = new System.Windows.Forms.Padding(1);
             this.BTNQuery.Name = "BTNQuery";
             this.BTNQuery.Size = new System.Drawing.Size(62, 20);
             this.BTNQuery.TabIndex = 12;
@@ -360,7 +360,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GBDataGrid);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "UploaderForm";
             this.Text = "UploaderForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

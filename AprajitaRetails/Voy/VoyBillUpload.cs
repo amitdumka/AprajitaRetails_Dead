@@ -103,93 +103,49 @@ namespace AprajitaRetails.Voy
             ws.Close ();
             return count;
         }
-        /*
-
-            <line_item_type>REGULAR</line_item_type>
-
+/*
+<line_item_type>REGULAR</line_item_type>
 <serial>1</serial>
-
 <item_code>M56228601020</item_code>
-
 <qty>1.2</qty>
-
 <rate>1396</rate>
-
 <value>1675.2</value>
-
 <discount_value>0</discount_value>
-
 <amount>1635.31</amount>
-
 <description>Tresca DTR Syn</description>
-
-
 -<customer>
-
 <name>VIVEK VIVEK</name>
-
 <mobile>917033920716 </mobile>
-
 </customer>
-
-
 -<Custom_fields>
-
-
 -<field_details>
-
 <field_name>Tailoring</field_name>
-
 <tailoring_req>N</tailoring_req>
-
 </field_details>
-
 </Custom_fields>
-
-
 -<Payment_Mode>
-
-
 -<Payment_detail>
-
-
 -<payment>
-
 <mode>CA</mode>
-
 <value>1675</value>
-
 <notes/>
-
-
 -<attributes>
-
-
 -<attribute>
-
 <name/>
-
 <value/>
-
 </attribute>
-
 </attributes>
-
 </payment>
-
 </Payment_detail>
-
 </Payment_Mode>
-
 </bill>
-
 </root>
          */
         protected static void ReadElement()
         {
             switch ( reader.Name )
             {
-                case VBEle.customer:
+                case VBEle.customer://Root Item
                     ws.WriteLine ("Reading Customer Data");
                     ReadCustomer ();   //Done
                     break;
@@ -235,7 +191,7 @@ namespace AprajitaRetails.Voy
                     break;
                 case VBEle.bill_store_id:
                     reader.Read ();
-                    vBill.bill.StoreCode = reader.Value;
+                    vBill.bill.StoreID = reader.Value;
                     break;
             }
         }
@@ -324,7 +280,7 @@ namespace AprajitaRetails.Voy
                         case VBEle.line_item_type:
                             ws.Write (reader.Name + ": ");
                             reader.Read ();
-                            lItems.line_item_type = reader.Value;
+                            lItems.LineType = reader.Value;
                             ws.WriteLine (reader.Value);
                             reader.Read ();
                             break;

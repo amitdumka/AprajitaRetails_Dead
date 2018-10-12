@@ -2,11 +2,10 @@
 
 namespace AprajitaRetails.Voy
 {
-    public enum BillType { SA=0, Regular=1}
+    public enum BillType { SA, Regular,SaleReturn}
     
     class VBEle
     {
-
         public const string type = "type";
         public const string bill_number = "bill_number";
         public const string billing_time = "billing_time";
@@ -49,6 +48,14 @@ namespace AprajitaRetails.Voy
 
 
     }
+    class VCustomer
+    {
+        // TODO: Check for better apporch in futures
+        public int ID { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerMobile { get; set; }
+
+    }
     class VoyBill
     {
         public int ID { get; set; }
@@ -58,19 +65,18 @@ namespace AprajitaRetails.Voy
         public double BillAmount { get; set; }
         public double BillGrossAmount { get; set; }
         public double BillDiscount { get; set; }
-        public string CustomerName { get; set; }
-        public string CustomerMobile { get; set; }
-        public string StoreCode { get; set; }
-
+        public string CustomerName { get; set; } //VCustomer
+        public string CustomerMobile { get; set; }//VCustomer
+        public string StoreID { get; set; }
 
 
     }
     class LineItems
     {
         public int ID { get; set; }
-        public int VoyBillId { get; set; }
-        public string line_item_type { get; set; }
-        public int Serial { get; set; }
+        public int VoyBillId { get; set; } //FK
+        public string LineType { get; set; }//<line_item_type>
+        public int Serial { get; set; }//<serial>
         public string ItemCode { get; set; }
         public double Qty { get; set; }
         public double Rate { get; set; }
@@ -78,6 +84,7 @@ namespace AprajitaRetails.Voy
         public double DiscountValue { get; set; }
         public double Amount { get; set; }
         public string Description { get; set; }
+        //TODO: Store basic info . rest take from database in future
     }
     class VPaymentMode
     {
@@ -87,4 +94,5 @@ namespace AprajitaRetails.Voy
         public string PaymentValue { get; set; }
         public string Notes { get; set; }
     }
+    
 }

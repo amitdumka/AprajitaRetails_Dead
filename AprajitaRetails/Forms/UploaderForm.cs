@@ -88,8 +88,9 @@ namespace AprajitaRetails.Forms
             }
             else if ( CBUploadType.Text == "VoyBill" )
             {   //Current Process
-                t = Task.Run (()=>VoyBillUpload.ReadVoyBillXML(TXTFileName.Text ));
+               // t = Task.Run (()=>VoyBillUpload.ReadVoyBillXML(TXTFileName.Text ));
                 //return;
+                t = Task.Run(()=> VoygerXMLReader.ReadVoyBillXML(TXTFileName.Text));
             }
 
             //else if ( CBUploadType.Text == "PurchaseRegister" )
