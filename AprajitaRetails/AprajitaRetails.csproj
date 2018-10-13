@@ -252,6 +252,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Client.cs" />
     <Compile Include="Utils\Controls.cs" />
+    <Compile Include="Utils\FileMonitor.cs" />
     <Compile Include="Utils\Setups.cs" />
     <Compile Include="Data\AuthUsers.cs" />
     <Compile Include="Utils\Basic.cs" />
@@ -334,6 +335,7 @@
     <Compile Include="TableCreator\MainProgram.cs" />
     <Compile Include="TableCreator\TableClass.cs" />
     <Compile Include="DataBases\TableName.cs" />
+    <Compile Include="Utils\Watcher.cs" />
     <Compile Include="ViewModel\AttendenceVM.cs" />
     <Compile Include="ViewModel\CustomerDB.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
