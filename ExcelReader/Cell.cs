@@ -7,9 +7,9 @@ namespace CyberN
 {
     /// <summary>
     /// (c) 2014 Vienna, Dietmar Schoder
-    /// 
+    ///
     /// Code Project Open License (CPOL) 1.02
-    /// 
+    ///
     /// Deals with an Excel cell
     /// </summary>
     public class Cell
@@ -31,8 +31,10 @@ namespace CyberN
                     worksheet.MaxColumnIndex = ColumnIndex;
             }
         }
+
         [XmlAttribute("t")]
         public string tType = "";
+
         /// <summary>
         /// Original value of the Excel cell
         /// </summary>
@@ -69,27 +71,31 @@ namespace CyberN
                 }
             }
         }
+
         /// <summary>
         /// Index of the orignal Excel cell column starting at 0
         /// </summary>
         [XmlIgnore]
         public int ColumnIndex;
+
         /// <summary>
         /// Text of the Excel cell (if it was a string)
         /// </summary>
         [XmlIgnore]
         public string Text = "";
+
         [XmlIgnore]
         /// <summary>
         /// Amount of the Excel cell (if it was a number)
         /// </summary>
         public double Amount;
+
         [XmlIgnore]
         public bool IsAmount;
 
         private string _value = "";
 
-        private int GetColumnIndex(string CellReference)
+        private int GetColumnIndex( string CellReference )
         {
             string colLetter = new Regex("[A-Za-z]+").Match(CellReference).Value.ToUpper();
             int colIndex = 0;

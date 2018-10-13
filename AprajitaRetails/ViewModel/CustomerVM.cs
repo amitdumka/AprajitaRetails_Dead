@@ -1,41 +1,44 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AprajitaRetails.Data;
+﻿using AprajitaRetails.Data;
+using System.Collections.Generic;
 
 namespace AprajitaRetails.ViewModel
 {
     public class CustomerVM
     {
-        public void AddData()
+        public void AddData( )
         {
+        }
 
-        }
-        public int SaveData(Customer cust)
+        public int SaveData( Customer cust )
         {
-            return DB.InsertData (cust);
+            return DB.InsertData(cust);
         }
-        CustomerDB DB;
-        public CustomerVM()
+
+        private CustomerDB DB;
+
+        public CustomerVM( )
         {
-            DB = new CustomerDB ();
+            DB = new CustomerDB();
         }
-        public List<string> GetMobileList()
+
+        public List<string> GetMobileList( )
         {
-            return DB.GetMobileList ();
+            return DB.GetMobileList();
         }
-        public Customer GetCustomer(string mob)
+
+        public Customer GetCustomer( string mob )
         {
-            return DB.GetCustomer (mob);
+            return DB.GetCustomer(mob);
         }
-        public Customer GetCustomerByName(string name)
+
+        public Customer GetCustomerByName( string name )
         {
-            return DB.GetCustomerByName (name);
+            return DB.GetCustomerByName(name);
         }
-        public List<Customer> GetCustomersByName(string name)
+
+        public List<Customer> GetCustomersByName( string name )
         {
-            return DB.GetCustomersByName (name);
+            return DB.GetCustomersByName(name);
         }
     }
 }

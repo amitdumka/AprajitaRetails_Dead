@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails.Constant
+﻿namespace AprajitaRetails.Constant
 {
-    class Constants
+    internal class Constants
     {
         public static readonly int Sale = 1;
         public static readonly int SaleRegister = 2;
@@ -21,7 +15,6 @@ namespace AprajitaRetails.Constant
             Purchase = 3,
             PurchaseRegister = 4,
             Stock = 5
-
         }
     }
 }

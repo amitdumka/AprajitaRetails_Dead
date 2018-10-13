@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails.Data
+﻿namespace AprajitaRetails.Data
 {
     /// <summary>
     /// TableName: Customer
@@ -21,5 +15,4 @@ namespace AprajitaRetails.Data
         public int NoOfBills { set; get; }
         public double TotalAmount { set; get; }
     }
-
 }

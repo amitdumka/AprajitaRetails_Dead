@@ -1,22 +1,19 @@
-﻿using System;
+﻿using AprajitaRetails.ViewModel;
+using CyberN;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AprajitaRetails.ViewModel;
-using CyberN;
-
 
 namespace AprajitaRetails.Excels
 {
     public class Querys
     {
-        // TODO: Not be part of final realse. 
+        // TODO: Not be part of final realse.
         //TODO: better verison of reporting can be done on based on this
         public static string qAll = "select* from SalesRegister";
+
         public static string qAllPurchase = "select * from Purchase";
         public static string qByDay = "select InvoiceDate, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by InvoiceDate";
         public static string qByDayP = "select InvoiceDate , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From SalesRegister Group by InvoiceDate";
@@ -28,9 +25,10 @@ namespace AprajitaRetails.Excels
 
     public class QuerySales
     {
-        // TODO: Not be part of final realse. 
+        // TODO: Not be part of final realse.
         //TODO: better verison of reporting can be done on based on this
         public static string qAll = "select* from Sales";
+
         public static string qByDay = "select InvoiceDate, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from Sales group by InvoiceDate";
         public static string qByDayP = "select InvoiceDate , Sum(MRP) as MRP,sum(Discount) as Dis, sum(BillAmount) as Bill,sum(TaxAmount) as Tax, Sum(MRP)*0.40-sum(Discount)-sum(TaxAmount) as Pro From Sales Group by InvoiceDate";
         public static string qByMonth = "select  DATEPART(MM, InvoiceDate)as Month, sum(Qty) as QTY, sum(MRP) as MRP, SUM(Discount) as Discount, Sum(TaxAmount) as Tax, Sum(BillAmount) as BillAmount from SalesRegister group by DATEPART(MM, InvoiceDate)";
@@ -40,9 +38,9 @@ namespace AprajitaRetails.Excels
         //public static string qAllPurchase = "select * from Purchase";
     }
 
-    class Cust
+    internal class Cust
     {
-        public Cust()
+        public Cust( )
         {
             Gen = 0;
             FirstName = "";
@@ -58,16 +56,18 @@ namespace AprajitaRetails.Excels
         public string MobileNo { get; set; }
     }
 
-    class ExcelToDataBase
+    internal class ExcelToDataBase
     {
-        ObjectToDataBase Db;
-        public ExcelToDataBase()
+        private ObjectToDataBase Db;
+
+        public ExcelToDataBase( )
         {
             Db = new ObjectToDataBase();
         }
 
         public string FileName { get; set; }
-                public int ReadCustomer(string fname, int start, int end, ProgressBar pBar, string tablename)
+
+        public int ReadCustomer( string fname, int start, int end, ProgressBar pBar, string tablename )
         {
             DataTable dt = new DataTable(tablename);
             int Row = 0;
@@ -103,12 +103,11 @@ namespace AprajitaRetails.Excels
                             if (Db.SaveRowData(sr) > 0)
                             {
                                 r++;
-                                pBar.BeginInvoke(new Action(() =>
+                                pBar.BeginInvoke(new Action(( ) =>
                               {
                                   pBar.PerformStep();
                               }));
                                 Logs.LogMe("Row=" + r + " got saved");
-
                             }
                         }
                         Row++;
@@ -125,8 +124,8 @@ namespace AprajitaRetails.Excels
             return r;
         }
 
-        // Reader Caller Section Start Here 
-        public int ReadDataSaleRegister(string fname, int start, int end, ProgressBar pBar, string tablename)
+        // Reader Caller Section Start Here
+        public int ReadDataSaleRegister( string fname, int start, int end, ProgressBar pBar, string tablename )
         {
             //GST Features Added
             DataTable dt = new DataTable(tablename);
@@ -163,12 +162,11 @@ namespace AprajitaRetails.Excels
                             if (Db.SaveRowData(sr) > 0)
                             {
                                 r++;
-                                pBar.BeginInvoke(new Action(() =>
+                                pBar.BeginInvoke(new Action(( ) =>
                               {
                                   pBar.PerformStep();
                               }));
                                 Logs.LogMe("Row=" + r + " got saved");
-
                             }
                         }
                         Row++;
@@ -185,7 +183,7 @@ namespace AprajitaRetails.Excels
             return r;
         }
 
-        public int ReadDataSales(string fname, int start, int end, ProgressBar pBar, string tablename)
+        public int ReadDataSales( string fname, int start, int end, ProgressBar pBar, string tablename )
         {
             //TODO: GST Sale Invoice is implemented. Fine tune can be done in future.
             DataTable dt = new DataTable(tablename);
@@ -196,7 +194,6 @@ namespace AprajitaRetails.Excels
             Logs.LogMe("Started reading");
             foreach (var worksheet in Workbook.Worksheets(fname))
             {
-
                 foreach (var row in worksheet.Rows)
                 {
                     // Logs.LogMe ("Row=" + row.ToString () + "RowNo=" + Row);
@@ -218,19 +215,16 @@ namespace AprajitaRetails.Excels
                                     if (c == 6)
                                         Logs.LogMe("C=" + c + " is Null");
                                     c++;
-
                                 }
-
                             }
                             if (Db.SaveRowData(sr) > 0)
                             {
                                 r++;
-                                pBar.BeginInvoke(new Action(() =>
+                                pBar.BeginInvoke(new Action(( ) =>
                               {
                                   pBar.PerformStep();
                               }));
                                 Logs.LogMe("Row=" + r + " got saved");
-
                             }
                         }
                         Row++;
@@ -248,7 +242,7 @@ namespace AprajitaRetails.Excels
             return r;
         }
 
-        public int ReadPurchase(string fname, int start, int end, ProgressBar pBar, string tablename)
+        public int ReadPurchase( string fname, int start, int end, ProgressBar pBar, string tablename )
         {
             DataTable dt = new DataTable(tablename);
             int Row = 0;
@@ -274,7 +268,6 @@ namespace AprajitaRetails.Excels
                                 if (cell != null)
                                 {
                                     c = AddColPurchase(cell, ref sr, c);
-                                    
                                 }
                                 else
                                 {
@@ -285,12 +278,11 @@ namespace AprajitaRetails.Excels
                             if (Db.SaveRowData(sr) > 0)
                             {
                                 r++;
-                                pBar.BeginInvoke(new Action(() =>
+                                pBar.BeginInvoke(new Action(( ) =>
                               {
                                   pBar.PerformStep();
                               }));
                                 Logs.LogMe("Row=" + r + " got saved");
-
                             }
                         }
                         Row++;
@@ -308,9 +300,8 @@ namespace AprajitaRetails.Excels
         }
 
         // Extra Functions start from here
-        
 
-        private int AddCol(Cell cell, ref SaleRegister sr, int c)
+        private int AddCol( Cell cell, ref SaleRegister sr, int c )
         {
             //Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
             switch (cell.ColumnIndex)
@@ -319,42 +310,52 @@ namespace AprajitaRetails.Excels
                     sr.InvoiceNo = cell.Text;
                     c++;
                     break;
+
                 case 1:
                     sr.InvDate = DataConvertor.DateFromExcelFormatString(cell.Text);
                     c++;
                     break;
+
                 case 2:
                     sr.InvType = cell.Text;
                     c++;
                     break;
+
                 case 3:
                     sr.QTY = (int)cell.Amount;
                     c++;
                     break;
+
                 case 4:
                     sr.MRP = cell.Amount;
                     c++;
                     break;
+
                 case 6:
                     sr.BasicRate = cell.Amount;
                     c++;
                     break;
+
                 case 5:
                     sr.Discount = cell.Amount;
                     c++;
                     break;
+
                 case 7:
                     sr.Tax = cell.Amount;
                     c++;
                     break;
+
                 case 8:
                     sr.RoundOff = cell.Amount;
                     c++;
                     break;
+
                 case 9:
                     sr.BillAmnt = cell.Amount;
                     c++;
                     break;
+
                 case 10:
                     sr.paymentType = cell.Text;
                     c++;
@@ -368,7 +369,7 @@ namespace AprajitaRetails.Excels
         }
 
         // Adding Col start from Here
-        private int AddColCustomer(Cell cell, ref Cust sr, int c)
+        private int AddColCustomer( Cell cell, ref Cust sr, int c )
         {
             Logs.LogMe("Customer:cell(" + cell.ColumnIndex + ")=" + cell.Text);
             switch (cell.ColumnIndex)
@@ -377,10 +378,12 @@ namespace AprajitaRetails.Excels
                     sr.FirstName = cell.Text;
                     c++;
                     break;
+
                 case 7:
                     sr.Address = cell.Text;
                     c++;
                     break;
+
                 case 8:
                     sr.MobileNo = cell.Text;
                     c++;
@@ -425,7 +428,7 @@ namespace AprajitaRetails.Excels
             return c;
         }
 
-        private int AddColPurchase(Cell cell, ref Purchase sr, int c)
+        private int AddColPurchase( Cell cell, ref Purchase sr, int c )
         {
             Logs.LogMe("cell(" + cell.ColumnIndex + ")=" + cell.Text);
             switch (cell.ColumnIndex)
@@ -434,58 +437,72 @@ namespace AprajitaRetails.Excels
                     sr.GRNNo = cell.Text;
                     c++;
                     break;
+
                 case 1:
                     sr.GRNDate = DataConvertor.DateFromExcelFormat(cell.Text);
                     c++;
                     break;
+
                 case 2:
                     sr.InvoiceNo = cell.Text;
                     c++;
                     break;
+
                 case 3:
                     sr.InvoiceDate = DataConvertor.DateFromExcelFormat(cell.Text);
                     c++;
                     break;
+
                 case 4:
                     sr.SupplierName = cell.Text;
                     c++;
                     break;
+
                 case 5:
                     sr.Barcode = cell.Text;
                     c++;
                     break;
+
                 case 6:
-                    sr.ProductName= cell.Text;
+                    sr.ProductName = cell.Text;
                     c++;
                     break;
+
                 case 7:
                     sr.StyleCode = cell.Text;
                     c++;
                     break;
+
                 case 8:
                     sr.ItemDesc = cell.Text;
                     c++;
                     break;
+
                 case 9:
                     sr.Quantity = cell.Amount;
                     c++;
                     break;
+
                 case 10:
                     sr.MRP = cell.Amount;
                     c++;
                     break;
+
                 case 11:
                     sr.MRPValue = cell.Amount;
                     c++;
                     break;
+
                 case 12:
                     sr.Cost = cell.Amount;
                     c++;
                     break;
+
                 case 13:
                     sr.CostValue = cell.Amount;
                     c++;
                     break;
+
                 case 14:
                     sr.TaxAmt = cell.Amount;
                     c++;
@@ -495,7 +512,7 @@ namespace AprajitaRetails.Excels
             return c;
         }
 
-        private int AddColSale(Cell cell, ref SaleItemWise sr, int c)
+        private int AddColSale( Cell cell, ref SaleItemWise sr, int c )
         {
             switch (cell.ColumnIndex)
             {
@@ -504,27 +521,33 @@ namespace AprajitaRetails.Excels
                     sr.InvoiceNo = cell.Text;
                     c++;
                     break;
+
                 case 1:
                     //Logs.LogMe ("cell(" + cell.ColumnIndex + ")=" + cell.Text);
                     sr.InvDate = cell.Text; //DataConvertor.DateFromExcelFormatString (cell.Text);
                     c++;
                     break;
+
                 case 2:
                     sr.InvType = cell.Text;
                     c++;
                     break;
+
                 case 3:
                     sr.BrandName = cell.Text;
                     c++;
                     break;
+
                 case 4:
                     sr.ProductName = cell.Text;
                     c++;
                     break;
+
                 case 5:
                     sr.ItemDesc = cell.Text;
                     c++;
                     break;
+
                 case 6:
                     sr.HSNCode = cell.Text;
                     //Logs.LogMe("HSNCode:'" + cell.Text + "'");
@@ -535,22 +558,27 @@ namespace AprajitaRetails.Excels
                     sr.Barcode = cell.Text;
                     c++;
                     break;
+
                 case 8:
                     sr.StyleCode = cell.Text;
                     c++;
                     break;
+
                 case 9:
                     sr.QTY = (int)cell.Amount;
                     c++;
                     break;
+
                 case 10:
                     sr.MRP = cell.Amount;
                     c++;
                     break;
+
                 case 11:
                     sr.Discount = cell.Amount;
                     c++;
                     break;
+
                 case 12:
                     sr.BasicRate = cell.Amount;
                     c++;
@@ -560,6 +588,7 @@ namespace AprajitaRetails.Excels
                     sr.Tax = cell.Amount;
                     c++;
                     break;
+
                 case 14: sr.SGST = cell.Amount; c++; break;
                 case 15: sr.CGST = cell.Amount; c++; break;
 
@@ -567,50 +596,56 @@ namespace AprajitaRetails.Excels
                     sr.RoundOff = cell.Amount;
                     c++;
                     break;
+
                 case 17:
                     sr.LineTotal = cell.Amount;
                     c++;
                     break;
+
                 case 18:
                     sr.BillAmnt = cell.Amount;
                     c++;
                     break;
+
                 case 19:
                     sr.PaymentType = cell.Text;
                     c++;
                     break;
+
                 case 20:
                     sr.Saleman = cell.Text;
                     c++;
                     break;
+
                 case 25:
                     sr.LP = cell.Text;
                     c++;
                     break;
-
             }
 
             return c;
         }
 
-        private int I(string num)
+        private int I( string num )
         {
             return Int32.Parse(num.Trim());
         }
     }
 
-    class ObjectToDataBase
+    internal class ObjectToDataBase
     {
         //TODO: Implementing GST Features in All Area. Remove line if completed
-        DataBase vDb;
-        ObjectToItem vOti;
-        public ObjectToDataBase()
+        private DataBase vDb;
+
+        private ObjectToItem vOti;
+
+        public ObjectToDataBase( )
         {
             vDb = new DataBase(ConType.SQLDB);
             vOti = new ObjectToItem();
         }
 
-        public bool IsCustomer(string mobile)
+        public bool IsCustomer( string mobile )
         {
             if (mobile == null || mobile.Length <= 0)
                 return false;
@@ -625,11 +660,11 @@ namespace AprajitaRetails.Excels
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sr"></param>
         /// <returns></returns>
-        public int SaveRowData(Cust sr)
+        public int SaveRowData( Cust sr )
         {
             Logs.LogMe("SaveRowData: Customer");
             string[] s;
@@ -662,7 +697,6 @@ namespace AprajitaRetails.Excels
                 return -1;
             }
 
-
             string query = "INSERT INTO [dbo].[Customer] " +
                 "( [Age], [FirstName], [LastName],  " +
                 "[City], [MobileNo], [Gender], [NoOfBills], [TotalAmount]) " +
@@ -687,7 +721,7 @@ namespace AprajitaRetails.Excels
         /// </summary>
         /// <param name="sr"> SaleItemWise object</param>
         /// <returns>return no of record added</returns>
-        public int SaveRowData(SaleItemWise sr)
+        public int SaveRowData( SaleItemWise sr )
         {
             string query = "INSERT INTO [dbo].[Sales] " +
                 "( InvoiceNo, InvoiceDate, InvoiceType,  " +
@@ -728,7 +762,7 @@ namespace AprajitaRetails.Excels
         /// </summary>
         /// <param name="sr">SaleRegister Object</param>
         /// <returns>Return no of Object</returns>
-        public int SaveRowData(SaleRegister sr)
+        public int SaveRowData( SaleRegister sr )
         {
             string query = "INSERT INTO [dbo].[SalesRegister] " +
                 "( [InvoiceNo], [InvoiceDate], [InvoiceType],  " +
@@ -763,15 +797,15 @@ namespace AprajitaRetails.Excels
         /// </summary>
         /// <param name="sr"> Purchase Object</param>
         /// <returns>No of recorded added</returns>
-        public int SaveRowData(Purchase sr)
+        public int SaveRowData( Purchase sr )
         {
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
                 "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt,ImportTime, IsDataConsumed)" +
                 "Values(@GRNNo,@GRNDate,@InvoiceNo,@InvoiceDate,@SupplierName,@Barcode,@ProductName,@StyleCode," + "@ItemDesc,@Quantity,@MRP,@MRPValue,@Cost,@CostValue,@TaxAmt, @ImportTime, @IsConsumed)";
             SqlCommand cmd = new SqlCommand(query, vDb.DBCon);
 
-            cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo );
-            cmd.Parameters.AddWithValue("@GRNDate", sr.GRNDate );
+            cmd.Parameters.AddWithValue("@GRNNo", sr.GRNNo);
+            cmd.Parameters.AddWithValue("@GRNDate", sr.GRNDate);
             cmd.Parameters.AddWithValue("@InvoiceNo", sr.InvoiceNo);
             cmd.Parameters.AddWithValue("@InvoiceDate", sr.InvoiceDate);
             cmd.Parameters.AddWithValue("@SupplierName", sr.SupplierName);
@@ -788,7 +822,7 @@ namespace AprajitaRetails.Excels
             cmd.Parameters.AddWithValue("@ImportTime", sr.ImportTime);
             cmd.Parameters.AddWithValue("@IsConsumed", sr.IsDataConsumed);
             int x = InsertQuerySql(cmd);
-            //TODO: do it in thread 
+            //TODO: do it in thread
             vOti.PurchaseToStock(sr);
             return x;
         }
@@ -798,7 +832,7 @@ namespace AprajitaRetails.Excels
         /// </summary>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        private int InsertQuerySql(SqlCommand cmd)
+        private int InsertQuerySql( SqlCommand cmd )
         {
             try
             {
@@ -822,14 +856,16 @@ namespace AprajitaRetails.Excels
         }
     }
 
-    class ObjectToItem
+    internal class ObjectToItem
     {
-        ProductItemsDB pIDB;
-        public ObjectToItem()
+        private ProductItemsDB pIDB;
+
+        public ObjectToItem( )
         {
             pIDB = new ProductItemsDB();
         }
-        public void PurchaseToStock(Purchase p)
+
+        public void PurchaseToStock( Purchase p )
         {
             ProductItems pItem = new ProductItems()
             {
@@ -850,11 +886,9 @@ namespace AprajitaRetails.Excels
                 IGST=p.TaxRate,SGST=p.TaxRate,PreGST=p.TaxType*/
             };
             Logs.LogMe("Insert of Data is " + pIDB.InsertDataWithVerify(pItem));
-
-
         }
 
-        protected string Sizes(string s)
+        protected string Sizes( string s )
         {
             string r = "";
             s = s.Trim();
@@ -864,20 +898,25 @@ namespace AprajitaRetails.Excels
                 case 1:
                     r = s;
                     break;
+
                 case 2:
                     r = s;
                     break;
+
                 case 3:
 
                     break;
+
                 case 4:
                     break;
+
                 default:
                     break;
             }
             return r;
         }
-        protected string ToSize(string stylecode)
+
+        protected string ToSize( string stylecode )
         {
             if (Basic.IsNumeric(stylecode))
             {
@@ -906,9 +945,9 @@ namespace AprajitaRetails.Excels
     }
 
     //TODO: Implement in second stage
-    class PurchaseDB : DataOps<Purchase>
+    internal class PurchaseDB : DataOps<Purchase>
     {
-        public override int InsertData(Purchase sr)
+        public override int InsertData( Purchase sr )
         {
             string query = "insert into Purchase (GRNNo, GRNDate,	InvoiceNo,	InvoiceDate,	SupplierName,	Barcode,	ProductName,	" +
               "StyleCode,  ItemDesc,	Quantity, MRP,	MRPValue	,Cost	,CostValue,	TaxAmt,ImportTime, IsDataConsumed)" +
@@ -935,29 +974,30 @@ namespace AprajitaRetails.Excels
             return cmd.ExecuteNonQuery();
         }
 
-        public override Purchase ResultToObject(List<Purchase> data, int index)
+        public override Purchase ResultToObject( List<Purchase> data, int index )
         {
             throw new NotImplementedException();
         }
 
-        public override Purchase ResultToObject(SortedDictionary<string, string> data)
+        public override Purchase ResultToObject( SortedDictionary<string, string> data )
         {
             throw new NotImplementedException();
         }
 
-        public override List<Purchase> ResultToObject(List<SortedDictionary<string, string>> dataList)
+        public override List<Purchase> ResultToObject( List<SortedDictionary<string, string>> dataList )
         {
             throw new NotImplementedException();
         }
     }
 
-    class UploaderFormVM
+    internal class UploaderFormVM
     {
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         private DataTable UploadedDataTable;
         private BindingSource UploaedDataBindingSource;
         public DataGridView UploadedDataGrid { get; private set; }
-        public void RefreshDGV(DataGridView dgv, string query)
+
+        public void RefreshDGV( DataGridView dgv, string query )
         {
             UploadedDataGrid = dgv;
             UploaedDataBindingSource = new BindingSource();
@@ -975,14 +1015,11 @@ namespace AprajitaRetails.Excels
                 UploadedDataTable = table;
                 UploadedDataGrid.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 UploaedDataBindingSource.DataSource = UploadedDataTable;
-
             }
             catch (Exception)
             {
                 return;
             }
         }
-
-
     }
 }

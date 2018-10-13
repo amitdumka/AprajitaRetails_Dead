@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AprajitaRetails.Utils
 {
-    class FileMonitor
+    internal class FileMonitor
     {
         /// <summary>
         /// Check if the file modified  or not
@@ -26,7 +26,6 @@ namespace AprajitaRetails.Utils
             {
                 return false;
             }
-
         }
 
         /// <summary>
@@ -36,7 +35,6 @@ namespace AprajitaRetails.Utils
         /// <returns></returns>
         public static string NewFileInDirectory( string dirName )
         {
-
             return new DirectoryInfo(dirName).GetFiles().OrderByDescending(f => f.LastWriteTime).First().FullName;
 
             /* var directory = new DirectoryInfo(dirName);

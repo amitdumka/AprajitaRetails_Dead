@@ -2,9 +2,9 @@
 
 namespace AprajitaRetails.Voy
 {
-    public enum BillType { SA, Regular,SaleReturn}
-    
-    class VBEle
+    public enum BillType { SA, Regular, SaleReturn }
+
+    public class VBEle
     {
         public const string type = "type";
         public const string bill_number = "bill_number";
@@ -42,21 +42,22 @@ namespace AprajitaRetails.Voy
 
         //Bill Type Service
         public const string PayMode_Type_Details = "PayMode_Type_Details";
+
         public const string PayMode_Value = "PayMode_Value";
         public const string PayMode_Details = "PayMode_Details";
         public const string bill_store_id = "bill_store_id";
-
-
     }
-    class VCustomer
+
+    public class VCustomer
     {
         // TODO: Check for better apporch in futures
         public int ID { get; set; }
+
         public string CustomerName { get; set; }
         public string CustomerMobile { get; set; }
-
     }
-    class VoyBill
+
+    public class VoyBill
     {
         public int ID { get; set; }
         public string BillType { get; set; }
@@ -68,10 +69,9 @@ namespace AprajitaRetails.Voy
         public string CustomerName { get; set; } //VCustomer
         public string CustomerMobile { get; set; }//VCustomer
         public string StoreID { get; set; }
-
-
     }
-    class LineItems
+
+    public class LineItems
     {
         public int ID { get; set; }
         public int VoyBillId { get; set; } //FK
@@ -86,7 +86,8 @@ namespace AprajitaRetails.Voy
         public string Description { get; set; }
         //TODO: Store basic info . rest take from database in future
     }
-    class VPaymentMode
+
+    public class VPaymentMode
     {
         public int ID { get; set; }
         public int VoyBillId { get; set; }
@@ -94,5 +95,4 @@ namespace AprajitaRetails.Voy
         public string PaymentValue { get; set; }
         public string Notes { get; set; }
     }
-    
 }

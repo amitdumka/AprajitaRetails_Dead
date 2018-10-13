@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Data;
-using System.Reflection;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp.text;
-using System.Drawing.Printing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using RawPrint;
-
+using System;
+using System.Collections.Generic;
+using System.Drawing.Printing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace AprajitaRetails.Printers
 {      /*
     Store Name
-    Address 
+    Address
     City
-    Phone 
+    Phone
     GST
     ++++++++++++++++++++++++++++++
     Retail Invoice
@@ -32,7 +25,7 @@ namespace AprajitaRetails.Printers
     ++++++++++++++++++++++++++++++++
     SKU Code/Description
     HSN     MRP     Qty     Disc
-    cgst%   AMT    sgst%    AMT    
+    cgst%   AMT    sgst%    AMT
     +++++++++++++++++++++++++++++++++
 
     M767676767/Tesca
@@ -51,20 +44,21 @@ namespace AprajitaRetails.Printers
     ++++++++++++++++++++++++++++++=
             ** Amount included GST
     +++++++++++++++++++++++++++++++
-    Thanks You 
+    Thanks You
     Visit Again
     ++++++++++++++++++++++++++++++++++
-  
+
     */
-    class ReceiptItemTotal
+
+    internal class ReceiptItemTotal
     {
         public string TotalItem;
         public string ItemCount;
         public string CashAmount;
         public string NetAmount;
-
     }
-    class ReceiptItemDetails
+
+    internal class ReceiptItemDetails
     {
         public string BasicPrice;
         public string HSN;
@@ -74,9 +68,9 @@ namespace AprajitaRetails.Printers
         public string Discount;
         public string GSTPercentage;
         public string GSTAmount;
-
     }
-    class ReceiptDetails
+
+    internal class ReceiptDetails
     {
         public string Employee = "Cashier: M0001      Name: Manager";
         public string BillNo = "Bill NO: 67676767";
@@ -86,9 +80,9 @@ namespace AprajitaRetails.Printers
         public string ItemLine1 = "SKU Code/Description";
         public string ItemLine2 = "HSN      MRP     Qty     Disc";
         public string ItemLine3 = "cgst%    AMT     sgst%   AMT";
-
     }
-    class ReceiptHeader
+
+    internal class ReceiptHeader
     {
         public string StoreName = "Aprajita Retails";
         public string StoreCity = "Dumka";
@@ -96,53 +90,54 @@ namespace AprajitaRetails.Printers
         public string StorePhoneNo = "06434-224461";
         public string StoreGST = "20AJHPA7396P1ZV";
         public string InvoiceTitle = "Retail Invoice";
-
     }
-    class ReceiptFooter
+
+    internal class ReceiptFooter
     {
         public string FirstMessage = "** Amount included GST";
         public string ThanksMessage = "Thank You";
         public string LastMessage = "Visit Again";
     }
-    class PrintLine
+
+    internal class PrintLine
     {
         public const string DotedLine = "-----------------------------------\n";
     }
 
-    class PdfPrinter
+    internal class PdfPrinter
     {
-        public static void PrintRecipts()
+        public static void PrintRecipts( )
         {
-            MessageBox.Show (new PrintDocument ().PrinterSettings.PrinterName);
-            MessageBox.Show (PrinterSettings.InstalledPrinters [0].ToString ());
-
+            MessageBox.Show(new PrintDocument().PrinterSettings.PrinterName);
+            MessageBox.Show(PrinterSettings.InstalledPrinters[0].ToString());
         }
-        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, ReceiptItemDetails itemDetails)
+
+        public static void PrintRecipts( ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, ReceiptItemDetails itemDetails )
         {
             //Exporting to PDF
             string folderPath = "D:\\pdf\\";
-            if ( !Directory.Exists (folderPath) )
+            if (!Directory.Exists(folderPath))
             {
-                Directory.CreateDirectory (folderPath);
+                Directory.CreateDirectory(folderPath);
             }
-            using ( FileStream stream = new FileStream (Application.CommonAppDataPath + "\\reciptsPrint.pdf", FileMode.Create) )
+            using (FileStream stream = new FileStream(Application.CommonAppDataPath + "\\reciptsPrint.pdf", FileMode.Create))
             {
-                Document pdfDoc = new Document (PageSize.A6, 10f, 10f, 10f, 0f);
-                PdfWriter.GetInstance (pdfDoc, stream);
-                pdfDoc.Open ();
+                Document pdfDoc = new Document(PageSize.A6, 10f, 10f, 10f, 0f);
+                PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
                 //Header
-                Paragraph p = new Paragraph (header.StoreName)
+                Paragraph p = new Paragraph(header.StoreName)
                 {
                     Alignment = PdfAppearance.ALIGN_CENTER
                 };
-                p.Add (header.StoreAddress + "\n");
-                p.Add (header.StoreCity + "\n");
-                p.Add (header.StorePhoneNo + "\n");
-                p.Add (header.StoreGST + "\n");
-                p.Add (PrintLine.DotedLine);
-                p.Add (header.InvoiceTitle + "\n");
-                p.Add (PrintLine.DotedLine);
-                pdfDoc.Add (p);
+                p.Add(header.StoreAddress + "\n");
+                p.Add(header.StoreCity + "\n");
+                p.Add(header.StorePhoneNo + "\n");
+                p.Add(header.StoreGST + "\n");
+                p.Add(PrintLine.DotedLine);
+                p.Add(header.InvoiceTitle + "\n");
+                p.Add(PrintLine.DotedLine);
+                pdfDoc.Add(p);
                 //Details
                 Paragraph dP = new Paragraph
                 {
@@ -158,7 +153,7 @@ namespace AprajitaRetails.Printers
                     PrintLine.DotedLine,
                     "\n"
                 };
-                pdfDoc.Add (dP);
+                pdfDoc.Add(dP);
                 //ItemDetails
                 //TODO: Need to iterate for Each Item
                 Paragraph ip = new Paragraph
@@ -177,18 +172,14 @@ namespace AprajitaRetails.Printers
                     PrintLine.DotedLine
                 };
                 double gstPrice = 0.00;    //TODO: Add Item Price
-                ip.Add ("Basic Price:\t\t" + itemDetails.BasicPrice);
-                ip.Add ("CGST:\t\t" + gstPrice);
-                ip.Add ("SGST:\t\t" + gstPrice);
-                ip.Add (PrintLine.DotedLine);
+                ip.Add("Basic Price:\t\t" + itemDetails.BasicPrice);
+                ip.Add("CGST:\t\t" + gstPrice);
+                ip.Add("SGST:\t\t" + gstPrice);
+                ip.Add(PrintLine.DotedLine);
 
-
-
-
-
-                pdfDoc.Add (ip);
+                pdfDoc.Add(ip);
                 //Footer
-                Paragraph foot = new Paragraph (PrintLine.DotedLine)
+                Paragraph foot = new Paragraph(PrintLine.DotedLine)
                 {
                     footer.FirstMessage,
                     PrintLine.DotedLine,
@@ -197,20 +188,20 @@ namespace AprajitaRetails.Printers
                     PrintLine.DotedLine,
                     "\n"// Just to Check;
                 };
-                pdfDoc.Add (foot);
-                pdfDoc.Close ();
-                stream.Close ();
+                pdfDoc.Add(foot);
+                pdfDoc.Close();
+                stream.Close();
 
                 string PrinterName = "Microsoft Print to PDF";
                 // Create an instance of the Printer
-                IPrinter printer = new Printer ();
+                IPrinter printer = new Printer();
                 // Print the file
-                printer.PrintRawFile (PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
+                printer.PrintRawFile(PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
                 // printer.PrintRawFile()
             }
         }
 
-        public static void PrintRecipts(ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails> itemDetail)
+        public static void PrintRecipts( ReceiptHeader header, ReceiptFooter footer, ReceiptItemTotal itemTotals, ReceiptDetails details, List<ReceiptItemDetails> itemDetail )
         {
             //Exporting to PDF
             //string folderPath = "c:\\pdf\\";
@@ -218,26 +209,26 @@ namespace AprajitaRetails.Printers
             //{
             //    Directory.CreateDirectory (folderPath);
             //}
-            using ( FileStream stream = new FileStream (Application.CommonAppDataPath + "\\reciptsPrint.pdf", FileMode.Create) )
+            using (FileStream stream = new FileStream(Application.CommonAppDataPath + "\\reciptsPrint.pdf", FileMode.Create))
             {
-                System.Console.WriteLine (Application.CommonAppDataPath);
-                                                
-                Document pdfDoc = new Document (new Rectangle(225,5000), 10f, 10f, 10f, 0f);
-                PdfWriter.GetInstance (pdfDoc, stream);
-                pdfDoc.Open ();
+                System.Console.WriteLine(Application.CommonAppDataPath);
+
+                Document pdfDoc = new Document(new Rectangle(225, 5000), 10f, 10f, 10f, 0f);
+                PdfWriter.GetInstance(pdfDoc, stream);
+                pdfDoc.Open();
                 //Header
-                Paragraph p = new Paragraph (header.StoreName + "\n")
+                Paragraph p = new Paragraph(header.StoreName + "\n")
                 {
                     Alignment = PdfAppearance.ALIGN_CENTER
                 };
-                p.Add (header.StoreAddress + "\n");
-                p.Add (header.StoreCity + "\n");
-                p.Add (header.StorePhoneNo + "\n");
-                p.Add (header.StoreGST + "\n");
-                p.Add (PrintLine.DotedLine);
-                p.Add (header.InvoiceTitle + "\n");
-                p.Add (PrintLine.DotedLine);
-                pdfDoc.Add (p);
+                p.Add(header.StoreAddress + "\n");
+                p.Add(header.StoreCity + "\n");
+                p.Add(header.StorePhoneNo + "\n");
+                p.Add(header.StoreGST + "\n");
+                p.Add(PrintLine.DotedLine);
+                p.Add(header.InvoiceTitle + "\n");
+                p.Add(PrintLine.DotedLine);
+                pdfDoc.Add(p);
                 //Details
                 Paragraph dP = new Paragraph
                 {
@@ -254,62 +245,60 @@ namespace AprajitaRetails.Printers
                     PrintLine.DotedLine,
                     "\n"
                 };
-                pdfDoc.Add (dP);
+                pdfDoc.Add(dP);
                 //ItemDetails
 
-                Paragraph ip = new Paragraph ();
+                Paragraph ip = new Paragraph();
                 // ip.Alignment = PdfAppearance.ALIGN_CENTER;
                 double gstPrice = 0.00;
                 double basicPrice = 0.00;
                 string tab = "    ";
-                foreach ( ReceiptItemDetails itemDetails in itemDetail )
+                foreach (ReceiptItemDetails itemDetails in itemDetail)
                 {
-                    if ( itemDetails != null )
+                    if (itemDetails != null)
                     {
-                        ip.Add (itemDetails.SKU_Description + "\n");
-                        ip.Add (itemDetails.HSN + tab + tab + itemDetails.MRP + tab + tab);
-                        ip.Add (itemDetails.QTY + tab + tab + itemDetails.Discount + "\n");
-                        ip.Add (itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + tab + tab);
-                        ip.Add (itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + "\n");
-                        gstPrice += Double.Parse (itemDetails.GSTAmount);
-                        basicPrice += Double.Parse (itemDetails.BasicPrice);
+                        ip.Add(itemDetails.SKU_Description + "\n");
+                        ip.Add(itemDetails.HSN + tab + tab + itemDetails.MRP + tab + tab);
+                        ip.Add(itemDetails.QTY + tab + tab + itemDetails.Discount + "\n");
+                        ip.Add(itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + tab + tab);
+                        ip.Add(itemDetails.GSTPercentage + "%" + tab + tab + itemDetails.GSTAmount + "\n");
+                        gstPrice += Double.Parse(itemDetails.GSTAmount);
+                        basicPrice += Double.Parse(itemDetails.BasicPrice);
                     }
                 }
-                ip.Add ("\n" + PrintLine.DotedLine);
-                ip.Add ("Total: " + itemTotals.TotalItem + tab + tab + tab + itemTotals.NetAmount + "\n");
-                ip.Add ("item(s): " + itemTotals.ItemCount + tab + "Net Amount:" + tab + itemTotals.NetAmount + "\n");
-                ip.Add (PrintLine.DotedLine);
-                ip.Add ("Tender\n Paid Amount:\t\t Rs. " + itemTotals.CashAmount);
-                ip.Add ("\n" + PrintLine.DotedLine);
-                ip.Add ("Basic Price:\t\t" + basicPrice);
-                ip.Add ("\nCGST:\t\t" + gstPrice);
-                ip.Add ("\nSGST:\t\t" + gstPrice + "\n");
+                ip.Add("\n" + PrintLine.DotedLine);
+                ip.Add("Total: " + itemTotals.TotalItem + tab + tab + tab + itemTotals.NetAmount + "\n");
+                ip.Add("item(s): " + itemTotals.ItemCount + tab + "Net Amount:" + tab + itemTotals.NetAmount + "\n");
+                ip.Add(PrintLine.DotedLine);
+                ip.Add("Tender\n Paid Amount:\t\t Rs. " + itemTotals.CashAmount);
+                ip.Add("\n" + PrintLine.DotedLine);
+                ip.Add("Basic Price:\t\t" + basicPrice);
+                ip.Add("\nCGST:\t\t" + gstPrice);
+                ip.Add("\nSGST:\t\t" + gstPrice + "\n");
                 //ip.Add (PrintLine.DotedLine);
-                pdfDoc.Add (ip);
+                pdfDoc.Add(ip);
                 //Footer
-                Paragraph foot = new Paragraph (PrintLine.DotedLine)
+                Paragraph foot = new Paragraph(PrintLine.DotedLine)
                 {
                     Alignment = PdfAppearance.ALIGN_CENTER
                 };
-                foot.Add (footer.FirstMessage + "\n");
-                foot.Add (PrintLine.DotedLine);
-                foot.Add (footer.ThanksMessage + "\n");
-                foot.Add (footer.LastMessage + "\n");
-                foot.Add (PrintLine.DotedLine);
-                foot.Add ("\n");// Just to Check;
-                pdfDoc.Add (foot);
-                pdfDoc.NewPage ();
-                
-                pdfDoc.Close ();
-                
-                stream.Close ();
+                foot.Add(footer.FirstMessage + "\n");
+                foot.Add(PrintLine.DotedLine);
+                foot.Add(footer.ThanksMessage + "\n");
+                foot.Add(footer.LastMessage + "\n");
+                foot.Add(PrintLine.DotedLine);
+                foot.Add("\n");// Just to Check;
+                pdfDoc.Add(foot);
+                pdfDoc.NewPage();
+
+                pdfDoc.Close();
+
+                stream.Close();
                 // Create an instance of the Printer
-                IPrinter printer = new Printer ();
+                IPrinter printer = new Printer();
                 // Print the file
-                printer.PrintRawFile (ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
-              
+                printer.PrintRawFile(ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
             }
         }
-
     }
 }

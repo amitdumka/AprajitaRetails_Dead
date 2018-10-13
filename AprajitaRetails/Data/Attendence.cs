@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AprajitaRetails.Data
 {
-    class Attendence
+    internal class Attendence
     {
         public int ID { set; get; }
         public string EMPCode { get; set; }
@@ -15,5 +11,4 @@ namespace AprajitaRetails.Data
         public int IsAbesent { get; set; }
         public int IsPaidLeave { set; get; }
     }
-    
 }

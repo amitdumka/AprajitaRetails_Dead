@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AprajitaRetails.Data;
+﻿using AprajitaRetails.Data;
+using System;
 
 namespace AprajitaRetails.DataModel
 
 {
-    
-    class Salary
+    internal class Salary
     {
         public int ID { get; set; }
         public double BasicSalary { get; set; }
         public double ExtraSalary { get; set; }
         public Incentive IncentiveID { get; set; }
-
-
     }
-    class Incentive
+
+    internal class Incentive
     {
         public int ID { get; set; }
         public double IncentivePercentage { get; set; }
         public double TargetAmount { get; set; }
     }
-    class PaySlip
+
+    internal class PaySlip
     {
         public int ID { get; set; }
         public int EmpCode { get; set; }
@@ -45,9 +40,9 @@ namespace AprajitaRetails.DataModel
         public string OtherDeducationsDetails { get; set; }
         public double OtherDeducations { get; set; }
         public double FinalPayment { get; set; }
-
     }
-    class Advances
+
+    internal class Advances
     {
         public int ID { get; set; }
         public int EmpID { get; set; }
@@ -56,21 +51,23 @@ namespace AprajitaRetails.DataModel
         public double Amount { get; set; }
         public string Reason { get; set; }
     }
-    class Dues
+
+    internal class Dues
     {
         public int ID { get; set; }
         public int EmpID { get; set; }
         public string EMPCode { get; set; }
         public double DuesAmount { get; set; }
     }
-    class DuesPayment
+
+    internal class DuesPayment
     {
         public int ID { get; set; }
         public int EmpID { get; set; }
         public string EmpCode { get; set; }
-        public int AdvanceID {get;set;}
-        public double Amount {get;set;}
-        public int ReciptNo {get;set;}
-        public DateTime DateOfRecipt {get;set;}
-}
+        public int AdvanceID { get; set; }
+        public double Amount { get; set; }
+        public int ReciptNo { get; set; }
+        public DateTime DateOfRecipt { get; set; }
+    }
 }

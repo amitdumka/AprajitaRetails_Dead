@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails
+﻿namespace AprajitaRetails
 {
-    class TableName
+    internal class TableName
     {
         //public static string Customer = "";
         //public static string Sale;
@@ -34,12 +28,5 @@ namespace AprajitaRetails
         //public static string BankDetails;
         //public static string ExpensesCategory;
         //public static string PaymentMode;
-
-
-
-
-
-
-
     }
 }

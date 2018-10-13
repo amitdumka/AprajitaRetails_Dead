@@ -1,60 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AprajitaRetails.Utils;
-using System.Data;
-using System.IO;
-using static Stimulsoft.Report.Options.Dictionary.StiOptions.Dictionary;
-using System.ComponentModel;
+﻿using AprajitaRetails.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
-
 namespace AprajitaRetails.Voy
 {
-    class VoygerXMLToDB
+    internal class VoygerXMLToDB
     {
+        private DataTable vbTable;
+        private static Clients client = CurrentClient.LoggedClient;
 
-        DataTable vbTable;
-        static Clients client = CurrentClient.LoggedClient;
-
-        public VoygerXMLToDB()
+        public VoygerXMLToDB( )
         {
             vbTable = new DataTable("VoyBill");
-
         }
-
     }
-    internal class VoygerBill
+
+    public class VoygerBill
     {
         public VoyBill bill;
         public List<VPaymentMode> payModes;
         public List<LineItems> lineItems;
 
-        public VoygerBill()
+        public VoygerBill( )
         {
             bill = new VoyBill();
             lineItems = new List<LineItems>();
             payModes = new List<VPaymentMode>();
         }
-        public void AddBillDetails(VoyBill voyBill)
+
+        public void AddBillDetails( VoyBill voyBill )
         {
             bill = voyBill;
         }
-        public void AddLineItem(LineItems items)
+
+        public void AddLineItem( LineItems items )
         {
             lineItems.Add(items);
-
         }
-        public void AddPaymentMode(VPaymentMode vPaymentMode)
+
+        public void AddPaymentMode( VPaymentMode vPaymentMode )
         {
             payModes.Add(vPaymentMode);
         }
     }
-    class VoyTable
+
+    public class VoyTable
     {
         public const string T_Bill = "bill";
         public const string T_LineItem = "line_item";
@@ -62,24 +58,75 @@ namespace AprajitaRetails.Voy
         public const string T_Payments = "payment";
     }
 
-    class VoygerXMLReader
+    public class VoygerXMLReader
     {
         private static VoygerBill vBill;
-        // private static XmlTextReader reader;
-        static StreamWriter fileWR;
 
-        public static void WriteVoyDataToFile()
-        {
+        // private static XmlTextReader reader;
+        private static StreamWriter fileWR;
+
+        public static void WriteVoyDataToFile( )
+        {//TODO: no use
             if (fileWR == null)
             {
-                fileWR = File.AppendText("DataSet.txt"); //TODO: remove it
+                fileWR = File.AppendText("d:\\DataSet.txt"); //TODO: remove it
                 fileWR.WriteLine("xml:{0}: Using DataSet:");
             }
             fileWR.WriteLine("Dumping VBill Object Data to File.");
             fileWR.WriteLine();
             fileWR.WriteLine(ObjectDumper.Dump(vBill));
-            //fileWR.WriteLine(vBill);
+        }
 
+        /// <summary>
+        /// Read Any XML fileinto DataSet
+        /// </summary>
+        /// <param name="xmlFile"></param>
+        /// <returns></returns>
+        public static DataSet ReadXML( string xmlFile )
+        {
+            if (xmlFile == "")
+                return null;
+            else if (!File.Exists(xmlFile))
+            {
+                return null;
+            }
+            DataSet dataSet = new DataSet();
+            dataSet.ReadXml(xmlFile, XmlReadMode.InferSchema);
+            return dataSet;
+        }
+
+        /// <summary>
+        /// read invoicexml
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public static VoygerBill ReadInvoiceXML( string filename )
+        {
+            DataSet dataSet = ReadXML(filename);
+
+            if (dataSet != null || dataSet.Tables.Count > 0)
+            {
+                vBill = new VoygerBill();
+                foreach (DataTable table in dataSet.Tables)
+                {
+                    fileWR.WriteLine("TableName: " + table);
+                    fileWR.WriteLine();
+                    switch (table.TableName)
+                    {
+                        case VoyTable.T_Bill:
+                            ReadBill(table); break;
+                        case VoyTable.T_Customer: ReadCustomer(table); break;
+                        case VoyTable.T_LineItem: ReadLineItems(table); break;
+                        case VoyTable.T_Payments: ReadPaymentDetails(table); break;
+
+                        default:
+                            break;
+                    }
+                }
+                return vBill;
+            }
+            else
+                return null; // Error: Incase failed to read or no data present
         }
 
         /// <summary>
@@ -88,7 +135,7 @@ namespace AprajitaRetails.Voy
         /// <param name="xmlFile"></param>
         /// <returns>No of table is created</returns>
 
-        public static int ReadVoyBillXML(string xmlFile)
+        public static int ReadVoyBillXML( string xmlFile )
         {
             DataSet dataSet = new DataSet();
             dataSet.ReadXml(xmlFile, XmlReadMode.InferSchema);
@@ -98,8 +145,7 @@ namespace AprajitaRetails.Voy
             fileWR.WriteLine("No of Table is created in current Data is " + c, xmlFile);
             if (c > 0)
                 vBill = new VoygerBill();
-            else return -1; // Error: Incase failed to read or no data present 
-
+            else return -1; // Error: Incase failed to read or no data present
 
             foreach (DataTable table in dataSet.Tables)
             {
@@ -116,8 +162,6 @@ namespace AprajitaRetails.Voy
                     default:
                         break;
                 }
-
-
             }
 
             WriteVoyDataToFile();
@@ -131,7 +175,7 @@ namespace AprajitaRetails.Voy
         /// Read Customer :Datatable to Object
         /// </summary>
         /// <param name="table"></param>
-        public static void ReadCustomer(DataTable table)
+        public static void ReadCustomer( DataTable table )
         {
             vBill.bill.CustomerName = (string)table.Rows[0][VBEle.customername];
             vBill.bill.CustomerMobile = (string)table.Rows[0][VBEle.mobile];
@@ -141,7 +185,7 @@ namespace AprajitaRetails.Voy
         /// Read Line Items details : DataTable to Object
         /// </summary>
         /// <param name="table"></param>
-        public static void ReadLineItems(DataTable table)
+        public static void ReadLineItems( DataTable table )
         {
             LineItems lineItem;
             int id = 0;
@@ -163,7 +207,8 @@ namespace AprajitaRetails.Voy
                 vBill.AddLineItem(lineItem);
             }
         }
-        public static void ReadBill(DataTable table)
+
+        public static void ReadBill( DataTable table )
         {
             vBill.bill.BillAmount = Double.Parse((string)table.Rows[0][VBEle.bill_amount]);
             vBill.bill.BillDiscount = Double.Parse((string)table.Rows[0][VBEle.bill_discount]);
@@ -174,11 +219,12 @@ namespace AprajitaRetails.Voy
             vBill.bill.StoreID = (string)table.Rows[0][VBEle.bill_store_id];
             vBill.bill.ID = -1;
         }
+
         /// <summary>
         /// PaymentDetails : DataTable To Object
         /// </summary>
         /// <param name="table"></param>
-        public static int ReadPaymentDetails(DataTable table)
+        public static int ReadPaymentDetails( DataTable table )
         {
             VPaymentMode vPayMode;
             int id = 0;
@@ -189,44 +235,37 @@ namespace AprajitaRetails.Voy
                 vPayMode.PaymentMode = (string)row[VBEle.mode];
                 vPayMode.PaymentValue = (string)row[VBEle.value];
                 vBill.AddPaymentMode(vPayMode);
-
             }
             return id;
-
         }
-
-
-
-
-
     }// end of class
-    
-public class ObjectDumper
+
+    public class ObjectDumper
     {
         private int _level;
         private readonly int _indentSize;
         private readonly StringBuilder _stringBuilder;
         private readonly List<int> _hashListOfFoundElements;
 
-        private ObjectDumper(int indentSize)
+        private ObjectDumper( int indentSize )
         {
             _indentSize = indentSize;
             _stringBuilder = new StringBuilder();
             _hashListOfFoundElements = new List<int>();
         }
 
-        public static string Dump(object element)
+        public static string Dump( object element )
         {
             return Dump(element, 2);
         }
 
-        public static string Dump(object element, int indentSize)
+        public static string Dump( object element, int indentSize )
         {
             var instance = new ObjectDumper(indentSize);
             return instance.DumpElement(element);
         }
 
-        private string DumpElement(object element)
+        private string DumpElement( object element )
         {
             if (element == null || element is ValueType || element is string)
             {
@@ -307,7 +346,7 @@ public class ObjectDumper
             return _stringBuilder.ToString();
         }
 
-        private bool AlreadyTouched(object value)
+        private bool AlreadyTouched( object value )
         {
             if (value == null)
                 return false;
@@ -321,7 +360,7 @@ public class ObjectDumper
             return false;
         }
 
-        private void Write(string value, params object[] args)
+        private void Write( string value, params object[] args )
         {
             var space = new string(' ', _level * _indentSize);
 
@@ -331,7 +370,7 @@ public class ObjectDumper
             _stringBuilder.AppendLine(space + value);
         }
 
-        private string FormatValue(object o)
+        private string FormatValue( object o )
         {
             if (o == null)
                 return ("null");

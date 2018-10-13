@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Reflection;
+using System.Text;
 
 namespace CyberN.TableCreator
 {
@@ -11,7 +11,7 @@ namespace CyberN.TableCreator
     /// </summary>
     public class TableClass
     {
-        private List<KeyValuePair<String, Type>> _fieldInfo = new List<KeyValuePair<String, Type>> ();
+        private List<KeyValuePair<String, Type>> _fieldInfo = new List<KeyValuePair<String, Type>>();
         private string _className = String.Empty;
 
         private Dictionary<Type, String> DataMapper
@@ -47,111 +47,109 @@ namespace CyberN.TableCreator
             set { this._className = value; }
         }
 
-        public TableClass(Type t)
+        public TableClass( Type t )
         {
             this._className = t.Name;
 
-            foreach ( PropertyInfo p in t.GetProperties () )
+            foreach (PropertyInfo p in t.GetProperties())
             {
-                KeyValuePair<String, Type> field = new KeyValuePair<String, Type> (p.Name, p.PropertyType);
+                KeyValuePair<String, Type> field = new KeyValuePair<String, Type>(p.Name, p.PropertyType);
 
-                this.Fields.Add (field);
+                this.Fields.Add(field);
             }
         }
 
-        public string CreateInsertScript()
+        public string CreateInsertScript( )
         {
-            System.Text.StringBuilder script = new StringBuilder ();
+            System.Text.StringBuilder script = new StringBuilder();
 
-            script.AppendLine ("Insert into " + this.ClassName);
-            script.AppendLine ("(");
+            script.AppendLine("Insert into " + this.ClassName);
+            script.AppendLine("(");
             int x = 0;
-            if ( Fields [0].Key == "ID" )
+            if (Fields[0].Key == "ID")
             {
                 x = 1;
-
             }
 
-            for ( int i = x ; i < this.Fields.Count ; i++ )
+            for (int i = x; i < this.Fields.Count; i++)
             {
+                script.Append("\t " + Fields[i].Key);
 
-                script.Append ("\t " + Fields [i].Key);
-
-                if ( i != this.Fields.Count - 1 )
+                if (i != this.Fields.Count - 1)
                 {
-                    script.Append (", ");
+                    script.Append(", ");
                 }
 
-                script.Append (Environment.NewLine);
+                script.Append(Environment.NewLine);
             }
 
-            script.AppendLine (")");
-            script.AppendLine ("Values(");
-            for ( int i = x ; i < this.Fields.Count ; i++ )
+            script.AppendLine(")");
+            script.AppendLine("Values(");
+            for (int i = x; i < this.Fields.Count; i++)
             {
                 //KeyValuePair<String, Type> field = this.Fields [i];
 
                 //if ( DataMapper.ContainsKey (field.Value) )
                 //{
-                script.Append ("\t @" + Fields [i].Key);
+                script.Append("\t @" + Fields[i].Key);
                 //}
                 //else
                 //{
-                //    // Complex Type? 
+                //    // Complex Type?
                 //    script.Append ("\t " + field.Key + " INT");
                 //}
 
-                if ( i != this.Fields.Count - 1 )
+                if (i != this.Fields.Count - 1)
                 {
-                    script.Append (", ");
+                    script.Append(", ");
                 }
 
-                script.Append (Environment.NewLine);
+                script.Append(Environment.NewLine);
             }
-            script.AppendLine (")");
-            return script.ToString ();
+            script.AppendLine(")");
+            return script.ToString();
         }
-        public string CreateTableScript()
-        {
-            System.Text.StringBuilder script = new StringBuilder ();
 
-            script.AppendLine ("CREATE TABLE " + this.ClassName);
-            script.AppendLine ("(");
+        public string CreateTableScript( )
+        {
+            System.Text.StringBuilder script = new StringBuilder();
+
+            script.AppendLine("CREATE TABLE " + this.ClassName);
+            script.AppendLine("(");
             int x = 0;
-            if ( Fields [0].Key == "ID" )
+            if (Fields[0].Key == "ID")
             {
                 x = 1;
-                script.AppendLine ("\t ID INT Not Null Primary Key Identity,");
+                script.AppendLine("\t ID INT Not Null Primary Key Identity,");
             }
             else
-                script.AppendLine ("\t ID INT Not Null Primary Key Identity,");
+                script.AppendLine("\t ID INT Not Null Primary Key Identity,");
 
-
-            for ( int i = x ; i < this.Fields.Count ; i++ )
+            for (int i = x; i < this.Fields.Count; i++)
             {
-                KeyValuePair<String, Type> field = this.Fields [i];
+                KeyValuePair<String, Type> field = this.Fields[i];
 
-                if ( DataMapper.ContainsKey (field.Value) )
+                if (DataMapper.ContainsKey(field.Value))
                 {
-                    script.Append ("\t " + field.Key + " " + DataMapper [field.Value]);
+                    script.Append("\t " + field.Key + " " + DataMapper[field.Value]);
                 }
                 else
                 {
-                    // Complex Type? 
-                    script.Append ("\t " + field.Key + " INT");
+                    // Complex Type?
+                    script.Append("\t " + field.Key + " INT");
                 }
 
-                if ( i != this.Fields.Count - 1 )
+                if (i != this.Fields.Count - 1)
                 {
-                    script.Append (",");
+                    script.Append(",");
                 }
 
-                script.Append (Environment.NewLine);
+                script.Append(Environment.NewLine);
             }
 
-            script.AppendLine (")");
+            script.AppendLine(")");
 
-            return script.ToString ();
+            return script.ToString();
         }
     }
 }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails.DataModel
+﻿namespace AprajitaRetails.DataModel
 {
     /// <summary>
     /// TableName: Customer
     /// </summary>
-    class CustomerDM
+    internal class CustomerDM
     {
         public int ID { set; get; }
         public string FirstName { set; get; }
@@ -20,7 +14,4 @@ namespace AprajitaRetails.DataModel
         public int NoOfBills { set; get; }
         public double TotalAmount { set; get; }
     }
-   
-    
-    
 }

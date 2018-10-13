@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails.ViewModel
+﻿namespace AprajitaRetails.ViewModel
 {
-    class Features
+    internal class Features
     {
         public bool DailySale = true;
         public bool DayClosing = false;
@@ -18,7 +12,5 @@ namespace AprajitaRetails.ViewModel
         public bool purchaseinvoice = false;
         public bool salary = false;
         public bool uploaderform = false;
-
-       
     }
 }

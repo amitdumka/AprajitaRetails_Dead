@@ -7,10 +7,10 @@ namespace AprajitaRetails
     /// </summary>
     public class PurchaseModel
     {
-        string grnno; DateTime grndate; string invoiceno; DateTime invdate;
-        string suppliername; string barcode; string productname;
-        string stylecode; string itemdesc; double qty; double mrp; double mrpvalue;
-        double cost; double costvalue; double taxamt;
+        private string grnno; private DateTime grndate; private string invoiceno; private DateTime invdate;
+        private string suppliername; private string barcode; private string productname;
+        private string stylecode; private string itemdesc; private double qty; private double mrp; private double mrpvalue;
+        private double cost; private double costvalue; private double taxamt;
 
         public string Grnno { get => grnno; set => grnno = value; }
         public DateTime Grndate { get => grndate; set => grndate = value; }
@@ -29,6 +29,7 @@ namespace AprajitaRetails
         public double Taxamt { get => taxamt; set => taxamt = value; }
     }
 }
+
 /*
  GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code
  Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt

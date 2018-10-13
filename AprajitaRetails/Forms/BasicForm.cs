@@ -5,30 +5,33 @@ namespace AprajitaRetails.Forms
 {
     abstract public class BasicForm<T> : Form
     {
-        public BasicForm()
+        public BasicForm( )
         {
-
         }
+
         abstract protected Button BTNAdd { set; get; }
         abstract protected Button BTNUpdate { set; get; }
         abstract protected Button BTNDelete { set; get; }
         abstract protected Button BTNCancel { set; get; }
 
+        abstract protected T ReadFields( );
 
-        abstract protected T ReadFields();
-        abstract protected bool ValidateFields();
-        abstract protected void PerformSave();
-        abstract protected void PerformAdd();
-        abstract protected void ClearUiFields();
+        abstract protected bool ValidateFields( );
+
+        abstract protected void PerformSave( );
+
+        abstract protected void PerformAdd( );
+
+        abstract protected void ClearUiFields( );
 
         /// <summary>
         /// Cancel Button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Cancel_Click(object sender, EventArgs e)
+        private void Cancel_Click( object sender, EventArgs e )
         {
-            ClearUiFields ();
+            ClearUiFields();
             BTNAdd.Text = "Add";
             BTNUpdate.Text = "Update";
         }
@@ -38,20 +41,16 @@ namespace AprajitaRetails.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BTNAdd_Click(object sender, EventArgs e)
+        private void BTNAdd_Click( object sender, EventArgs e )
         {
-            if ( BTNAdd.Text == "Add" )
+            if (BTNAdd.Text == "Add")
             {
-
-                PerformAdd ();
+                PerformAdd();
             }
-            else if ( BTNAdd.Text == "Save" )
+            else if (BTNAdd.Text == "Save")
             {
-                PerformSave ();
+                PerformSave();
             }
         }
-
-
-
     }
 }

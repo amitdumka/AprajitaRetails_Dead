@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AprajitaRetails.Data;
 
 namespace AprajitaRetails.DataModel
 {
@@ -25,12 +20,8 @@ namespace AprajitaRetails.DataModel
         public int EmpType { get; set; }
         public int AttendenceId { set; get; }
 
-        public EmployeeDM()
+        public EmployeeDM( )
         {
-
-
         }
-
     }
-   
 }

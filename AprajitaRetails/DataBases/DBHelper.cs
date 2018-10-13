@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AprajitaRetails
@@ -14,128 +10,125 @@ namespace AprajitaRetails
     {
         public static readonly int SQLDB = 1;
         public static readonly int OLEDB = 2;
-
     }
-    class DBHelper : IDisposable
+
+    internal class DBHelper : IDisposable
     {
         public static String OleDBName = "database.mdf";
         public static String SqlDBName = "database.mdf";
-        String ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + SqlDBName + ";Integrated Security = True;Connect TimeOut=30";
-        String oleConStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + OleDBName + "; Jet OLEDB:Engine Type=5 ";
-        OleDbConnection oleDB;
-        SqlConnection sqlDB;
-        public DBHelper()
+        private String ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + SqlDBName + ";Integrated Security = True;Connect TimeOut=30";
+        private String oleConStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + OleDBName + "; Jet OLEDB:Engine Type=5 ";
+        private OleDbConnection oleDB;
+        private SqlConnection sqlDB;
+
+        public DBHelper( )
         {
-            Logs.LogMe ("DBHelper:()");
+            Logs.LogMe("DBHelper:()");
         }
-        protected virtual void Dispose(bool disposing)
+
+        protected virtual void Dispose( bool disposing )
         {
-            if ( disposing )
+            if (disposing)
             {
                 // dispose managed resources
                 //newFile.Close();
-                this.oleDB.Dispose ();
-                this.sqlDB.Dispose ();
+                this.oleDB.Dispose();
+                this.sqlDB.Dispose();
             }
             // free native resources
         }
 
-        public void Dispose()
+        public void Dispose( )
         {
-            Dispose (true);
-            GC.SuppressFinalize (this);
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        public static void SetDataBaseName(string database)
+        public static void SetDataBaseName( string database )
         {
             OleDBName = database + ".mdf";
             SqlDBName = database + ".mdf";
-            Logs.LogMe ("Setting Both Database Name to "+database);
+            Logs.LogMe("Setting Both Database Name to " + database);
         }
+
         /// <summary>
         /// Get Connection Objects
         /// </summary>
         /// <param name="DBTypes"></param>
         /// <returns></returns>
-        public Object GetConnectioObject(int DBTypes)
+        public Object GetConnectioObject( int DBTypes )
         {
-            Logs.LogMe ("Preparing to Send Connection Object");
-            if ( DBTypes == ConType.SQLDB )
+            Logs.LogMe("Preparing to Send Connection Object");
+            if (DBTypes == ConType.SQLDB)
             {
-                sqlDB = new SqlConnection (ConStr);
-                Logs.LogMe ("SqlConnection Object is Created");
+                sqlDB = new SqlConnection(ConStr);
+                Logs.LogMe("SqlConnection Object is Created");
                 try
                 {
-                    sqlDB.Open ();
-                    Logs.LogMe ("DataBase got Opened");
+                    sqlDB.Open();
+                    Logs.LogMe("DataBase got Opened");
                     return sqlDB;
                 }
-                catch ( Exception e)
+                catch (Exception e)
                 {
-
-                    Logs.LogMe ("Exceptoin Happend! Exp:" +e.Message);
-                    Logs.LogMe ("Constr="+ConStr);
+                    Logs.LogMe("Exceptoin Happend! Exp:" + e.Message);
+                    Logs.LogMe("Constr=" + ConStr);
                     //throw;
                     return null;
                 }
-
             }
-            else if ( DBTypes == ConType.OLEDB )
+            else if (DBTypes == ConType.OLEDB)
             {
-                oleDB = new OleDbConnection (oleConStr);
+                oleDB = new OleDbConnection(oleConStr);
                 try
                 {
-                    oleDB.Open ();
+                    oleDB.Open();
                     return oleDB;
                 }
-                catch ( Exception )
+                catch (Exception)
                 {
-
                     //throw;
                     return null;
                 }
             }
             else
                 return null;
-
         }
 
         /// <summary>
-        ///  ConnectDB : Connnect to Database. 
+        ///  ConnectDB : Connnect to Database.
         /// @type INT Type of Database(Currently 1 for sql and 2 for ole)
         /// @return true or false
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool ConnectDB(int type)
+        public bool ConnectDB( int type )
         {
-            if ( type == ConType.OLEDB )
+            if (type == ConType.OLEDB)
             {
-                if ( oleDB == null )
-                    oleDB = new OleDbConnection (oleConStr);
+                if (oleDB == null)
+                    oleDB = new OleDbConnection(oleConStr);
                 try
                 {
-                    oleDB.Open ();
+                    oleDB.Open();
                 }
-                catch ( Exception )
+                catch (Exception)
                 {
-
                     //throw;
                     return false;
                 }
                 return true;
             }
-            else if ( type == ConType.SQLDB )
+            else if (type == ConType.SQLDB)
             {
-                if ( sqlDB == null )
-                    sqlDB = new SqlConnection (ConStr);
+                if (sqlDB == null)
+                    sqlDB = new SqlConnection(ConStr);
                 try
                 {
-                    sqlDB.Open ();
+                    sqlDB.Open();
                 }
-                catch ( Exception )
+                catch (Exception)
                 {
-
                     //throw;
                     return false;
                 }
@@ -144,233 +137,218 @@ namespace AprajitaRetails
             }
             else
                 return false;
-
-
         }
+
         ///**
-        // *CloseDB: Close Database Connection 
+        // *CloseDB: Close Database Connection
         // */
-        public void CloseDB()
+        public void CloseDB( )
         {
-            if ( oleDB != null && oleDB.State == ConnectionState.Open )
+            if (oleDB != null && oleDB.State == ConnectionState.Open)
             {
-
-                oleDB.Close ();
+                oleDB.Close();
             }
-            if ( sqlDB != null && sqlDB.State == ConnectionState.Open )
-                sqlDB.Close ();
+            if (sqlDB != null && sqlDB.State == ConnectionState.Open)
+                sqlDB.Close();
         }
+
         /// <summary>
         /// Check connection is open
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool IsOpen(int type)
+        public bool IsOpen( int type )
         {
-            if ( type == ConType.OLEDB && oleDB != null && oleDB.State == ConnectionState.Open )
+            if (type == ConType.OLEDB && oleDB != null && oleDB.State == ConnectionState.Open)
                 return true;
-            else if ( type == ConType.SQLDB && sqlDB != null && sqlDB.State == ConnectionState.Open )
+            else if (type == ConType.SQLDB && sqlDB != null && sqlDB.State == ConnectionState.Open)
                 return true;
             return false;
         }
+
         /// <summary>
         /// Get Query from OLE Database
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public OleDbDataReader GetQueryOle(String sql)
+        public OleDbDataReader GetQueryOle( String sql )
         {
-
-            if ( oleDB != null && oleDB.State == ConnectionState.Closed )
-                oleDB.Open ();
+            if (oleDB != null && oleDB.State == ConnectionState.Closed)
+                oleDB.Open();
             else
-                ConnectDB (ConType.OLEDB);
-            OleDbCommand cmd = oleDB.CreateCommand ();
+                ConnectDB(ConType.OLEDB);
+            OleDbCommand cmd = oleDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = oleDB;
             // cmd.ExecuteNonQuery();
 
-            OleDbDataReader reader = cmd.ExecuteReader (CommandBehavior.CloseConnection);
-            reader.Read ();
-            if ( reader.IsClosed )
-                MessageBox.Show ("Reader is close");
-            oleDB.Close ();
-            if ( reader.IsClosed )
-                MessageBox.Show ("Reader is close");
+            OleDbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            reader.Read();
+            if (reader.IsClosed)
+                MessageBox.Show("Reader is close");
+            oleDB.Close();
+            if (reader.IsClosed)
+                MessageBox.Show("Reader is close");
             return reader;
-
-
         }
+
         /// <summary>
         /// Get Query from SQL Database
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public SqlDataReader GetQuerySql(String sql)
+        public SqlDataReader GetQuerySql( String sql )
         {
-
-            if ( sqlDB != null && sqlDB.State == ConnectionState.Closed )
-                sqlDB.Open ();
+            if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
+                sqlDB.Open();
             else
-                ConnectDB (ConType.SQLDB);
-            SqlCommand cmd = sqlDB.CreateCommand ();
+                ConnectDB(ConType.SQLDB);
+            SqlCommand cmd = sqlDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = sqlDB;
 
-            SqlDataReader reader = cmd.ExecuteReader ();
-            reader.Read ();
-            if ( reader.IsClosed )
-                MessageBox.Show ("Reader is close");
-            sqlDB.Close ();
-            if ( reader.IsClosed )
-                MessageBox.Show ("Reader is close");
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            if (reader.IsClosed)
+                MessageBox.Show("Reader is close");
+            sqlDB.Close();
+            if (reader.IsClosed)
+                MessageBox.Show("Reader is close");
             return reader;
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public SqlCommand QueryStrSql(String sql)
+        public SqlCommand QueryStrSql( String sql )
         {
-            if ( sqlDB != null && sqlDB.State == ConnectionState.Closed )
-                sqlDB.Open ();
+            if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
+                sqlDB.Open();
             else
-                ConnectDB (ConType.SQLDB);
-            SqlCommand cmd = sqlDB.CreateCommand ();
+                ConnectDB(ConType.SQLDB);
+            SqlCommand cmd = sqlDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = sqlDB;
             return cmd;
-
-
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public OleDbCommand QueryStrOle(String sql)
+        public OleDbCommand QueryStrOle( String sql )
         {
-
-            if ( oleDB != null && oleDB.State == ConnectionState.Closed )
-                oleDB.Open ();
+            if (oleDB != null && oleDB.State == ConnectionState.Closed)
+                oleDB.Open();
             else
-                ConnectDB (ConType.OLEDB);
-            OleDbCommand cmd = oleDB.CreateCommand ();
+                ConnectDB(ConType.OLEDB);
+            OleDbCommand cmd = oleDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = oleDB;
             return cmd;
-
-
-
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public int InsertQueryOle(String sql)
+        public int InsertQueryOle( String sql )
         {
-
-            if ( oleDB != null && oleDB.State == ConnectionState.Closed )
-                oleDB.Open ();
+            if (oleDB != null && oleDB.State == ConnectionState.Closed)
+                oleDB.Open();
             else
-                ConnectDB (ConType.OLEDB);
-            OleDbCommand cmd = oleDB.CreateCommand ();
+                ConnectDB(ConType.OLEDB);
+            OleDbCommand cmd = oleDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = oleDB;
-            int status = cmd.ExecuteNonQuery ();
-            if ( status > 0 )
+            int status = cmd.ExecuteNonQuery();
+            if (status > 0)
             {
-                MessageBox.Show ("Record Submitted", "Congrats");
-                oleDB.Close ();
+                MessageBox.Show("Record Submitted", "Congrats");
+                oleDB.Close();
                 return 0;
             }
             else
-            { oleDB.Close (); return 1; }
-
-
-
-
-
+            { oleDB.Close(); return 1; }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public int InsertQuerySql(String sql)
+        public int InsertQuerySql( String sql )
         {
-            if ( sqlDB != null && sqlDB.State == ConnectionState.Closed )
-                sqlDB.Open ();
+            if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
+                sqlDB.Open();
             else
-                ConnectDB (ConType.SQLDB);
-            SqlCommand cmd = sqlDB.CreateCommand ();
+                ConnectDB(ConType.SQLDB);
+            SqlCommand cmd = sqlDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = sqlDB;
-            int status = cmd.ExecuteNonQuery ();
-            if ( status > 0 )
+            int status = cmd.ExecuteNonQuery();
+            if (status > 0)
             {
-                MessageBox.Show ("Record Submitted", "Congrats");
-                sqlDB.Close ();
+                MessageBox.Show("Record Submitted", "Congrats");
+                sqlDB.Close();
                 return 0;
             }
             else
-            { sqlDB.Close (); return 1; }
-
+            { sqlDB.Close(); return 1; }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public int NonQueryOle(String sql)
+        public int NonQueryOle( String sql )
         {
-            if ( oleDB != null && oleDB.State == ConnectionState.Closed )
-                oleDB.Open ();
+            if (oleDB != null && oleDB.State == ConnectionState.Closed)
+                oleDB.Open();
             else
-                ConnectDB (ConType.OLEDB);
-            OleDbCommand cmd = oleDB.CreateCommand ();
+                ConnectDB(ConType.OLEDB);
+            OleDbCommand cmd = oleDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = oleDB;
-            int status = cmd.ExecuteNonQuery ();
-            if ( status > 0 )
+            int status = cmd.ExecuteNonQuery();
+            if (status > 0)
             {
                 //MessageBox.Show("Record Submitted", "Congrats");
-                oleDB.Close ();
+                oleDB.Close();
                 return 0;
             }
             else
-            { oleDB.Close (); return 1; }
-
+            { oleDB.Close(); return 1; }
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public int NonQuerySql(String sql)
+        public int NonQuerySql( String sql )
         {
-            if ( sqlDB != null && sqlDB.State == ConnectionState.Closed )
-                sqlDB.Open ();
+            if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
+                sqlDB.Open();
             else
-                ConnectDB (ConType.SQLDB);
-            SqlCommand cmd = sqlDB.CreateCommand ();
+                ConnectDB(ConType.SQLDB);
+            SqlCommand cmd = sqlDB.CreateCommand();
             cmd.CommandText = sql;
             cmd.Connection = sqlDB;
-            int status = cmd.ExecuteNonQuery ();
-            if ( status > 0 )
+            int status = cmd.ExecuteNonQuery();
+            if (status > 0)
             {
                 //MessageBox.Show("Record Submitted", "Congrats");
-                sqlDB.Close ();
+                sqlDB.Close();
                 return 0;
             }
             else
-            { sqlDB.Close (); return 1; }
-
+            { sqlDB.Close(); return 1; }
         }
-
     }
 }

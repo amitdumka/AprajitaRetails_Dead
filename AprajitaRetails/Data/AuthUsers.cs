@@ -1,6 +1,6 @@
 ﻿namespace AprajitaRetails
 {
-    class AuthUsers
+    internal class AuthUsers
     {
         private int role;
         private string password;
@@ -12,5 +12,4 @@
         public string UserName { get => userName; set => userName = value; }
         public string Password { get => password; set => password = value; }
     }
-
 }

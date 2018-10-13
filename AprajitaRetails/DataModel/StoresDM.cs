@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AprajitaRetails.DataModel
 {
     /// <summary>
     /// TableName:Stores
     /// </summary>
-    class StoresDM
+    internal class StoresDM
     {
         public int _ID { get; set; }
         public string StoreName { get; set; }

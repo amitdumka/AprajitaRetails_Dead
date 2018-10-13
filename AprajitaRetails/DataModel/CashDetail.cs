@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AprajitaRetails.DataModel
 
@@ -10,7 +6,7 @@ namespace AprajitaRetails.DataModel
     /// <summary>
     /// TableName: CashDetails
     /// </summary>
-    class CashDetail
+    internal class CashDetail
     {
         public int ID { set; get; }
         public int TotalAmount { set; get; }
@@ -26,6 +22,7 @@ namespace AprajitaRetails.DataModel
         public int Coin5 { set; get; }
         public int Coin2 { set; get; }
         public int Coin1 { set; get; }
+
         /// <summary>
         /// For Table Record Only
         /// </summary>

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ObjectScriptingExtensions;
+
 namespace AprajitaRetails.DataModel
 {
     public class DailySaleDM
@@ -20,23 +16,23 @@ namespace AprajitaRetails.DataModel
         public int Tailoring { set; get; }
         public int PaymentMode { set; get; }
         public int NewCustomer { set; get; }
-
     }
 
-    class DiscountsDM
+    internal class DiscountsDM
     {
         public int ID { set; get; }
         public string DiscountCode { set; get; }
     }
-    class DiscountCodeGeneratorDM
+
+    internal class DiscountCodeGeneratorDM
     {
         public int ID { set; get; }
         public string DiscountCode { set; get; }
         public DateTime GenDate { set; get; }
         //TODO: Implement with full secure
     }
-    class DayClosingDM
-    {
 
+    internal class DayClosingDM
+    {
     }
 }

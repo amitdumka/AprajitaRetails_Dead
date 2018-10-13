@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AprajitaRetails.Forms;
+﻿using AprajitaRetails.Forms;
 using AprajitaRetails.Utils;
+using System;
+using System.Windows.Forms;
 
 namespace AprajitaRetails
 {
@@ -16,19 +9,20 @@ namespace AprajitaRetails
     {
         private int childFormNumber = 0;
 
-        public MainMDI()
+        public MainMDI( )
         {
-            InitializeComponent ();
+            InitializeComponent();
         }
 
-        private void ShowNewForm(Form childForm)
+        private void ShowNewForm( Form childForm )
         {
             // Form childForm = new Form ();
             childForm.MdiParent = this;
             //childForm.Text = "Window " + childFormNumber++;
             childFormNumber++;
-            childForm.Show ();
+            childForm.Show();
         }
+
         /*
          private void OpenFile(object sender, EventArgs e)
          {
@@ -52,170 +46,169 @@ namespace AprajitaRetails
              }
          }
           */
-        private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
+
+        private void ExitToolsStripMenuItem_Click( object sender, EventArgs e )
         {
-            this.Close ();
-            Application.Exit ();
+            this.Close();
+            Application.Exit();
         }
 
-
-        private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolBarToolStripMenuItem_Click( object sender, EventArgs e )
         {
             toolStrip.Visible = toolBarToolStripMenuItem.Checked;
         }
 
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StatusBarToolStripMenuItem_Click( object sender, EventArgs e )
         {
             statusStrip.Visible = statusBarToolStripMenuItem.Checked;
         }
 
-        private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CascadeToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi (MdiLayout.Cascade);
+            LayoutMdi(MdiLayout.Cascade);
         }
 
-        private void TileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TileVerticalToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi (MdiLayout.TileVertical);
+            LayoutMdi(MdiLayout.TileVertical);
         }
 
-        private void TileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TileHorizontalToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi (MdiLayout.TileHorizontal);
+            LayoutMdi(MdiLayout.TileHorizontal);
         }
 
-        private void ArrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ArrangeIconsToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi (MdiLayout.ArrangeIcons);
+            LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
-        private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseAllToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            foreach ( Form childForm in MdiChildren )
+            foreach (Form childForm in MdiChildren)
             {
-                childForm.Close ();
+                childForm.Close();
             }
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new DailySaleForm ());
+            ShowNewForm(new DailySaleForm());
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new DayClosingForm ());
+            ShowNewForm(new DayClosingForm());
         }
 
-        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        private void toolStripMenuItem7_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new FootFallForm ());
+            ShowNewForm(new FootFallForm());
         }
 
-        private void uploadSaleRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uploadSaleRegisterToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new Form1 ());
+            ShowNewForm(new Form1());
         }
 
-        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        private void printToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new FormTest ());
+            ShowNewForm(new FormTest());
         }
 
-        private void customersDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        private void customersDetailToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new CustomersForm ());
+            ShowNewForm(new CustomersForm());
         }
 
-        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        private void toolStripMenuItem8_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new SaleInvoiceForm ());
+            ShowNewForm(new SaleInvoiceForm());
         }
 
-        private void salaryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void salaryToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new SalaryForm ());
+            ShowNewForm(new SalaryForm());
         }
 
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        private void toolStripMenuItem3_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new ExpensesForm ());
+            ShowNewForm(new ExpensesForm());
         }
 
-        private void employeeDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void employeeDetailsToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new EmployeeForm ());
+            ShowNewForm(new EmployeeForm());
         }
 
-        private void attendenceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void attendenceToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new AttendenceForm ());
+            ShowNewForm(new AttendenceForm());
         }
 
-        private void updateEmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updateEmployeeToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new EmployeeForm ());
+            ShowNewForm(new EmployeeForm());
         }
 
-        private void TSMIExpenses_Click(object sender, EventArgs e)
+        private void TSMIExpenses_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new ExpensesForm ());
+            ShowNewForm(new ExpensesForm());
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new AboutBox1 ());
+            ShowNewForm(new AboutBox1());
         }
 
-
-
-        private void TSBDailySale_Click(object sender, EventArgs e)
+        private void TSBDailySale_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new DailySaleForm ());
+            ShowNewForm(new DailySaleForm());
         }
 
-        private void TSBDayClosing_Click(object sender, EventArgs e)
+        private void TSBDayClosing_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new DayClosingForm ());
+            ShowNewForm(new DayClosingForm());
         }
 
-        private void TSBExpenses_Click(object sender, EventArgs e)
+        private void TSBExpenses_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new ExpensesForm ());
+            ShowNewForm(new ExpensesForm());
         }
 
-        private void TSBAttendence_Click(object sender, EventArgs e)
+        private void TSBAttendence_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new AttendenceForm ());
+            ShowNewForm(new AttendenceForm());
         }
 
-        private void uploadVoygerDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uploadVoygerDataToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new UploaderForm (0));
+            ShowNewForm(new UploaderForm(0));
         }
 
-        private void TSBManualInvoice_Click(object sender, EventArgs e)
+        private void TSBManualInvoice_Click( object sender, EventArgs e )
         {
-            ShowNewForm (new SaleInvoiceForm ());
+            ShowNewForm(new SaleInvoiceForm());
         }
+
         //TODO: All UI Control Code from here
         //Clients clients = Client.GetClientDetails();
-        private void UpdateUiData()
+        private void UpdateUiData( )
         {
             this.Text = CurrentClient.LoggedClient.ClientName + ":The Arvind Store, " + CurrentClient.LoggedClient.ClientCity + "(" + CurrentClient.LoggedClient.ClientCode + ")";
             //TODO: in StatusBar UserName must be shown
             //TODO: show Time, Open Form, Progress bar
         }
 
-        private void statusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void statusStrip_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
         {
-
         }
 
-        private void MainMDI_Load(object sender, EventArgs e)
+        private void MainMDI_Load( object sender, EventArgs e )
         {
-            UpdateUiData ();
+            UpdateUiData();
         }
+
         // end of UI Controls
     }
 }

@@ -3319,7 +3319,7 @@
     <XTopAxis>Eixo X Topo </XTopAxis>
     <YAxis>Eixo Y</YAxis>
     <YRightAxis>Eixo Y da Direita </YRightAxis>
-    <Zoom>Zoom</Zoom> 
+    <Zoom>Zoom</Zoom>
   </PropertyMain>
   <PropertySystemColors>
     <ActiveBorder>Limite ativo</ActiveBorder>

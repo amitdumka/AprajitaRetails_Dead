@@ -10,9 +10,9 @@ namespace CyberN
 {
     /// <summary>
     /// (c) 2014 Vienna, Dietmar Schoder
-    /// 
+    ///
     /// Code Project Open License (CPOL) 1.02
-    /// 
+    ///
     /// Deals with an Excel workbook in an xlsx-file and provides all worksheets in it
     /// </summary>
     public class Workbook
@@ -24,7 +24,7 @@ namespace CyberN
         /// </summary>
         /// <param name="ExcelFileName">Full path and filename of the Excel xlsx-file</param>
         /// <returns></returns>
-        public static IEnumerable<worksheet> Worksheets(string ExcelFileName)
+        public static IEnumerable<worksheet> Worksheets( string ExcelFileName )
         {
             worksheet ws;
 
@@ -46,22 +46,24 @@ namespace CyberN
         /// </summary>
         /// <param name="ExcelCellValue"></param>
         /// <returns></returns>
-        public static DateTime DateFromExcelFormat(string ExcelCellValue)
+        public static DateTime DateFromExcelFormat( string ExcelCellValue )
         {
             return DateTime.FromOADate(Convert.ToDouble(ExcelCellValue));
         }
-        
-        private static ZipArchiveEntry GetZipArchiveEntry(ZipArchive ZipArchive, string ZipEntryName)
+
+        private static ZipArchiveEntry GetZipArchiveEntry( ZipArchive ZipArchive, string ZipEntryName )
         {
             return ZipArchive.Entries.First<ZipArchiveEntry>(n => n.FullName.Equals(ZipEntryName));
         }
-        private static IEnumerable<ZipArchiveEntry> WorkSheetFileNames(ZipArchive ZipArchive)
+
+        private static IEnumerable<ZipArchiveEntry> WorkSheetFileNames( ZipArchive ZipArchive )
         {
             foreach (var zipEntry in ZipArchive.Entries)
                 if (zipEntry.FullName.StartsWith("xl/worksheets/sheet"))
                     yield return zipEntry;
         }
-        private static T DeserializedZipEntry<T>(ZipArchiveEntry ZipArchiveEntry)
+
+        private static T DeserializedZipEntry<T>( ZipArchiveEntry ZipArchiveEntry )
         {
             using (Stream stream = ZipArchiveEntry.Open())
                 return (T)new XmlSerializer(typeof(T)).Deserialize(XmlReader.Create(stream));

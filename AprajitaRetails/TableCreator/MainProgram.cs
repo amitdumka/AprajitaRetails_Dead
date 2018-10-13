@@ -1,52 +1,50 @@
-﻿using System;
+﻿using CyberN.TableCreator;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
-using CyberN.TableCreator;
 
 namespace TableCreator
 {
-    class MainProgram
+    internal class MainProgram
     {
-
-        public static void CreatTable(string tableName, RichTextBox ta)
+        public static void CreatTable( string tableName, RichTextBox ta )
         {
-            List<TableClass> tables = new List<TableClass> ();
+            List<TableClass> tables = new List<TableClass>();
 
             // Pass assembly name via argument
-            Assembly a = Assembly.LoadFile (tableName);
+            Assembly a = Assembly.LoadFile(tableName);
 
-            Type [] types = a.GetTypes ();
+            Type[] types = a.GetTypes();
 
             // Get Types in the assembly.
-            foreach ( Type t in types )
+            foreach (Type t in types)
             {
-                TableClass tc = new TableClass (t);
-                tables.Add (tc);
+                TableClass tc = new TableClass(t);
+                tables.Add(tc);
             }
 
             // Create SQL for each table
-            foreach ( TableClass table in tables )
+            foreach (TableClass table in tables)
             {
-                Console.WriteLine ((ta.Text=ta.Text+"\n"+ table.CreateTableScript ()).TrimEnd());
-                Console.WriteLine ();
+                Console.WriteLine((ta.Text = ta.Text + "\n" + table.CreateTableScript()).TrimEnd());
+                Console.WriteLine();
             }
 
             // Total Hacked way to find FK relationships! Too lazy to fix right now
-            foreach ( TableClass table in tables )
+            foreach (TableClass table in tables)
             {
-                foreach ( KeyValuePair<String, Type> field in table.Fields )
+                foreach (KeyValuePair<String, Type> field in table.Fields)
                 {
-                    foreach ( TableClass t2 in tables )
+                    foreach (TableClass t2 in tables)
                     {
-                        if ( field.Value.Name == t2.ClassName )
+                        if (field.Value.Name == t2.ClassName)
                         {
                             // We have a FK Relationship!
-                            Console.WriteLine ("GO");
-                            Console.WriteLine ("ALTER TABLE " + table.ClassName + " WITH NOCHECK");
-                            Console.WriteLine ("ADD CONSTRAINT FK_" + field.Key + " FOREIGN KEY (" + field.Key + ") REFERENCES " + t2.ClassName + "(ID)");
-                            Console.WriteLine ("GO");
-
+                            Console.WriteLine("GO");
+                            Console.WriteLine("ALTER TABLE " + table.ClassName + " WITH NOCHECK");
+                            Console.WriteLine("ADD CONSTRAINT FK_" + field.Key + " FOREIGN KEY (" + field.Key + ") REFERENCES " + t2.ClassName + "(ID)");
+                            Console.WriteLine("GO");
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 ﻿using System;
+
 namespace AprajitaRetails
 {
-
     /// <summary>
     /// Table Name: Sales
     /// Updateing GST Features
@@ -27,18 +27,17 @@ namespace AprajitaRetails
         public string ProductName { get; set; }
         public int QTY { get; set; }
         public double RoundOff { get; set; }
-        public string Saleman { get; set; } 
-        public double SGST { get; set; }       
+        public string Saleman { get; set; }
+        public double SGST { get; set; }
         public string StyleCode { get; set; }
         public double Tax { get; set; } // Can be use for IGST
         public DateTime ImportTime { get; set; } // Date of Import
         public string IsDataConsumed { get; set; }// is data imported to relevent table
-        
-     
-        public SaleItemWise()
+
+        public SaleItemWise( )
         {
             HSNCode = "";
-            CGST=SGST=Tax = 0.00;
+            CGST = SGST = Tax = 0.00;
             LineTotal = 0.00;
             PaymentType = "";
             IsDataConsumed = "NO";

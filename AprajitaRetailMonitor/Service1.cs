@@ -1,6 +1,5 @@
 ﻿//using AprajitaRetails.Utils;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 
@@ -8,10 +7,10 @@ namespace AprajitaRetailMonitor
 {
     public partial class Service1 : ServiceBase
     {
-        System.Diagnostics.EventLog eventLog1;
+        private System.Diagnostics.EventLog eventLog1;
         private int eventId = 1;
         public Watcher fileWatcher1, fileWatcher2;
-       
+
         public enum ServiceState
         {
             SERVICE_STOPPED = 0x00000001,
@@ -34,6 +33,7 @@ namespace AprajitaRetailMonitor
             public int dwCheckPoint;
             public int dwWaitHint;
         };
+
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus( System.IntPtr handle, ref ServiceStatus serviceStatus );
 
@@ -52,7 +52,6 @@ namespace AprajitaRetailMonitor
             fileWatcher1 = new Watcher(eventLog1);
             fileWatcher2 = new Watcher(eventLog1);
             eventLog1.WriteEntry("filewatcher created");
-
         }
 
         protected override void OnStart( string[] args )
@@ -79,11 +78,9 @@ namespace AprajitaRetailMonitor
             //};
             //timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
             //timer.Start();
-            
+
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-
-
         }
 
         protected override void OnStop( )
@@ -96,22 +93,23 @@ namespace AprajitaRetailMonitor
             eventLog1.WriteEntry("In OnStop");
             //User code above line
 
-
             // Update the service state to Running.
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-
         }
+
         public void OnTimer( object sender, System.Timers.ElapsedEventArgs args )
         {
             // TODO: Insert monitoring activities here.
             eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
+
         protected override void OnContinue( )
         {
             eventLog1.WriteEntry("In OnContinue.");
         }
     }
+
     public class PathList
     {
         public const string InvoiceXMLPath = "C:\\Capillary";
@@ -120,4 +118,4 @@ namespace AprajitaRetailMonitor
         public const string TabletSaleXMLFile = "TabletBill.XML";
         public const string TailoringHubXMLPath = "D:\\VoyagerRetail\\TailoringHub";
     }
-    }
+}

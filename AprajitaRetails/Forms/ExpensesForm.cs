@@ -1,77 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AprajitaRetails.Data;
+﻿using AprajitaRetails.Data;
 using AprajitaRetails.ViewModel;
+using System;
+using System.Windows.Forms;
 
 namespace AprajitaRetails.Forms
 {
     public partial class ExpensesForm : Form
     {
-        ExpensesVM eVM;
+        private ExpensesVM eVM;
 
-        int vBankDetailsID = -1;
+        private int vBankDetailsID = -1;
 
-        bool vIsBankDetails = false;
+        private bool vIsBankDetails = false;
 
-        private void ExpensesForm_Load(object sender, EventArgs e)
+        private void ExpensesForm_Load( object sender, EventArgs e )
         {
-            LoadUIDetails ();
-
+            LoadUIDetails();
         }
-        public ExpensesForm()
+
+        public ExpensesForm( )
         {
-            InitializeComponent ();
-            eVM = new ExpensesVM ();
+            InitializeComponent();
+            eVM = new ExpensesVM();
         }
 
         /// <summary>
         /// Clear UI Fields
         /// </summary>
-        protected void ClearUiFields()
+        protected void ClearUiFields( )
         {
-            Basic.ClearUIFields (TLPExpenses);
+            Basic.ClearUIFields(TLPExpenses);
         }
 
         /// <summary>
-        /// Handel Add 
+        /// Handel Add
         /// </summary>
-        protected void PerformAdd()
+        protected void PerformAdd( )
         {
             BTNAdd.Text = "Save";
-            ClearUiFields ();
+            ClearUiFields();
         }
 
         /// <summary>
-        /// Save Data 
+        /// Save Data
         /// </summary>
-        protected void PerformSave()
+        protected void PerformSave( )
         {
-            if ( ValidateFields () )
+            if (ValidateFields())
             {
-                Console.WriteLine ("Validation done");
-                if ( vIsBankDetails )
+                Console.WriteLine("Validation done");
+                if (vIsBankDetails)
                 {
-                    Console.WriteLine ("Getting bank details");
-                    vBankDetailsID = eVM.SaveBankDetails (ReadBankDetails ());
-                    Console.WriteLine ("Bank details id{0}", vBankDetailsID);
+                    Console.WriteLine("Getting bank details");
+                    vBankDetailsID = eVM.SaveBankDetails(ReadBankDetails());
+                    Console.WriteLine("Bank details id{0}", vBankDetailsID);
                 }
-                if ( vIsBankDetails && vBankDetailsID <= 0 )
+                if (vIsBankDetails && vBankDetailsID <= 0)
                 {
-                    MessageBox.Show ("An Error occured while saving Data, Kindly check and try again!");
-
+                    MessageBox.Show("An Error occured while saving Data, Kindly check and try again!");
                 }
-                else if ( eVM.SaveData (ReadFields ()) > 0 )
+                else if (eVM.SaveData(ReadFields()) > 0)
                 {
-                    MessageBox.Show ("Your record is save!");
+                    MessageBox.Show("Your record is save!");
                     BTNAdd.Text = "Add";
-                    ClearUiFields ();
+                    ClearUiFields();
                 }
             }
         }
@@ -80,18 +72,17 @@ namespace AprajitaRetails.Forms
         /// Read Ui Fields from Forms and return in Expenses Object
         /// </summary>
         /// <returns></returns>
-        protected Expenses ReadFields()
+        protected Expenses ReadFields( )
         {
-            Expenses exp = new Expenses ()
+            Expenses exp = new Expenses()
             {
-                Amount = double.Parse (TXTAmount.Text),
+                Amount = double.Parse(TXTAmount.Text),
                 ApprovedBy = CBApprovedBy.Text,
                 ExpensesReason = TXTReason.Text,
                 ID = -1,
-                PaymentModeID = PaymentMode.GetPayModeId (CBPaymentMode.Text),
+                PaymentModeID = PaymentMode.GetPayModeId(CBPaymentMode.Text),
                 BankDetailsID = vBankDetailsID,
-                ExpensesCategoryID = eVM.GetExpenseCategoryId (CBCategory.Text)
-
+                ExpensesCategoryID = eVM.GetExpenseCategoryId(CBCategory.Text)
             };
             return exp;
         }
@@ -100,9 +91,9 @@ namespace AprajitaRetails.Forms
         /// Do Validation
         /// </summary>
         /// <returns></returns>
-        protected bool ValidateFields()
+        protected bool ValidateFields( )
         {
-            return Basic.ValidateFormUI (TLPExpenses);
+            return Basic.ValidateFormUI(TLPExpenses);
         }
 
         /// <summary>
@@ -110,16 +101,15 @@ namespace AprajitaRetails.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BTNAdd_Click(object sender, EventArgs e)
+        private void BTNAdd_Click( object sender, EventArgs e )
         {
-            if ( BTNAdd.Text == "Add" )
+            if (BTNAdd.Text == "Add")
             {
-
-                PerformAdd ();
+                PerformAdd();
             }
-            else if ( BTNAdd.Text == "Save" )
+            else if (BTNAdd.Text == "Save")
             {
-                PerformSave ();
+                PerformSave();
             }
         }
 
@@ -128,73 +118,74 @@ namespace AprajitaRetails.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Cancel_Click(object sender, EventArgs e)
+        private void Cancel_Click( object sender, EventArgs e )
         {
-            ClearUiFields ();
+            ClearUiFields();
             BTNAdd.Text = "Add";
             BTNUpdate.Text = "Update";
         }
-        private BankDetails ReadBankDetails()
+
+        private BankDetails ReadBankDetails( )
         {
-            return new BankDetails ()
+            return new BankDetails()
             {
                 ID = -1,
-                TranscationType = PaymentMode.GetPayModeId (CBTranscationType.Text),
+                TranscationType = PaymentMode.GetPayModeId(CBTranscationType.Text),
                 TranscationRef = TXTTranscationRef.Text,
                 BankRef = TXTBankRef.Text,
                 RefID = "Expenses",
-                BankID = eVM.GetBankDetailsID (CBBankAccount.Text),
-
-
+                BankID = eVM.GetBankDetailsID(CBBankAccount.Text),
             };
         }
 
-        protected void LoadUIDetails()
+        protected void LoadUIDetails( )
         {
-            LoadAccounts (CBBankAccount);
-            LoadApprovedBy (CBApprovedBy);
-            LoadCategory (CBCategory);
-            LoadPayMode (CBPaymentMode);
-            LoadTransType (CBTranscationType);
+            LoadAccounts(CBBankAccount);
+            LoadApprovedBy(CBApprovedBy);
+            LoadCategory(CBCategory);
+            LoadPayMode(CBPaymentMode);
+            LoadTransType(CBTranscationType);
         }
 
-        private void LoadAccounts(ComboBox cBBankAccount)
+        private void LoadAccounts( ComboBox cBBankAccount )
         {
-            eVM.LoadAccounts (cBBankAccount);
+            eVM.LoadAccounts(cBBankAccount);
         }
 
-        private void LoadApprovedBy(ComboBox cBApprovedBy)
+        private void LoadApprovedBy( ComboBox cBApprovedBy )
         {
-            eVM.LoadApprovedBy (cBApprovedBy);
+            eVM.LoadApprovedBy(cBApprovedBy);
         }
 
-        protected void LoadPayMode(ComboBox cb)
+        protected void LoadPayMode( ComboBox cb )
         {
-            eVM.LoadPayMode (cb);
-        }
-        protected void LoadTransType(ComboBox cb)
-        {
-            eVM.LoadTransType (cb);
-        }
-        protected void LoadCategory(ComboBox cb)
-        {
-            eVM.LoadCategory (cb);
-
+            eVM.LoadPayMode(cb);
         }
 
-        private void CBPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
+        protected void LoadTransType( ComboBox cb )
+        {
+            eVM.LoadTransType(cb);
+        }
+
+        protected void LoadCategory( ComboBox cb )
+        {
+            eVM.LoadCategory(cb);
+        }
+
+        private void CBPaymentMode_SelectedIndexChanged( object sender, EventArgs e )
         {
             //TODO: Implement based on selected Different Mode.
-            if ( CBPaymentMode.Text != "Cash" )
+            if (CBPaymentMode.Text != "Cash")
             {
-                EnableBankDetails (true);
+                EnableBankDetails(true);
             }
             else
-                EnableBankDetails (false);
+                EnableBankDetails(false);
         }
-        private void EnableBankDetails(bool enable)
+
+        private void EnableBankDetails( bool enable )
         {
-            //TODO: Based on selected choice make visible element on context of 
+            //TODO: Based on selected choice make visible element on context of
             //choice made
             //TODO:Change Lable name based on the selection Made.
             //TODO: disolve transcation type and use payment mode as trancation type
@@ -208,16 +199,13 @@ namespace AprajitaRetails.Forms
             CBBankAccount.Visible = enable;
             vIsBankDetails = enable;
 
-            if ( enable )
+            if (enable)
             {
-
                 CBTranscationType.Text = CBPaymentMode.Text;
                 CBTranscationType.Enabled = false;
             }
             else
                 CBTranscationType.Enabled = true;
-
-
         }
     }
 }

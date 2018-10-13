@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Security.Permissions;
+
 namespace AprajitaRetails.Utils
 {
     public class Watcher
@@ -11,14 +12,15 @@ namespace AprajitaRetails.Utils
             ws.Flush();
             ws.Close();
         }
+
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         public Watcher( )
         {
             if (ws == null)
                 ws = File.AppendText("D:\\LogsAprajitaRetsilsMonitor.txt");
             ws.WriteLine("File is getting started..");
-
         }
+
         public static string WatchFilePath { set; get; }
         public static string WatchFileFolder { set; get; }
         public static StreamWriter ws = File.AppendText("D:\\LogsAprajitaRetsilsMonitor.txt");
@@ -55,16 +57,13 @@ namespace AprajitaRetails.Utils
 
             // Begin watching.
             watcher.EnableRaisingEvents = true;
-
         }
-
 
         // Define the event handlers.
         private static void OnChanged( object source, FileSystemEventArgs e )
         {
             // Specify what is done when a file is changed, created, or deleted.
             ws.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
-
         }
 
         private static void OnRenamed( object source, RenamedEventArgs e )

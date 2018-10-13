@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AprajitaRetails")]
-[assembly: AssemblyDescription ("Store Management Software For The Arvind Store, Dumka, owned by Aprajita Retails")]
+[assembly: AssemblyDescription("Store Management Software For The Arvind Store, Dumka, owned by Aprajita Retails")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CyberN Systems Inc.")]
 [assembly: AssemblyProduct("AprajitaRetails")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
-[assembly: AssemblyTrademark ("CyberN")]
+[assembly: AssemblyTrademark("CyberN")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

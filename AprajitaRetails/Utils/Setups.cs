@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AprajitaRetails
+﻿namespace AprajitaRetails
 {
-    class Setups
+    internal class Setups
     {
-        public static bool IsDataBasePresent()
+        public static bool IsDataBasePresent( )
         {
-            if ( DataBase.GetConnectionObject (ConType.SQLDB) != null )
+            if (DataBase.GetConnectionObject(ConType.SQLDB) != null)
             {
                 return true;
             }
             else
                 return false;
         }
-        public static int IsUserTableExit()
+
+        public static int IsUserTableExit( )
         {
-            Logs.LogMe ("Checking UserTable with default id exist or not...");
+            Logs.LogMe("Checking UserTable with default id exist or not...");
             return
-            DataBase.IsTableWithDefaultExit ("Users");
+            DataBase.IsTableWithDefaultExit("Users");
         }
     }
 }

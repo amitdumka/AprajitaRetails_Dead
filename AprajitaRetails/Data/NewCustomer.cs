@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace AprajitaRetails.Data
 {
     public class NewCustomer
@@ -8,8 +9,5 @@ namespace AprajitaRetails.Data
         public string InvoiceNo { set; get; }
         public DateTime OnDate { set; get; }
         public string CustomerFullName { get; set; }
-
-
-
     }
 }

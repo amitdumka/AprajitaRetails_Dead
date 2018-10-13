@@ -1,7 +1,8 @@
 ﻿using System;
+
 namespace AprajitaRetails.Data
 {
-    class DayClosing
+    internal class DayClosing
     {
         public int ID { set; get; }
         public DateTime OnDate { set; get; }
@@ -20,7 +21,8 @@ namespace AprajitaRetails.Data
         public int Coin2 { set; get; }
         public int Coin1 { set; get; }
     }
-    class DayEndDetails
+
+    internal class DayEndDetails
     {
         public int ID { set; get; }
         public int DayClosingID { set; get; }
@@ -36,12 +38,10 @@ namespace AprajitaRetails.Data
         public double TotalRMZNo { set; get; }
         public double TotalFabricNo { set; get; }
 
-
         public double TailoringSale { get; set; }
         public int TotalTailorDeliveryNo { get; set; }
         public double TotalTailoringBookingAmount { set; get; }
         public int TotalTailoringBookingNo { set; get; }
-
 
         public double TotalBankDeposit { set; get; }
         public double TotalBankPayment { set; get; }
@@ -51,8 +51,5 @@ namespace AprajitaRetails.Data
 
         public double TotalAccessicorySale { get; set; }
         public int TotalAccessicoryNo { get; set; }
-
-
-
     }
 }

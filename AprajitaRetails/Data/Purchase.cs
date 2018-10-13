@@ -3,7 +3,7 @@
 namespace AprajitaRetails
 {
     /// <summary>
-    /// TableName: Purchase 
+    /// TableName: Purchase
     /// GST Impemented
     /// </summary>
     public class Purchase
@@ -28,24 +28,20 @@ namespace AprajitaRetails
         public double SGSTAmt { get; set; }
         public DateTime ImportTime { get; set; } // Date of Import
         public string IsDataConsumed { get; set; }// is data imported to relevent table
-        public Purchase()
+
+        public Purchase( )
         {
             IsDataConsumed = "NO";
             ImportTime = DateTime.Now;
         }
-
-
-
     }
 }
+
 /*
- 
+
  GRNNo	GRNDate	Invoice No	Invoice Date	Supplier Name	Barcode	Product Name	Style Code	Item Desc	Quantity	MRP	MRP Value	Cost	Cost Value	TaxAmt	ExmillCost	Excise1	Excise2	Excise3
-C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259107264	Apparel/Mens Formal/Shirts	USSH3887L	Shirts-FS-Red	2.00	2199.00	4398.00	1416.60	2833.20	0.00				
-   		
- 
+C33GR500001	16/02/2016	DTE5000523	25/01/2016	TAS RMG Warehouse - Bangalore	8907259107264	Apparel/Mens Formal/Shirts	USSH3887L	Shirts-FS-Red	2.00	2199.00	4398.00	1416.60	2833.20	0.00
 
-
- * 
- * 
+ *
+ *
  */
