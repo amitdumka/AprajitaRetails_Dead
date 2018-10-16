@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AprajitaRetails.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace AprajitaRetails.Voy
 {
@@ -94,5 +97,133 @@ namespace AprajitaRetails.Voy
         public string PaymentMode { get; set; }
         public string PaymentValue { get; set; }
         public string Notes { get; set; }
+    }
+
+    public class VoyBillDm : DataOps<VoyBill>
+    {
+        public override int InsertData( VoyBill obj )
+        {
+            SqlCommand cmd = new SqlCommand(InsertSqlQuery, Db.DBCon);
+            //Parameters
+            cmd.Parameters.AddWithValue("@BillAmount", obj.BillAmount);
+            cmd.Parameters.AddWithValue("@BillDiscount", obj.BillDiscount);
+            cmd.Parameters.AddWithValue("@BillGrossAmount", obj.BillGrossAmount);
+            cmd.Parameters.AddWithValue("@BillNumber", obj.BillNumber);
+            cmd.Parameters.AddWithValue("@BillTime", obj.BillTime);
+            cmd.Parameters.AddWithValue("@BillType", obj.BillType);
+            cmd.Parameters.AddWithValue("@CustomerMobile", obj.CustomerMobile);
+            cmd.Parameters.AddWithValue("@CustomerName", obj.CustomerName);
+            cmd.Parameters.AddWithValue("@StoreID", obj.StoreID);
+            return cmd.ExecuteNonQuery();
+        }
+
+        public override VoyBill ResultToObject( List<VoyBill> data, int index )
+        {
+            return data[index];
+        }
+
+        public override VoyBill ResultToObject( SortedDictionary<string, string> item )
+        {
+            return new VoyBill()
+            {
+                ID = Basic.ToInt(item["ID"]),
+                StoreID = item["StoreID"],
+                CustomerName = item["CustomerName"],
+                BillAmount = Basic.ToDouble(item["BillAmount"]),
+                BillDiscount = Basic.ToDouble(item["BillDiscount"]),
+                BillTime = DateTime.Parse(item["BillTime"]),
+                BillGrossAmount = Basic.ToDouble(item["BillGrossAmount"]),
+                BillNumber = item["BillNumber"],
+                BillType = item["BillType"],
+                CustomerMobile = item["CustomerMobile"]
+            };
+        }
+
+        public override List<VoyBill> ResultToObject( List<SortedDictionary<string, string>> data )
+        {
+            List<VoyBill> list = new List<VoyBill>();
+            VoyBill att;
+            foreach (SortedDictionary<string, string> item in data)
+            {
+                att = new VoyBill()
+                {
+                    ID = Basic.ToInt(item["ID"]),
+                    StoreID = item["StoreID"],
+                    CustomerName = item["CustomerName"],
+                    BillAmount = Basic.ToDouble(item["BillAmount"]),
+                    BillDiscount = Basic.ToDouble(item["BillDiscount"]),
+                    BillTime = DateTime.Parse(item["BillTime"]),
+                    BillGrossAmount = Basic.ToDouble(item["BillGrossAmount"]),
+                    BillNumber = item["BillNumber"],
+                    BillType = item["BillType"],
+                    CustomerMobile = item["CustomerMobile"]
+                };
+                list.Add(att);
+            }
+            return list;
+        }
+
+        public static bool Insert( List<VoyBill> datas, string table )
+        {
+            //TODO: This system is also gud can be used for future if prolem arise or keep in Lib
+            bool result = false;
+            List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
+
+            SqlConnection con = new SqlConnection("your connection string");
+            con.Open();
+
+            try
+            {
+                foreach (var data in datas)
+                {
+                    values.Clear();
+                    foreach (var item in data.GetType().GetProperties())
+                    {
+                        values.Add(new KeyValuePair<string, string>(item.Name, item.GetValue(data).ToString()));
+                    }
+
+                    string xQry = GetInsertCommand(table, values);
+                    SqlCommand cmdi = new SqlCommand(xQry, con);
+                    cmdi.ExecuteNonQuery();
+                }
+                result = true;
+            }
+            catch (Exception ex)
+            { throw ex; }
+            finally { con.Close(); }
+            return result;
+        }
+
+        private static string GetInsertCommand( string table, List<KeyValuePair<string, string>> values )
+        {
+            //TODO: This system is also gud can be used for future if prolem arise or keep in Lib
+
+            string query = null;
+            query += "INSERT INTO " + table + " ( ";
+            foreach (var item in values)
+            {
+                query += item.Key;
+                query += ", ";
+            }
+            query = query.Remove(query.Length - 2, 2);
+            query += ") VALUES ( ";
+            foreach (var item in values)
+            {
+                if (item.Key.GetType().Name == "System.Int") // or any other numerics
+                {
+                    query += item.Value;
+                }
+                else
+                {
+                    query += "'";
+                    query += item.Value;
+                    query += "'";
+                }
+                query += ", ";
+            }
+            query = query.Remove(query.Length - 2, 2);
+            query += ")";
+            return query;
+        }
     }
 }

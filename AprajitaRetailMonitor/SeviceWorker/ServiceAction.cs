@@ -1,5 +1,4 @@
-﻿using AprajitaRetails.Voy;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace AprajitaRetailMonitor.SeviceWorker
 {
@@ -29,9 +28,11 @@ namespace AprajitaRetailMonitor.SeviceWorker
 
         private static void ProcessInvoiceXML( string invoiceXMLFile )
         {
-            VoygerBill voygerBill = VoygerXMLReader.ReadInvoiceXML(invoiceXMLFile);
+            VoygerBillWithLinq voygerBill = VoygerXMLReader.ReadInvoiceXML(invoiceXMLFile);
             if (voygerBill != null)
             {
+                InsertData insertData = new InsertData();
+                insertData.InsertBillData(voygerBill);
             }
             else
             {

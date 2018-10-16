@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="aprajitaretails" Class="Aprajitaretails" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Bank" Member="Banks">
+    <Type Name="Bank">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BankName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AccountNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AccountType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IFSCCode" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Branch" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BranchCity" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BankDetails" Member="BankDetails">
+    <Type Name="BankDetail">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RefID" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BankID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TranscationType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BankRef" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TranscationRef" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoOfBills" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailySale" Member="DailySales">
+    <Type Name="DailySale">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SaleDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="RMZ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fabric" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tailoring" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PaymentMode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EMPCode" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddressLine1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="EmpType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AttendenceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateOfBirth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateOfJoining" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateOfLeaving" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Expenses" Member="Expenses">
+    <Type Name="Expense">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ExpensesCategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpensesReason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ApprovedBy" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PaymentModeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BankDetailsID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ExpensesCategory" Member="ExpensesCategories">
+    <Type Name="ExpensesCategory">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Level" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PaymentMode" Member="PaymentModes">
+    <Type Name="PaymentMode">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PayMode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductItems" Member="ProductItems">
+    <Type Name="ProductItem">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StyleCode" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="SupplierId" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ItemDesc" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MRP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Size" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.purchase" Member="Purchases">
+    <Type Name="Purchase">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GRNNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GRNDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StyleCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemDesc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MRP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MRPValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TaxAmt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsDataConsumed" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.purchaseRegister" Member="PurchaseRegisters">
+    <Type Name="PurchaseRegister">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GRNNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GRNDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MRP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MRPValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostValue" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TaxAmt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sales" Member="Sales">
+    <Type Name="Sale">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InvoiceType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BrandName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemDescrpetion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StyleCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MRP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BasicAmt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TaxAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="LineTotal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="RoundOff" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BillAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salesman" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PaymentMode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HSNCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SGST" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CGST" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="LP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ImportDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsDataConsumed" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SalesRegister" Member="SalesRegisters">
+    <Type Name="SalesRegister">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MRP" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="BasicAmt" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="TaxAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="RoundOff" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="BillAmount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="PaymentMode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="username" Member="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="passwd" Member="Passwd" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Member="Role" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

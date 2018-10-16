@@ -10,11 +10,11 @@ using System.Data.SqlClient;
 // TODO: Add password to database
 namespace AprajitaRetails
 {
-    internal class BackupData
+    public class BackupData
     {
     }
 
-    internal class DataBase : IDisposable
+    public class DataBase : IDisposable
     {
         public static string DataBaseName = "aprajitaRetails";
         public static int DBType = ConType.SQLDB;

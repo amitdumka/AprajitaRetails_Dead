@@ -31,11 +31,9 @@ namespace AprajitaRetails
             if (disposing)
             {
                 // dispose managed resources
-                //newFile.Close();
                 this.oleDB.Dispose();
                 this.sqlDB.Dispose();
             }
-            // free native resources
         }
 
         public void Dispose( )

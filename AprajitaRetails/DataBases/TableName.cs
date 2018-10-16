@@ -2,6 +2,7 @@
 {
     internal class TableName
     {
+        //TODO: implement this
         //public static string Customer = "";
         //public static string Sale;
         //public static string DailySales;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace AprajitaRetails
+namespace CyberNBasicOperations.Utils
 {
     public enum GenderType
     {
@@ -82,21 +82,6 @@ namespace AprajitaRetails
             if (IsNumeric(val))
             {
                 return Int32.Parse(val);
-            }
-            else
-                return -999;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="val"></param>
-        /// <returns></returns>
-        public static double ToDouble( string val )
-        {
-            if (IsNumeric(val))
-            {
-                return Double.Parse(val);
             }
             else
                 return -999;

@@ -10,7 +10,7 @@ namespace AprajitaRetails.ViewModel
     /// Implements to use basic function
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal abstract class DataOps<T>
+    public abstract class DataOps<T>
     {
         public string Tablename = "";
         protected DataBase Db;

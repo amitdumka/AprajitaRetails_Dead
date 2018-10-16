@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,7 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeviceWorker\InsertData.cs" />
     <Compile Include="SeviceWorker\ServiceAction.cs" />
+    <Compile Include="SeviceWorker\VoygerXMLToLinqDB.cs" />
     <Compile Include="SeviceWorker\Watcher.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +78,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AprajitaRetailsDataBase\AprajitaRetailsDataBase.csproj">
+      <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
+      <Name>AprajitaRetailsDataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AprajitaRetails\AprajitaRetails.csproj">
       <Project>{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}</Project>
       <Name>AprajitaRetails</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
+      <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
+      <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

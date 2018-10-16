@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CyberNBasicOperations
 {
-    class DBHelper : IDisposable
+    internal class DBHelper : IDisposable
     {
         public static String OleDBName = "Clinic.mdf";
         public static String SqlDBName = "clinic.mdf";
-        String ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + SqlDBName + ";Integrated Security = True;Connect TimeOut=30";
-        String oleConStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + DBase.dbName + "; Jet OLEDB:Engine Type=5 ";
-        OleDbConnection oleDB;
-        SqlConnection sqlDB;
+        private String ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + Application.StartupPath + "\\" + SqlDBName + ";Integrated Security = True;Connect TimeOut=30";
+        private String oleConStr = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + OleDBName + "; Jet OLEDB:Engine Type=5 ";
+        private OleDbConnection oleDB;
+        private SqlConnection sqlDB;
         public const int SQLDB = 1;
         public const int OLEDB = 2;
-        protected virtual void Dispose(bool disposing)
+
+        protected virtual void Dispose( bool disposing )
         {
             if (disposing)
             {
@@ -32,13 +29,13 @@ namespace CyberNBasicOperations
             // free native resources
         }
 
-        public void Dispose()
+        public void Dispose( )
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        public Object GetConnectioObject(int DBTypes)
+        public Object GetConnectioObject( int DBTypes )
         {
             if (DBTypes == SQLDB)
             {
@@ -50,11 +47,9 @@ namespace CyberNBasicOperations
                 }
                 catch (Exception)
                 {
-
                     //throw;
                     return null;
                 }
-
             }
             else if (DBTypes == OLEDB)
             {
@@ -66,20 +61,20 @@ namespace CyberNBasicOperations
                 }
                 catch (Exception)
                 {
-
                     //throw;
                     return null;
                 }
             }
             else return null;
-
         }
+
         /**
-         * ConnectDB : Connnect to Database. 
+         * ConnectDB : Connnect to Database.
          * @type INT Type of Database(Currently 1 for sql and 2 for ole)
          * @return true or false
          */
-        public bool ConnectDB(int type)
+
+        public bool ConnectDB( int type )
         {
             if (type == OLEDB)
             {
@@ -91,7 +86,6 @@ namespace CyberNBasicOperations
                 }
                 catch (Exception)
                 {
-
                     //throw;
                     return false;
                 }
@@ -107,7 +101,6 @@ namespace CyberNBasicOperations
                 }
                 catch (Exception)
                 {
-
                     //throw;
                     return false;
                 }
@@ -116,23 +109,23 @@ namespace CyberNBasicOperations
             }
             else
                 return false;
-
-
         }
+
         /**
-         *CloseDB: Close Database Connection 
+         *CloseDB: Close Database Connection
          */
-        public void CloseDB()
+
+        public void CloseDB( )
         {
             if (oleDB != null && oleDB.State == ConnectionState.Open)
             {
-
                 oleDB.Close();
             }
             if (sqlDB != null && sqlDB.State == ConnectionState.Open)
                 sqlDB.Close();
         }
-        public bool IsOpen(int type)
+
+        public bool IsOpen( int type )
         {
             if (type == OLEDB && oleDB != null && oleDB.State == ConnectionState.Open)
                 return true;
@@ -140,9 +133,9 @@ namespace CyberNBasicOperations
                 return true;
             return false;
         }
-        public OleDbDataReader GetQueryOle(String sql)
-        {
 
+        public OleDbDataReader GetQueryOle( String sql )
+        {
             if (oleDB != null && oleDB.State == ConnectionState.Closed)
                 oleDB.Open();
             else
@@ -158,12 +151,10 @@ namespace CyberNBasicOperations
             oleDB.Close();
             if (reader.IsClosed) MessageBox.Show("Reader is close");
             return reader;
-
-
         }
-        public SqlDataReader GetQuerySql(String sql)
-        {
 
+        public SqlDataReader GetQuerySql( String sql )
+        {
             if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
                 sqlDB.Open();
             else
@@ -178,9 +169,9 @@ namespace CyberNBasicOperations
             sqlDB.Close();
             if (reader.IsClosed) MessageBox.Show("Reader is close");
             return reader;
-
         }
-        public SqlCommand QueryStrSql(String sql)
+
+        public SqlCommand QueryStrSql( String sql )
         {
             if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
                 sqlDB.Open();
@@ -190,13 +181,10 @@ namespace CyberNBasicOperations
             cmd.CommandText = sql;
             cmd.Connection = sqlDB;
             return cmd;
-
-
-
         }
-        public OleDbCommand QueryStrOle(String sql)
-        {
 
+        public OleDbCommand QueryStrOle( String sql )
+        {
             if (oleDB != null && oleDB.State == ConnectionState.Closed)
                 oleDB.Open();
             else
@@ -205,13 +193,10 @@ namespace CyberNBasicOperations
             cmd.CommandText = sql;
             cmd.Connection = oleDB;
             return cmd;
-
-
-
         }
-        public int InsertQueryOle(String sql)
-        {
 
+        public int InsertQueryOle( String sql )
+        {
             if (oleDB != null && oleDB.State == ConnectionState.Closed)
                 oleDB.Open();
             else
@@ -227,14 +212,9 @@ namespace CyberNBasicOperations
             }
             else
             { oleDB.Close(); return 1; }
-
-
-
-
-
         }
 
-        public int InsertQuerySql(String sql)
+        public int InsertQuerySql( String sql )
         {
             if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
                 sqlDB.Open();
@@ -251,9 +231,9 @@ namespace CyberNBasicOperations
             }
             else
             { sqlDB.Close(); return 1; }
-
         }
-        public int NonQueryOle(String sql)
+
+        public int NonQueryOle( String sql )
         {
             if (oleDB != null && oleDB.State == ConnectionState.Closed)
                 oleDB.Open();
@@ -270,10 +250,9 @@ namespace CyberNBasicOperations
             }
             else
             { oleDB.Close(); return 1; }
-
         }
 
-        public int NonQuerySql(String sql)
+        public int NonQuerySql( String sql )
         {
             if (sqlDB != null && sqlDB.State == ConnectionState.Closed)
                 sqlDB.Open();
@@ -290,8 +269,6 @@ namespace CyberNBasicOperations
             }
             else
             { sqlDB.Close(); return 1; }
-
         }
-
     }
 }

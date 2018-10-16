@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace AprajitaRetails.Utils
 {
-    internal class Clients
+    public class Clients
     {
         public int ID { get; set; }
         public string ClientName { get; set; }
@@ -59,7 +59,7 @@ namespace AprajitaRetails.Utils
         }
     }
 
-    internal class CurrentClient
+    public class CurrentClient
     {
         public static Clients LoggedClient = Client.GetClientDetails();
     }

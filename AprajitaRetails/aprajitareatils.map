@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="aprajitaretails" xmlns="http://schemas.microsoft.com/linqtosql/mapping/2007">
+  <Table Name="dbo.Bank" Member="Banks">
+    <Type Name="Bank">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="BankName" Member="BankName" Storage="_BankName" DbType="VarChar(100)" />
+      <Column Name="AccountNo" Member="AccountNo" Storage="_AccountNo" DbType="VarChar(100)" />
+      <Column Name="AccountType" Member="AccountType" Storage="_AccountType" DbType="Int" />
+      <Column Name="IFSCCode" Member="IFSCCode" Storage="_IFSCCode" DbType="VarChar(100)" />
+      <Column Name="Branch" Member="Branch" Storage="_Branch" DbType="VarChar(100)" />
+      <Column Name="BranchCity" Member="BranchCity" Storage="_BranchCity" DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BankDetails" Member="BankDetails">
+    <Type Name="BankDetail">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="RefID" Member="RefID" Storage="_RefID" DbType="VarChar(100)" />
+      <Column Name="BankID" Member="BankID" Storage="_BankID" DbType="Int" />
+      <Column Name="TranscationType" Member="TranscationType" Storage="_TranscationType" DbType="Int" />
+      <Column Name="BankRef" Member="BankRef" Storage="_BankRef" DbType="VarChar(100)" />
+      <Column Name="TranscationRef" Member="TranscationRef" Storage="_TranscationRef" DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Age" Member="Age" Storage="_Age" DbType="Int" />
+      <Column Name="FirstName" Member="FirstName" Storage="_FirstName" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Member="LastName" Storage="_LastName" DbType="VarChar(100)" />
+      <Column Name="City" Member="City" Storage="_City" DbType="VarChar(100)" />
+      <Column Name="MobileNo" Member="MobileNo" Storage="_MobileNo" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Member="Gender" Storage="_Gender" DbType="Int" />
+      <Column Name="NoOfBills" Member="NoOfBills" Storage="_NoOfBills" DbType="Int" />
+      <Column Name="TotalAmount" Member="TotalAmount" Storage="_TotalAmount" DbType="Money" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailySale" Member="DailySales">
+    <Type Name="DailySale">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="SaleDate" Member="SaleDate" Storage="_SaleDate" DbType="DateTime" />
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int" />
+      <Column Name="InvoiceNo" Member="InvoiceNo" Storage="_InvoiceNo" DbType="VarChar(100)" />
+      <Column Name="Amount" Member="Amount" Storage="_Amount" DbType="Money" />
+      <Column Name="Discount" Member="Discount" Storage="_Discount" DbType="Money" />
+      <Column Name="RMZ" Member="RMZ" Storage="_RMZ" DbType="Int" />
+      <Column Name="Fabric" Member="Fabric" Storage="_Fabric" DbType="Int" />
+      <Column Name="Tailoring" Member="Tailoring" Storage="_Tailoring" DbType="Int" />
+      <Column Name="PaymentMode" Member="PaymentMode" Storage="_PaymentMode" DbType="Int" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="EMPCode" Member="EMPCode" Storage="_EMPCode" DbType="VarChar(100)" />
+      <Column Name="FirstName" Member="FirstName" Storage="_FirstName" DbType="VarChar(100)" />
+      <Column Name="LastName" Member="LastName" Storage="_LastName" DbType="VarChar(100)" />
+      <Column Name="Age" Member="Age" Storage="_Age" DbType="Int" />
+      <Column Name="Gender" Member="Gender" Storage="_Gender" DbType="Int" />
+      <Column Name="AddressLine1" Member="AddressLine1" Storage="_AddressLine1" DbType="VarChar(100)" />
+      <Column Name="City" Member="City" Storage="_City" DbType="VarChar(100)" />
+      <Column Name="Country" Member="Country" Storage="_Country" DbType="VarChar(100)" />
+      <Column Name="State" Member="State" Storage="_State" DbType="VarChar(100)" />
+      <Column Name="EmpType" Member="EmpType" Storage="_EmpType" DbType="Int" />
+      <Column Name="AttendenceId" Member="AttendenceId" Storage="_AttendenceId" DbType="Int" />
+      <Column Name="DateOfBirth" Member="DateOfBirth" Storage="_DateOfBirth" DbType="DateTime" />
+      <Column Name="DateOfJoining" Member="DateOfJoining" Storage="_DateOfJoining" DbType="DateTime" />
+      <Column Name="DateOfLeaving" Member="DateOfLeaving" Storage="_DateOfLeaving" DbType="DateTime" />
+      <Column Name="MobileNo" Member="MobileNo" Storage="_MobileNo" DbType="VarChar(100)" />
+      <Column Name="Status" Member="Status" Storage="_Status" DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Expenses" Member="Expenses">
+    <Type Name="Expense">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ExpensesCategoryID" Member="ExpensesCategoryID" Storage="_ExpensesCategoryID" DbType="Int" />
+      <Column Name="ExpensesReason" Member="ExpensesReason" Storage="_ExpensesReason" DbType="VarChar(100)" />
+      <Column Name="ApprovedBy" Member="ApprovedBy" Storage="_ApprovedBy" DbType="VarChar(100)" />
+      <Column Name="PaymentModeID" Member="PaymentModeID" Storage="_PaymentModeID" DbType="Int" />
+      <Column Name="Amount" Member="Amount" Storage="_Amount" DbType="Money" />
+      <Column Name="BankDetailsID" Member="BankDetailsID" Storage="_BankDetailsID" DbType="Int" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ExpensesCategory" Member="ExpensesCategories">
+    <Type Name="ExpensesCategory">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Category" Member="Category" Storage="_Category" DbType="VarChar(100)" />
+      <Column Name="Level" Member="Level" Storage="_Level" DbType="Int" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PaymentMode" Member="PaymentModes">
+    <Type Name="PaymentMode">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="PayMode" Member="PayMode" Storage="_PayMode" DbType="VarChar(50)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductItems" Member="ProductItems">
+    <Type Name="ProductItem">
+      <Column Name="ID" Member="ID" Storage="_ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="StyleCode" Member="StyleCode" Storage="_StyleCode" DbType="VarChar(100)" />
+      <Column Name="Barcode" Member="Barcode" Storage="_Barcode" DbType="VarChar(100)" />
+      <Column Name="SupplierId" Member="SupplierId" Storage="_SupplierId" DbType="VarChar(100)" />
+      <Column Name="BrandName" Member="BrandName" Storage="_BrandName" DbType="VarChar(100)" />
+      <Column Name="ProductName" Member="ProductName" Storage="_ProductName" DbType="VarChar(100)" />
+      <Column Name="ItemDesc" Member="ItemDesc" Storage="_ItemDesc" DbType="VarChar(100)" />
+      <Column Name="MRP" Member="MRP" Storage="_MRP" DbType="Money" />
+      <Column Name="Tax" Member="Tax" Storage="_Tax" DbType="Money" />
+      <Column Name="Cost" Member="Cost" Storage="_Cost" DbType="Money" />
+      <Column Name="Size" Member="Size" Storage="_Size" DbType="VarChar(100)" />
+      <Column Name="Qty" Member="Qty" Storage="_Qty" DbType="Money" />
+    </Type>
+  </Table>
+  <Table Name="dbo.purchase" Member="Purchases">
+    <Type Name="Purchase">
+      <Column Name="Id" Member="Id" Storage="_Id" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="GRNNo" Member="GRNNo" Storage="_GRNNo" DbType="VarChar(50)" />
+      <Column Name="GRNDate" Member="GRNDate" Storage="_GRNDate" DbType="Date" />
+      <Column Name="InvoiceNo" Member="InvoiceNo" Storage="_InvoiceNo" DbType="VarChar(50)" />
+      <Column Name="InvoiceDate" Member="InvoiceDate" Storage="_InvoiceDate" DbType="Date" />
+      <Column Name="SupplierName" Member="SupplierName" Storage="_SupplierName" DbType="VarChar(50)" />
+      <Column Name="Barcode" Member="Barcode" Storage="_Barcode" DbType="VarChar(50)" />
+      <Column Name="ProductName" Member="ProductName" Storage="_ProductName" DbType="VarChar(50)" />
+      <Column Name="StyleCode" Member="StyleCode" Storage="_StyleCode" DbType="VarChar(50)" />
+      <Column Name="ItemDesc" Member="ItemDesc" Storage="_ItemDesc" DbType="VarChar(50)" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="Float" />
+      <Column Name="MRP" Member="MRP" Storage="_MRP" DbType="Money" />
+      <Column Name="MRPValue" Member="MRPValue" Storage="_MRPValue" DbType="Money" />
+      <Column Name="Cost" Member="Cost" Storage="_Cost" DbType="Money" />
+      <Column Name="CostValue" Member="CostValue" Storage="_CostValue" DbType="Money" />
+      <Column Name="TaxAmt" Member="TaxAmt" Storage="_TaxAmt" DbType="Money" />
+      <Column Name="ImportDate" Member="ImportDate" Storage="_ImportDate" DbType="DateTime NOT NULL" />
+      <Column Name="IsDataConsumed" Member="IsDataConsumed" Storage="_IsDataConsumed" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.purchaseRegister" Member="PurchaseRegisters">
+    <Type Name="PurchaseRegister">
+      <Column Name="Id" Member="Id" Storage="_Id" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="GRNNo" Member="GRNNo" Storage="_GRNNo" DbType="Int" />
+      <Column Name="GRNDate" Member="GRNDate" Storage="_GRNDate" DbType="Date" />
+      <Column Name="InvoiceNo" Member="InvoiceNo" Storage="_InvoiceNo" DbType="VarChar(50)" />
+      <Column Name="InvoiceDate" Member="InvoiceDate" Storage="_InvoiceDate" DbType="Date" />
+      <Column Name="SupplierName" Member="SupplierName" Storage="_SupplierName" DbType="VarChar(50)" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="Float" />
+      <Column Name="MRP" Member="MRP" Storage="_MRP" DbType="Money" />
+      <Column Name="MRPValue" Member="MRPValue" Storage="_MRPValue" DbType="Money" />
+      <Column Name="Cost" Member="Cost" Storage="_Cost" DbType="Money" />
+      <Column Name="CostValue" Member="CostValue" Storage="_CostValue" DbType="Money" />
+      <Column Name="TaxAmt" Member="TaxAmt" Storage="_TaxAmt" DbType="Money" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sales" Member="Sales">
+    <Type Name="Sale">
+      <Column Name="Id" Member="Id" Storage="_Id" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="InvoiceNo" Member="InvoiceNo" Storage="_InvoiceNo" DbType="VarChar(50)" />
+      <Column Name="InvoiceDate" Member="InvoiceDate" Storage="_InvoiceDate" DbType="VarChar(50)" />
+      <Column Name="InvoiceType" Member="InvoiceType" Storage="_InvoiceType" DbType="VarChar(50)" />
+      <Column Name="BrandName" Member="BrandName" Storage="_BrandName" DbType="VarChar(50)" />
+      <Column Name="ProductName" Member="ProductName" Storage="_ProductName" DbType="VarChar(50)" />
+      <Column Name="ItemDescrpetion" Member="ItemDescrpetion" Storage="_ItemDescrpetion" DbType="VarChar(50)" />
+      <Column Name="BarCode" Member="BarCode" Storage="_BarCode" DbType="VarChar(50)" />
+      <Column Name="StyleCode" Member="StyleCode" Storage="_StyleCode" DbType="VarChar(50)" />
+      <Column Name="Qty" Member="Qty" Storage="_Qty" DbType="Float NOT NULL" />
+      <Column Name="MRP" Member="MRP" Storage="_MRP" DbType="Money" />
+      <Column Name="Discount" Member="Discount" Storage="_Discount" DbType="Money" />
+      <Column Name="BasicAmt" Member="BasicAmt" Storage="_BasicAmt" DbType="Money" />
+      <Column Name="TaxAmount" Member="TaxAmount" Storage="_TaxAmount" DbType="Money" />
+      <Column Name="LineTotal" Member="LineTotal" Storage="_LineTotal" DbType="Money" />
+      <Column Name="RoundOff" Member="RoundOff" Storage="_RoundOff" DbType="Money" />
+      <Column Name="BillAmount" Member="BillAmount" Storage="_BillAmount" DbType="Money" />
+      <Column Name="Salesman" Member="Salesman" Storage="_Salesman" DbType="VarChar(50)" />
+      <Column Name="PaymentMode" Member="PaymentMode" Storage="_PaymentMode" DbType="VarChar(50)" />
+      <Column Name="HSNCode" Member="HSNCode" Storage="_HSNCode" DbType="VarChar(50)" />
+      <Column Name="SGST" Member="SGST" Storage="_SGST" DbType="Money" />
+      <Column Name="CGST" Member="CGST" Storage="_CGST" DbType="Money" />
+      <Column Name="LP" Member="LP" Storage="_LP" DbType="VarChar(50)" />
+      <Column Name="ImportDate" Member="ImportDate" Storage="_ImportDate" DbType="DateTime" />
+      <Column Name="IsDataConsumed" Member="IsDataConsumed" Storage="_IsDataConsumed" DbType="VarChar(50)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SalesRegister" Member="SalesRegisters">
+    <Type Name="SalesRegister">
+      <Column Name="Id" Member="Id" Storage="_Id" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="InvoiceNo" Member="InvoiceNo" Storage="_InvoiceNo" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Member="InvoiceDate" Storage="_InvoiceDate" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceType" Member="InvoiceType" Storage="_InvoiceType" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Member="Qty" Storage="_Qty" DbType="Int NOT NULL" />
+      <Column Name="MRP" Member="MRP" Storage="_MRP" DbType="Money NOT NULL" />
+      <Column Name="Discount" Member="Discount" Storage="_Discount" DbType="Money NOT NULL" />
+      <Column Name="BasicAmt" Member="BasicAmt" Storage="_BasicAmt" DbType="Money NOT NULL" />
+      <Column Name="TaxAmount" Member="TaxAmount" Storage="_TaxAmount" DbType="Money NOT NULL" />
+      <Column Name="RoundOff" Member="RoundOff" Storage="_RoundOff" DbType="Money NOT NULL" />
+      <Column Name="BillAmount" Member="BillAmount" Storage="_BillAmount" DbType="Money NOT NULL" />
+      <Column Name="PaymentMode" Member="PaymentMode" Storage="_PaymentMode" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Member="Id" Storage="_Id" DbType="Int NOT NULL" />
+      <Column Name="username" Member="Username" Storage="_Username" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="passwd" Member="Passwd" Storage="_Passwd" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="role" Member="Role" Storage="_Role" DbType="Int NOT NULL" />
+    </Type>
+  </Table>
+</Database>
