@@ -1,7 +1,7 @@
-﻿using AprajitaRetailsDataBase;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Linq;
 
 namespace AprajitaRetailMonitor.SeviceWorker
 {
@@ -9,17 +9,48 @@ namespace AprajitaRetailMonitor.SeviceWorker
     {
         #region LinqSql
 
-        public const string dbName = @".\TASVoyger.mdf";
+        public const string dbName = "VoygerDatabase.mdf";
+        public static string pathName = System.IO.Directory.GetCurrentDirectory();
 
-        private TASVoyger voyDatabase;
+        private VoygerDatabase voyDatabase;
 
         public bool ConnectLinqDataBase( )
         {
+            System.IO.Directory.GetCurrentDirectory();
             if (voyDatabase == null)
-                voyDatabase = new TASVoyger(dbName);
+            {
+                voyDatabase = new VoygerDatabase(pathName + "\\" + dbName);
+                if (!voyDatabase.DatabaseExists())
+                {
+                    voyDatabase.CreateDatabase();
+                }
+                if (voyDatabase != null && voyDatabase.Connection.State == ConnectionState.Open)
+                {
+                    LogEvent.WriteEvent("Connected");
+                }
+                else
+                {
+                    return false;
+                }
+                if (voyDatabase == null)
+                {
+                    LogEvent.WriteEvent("DataBase doesnt exsits");
+                }
+                else
+                {
+                    LogEvent.WriteEvent("Database is present and running");
+                }
+            }
             if (voyDatabase.Connection.State == ConnectionState.Open)
+            {
+                LogEvent.WriteEvent("DataBase is Running");
                 return true;
-            else return false;
+            }
+            else
+            {
+                LogEvent.WriteEvent("DataBase is not Running");
+                return false;
+            }
         }
 
         public void InsertBillData( VoygerBillWithLinq voygerBill )
@@ -28,57 +59,30 @@ namespace AprajitaRetailMonitor.SeviceWorker
             List<LineItems> lineItemList = voygerBill.lineItems;
             List<VPaymentMode> paymentList = voygerBill.payModes;
             ConnectLinqDataBase();
-            voyDatabase.VoyBills.InsertOnSubmit(bill);
-            // Get Last Inserted Row
+            var v = from vyb in voyDatabase.VoyBill
+                    where vyb.BillNumber == bill.BillNumber && vyb.BillTime == bill.BillTime
+                    select new { vyb.ID };
+
+            if (v.Count() > 0)
+            {
+                Console.WriteLine("Invoice all ready Present in file");
+                return;
+            }
+            voyDatabase.VoyBill.InsertOnSubmit(bill);
+            voyDatabase.SubmitChanges();
             foreach (LineItems item in lineItemList)
             {
                 item.VoyBillId = bill.ID;
-                voyDatabase.LineItem.InsertOnSubmit(item);
+                voyDatabase.LineItems.InsertOnSubmit(item);
             }
             foreach (VPaymentMode item in paymentList)
             {
                 item.VoyBillId = bill.ID;
-                voyDatabase.VPaymentModes.InsertOnSubmit(item);
+                voyDatabase.VPaymentMode.InsertOnSubmit(item);
             }
+            voyDatabase.SubmitChanges();
         }
 
         #endregion LinqSql
-
-        //Below is Old Data . Add Any function for Linq Above else down
-
-        #region SqlDataTable
-
-        // Insert Bill Data and Customer Data to Table
-        public void InsertBillData( DataTable table, SqlConnection con, string sqlQuery )
-        {
-            InsertDataTabletoSql(table, con, sqlQuery);
-        }
-
-        public void InsertLineItems( )
-        {
-        }
-
-        public void InsertPaymentDetails( )
-        {
-        }
-
-        public int InsertDataTabletoSql( DataTable table, SqlConnection con, string sqlQuery )
-        {
-            int status = -9999;
-            if (con.State != ConnectionState.Open)
-                con.Open();
-
-            using (var adapter = new SqlDataAdapter(sqlQuery, con))
-            using (var builder = new SqlCommandBuilder(adapter))
-            {
-                adapter.InsertCommand = builder.GetInsertCommand();
-                status = adapter.Update(table);
-                // adapter.Update(ds.Tables[0]); (Incase u have a data-set)
-            }
-            con.Close();
-            return status;
-        }
-
-        #endregion SqlDataTable
     }
 }

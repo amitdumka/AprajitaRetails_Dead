@@ -9,35 +9,14 @@ namespace AprajitaRetailMonitor.SeviceWorker
     {
         private static Task t = null;
 
-        public static void InsertInvoiceXML( string filename )
+        public static void InsertInvoiceXML( string filename, System.Diagnostics.EventLog eventLog )
         {
-            //TODO: write action
             t = Task.Run(( ) => ProcessInvoiceXML(filename));
-            //TODO:Make Changes as said Below
-            /*
-             * first all readyvoyBillXML need to bifurcate
-             * first file will rear xml file into dataset
-             * second function will convert dataset to vouBill object
-             * third function verify and process
-             * third:A  will insert Customer data
-             * third:B will line items
-             * third:C will enter voy bill table
-             * third:c will payment details after checking payment mode CA CR MW else
-             */
         }
 
-        private static void ProcessInvoiceXML( string invoiceXMLFile )
+        public static void InsertInvoiceXML( string filename )
         {
-            VoygerBillWithLinq voygerBill = VoygerXMLReader.ReadInvoiceXML(invoiceXMLFile);
-            if (voygerBill != null)
-            {
-                InsertData insertData = new InsertData();
-                insertData.InsertBillData(voygerBill);
-            }
-            else
-            {
-                //TODO: Raise Event  and store in database for futher intervention.
-            }
+            t = Task.Run(( ) => ProcessInvoiceXML(filename));
         }
 
         public static void InsertTabletBillXML( )
@@ -48,6 +27,26 @@ namespace AprajitaRetailMonitor.SeviceWorker
         public static void InsertTailroingHUB( )
         {
             //TODO: write action
+        }
+
+        private static void ProcessInvoiceXML( string invoiceXMLFile )
+        {
+            VoygerBillWithLinq voygerBill = VoygerXMLReader.ReadInvoiceXML(invoiceXMLFile);
+
+            if (voygerBill != null)
+            {
+                LogEvent.WriteEvent("voygerBill Readed, it has Data");
+                InsertData insertData = new InsertData();
+                insertData.InsertBillData(voygerBill);
+                LogEvent.WriteEvent("Voy Bill added to db");
+            }
+            else
+            {
+                LogEvent.WriteEvent("voygerBill Readed, and it is empty");
+                //TODO: Raise Event  and store in database for futher intervention.
+            }
+            LogEvent.WriteEvent("ProcessInvoiceXml is ened");
+            Watcher.NoOfEvent--;
         }
     }
 }

@@ -79,5 +79,9 @@ namespace AprajitaRetails
                 txtUserName.Text = "";
             }
         }
+
+        private void GBLogin_Enter( object sender, EventArgs e )
+        {
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace AprajitaRetailMonitor
     {
         private System.Diagnostics.EventLog eventLog1;
         private int eventId = 1;
-        public Watcher fileWatcher1, fileWatcher2;
+        public Watcher fileWatcher1;//, fileWatcher2;
 
         public enum ServiceState
         {
@@ -50,8 +50,7 @@ namespace AprajitaRetailMonitor
             eventLog1.Source = "AprajitaRetailsMonitor";
             eventLog1.Log = "AprajitaRetailsLog";
             fileWatcher1 = new Watcher(eventLog1);
-            fileWatcher2 = new Watcher(eventLog1);
-            eventLog1.WriteEntry("filewatcher created");
+            // fileWatcher2 = new Watcher(eventLog1);
         }
 
         protected override void OnStart( string[] args )
@@ -66,18 +65,7 @@ namespace AprajitaRetailMonitor
             //Code between this line
 
             fileWatcher1.Watch(PathList.InvoiceXMLFile, PathList.InvoiceXMLPath);
-            fileWatcher2.Watch(PathList.TabletSaleXMLFile, PathList.TabletSaleXMLPath);
-            eventLog1.WriteEntry("filewatcher started!!!");
-
-            //User code above line
-            // Update the service state to Running.
-            // Set up a timer that triggers every minute.
-            //System.Timers.Timer timer = new System.Timers.Timer
-            //{
-            //    Interval = 60000 // 60 seconds
-            //};
-            //timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
-            //timer.Start();
+            // fileWatcher2.Watch(PathList.TabletSaleXMLFile, PathList.TabletSaleXMLPath);
 
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);

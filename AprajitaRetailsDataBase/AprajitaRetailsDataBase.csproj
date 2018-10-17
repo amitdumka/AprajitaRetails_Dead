@@ -42,15 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aprajitareatilsdb.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="LogEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="TASVoyger.cs" />
+    <Compile Include="VoygerDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -61,6 +60,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AprajitaRetails\AprajitaRetails.csproj">
+      <Project>{9f3f5a36-9726-42cd-9bc1-83c313b1ea28}</Project>
+      <Name>AprajitaRetails</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
+      <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
+      <Name>ExcelReader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

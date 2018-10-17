@@ -124,62 +124,25 @@ namespace AprajitaRetailMonitor.SeviceWorker
             return dataSet;
         }
 
-        public static DataSet ReadXMLInvoiceToDataSet( string filename )
-        {
-            DataSet dataSet = ReadXML(filename);
-            DataSet InvoiceDataSet = new DataSet("invoiceDataSet");
-            if (dataSet != null || dataSet.Tables.Count > 0)
-            {
-                vBill = new VoygerBillWithLinq();
-                foreach (DataTable table in dataSet.Tables)
-                {
-                    fileWR.WriteLine("TableName: " + table);
-                    fileWR.WriteLine();
-                    switch (table.TableName)
-                    {
-                        case VoyTable.T_Bill:
-                            ReadBill(table); InvoiceDataSet.Tables.Add(table); break;
-                        case VoyTable.T_Customer:
-                            ReadCustomer(table);
-                            InvoiceDataSet.Tables.Add(table);
-                            break;
-
-                        case VoyTable.T_LineItem:
-                            ReadLineItems(table);
-                            InvoiceDataSet.Tables.Add(table);
-                            break;
-
-                        case VoyTable.T_Payments:
-                            ReadPaymentDetails(table);
-                            InvoiceDataSet.Tables.Add(table);
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-                return dataSet;
-            }
-            else
-                return null; // Error: Incase failed to read or no data present
-        }
-
         /// <summary>
-        /// read invoicexml
+        /// read invoicexml with linq
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
         public static VoygerBillWithLinq ReadInvoiceXML( string filename )
         {
+            //LogEvent.WriteEvent("ReadInvoiceXML: Started and File is : " + filename);
             DataSet dataSet = ReadXML(filename);
+            // if (fileWR == null)
+            //   fileWR = File.AppendText(filename + "_Process.txt");
 
             if (dataSet != null || dataSet.Tables.Count > 0)
             {
                 vBill = new VoygerBillWithLinq();
                 foreach (DataTable table in dataSet.Tables)
                 {
-                    fileWR.WriteLine("TableName: " + table);
-                    fileWR.WriteLine();
+                    //fileWR.WriteLine("TableName: " + table);
+                    //fileWR.WriteLine();
                     switch (table.TableName)
                     {
                         case VoyTable.T_Bill:
@@ -192,51 +155,16 @@ namespace AprajitaRetailMonitor.SeviceWorker
                             break;
                     }
                 }
+                //fileWR.Flush();
+                //fileWR.Close();
                 return vBill;
             }
             else
-                return null; // Error: Incase failed to read or no data present
-        }
-
-        /// <summary>
-        /// Read voyger bill XML file and process it using DataSet
-        /// </summary>
-        /// <param name="xmlFile"></param>
-        /// <returns>No of table is created</returns>
-
-        public static int ReadVoyBillXML( string xmlFile )
-        {
-            DataSet dataSet = new DataSet();
-            dataSet.ReadXml(xmlFile, XmlReadMode.InferSchema);
-            fileWR = File.AppendText(xmlFile + "_DataSet.txt"); //TODO: remove it
-            fileWR.WriteLine("xml:{0}: Using DataSet:", xmlFile);
-            int c = dataSet.Tables.Count;
-            fileWR.WriteLine("No of Table is created in current Data is " + c, xmlFile);
-            if (c > 0)
-                vBill = new VoygerBillWithLinq();
-            else return -1; // Error: Incase failed to read or no data present
-
-            foreach (DataTable table in dataSet.Tables)
             {
-                fileWR.WriteLine("TableName: " + table);
-                fileWR.WriteLine();
-                switch (table.TableName)
-                {
-                    case VoyTable.T_Bill:
-                        ReadBill(table); break;
-                    case VoyTable.T_Customer: ReadCustomer(table); break;
-                    case VoyTable.T_LineItem: ReadLineItems(table); break;
-                    case VoyTable.T_Payments: ReadPaymentDetails(table); break;
-
-                    default:
-                        break;
-                }
+                // fileWR.Flush();
+                //fileWR.Close();
+                return null; // Error: Incase failed to read or no data present
             }
-
-            //WriteVoyDataToFile();
-            fileWR.Flush();
-            fileWR.Close();
-            return c;
         }
 
         // Read DataTable to Object and verify & process data
@@ -257,14 +185,14 @@ namespace AprajitaRetailMonitor.SeviceWorker
         public static void ReadLineItems( DataTable table )
         {
             LineItems lineItem;
-            int id = 0;
+            // int id = 0;
             foreach (var row in table.AsEnumerable())
             {
                 lineItem = new LineItems();
                 lineItem.Amount = Double.Parse((string)row[VBEle.amount]);
                 lineItem.Description = (string)row[VBEle.description];
                 lineItem.DiscountValue = Double.Parse((string)row[VBEle.discount_value]); ;
-                lineItem.ID = ++id;
+
                 lineItem.ItemCode = (string)row[VBEle.item_code];
                 lineItem.LineType = (string)row[VBEle.line_item_type];
                 lineItem.Qty = Double.Parse((string)row[VBEle.qty]); ;
@@ -283,7 +211,7 @@ namespace AprajitaRetailMonitor.SeviceWorker
             vBill.bill.BillDiscount = Double.Parse((string)table.Rows[0][VBEle.bill_discount]);
             vBill.bill.BillGrossAmount = Double.Parse((string)table.Rows[0][VBEle.bill_gross_amount]);
             vBill.bill.BillNumber = (string)table.Rows[0][VBEle.bill_number];
-            vBill.bill.BillTime = DateTime.Parse((string)table.Rows[0][VBEle.billing_time]);//, "yyyy-MM-dd HH:mm tt", null);
+            vBill.bill.BillTime = DateTime.Parse((string)table.Rows[0][VBEle.billing_time]);
             vBill.bill.BillType = (string)table.Rows[0][VBEle.type];
             vBill.bill.StoreID = (string)table.Rows[0][VBEle.bill_store_id];
             //vBill.bill.ID = -1;
@@ -296,11 +224,10 @@ namespace AprajitaRetailMonitor.SeviceWorker
         public static int ReadPaymentDetails( DataTable table )
         {
             VPaymentMode vPayMode;
-            int id = 0;
+            int id = 1;
             foreach (var row in table.AsEnumerable())
             {
                 vPayMode = new VPaymentMode();
-                vPayMode.ID = ++id;
                 vPayMode.PaymentMode = (string)row[VBEle.mode];
                 vPayMode.PaymentValue = (string)row[VBEle.value];
                 vBill.AddPaymentMode(vPayMode);

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15D4A665-0594-421A-A8DF-38173FFBE10C}</ProjectGuid>
+    <ProjectGuid>{C3BB4A75-43B7-4C7B-A36E-AFF288545D9C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AprajitaRetailMonitor</RootNamespace>
-    <AssemblyName>AprajitaRetailMonitor</AssemblyName>
+    <RootNamespace>Testingapp</RootNamespace>
+    <AssemblyName>Testingapp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,58 +34,77 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Service1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Service1.Designer.cs">
-      <DependentUpon>Service1.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeviceWorker\InsertData.cs" />
-    <Compile Include="SeviceWorker\LogEvent.cs" />
-    <Compile Include="SeviceWorker\ServiceAction.cs" />
-    <Compile Include="SeviceWorker\VoygerXMLToLinqDB.cs" />
-    <Compile Include="SeviceWorker\Watcher.cs" />
+    <Compile Include="UploaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploaderForm.Designer.cs">
+      <DependentUpon>UploaderForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UploaderForm.resx">
+      <DependentUpon>UploaderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Service1.resx">
-      <DependentUpon>Service1.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\AprajitaRetailMonitor\AprajitaRetailMonitor.csproj">
+      <Project>{15d4a665-0594-421a-a8df-38173ffbe10c}</Project>
+      <Name>AprajitaRetailMonitor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AprajitaRetailsDataBase\AprajitaRetailsDataBase.csproj">
       <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
       <Name>AprajitaRetailsDataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\AprajitaRetails\AprajitaRetails.csproj">
-      <Project>{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}</Project>
+      <Project>{9f3f5a36-9726-42cd-9bc1-83c313b1ea28}</Project>
       <Name>AprajitaRetails</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CyberNBasicOperations\CyberNBasicOperations.csproj">
+      <Project>{2bfea521-eea1-46a3-8254-5bf4c67ed182}</Project>
+      <Name>CyberNBasicOperations</Name>
     </ProjectReference>
     <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
       <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
