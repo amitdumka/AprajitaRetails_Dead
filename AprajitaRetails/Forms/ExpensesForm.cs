@@ -1,5 +1,6 @@
-﻿using AprajitaRetails.Data;
-using AprajitaRetails.ViewModel;
+﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
+using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using CyberN.Utility;
 using System;
 using System.Windows.Forms;
 

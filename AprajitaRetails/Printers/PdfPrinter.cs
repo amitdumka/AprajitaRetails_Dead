@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace AprajitaRetails.Printers
 {      /*
@@ -297,7 +298,7 @@ namespace AprajitaRetails.Printers
                 // Create an instance of the Printer
                 IPrinter printer = new Printer();
                 // Print the file
-                printer.PrintRawFile(ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
+                printer.PrintRawFile(AprajitaRetailsDataBase.SqlDataBase.ViewModel.UtilOps.PrinterName, Application.CommonAppDataPath + "\\reciptsPrint.pdf");
             }
         }
     }

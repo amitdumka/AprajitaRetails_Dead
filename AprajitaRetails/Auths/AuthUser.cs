@@ -1,9 +1,15 @@
-﻿using System;
+﻿using AprajitaRetailsDataBase.SqlDataBase;
+using CyberN.Utility;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
+//TODO: Move to AuthUser Project A DLL Project
 namespace AprajitaRetails
 {
+    /// <summary>
+    /// AuthUser: Its helps in managing user and logging
+    /// </summary>
     internal class AuthUser
     {
         public static string LoggedOn = "N/A";

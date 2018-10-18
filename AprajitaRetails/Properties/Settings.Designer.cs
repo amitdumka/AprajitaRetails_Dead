@@ -27,7 +27,7 @@ namespace AprajitaRetails.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\aprajitaRetai" +
-            "ls.mdf;Integrated Security=True;Connect Timeout=30")]
+            "ls_old.mdf;Integrated Security=True;Connect Timeout=30")]
         public string ConDB {
             get {
                 return ((string)(this["ConDB"]));

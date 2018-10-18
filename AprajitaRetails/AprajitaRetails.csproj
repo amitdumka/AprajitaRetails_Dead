@@ -80,7 +80,7 @@
       <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="LibExcel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\LibExcel.dll</HintPath>
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\LibExcel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -102,44 +102,50 @@
     <Reference Include="Reports, Version=0.9.5821.33857, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Report.NET.0.09.06\lib\net461\Reports.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Base, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Base.dll</HintPath>
+    <Reference Include="Stimulsoft.Base, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Controls.dll</HintPath>
+    <Reference Include="Stimulsoft.Controls, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls.Win, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Controls.Win.dll</HintPath>
+    <Reference Include="Stimulsoft.Controls.Win, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Controls.Win.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Database, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Database.dll</HintPath>
+    <Reference Include="Stimulsoft.Data, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Design, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Design.dll</HintPath>
+    <Reference Include="Stimulsoft.Database, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Database.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Editor, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Editor.dll</HintPath>
+    <Reference Include="Stimulsoft.Design, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.dll</HintPath>
+    <Reference Include="Stimulsoft.Editor, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Check, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.Check.dll</HintPath>
+    <Reference Include="Stimulsoft.Map, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Map.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Design, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.Design.dll</HintPath>
+    <Reference Include="Stimulsoft.Report, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Helper, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.Helper.dll</HintPath>
+    <Reference Include="Stimulsoft.Report.Check, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.Check.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Web, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.Web.dll</HintPath>
+    <Reference Include="Stimulsoft.Report.Design, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Win, Version=2018.1.4.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Stimulsoft.Report.Win.dll</HintPath>
+    <Reference Include="Stimulsoft.Report.Helper, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Web, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Win, Version=2018.3.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Stimulsoft.Report.Win.dll</HintPath>
     </Reference>
     <Reference Include="Svg, Version=2.2.1.39233, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.1.4\lib\net40\Svg.dll</HintPath>
+      <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Svg.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Diagram.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Diagram.Windows, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
@@ -183,20 +189,6 @@
     </Compile>
     <Compile Include="Auths\AuthUser.cs" />
     <Compile Include="Constant\Constants.cs" />
-    <Compile Include="DataModel\AuthUsers.cs" />
-    <Compile Include="DataModel\CashDetail.cs" />
-    <Compile Include="DataModel\Customer.cs" />
-    <Compile Include="DataModel\DailySaleDM.cs" />
-    <Compile Include="DataModel\EmployeeDM.cs" />
-    <Compile Include="DataModel\ExpensesDM.cs" />
-    <Compile Include="DataModel\FootFall.cs" />
-    <Compile Include="DataModel\Purchase.cs" />
-    <Compile Include="DataModel\Salary.cs" />
-    <Compile Include="DataModel\StoresDM.cs" />
-    <Compile Include="Data\Attendence.cs" />
-    <Compile Include="Data\DayClosing.cs" />
-    <Compile Include="Data\NewCustomer.cs" />
-    <Compile Include="Data\Stores.cs" />
     <Compile Include="Excels\ExcelToDataBase.cs" />
     <Compile Include="Excels\ExcelUploader.cs" />
     <Compile Include="Forms\AttendenceForm.cs">
@@ -238,46 +230,30 @@
     <Compile Include="Forms\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Printers\PdfPrinter.cs" />
     <Compile Include="Forms\UploaderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\UploaderForm.Designer.cs">
       <DependentUpon>UploaderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Printers\PdfPrinter.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Utils\Client.cs" />
-    <Compile Include="Utils\Controls.cs" />
-    <Compile Include="Utils\FileMonitor.cs" />
-    <Compile Include="Utils\Setups.cs" />
-    <Compile Include="Data\AuthUsers.cs" />
-    <Compile Include="Utils\Basic.cs" />
-    <Compile Include="DataBases\DataBase.cs" />
-    <Compile Include="DataBases\DBHelper.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\CashDetail.cs" />
-    <Compile Include="Data\Customer.cs" />
-    <Compile Include="Data\DailySale.cs" />
-    <Compile Include="Data\Employee.cs" />
-    <Compile Include="Data\Expenses.cs" />
-    <Compile Include="Data\FootFall.cs" />
-    <Compile Include="Data\Salary.cs" />
-    <Compile Include="Data\SaleItemWise.cs" />
     <Compile Include="Excels\ExcelToDB.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="CleanUp\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="CleanUp\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomersForm.cs">
@@ -322,7 +298,6 @@
     <Compile Include="Forms\SaleInvoiceForm.Designer.cs">
       <DependentUpon>SaleInvoiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Logs.cs" />
     <Compile Include="MainMDI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,29 +306,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\Purchase.cs" />
-    <Compile Include="Data\SaleRegister.cs" />
     <Compile Include="TableCreator\MainProgram.cs" />
     <Compile Include="TableCreator\TableClass.cs" />
-    <Compile Include="DataBases\TableName.cs" />
-    <Compile Include="Utils\Watcher.cs" />
-    <Compile Include="ViewModel\AttendenceVM.cs" />
-    <Compile Include="ViewModel\CustomerDB.cs" />
-    <Compile Include="ViewModel\CustomerVM.cs" />
-    <Compile Include="ViewModel\DailySaleDB.cs" />
-    <Compile Include="ViewModel\DailySalesVM.cs" />
-    <Compile Include="ViewModel\DataOps.cs" />
-    <Compile Include="ViewModel\DayClosingVM.cs" />
-    <Compile Include="ViewModel\EmployeeVM.cs" />
-    <Compile Include="ViewModel\ExpensesVM.cs" />
-    <Compile Include="ViewModel\Features.cs" />
-    <Compile Include="ViewModel\iDatabase.cs" />
-    <Compile Include="ViewModel\NewCustomerDB.cs" />
-    <Compile Include="ViewModel\SaleInvoiceVM.cs" />
-    <Compile Include="ViewModel\StoresVM.cs" />
-    <Compile Include="Voy\VoyBill.cs" />
-    <Compile Include="Voy\VoyBillUpload.cs" />
-    <Compile Include="Voy\VoygerXMLToDB.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,7 +341,7 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="CleanUp\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PurchaseInvoiceForm.resx">
@@ -435,17 +389,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aprajitaRetails.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="aprajitaRetails_log.ldf">
-      <DependentUpon>aprajitaRetails.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Icon1.ico" />
     <Content Include="Localization\ar.xml" />
     <Content Include="Localization\be.xml" />
     <Content Include="Localization\bg.xml" />
+    <Content Include="Localization\bh.xml" />
     <Content Include="Localization\ca-ES.xml" />
     <Content Include="Localization\cs.xml" />
     <Content Include="Localization\de.ext.xml" />
@@ -465,7 +413,6 @@
     <Content Include="Localization\id.xml" />
     <Content Include="Localization\it.xml" />
     <Content Include="Localization\ka.xml" />
-    <Content Include="Localization\Lt-sr-SP.xml" />
     <Content Include="Localization\lt.xml" />
     <Content Include="Localization\nb-NO.xml" />
     <Content Include="Localization\nl.xml" />
@@ -476,14 +423,15 @@
     <Content Include="Localization\ru.ext.xml" />
     <Content Include="Localization\ru.xml" />
     <Content Include="Localization\sk.xml" />
+    <Content Include="Localization\sr.xml" />
     <Content Include="Localization\sv.ext.xml" />
     <Content Include="Localization\sv.xml" />
     <Content Include="Localization\tr.xml" />
     <Content Include="Localization\uk.xml" />
+    <Content Include="Localization\vi.xml" />
     <Content Include="Localization\zh-CHS.xml" />
     <Content Include="Localization\zh-CHT.xml" />
     <Content Include="TextFile1.txt" />
-    <Content Include="Voy\VoybillAnlisys.txt" />
     <None Include="Resources\Image1.png" />
     <None Include="Resources\Icon2.ico" />
     <None Include="Resources\Icon1.ico" />
@@ -519,13 +467,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AprajitaRetailsDataBase\AprajitaRetailsDataBase.csproj">
+      <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
+      <Name>AprajitaRetailsDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
+      <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
+      <Name>CyberN Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
       <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
       <Name>ExcelReader</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DBase\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="aprajitaRetails.mdf">

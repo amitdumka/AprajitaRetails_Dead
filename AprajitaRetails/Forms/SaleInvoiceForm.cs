@@ -1,5 +1,6 @@
 ﻿using AprajitaRetails.Printers;
-using AprajitaRetails.ViewModel;
+using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using CyberN.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;

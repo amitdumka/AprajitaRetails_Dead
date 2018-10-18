@@ -1,0 +1,39 @@
+﻿
+<line_item_type>REGULAR</line_item_type>
+<serial>1</serial>
+<item_code>M56228601020</item_code>
+<qty>1.2</qty>
+<rate>1396</rate>
+<value>1675.2</value>
+<discount_value>0</discount_value>
+<amount>1635.31</amount>
+<description>Tresca DTR Syn</description>
+
+-<customer>
+	<name>VIVEK VIVEK</name>
+	<mobile>917033920716 </mobile>
+</customer>
+
+-<Custom_fields>
+	-<field_details>
+		<field_name>Tailoring</field_name>
+		<tailoring_req>N</tailoring_req>
+	</field_details>
+</Custom_fields>
+-<Payment_Mode>
+	-<Payment_detail>
+		-<payment>
+			<mode>CA</mode>
+			<value>1675</value>
+			<notes/>
+			-<attributes>
+				-<attribute>
+					<name/>
+					<value/>
+				</attribute>
+			</attributes>
+		</payment>
+	</Payment_detail>
+</Payment_Mode>
+</bill>
+</root>

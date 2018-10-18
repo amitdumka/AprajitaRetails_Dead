@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,14 +59,134 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogEvent.cs" />
+    <Compile Include="Basic\LogEvent.cs" />
+    <Compile Include="Clients\Client.cs" />
+    <Compile Include="Clients\ClientDB.cs" />
+    <Compile Include="Clients\Clients.cs" />
+    <Compile Include="Clients\CurrentClient.cs" />
+    <Compile Include="LinqDataBase\InsertDataLog.cs" />
+    <Compile Include="LinqDataBase\LineItems.cs" />
+    <Compile Include="LinqDataBase\VoyBill.cs" />
+    <Compile Include="LinqDataBase\VPaymentMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="VoygerDatabase.cs" />
+    <Compile Include="LinqDataBase\VoygerDatabase.cs" />
+    <Compile Include="Setup\Setups.cs" />
+    <Compile Include="SqlDataBase\DataBases\BackupData.cs" />
+    <Compile Include="SqlDataBase\DataBases\ConType.cs" />
+    <Compile Include="SqlDataBase\DataBases\DataBase.cs" />
+    <Compile Include="SqlDataBase\DataBases\DBHelper.cs" />
+    <Compile Include="SqlDataBase\DataBases\TableName.cs" />
+    <Compile Include="SqlDataBase\DataModel\Advances.cs" />
+    <Compile Include="SqlDataBase\DataModel\AuthUsersDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\BankDetailsDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\BankDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\CashDetail.cs" />
+    <Compile Include="SqlDataBase\DataModel\CustomerDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\DailySaleDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\DayClosingDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\DiscountCodeGeneratorDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\DiscountsDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\Dues.cs" />
+    <Compile Include="SqlDataBase\DataModel\DuesPayment.cs" />
+    <Compile Include="SqlDataBase\DataModel\EmployeeDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\ExpensesCategoryDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\ExpensesDM.cs" />
+    <Compile Include="SqlDataBase\DataModel\FootFall.cs" />
+    <Compile Include="SqlDataBase\DataModel\Incentive.cs" />
+    <Compile Include="SqlDataBase\DataModel\PaySlip.cs" />
+    <Compile Include="SqlDataBase\DataModel\PurchaseModel.cs" />
+    <Compile Include="SqlDataBase\DataModel\Salary.cs" />
+    <Compile Include="SqlDataBase\DataModel\StoresDM.cs" />
+    <Compile Include="SqlDataBase\Data\Advances.cs" />
+    <Compile Include="SqlDataBase\Data\Attendence.cs" />
+    <Compile Include="SqlDataBase\Data\AuthUsers.cs" />
+    <Compile Include="SqlDataBase\Data\Bank.cs" />
+    <Compile Include="SqlDataBase\Data\BankDetails.cs" />
+    <Compile Include="SqlDataBase\Data\CashDetail.cs" />
+    <Compile Include="SqlDataBase\Data\CategoryCode.cs" />
+    <Compile Include="SqlDataBase\Data\Customer.cs" />
+    <Compile Include="SqlDataBase\Data\DailySale.cs" />
+    <Compile Include="SqlDataBase\Data\DayClosing.cs" />
+    <Compile Include="SqlDataBase\Data\DayEndDetails.cs" />
+    <Compile Include="SqlDataBase\Data\DiscountCodeGenerator.cs" />
+    <Compile Include="SqlDataBase\Data\Discounts.cs" />
+    <Compile Include="SqlDataBase\Data\Dues.cs" />
+    <Compile Include="SqlDataBase\Data\DuesPayment.cs" />
+    <Compile Include="SqlDataBase\Data\EmpCode.cs" />
+    <Compile Include="SqlDataBase\Data\Employee.cs" />
+    <Compile Include="SqlDataBase\Data\EmployeeType.cs" />
+    <Compile Include="SqlDataBase\Data\Expenses.cs" />
+    <Compile Include="SqlDataBase\Data\ExpensesCategory.cs" />
+    <Compile Include="SqlDataBase\Data\ExpensesLevel.cs" />
+    <Compile Include="SqlDataBase\Data\FootFall.cs" />
+    <Compile Include="SqlDataBase\Data\Incentive.cs" />
+    <Compile Include="SqlDataBase\Data\InvoiceNo.cs" />
+    <Compile Include="SqlDataBase\Data\NewCustomer.cs" />
+    <Compile Include="SqlDataBase\Data\PaymentMode.cs" />
+    <Compile Include="SqlDataBase\Data\PaySlip.cs" />
+    <Compile Include="SqlDataBase\Data\Purchase.cs" />
+    <Compile Include="SqlDataBase\Data\Salary.cs" />
+    <Compile Include="SqlDataBase\Data\SaleInfo.cs" />
+    <Compile Include="SqlDataBase\Data\SaleItemWise.cs" />
+    <Compile Include="SqlDataBase\Data\SaleRegister.cs" />
+    <Compile Include="SqlDataBase\Data\Stores.cs" />
+    <Compile Include="SqlDataBase\Data\TranscationType.cs" />
+    <Compile Include="SqlDataBase\DBase\AttendenceDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\AttendenceVM.cs" />
+    <Compile Include="SqlDataBase\DBase\BankAccountsDB.cs" />
+    <Compile Include="SqlDataBase\Helper\CardMode.cs" />
+    <Compile Include="SqlDataBase\DBase\CardPaymentDB.cs" />
+    <Compile Include="SqlDataBase\Helper\CardPaymentDetails.cs" />
+    <Compile Include="SqlDataBase\Helper\CardType.cs" />
+    <Compile Include="SqlDataBase\DBase\CustomerDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\CustomerVM.cs" />
+    <Compile Include="SqlDataBase\DBase\DailySaleDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\DailySalesVM.cs" />
+    <Compile Include="SqlDataBase\DBase\DataOps.cs" />
+    <Compile Include="SqlDataBase\DBase\DayClosingDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\DayClosingVM.cs" />
+    <Compile Include="SqlDataBase\DBase\DayEndDetailsDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\DayEndOps.cs" />
+    <Compile Include="SqlDataBase\DBase\EmployeeDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\EmployeeVM.cs" />
+    <Compile Include="SqlDataBase\DBase\ExpensesCategoryDB.cs" />
+    <Compile Include="SqlDataBase\DBase\ExpensesDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\ExpensesVM.cs" />
+    <Compile Include="SqlDataBase\Helper\Features.cs" />
+    <Compile Include="SqlDataBase\Helper\GST.cs" />
+    <Compile Include="SqlDataBase\Helper\iDatabase.cs" />
+    <Compile Include="SqlDataBase\DBase\NewCustomerDB.cs" />
+    <Compile Include="SqlDataBase\DBase\PaymentDetailDB.cs" />
+    <Compile Include="SqlDataBase\Helper\PaymentDetails.cs" />
+    <Compile Include="SqlDataBase\Helper\ProductCategory.cs" />
+    <Compile Include="SqlDataBase\Helper\ProductItems.cs" />
+    <Compile Include="SqlDataBase\DBase\ProductItemsDB.cs" />
+    <Compile Include="SqlDataBase\Helper\SaleInvoice.cs" />
+    <Compile Include="SqlDataBase\DBase\SaleInvoiceDB.cs" />
+    <Compile Include="SqlDataBase\ViewModel\SaleInvoiceVM.cs" />
+    <Compile Include="SqlDataBase\Helper\SaleItem.cs" />
+    <Compile Include="SqlDataBase\DBase\SaleItemsDB.cs" />
+    <Compile Include="SqlDataBase\Helper\SalePaymentDetails.cs" />
+    <Compile Include="SqlDataBase\Helper\SalePayMode.cs" />
+    <Compile Include="SqlDataBase\Helper\SaleQuery.cs" />
+    <Compile Include="SqlDataBase\Helper\SaleReturnInvoice.cs" />
+    <Compile Include="SqlDataBase\Helper\Salesman.cs" />
+    <Compile Include="SqlDataBase\DBase\SalesmanDB.cs" />
+    <Compile Include="SqlDataBase\Helper\StockItem.cs" />
+    <Compile Include="SqlDataBase\DBase\StoresBD.cs" />
+    <Compile Include="SqlDataBase\ViewModel\StoresVM.cs" />
+    <Compile Include="SqlDataBase\Helper\Supplier.cs" />
+    <Compile Include="SqlDataBase\Helper\Taxes.cs" />
+    <Compile Include="SqlDataBase\Helper\TaxType.cs" />
+    <Compile Include="SqlDataBase\Prints\UtilOps.cs" />
+    <Compile Include="SqlDataBase\Helper\VAT.cs" />
+    <Compile Include="TableCreator\MainProgram.cs" />
+    <Compile Include="TableCreator\TableClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -77,16 +199,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AprajitaRetails\AprajitaRetails.csproj">
-      <Project>{9f3f5a36-9726-42cd-9bc1-83c313b1ea28}</Project>
-      <Name>AprajitaRetails</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
-      <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>
-      <Name>ExcelReader</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -97,6 +209,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
+      <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
+      <Name>CyberN Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

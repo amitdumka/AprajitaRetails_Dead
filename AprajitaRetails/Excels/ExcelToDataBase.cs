@@ -1,5 +1,8 @@
-﻿using AprajitaRetails.ViewModel;
+﻿//using AprajitaRetails.ViewModel;
+using AprajitaRetailsDataBase.SqlDataBase;
+using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
 using CyberN;
+using CyberN.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -945,7 +948,7 @@ namespace AprajitaRetails.Excels
     }
 
     //TODO: Implement in second stage
-    internal class PurchaseDB : DataOps<Purchase>
+    public class PurchaseDB : DataOps<Purchase>
     {
         public override int InsertData( Purchase sr )
         {

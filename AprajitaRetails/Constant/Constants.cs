@@ -1,6 +1,6 @@
 ﻿namespace AprajitaRetails.Constant
 {
-    internal class Constants
+    public class Constants
     {
         public static readonly int Sale = 1;
         public static readonly int SaleRegister = 2;

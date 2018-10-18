@@ -1,6 +1,5 @@
 ﻿using AprajitaRetails.Excels;
-using AprajitaRetails.Utils;
-using AprajitaRetails.Voy;
+using AprajitaRetailsDataBase.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -86,7 +85,8 @@ namespace AprajitaRetails.Forms
             {   //Current Process
                 // t = Task.Run (()=>VoyBillUpload.ReadVoyBillXML(TXTFileName.Text ));
                 //return;
-                t = Task.Run(( ) => VoygerXMLReader.ReadVoyBillXML(TXTFileName.Text));
+                //TODO: voy upload here count 1
+                // t = Task.Run(( ) => VoygerXMLReader.ReadVoyBillXML(TXTFileName.Text));
             }
 
             //else if ( CBUploadType.Text == "PurchaseRegister" )

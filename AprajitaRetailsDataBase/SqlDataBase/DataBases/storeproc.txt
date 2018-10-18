@@ -1,0 +1,593 @@
+﻿CREATE PROCEDURE [dbo].[login]
+	@username varchar(20),
+	@pass varchar(10),
+	@logon int=0 out
+	
+AS
+Declare @P1 varchar(10)
+	SELECT @p1=passwd from AuthUser where username=@username 
+	if (@pass=@P1) 
+		Begin
+		set  @logon=1
+		end
+	else
+		begin 
+		set @logon=-1
+		end 
+
+		
+RETURN @logon
+
+
+CREATE PROCEDURE [dbo].[AddUser]
+	@username varchar(20),
+	@passwd varchar(10),
+	@roles varchar(10)
+AS
+	Declare @ID int 
+	select @Id=COUNT(username) from AuthUser
+	set @ID=@ID+1;
+	Declare @roleid int
+	Select @roleid=ID from role where Role=@roles
+	Insert into AuthUser (Id,username,passwd,role) 
+	values(@ID,@username,@passwd,@roleid)
+RETURN 0
+
+CREATE PROCEDURE [dbo].[IsUser]
+	@username varchar(20),
+	@cnt int OUT
+AS
+	SELECT  @cnt=Count(@username) from AuthUser where username=@username
+RETURN @cnt
+
+CREATE PROCEDURE [dbo].[GetUser]
+	
+AS
+
+SELECT id,username, role from AuthUser
+Return 0
+
+CREATE PROCEDURE [dbo].[DeleteUser]
+	@username varchar(20)
+	
+AS
+	delete from AuthUser where username=@username
+RETURN 0
+
+
+
+CREATE PROCEDURE [dbo].[AddPersonal]
+	@fname varchar(50),
+	@lname varchar(50),
+	@gender varchar(50),
+	@age int,
+	@address1 varchar(50),
+	@address2 varchar(50),
+	@city varchar(50),
+	@state varchar(50),
+	@country varchar(50),
+	@mobile varchar(13),
+	@reglion varchar(50),
+	@rdate varchar(50),
+	@occ varchar(50)
+
+
+AS
+	Declare @ID int, @Reg int, @stateid int, @countryid int, @genderid int, @cityid int
+	select @genderid=Gender from Gender where Gender=@gender
+	select @stateid=state from state where state=@state
+	select @countryid=country from Country where Country=@country
+	select @cityid=City from City where City=@city
+	select @ID=COUNT(id) from Personal
+	set @ID=@ID+1
+	set @Reg=@ID
+
+	INSERT INTO [dbo].[Personal] ([Id], [OPDRegID], [FirstName], [LastName], [Gender], [Age], [AddressLine1], [AddressLine2], 
+	[City], [State], [Country], [MobileNo], [Religion], [DateOfRecord], [Occupation]) 
+	VALUES (@ID, @Reg, @fname, @lname, @genderid, @age, @address1,@address2 , @cityid,@stateid ,@countryid ,@mobile ,@reglion ,@rdate ,@occ )
+
+RETURN 0
+CREATE PROCEDURE [dbo].[AddPersonal]
+	@fname varchar(50),
+	@lname varchar(50),
+	@gender varchar(50),
+	@age int,
+	@address1 varchar(50),
+	@address2 varchar(50),
+	@city varchar(50),
+	@state varchar(50),
+	@country varchar(50),
+	@mobile varchar(13),
+	@reglion varchar(50),
+	@rdate varchar(50),
+	@occ varchar(50)
+
+
+AS
+	Declare @ID int, @Reg int, @stateid int, @countryid int, @genderid int, @cityid int
+	select @genderid=Gender from Gender where Gender=@gender
+	select @ID=COUNT(id) from Personal
+	set @ID=@ID+1
+	set @Reg=@ID
+	exec getCityID @city, @cityid, @stateid
+	If(@cityid IS NULL)
+		exec @cityid=AddCity @city, @state,@country
+	exec getStateID @state ,@stateid,@countryid
+
+	INSERT INTO [dbo].[Personal] ([Id], [OPDRegID], [FirstName], [LastName], [Gender], [Age], [AddressLine1], [AddressLine2], 
+	[City], [State], [Country], [MobileNo], [Religion], [DateOfRecord], [Occupation]) 
+	VALUES (@ID, @Reg, @fname, @lname, @genderid, @age, @address1,@address2 , @cityid,@stateid ,@countryid ,@mobile ,@reglion ,@rdate ,@occ )
+
+RETURN 0
+CREATE PROCEDURE [dbo].AddGender
+	@Gender varchar(50),
+	@id int out
+AS
+	insert into Gender (Gender) Values (@Gender)
+	select @id=id from Gender where Gender=@Gender
+
+RETURN @id
+
+
+CREATE PROCEDURE [dbo].AddCountry
+	@countryname varchar(50)
+
+AS
+	Declare @id int
+	
+	insert into Country ( Country) 
+	values(  @countryname)
+	select @id=COUNT(id) from Country
+	
+
+RETURN @id
+
+CREATE PROCEDURE [dbo].[getCountryID]
+	@countryname varchar(50),
+	@cID int out
+AS
+	SELECT @cID=Id from Country where Country=@countryname
+RETURN @cId
+
+CREATE PROCEDURE [dbo].[getStateID]
+	@statename varchar(50),
+	@cID int out,
+	@sID int out
+AS
+	SELECT @sID=Id, @cID=Country from state where state=@statename
+RETURN @sId
+
+CREATE PROCEDURE [dbo].[getStateID]
+	@statename varchar(50),
+	@cID int out,
+	@sID int out
+AS
+	SELECT @sID=Id, @cID=Country from state where state=@statename
+RETURN @sId
+
+CREATE PROCEDURE [dbo].[AddState]
+	@statename varchar(50),
+	@countryname varchar(50)
+AS
+	Declare @cid INT
+	 exec getCountryID @countryname, @cid
+	if(@cid IS NULL)
+		exec @cid= AddCountry @countryname
+
+	insert into state (state, Country)
+	values (@statename,@cid)
+	
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddCity]
+	@statename varchar(50),
+	@Cityname varchar(50),
+	@cname varchar(50)
+AS
+	Declare @cid INT
+	 exec getStateID @statename, @cid
+	if(@cid IS NULL)
+		exec @cid= AddState @statename, @cname
+
+	insert into City(city, state)
+	values (@statename,@cid)
+	
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddPersonal]
+	@fname varchar(50),
+	@lname varchar(50),
+	@gender varchar(50),
+	@age int,
+	@address1 varchar(50),
+	@address2 varchar(50),
+	@city varchar(50),
+	@state varchar(50),
+	@country varchar(50),
+	@mobile varchar(13),
+	@reglion varchar(50),
+	@rdate varchar(50),
+	@occ varchar(50)
+
+
+AS
+	Declare @ID int, @Reg int, @stateid int, @countryid int, @genderid int, @cityid int
+	select @genderid=Gender from Gender where Gender=@gender
+	select @ID=COUNT(Id) from Personal
+	set @Reg=@ID+1
+	exec getCityID @city, @cityid, @stateid
+	If(@cityid IS NULL)
+		exec @cityid=AddCity @city, @state,@country
+	exec getStateID @state ,@stateid,@countryid
+	if(@genderid IS NULL)
+			Exec AddGender @gender, @genderid
+
+return	INSERT INTO [dbo].[Personal] ( [OPDRegID], [FirstName], [LastName], [Gender], [Age], [AddressLine1], [AddressLine2], 
+	[City], [State], [Country], [MobileNo], [Religion], [DateOfRecord], [Occupation]) 
+	VALUES (@Reg, @fname, @lname, @genderid, @age, @address1,@address2 , @cityid,@stateid ,@countryid ,@mobile ,@reglion ,@rdate ,@occ )
+
+
+
+CREATE PROCEDURE [dbo].[AddBloodGroup]
+	
+AS
+SET IDENTITY_INSERT [dbo].[bloodgroup] ON
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (1, N'O', N'Neg')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (2, N'O', N'Pos')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (3, N'A', N'Neg')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (4, N'A', N'Pos')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (5, N'B', N'Neg')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (6, N'B', N'Pos')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (7, N'AB', N'Neg')
+INSERT INTO [dbo].[bloodgroup] ([Id], [BloodGroup], [RHFactor]) VALUES (8, N'AB', N'Pos')
+SET IDENTITY_INSERT [dbo].[bloodgroup] OFF
+
+RETURN 
+
+CREATE PROCEDURE [dbo].[AddRole]
+	@role varchar(50),
+	@status varchar(50)
+AS
+	insert into role (Role, status) values(@role, @status)
+RETURN 0
+
+CREATE PROCEDURE [dbo].AddComplain
+	@regid int, 
+	@pcomplain varchar(50),
+	@history varchar(50),
+	@pastComplain varchar(50),
+	@pSide  varchar(50),
+	@mSide  varchar(50),
+	@oSide  varchar(50)
+
+AS
+	SET IDENTITY_INSERT [dbo].[Complaint] ON
+		INSERT INTO [dbo].[Complaint] ([OPDRegID], [PresentComplain], [HistoryComplain], 
+		[PastComplain], [PaternalSide], [MaternalSide], [OwnSide]) 
+		VALUES (@regid, @pcomplain, @history, @pastComplain, @pSide, @mSide, @oSide)
+	SET IDENTITY_INSERT [dbo].[Complaint] OFF
+		
+RETURN 0
+CREATE PROCEDURE [dbo].[AddGenerality]
+	@RegId int,
+	@sentation varchar(50),
+	@thermal  varchar(50),
+	@tend  varchar(50),
+	@moda  varchar(50),
+	@desire  varchar(50),
+	@appite  varchar(50),
+	@urine  varchar(50),
+	@aversion  varchar(50),
+	@intol  varchar(50),
+	@sleep  varchar(50),
+	@thirst  varchar(50),
+	@perip	 varchar(50),
+	@taste  varchar(50),
+	@discharge  varchar(50),
+	@stool  varchar(50),
+	@mentural  varchar(50),
+	@salvation  varchar(50),
+	@mental  varchar(50)
+	
+AS
+	SET IDENTITY_INSERT [dbo].[Generalities] ON
+	INSERT INTO [dbo].[Generalities] ([OPDRegId], [sentation], [thermalreaction], [tendencies], [modalities], [desire], 
+	[appitite], [urine], [aversion], [intolerance], [sleep], [thirst], [periperation], [taste], [discharge], 
+	[stool], [mensutral], [salavation], [mental]) 
+	VALUES (@RegId,@sentation ,@thermal ,@tend ,@moda ,@desire ,@appite ,@urine ,@aversion ,@intol ,@sleep ,@thirst,@perip ,
+	@taste,@discharge ,@stool ,@mentural ,@salvation ,@mental )
+	SET IDENTITY_INSERT [dbo].[Generalities] OFF
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddInvoice]
+	@RegId int, 
+	@visitcharge float,
+	@MedCharge float,
+	@othercharge float,
+	@remark varchar(50),
+	@paid float , 
+	@dues float
+
+AS
+	SET IDENTITY_INSERT [dbo].[Invoice] ON
+	INSERT INTO [dbo].[Invoice] ([OPDRegID], [VisitCharge], [MediceneCharge], [OtherCharges], 
+	[Remark], [Paid], [due]) 
+	VALUES ( @RegId, @visitcharge, @MedCharge, @othercharge, @remark, @paid , @dues)
+
+	SET IDENTITY_INSERT [dbo].[Invoice] OFF
+
+RETURN 0
+
+
+CREATE PROCEDURE [dbo].[AddPhycialExam]
+	@RegId int ,
+	@BP varchar(50) , @Temp varchar(50) , @lymphnode varchar(50) , @built varchar(50) , @apperance varchar(50) , @nutri varchar(50) , @oedema varchar(50) , @decubities varchar(50) , @facies varchar(50) , 
+	@anemia varchar(50) , @cynosis varchar(50) , @jaundance varchar(50) , 
+	@clubbing varchar(50) , @pigmentation varchar(50) , @pulse varchar(50) ,
+	@respiration varchar(50) , @neck varchar(50) , @reportdetails varchar(50) 
+
+	
+AS
+	SET IDENTITY_INSERT [dbo].[phycialExam] ON
+	INSERT INTO [dbo].[phycialExam] ([OPDRegId], 
+	[BP], [Temp], [lymphnode], [built], [apperance], [nutri], [oedema], [decubities], [facies], 
+	[anemia], [cynosis], [jaundance], [clubbing], [pigmentation], [pulse], [respiration], [neck], [reportdetails]) 
+	VALUES ( @RegId,@BP , @Temp , @lymphnode , @built , @apperance , @nutri , @oedema , @decubities , @facies , 
+	@anemia , @cynosis , @jaundance , @clubbing , @pigmentation , @pulse , @respiration , @neck , @reportdetails ) 
+ 
+SET IDENTITY_INSERT [dbo].[phycialExam] OFF
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddPatHistory]
+	@RegId int ,
+	@Accomodation varchar(50), @Addications varchar(50), @NoOfChild varchar(50), @ChildAges varchar(50), @Diet varchar(50), @Marital varchar(50), 
+	@BirthPlace varchar(50), 
+@SexualHistory varchar(50), @AnyMedicine varchar(50), @Obes varchar(50), 
+@Vaccines varchar(50), @Seterilization varchar(50), @Moutox varchar(50), @Relationwithfamily varchar(50), @Habbit varchar(50), @Hobbies varchar(50)
+AS
+	SET IDENTITY_INSERT [dbo].[PatHistory] ON
+INSERT INTO [dbo].[PatHistory] ([OPDRegId], [Accomodation], [Addications], [NoOfChild], [ChildAges], [Diet], [Marital], [BirthPlace], 
+[SexualHistory], [AnyMedicine], [Obes], [Vaccines], [Seterilization], [Moutox], [Relationwithfamily], [Habbit], [Hobbies]) 
+VALUES (@RegId, @Accomodation , @Addications , @NoOfChild , @ChildAges , @Diet , @Marital , @BirthPlace , 
+@SexualHistory , @AnyMedicine , @Obes , @Vaccines , @Seterilization , @Moutox , @Relationwithfamily , @Habbit , @Hobbies )
+SET IDENTITY_INSERT [dbo].[PatHistory] OFF
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddPrescribedMed]
+@RegId int,
+@VisitID int , @MedicineName varchar(50) , 
+@Power varchar(50) , @NoOfTime varchar(50) , 
+@Quantity varchar(50) , @Description varchar(50) , 
+@Remark varchar(50) , @Cost float 
+AS
+	INSERT INTO [dbo].[PrescribedMed] ( [OPDRegID], 
+	[VisitID], [MedicineName], [Power], [NoOfTime], [Quantity], [Description], [Remark], [Cost]
+	) 
+	VALUES (@RegId, @VisitID  , @MedicineName  , @Power  , 
+	@NoOfTime  , @Quantity  , @Description  , @Remark  , @Cost  )
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[GetGender]
+	
+AS
+ 	SELECT Gender from Gender
+return
+
+
+CREATE PROCEDURE [dbo].[GetState]
+AS
+	SELECT state from State
+RETURN 
+
+CREATE PROCEDURE [dbo].[GetCountry]
+AS
+	SELECT Country from Country
+RETURN 
+
+CREATE PROCEDURE [dbo].[GetCity]
+AS
+	SELECT city from City
+RETURN 
+
+CREATE PROCEDURE [dbo].GetUniqueId
+	
+AS
+	Declare @ID int, @count int
+	select @count=Max(OPDRegID) from Personal
+	set @ID=@count+1
+RETURN @ID
+CREATE PROCEDURE [dbo].[AddPersonal]
+	@fname varchar(50),
+	@lname varchar(50),
+	@gender varchar(50),
+	@age int,
+	@address1 varchar(50),
+	@address2 varchar(50),
+	@city varchar(50),
+	@state varchar(50),
+	@country varchar(50),
+	@mobile varchar(13),
+	@religion varchar(50),
+	@rdate varchar(50),
+	@occ varchar(50)
+
+
+AS
+	Declare @ok int, @ID int, @Reg int, @stateid int, @countryid int, @genderid int, @cityid int
+
+	select @genderid=Gender.Id from Gender where Gender=@gender
+
+	select @ID=COUNT(Id) from Personal
+	set @Reg=@ID+1
+	Exec @ok=GetOPDID @Reg
+	if(@ok>0)
+		Exec @Reg=GetUniqueId 
+	
+	exec getCityID @city, @cityid output, @stateid output
+	
+	If(@cityid IS NULL)
+		exec @cityid=AddCity @city, @state,@country
+	
+	exec getStateID @state ,@stateid output,@countryid output
+	if(@genderid IS NULL)
+			Exec AddGender @gender, @genderid output
+
+	INSERT INTO [dbo].[Personal] ( [OPDRegID], [FirstName], [LastName], [Gender], [Age], [AddressLine1], [AddressLine2], 
+	[City], [State], [Country], [MobileNo], [Religion], [DateOfRecord], [Occupation]) 
+	VALUES (@Reg, @fname, @lname, @genderid, @age, @address1,@address2 , @cityid,@stateid ,@countryid ,@mobile ,@religion ,@rdate ,@occ )
+
+	return @Reg
+
+
+	CREATE PROCEDURE [dbo].[GetOPDList]
+	
+AS
+	SELECT OPDRegID from Personal
+RETURN 0
+
+
+CREATE PROCEDURE [dbo].[GetPersonalBasic]
+@OPDID int	
+AS
+	SELECT FirstName, LastName, MobileNo, DateOfRecord from Personal
+		where Personal.OPDRegID=@OPDID
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[GetPersonalBasicByMobile]
+@MobNo varchar(13)	
+AS
+	SELECT  OPDRegID, FirstName, LastName, MobileNo, DateOfRecord from Personal
+	where Personal.MobileNo=@MobNo
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[GetLastVisitID]
+	
+AS
+Declare @VisitID as int
+	SELECT @VisitID=Max(Id) from Visit
+
+RETURN @VisitID
+
+
+CREATE PROCEDURE [dbo].[GetLastVisitDetails]
+	@OPDID int
+AS
+--Declare @VisitID as int
+	SELECT Visit.Id,Visit.NexTVisit, Visit.VisitNo, 
+	Visit.VisitDate,Visit.Revisit
+	from Visit 
+	where OPDRegID=@OPDID and Id=Max(Id)
+
+RETURN 0
+
+
+CREATE PROCEDURE [dbo].[GetLastVisitID]
+	
+AS
+Declare @VisitID as int
+	SELECT @VisitID=Max(Id) from Visit
+
+RETURN @VisitID
+
+CREATE PROCEDURE [dbo].[GetLastVisitDetails]
+	@OPDID int
+AS
+Declare @VisitID as int
+Exec @VisitID=GetLastVisitIDOFOPD @OPDID
+	SELECT Visit.Id,Visit.NexTVisit, Visit.VisitNo
+	from Visit
+	where OPDRegID=@OPDID and Id=@VisitID
+RETURN @VisitID
+
+CREATE PROCEDURE [dbo].AddVisit
+	@OPDRegID int, @VisitNo int, @Revisit int,@VisitBillable int,@Billable int,
+	@Problems varchar(50), @VisitDate date, @NextVisit date
+	
+	AS
+	INSERT INTO [dbo].[Visit] ( [OPDRegID], [VisitNo], [NexTVisit], [Revisit], [Problems], 
+	[VisitBillable], [Billable], [VisitDate]) 
+	VALUES (@OPDRegID, @VisitNo, @NextVisit, @Revisit, @Problems, 
+	@VisitBillable, @Billable, @VisitDate)
+	Declare @VID int
+	select @VID = Max(Id) from Visit
+
+RETURN @VID
+
+CREATE PROCEDURE [dbo].[GetLastVisitDetails]
+	@OPDID int
+AS
+Declare @VisitID as int
+Exec @VisitID=GetLastVisitIDOFOPD @OPDID
+	SELECT Visit.Id,Visit.NexTVisit, Visit.VisitNo, Visit.VisitDate,visit.Revisit
+	from Visit
+	where OPDRegID=@OPDID and Id=@VisitID
+RETURN @VisitID
+
+CREATE PROCEDURE [dbo].[GetVisitNo]
+	@opd int
+AS
+Declare @vno int
+
+	SELECT @vno=count(OPDRegID) from Visit 
+	where Visit.OPDRegID=@opd
+return  @vno
+
+CREATE PROCEDURE [dbo].[GetLastVisitDetails]
+	@OPDID int
+AS
+Declare @VisitID as int
+Exec @VisitID=GetLastVisitIDOFOPD @OPDID
+	SELECT Visit.Id,Visit.NexTVisit, Visit.VisitNo, Visit.VisitDate,visit.Revisit, Visit.Problems
+	from Visit
+	where OPDRegID=@OPDID and Id=@VisitID
+RETURN @VisitID
+
+CREATE PROCEDURE [dbo].AddMedicine
+	@Medicine varchar(50), @Power varchar(50), @Type varchar(50)
+	AS
+	Declare @ctr int=0
+	select @ctr=Count(Medicine)from Medicine 
+	where Medicine.Medicine=@Medicine and Medicine.Power=@Power and Medicine.Type=@Type
+	if(@ctr=0)
+	begin
+		INSERT INTO [dbo].[Medicine] ([Medicine], [Power], [Type])
+		VALUES (@Medicine, @Power, @Type)
+		return 1
+	end 
+
+RETURN 0
+
+CREATE PROCEDURE [dbo].[AddPrescribedMed]
+@RegId int,
+@VisitID int , @MedicineName varchar(50) , 
+@Power varchar(50) , @NoOfTime varchar(50) , 
+@Quantity varchar(50) , @Description varchar(50) , 
+@Remark varchar(50) , @Cost float 
+AS
+	Exec AddMedicine @MedicineName , @Power, null
+
+	INSERT INTO [dbo].[PrescribedMed] ( [OPDRegID], 
+	[VisitID], [MedicineName], [Power], [NoOfTime], [Quantity], [Description], [Remark], [Cost]
+	) 
+	VALUES (@RegId, @VisitID  , @MedicineName  , @Power  , 
+	@NoOfTime  , @Quantity  , @Description  , @Remark  , @Cost  )
+
+RETURN 0
+
+
+CREATE PROCEDURE [dbo].[AddUser]
+	@username varchar(20),
+	@passwd varchar(10),
+	@roles varchar(10)
+AS
+	Declare @roleid int
+	Select @roleid=ID from role where Role=@roles
+	Insert into AuthUser (username,passwd,role) 
+	values(@username,@passwd,@roleid)
+RETURN 0
