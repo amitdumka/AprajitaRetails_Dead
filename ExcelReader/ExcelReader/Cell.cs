@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
-namespace CyberN
+namespace CyberN.ExcelReader
 {
     /// <summary>
     /// (c) 2014 Vienna, Dietmar Schoder

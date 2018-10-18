@@ -6,7 +6,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace CyberN
+namespace CyberN.ExcelReader
 {
     /// <summary>
     /// (c) 2014 Vienna, Dietmar Schoder

@@ -42,13 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell.cs" />
-    <Compile Include="DataConvertor.cs" />
+    <Compile Include="ExcelReader\Cell.cs" />
+    <Compile Include="ExcelReader\DataConvertor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Row.cs" />
-    <Compile Include="SharedStrings.cs" />
-    <Compile Include="Workbook.cs" />
-    <Compile Include="Worksheet.cs" />
+    <Compile Include="ExcelReader\Row.cs" />
+    <Compile Include="ExcelReader\SharedStrings.cs" />
+    <Compile Include="ExcelReader\Workbook.cs" />
+    <Compile Include="ExcelReader\Worksheet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

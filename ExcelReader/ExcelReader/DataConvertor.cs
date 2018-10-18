@@ -1,7 +1,13 @@
 ﻿using System;
 
-namespace CyberN
+//This Project is final.
+// There will hardly change. Currently Closed.
+// Version 2:Distributed Model
+namespace CyberN.ExcelReader
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class DataConvertor
     {
         public static DateTime DateFromExcelFormat( string ExcelCellValue )
@@ -11,6 +17,11 @@ namespace CyberN
             return DateTime.FromOADate(Convert.ToDouble(ExcelCellValue));
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="ExcelCellValue"></param>
+        /// <returns></returns>
         public static string DateFromExcelFormatString( string ExcelCellValue )
         {
             DateTime dt = DateTime.FromOADate(Convert.ToDouble(ExcelCellValue));
