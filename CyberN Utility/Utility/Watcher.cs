@@ -71,7 +71,6 @@ namespace CyberN.Utility
         {
             // Specify what is done when a file is renamed.
             ws.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
-            //TODO: Not Needed in our context
         }
     }
 }

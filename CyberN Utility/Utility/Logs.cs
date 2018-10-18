@@ -3,20 +3,19 @@ using System.IO;
 
 namespace CyberN.Utility
 {
+    /// <summary>
+    /// It Create log files with current date time.
+    /// @Version 2: Locked
+    /// </summary>
     public sealed class Logs
     {
         public static string Filename = "log_" + DateTime.Now.ToLongDateString() + "_" + DateTime.Today.ToFileTime() + ".txt";
 
         public static string LogFile { get => Filename; set => Filename = value; }
 
-        //public static string GetTempFileName()
-        //{
-        //    return "";
-        //}
         public static void LogMe( string logMessage )
         {
             Log(logMessage);
-            //Task t = Task.Run (() => Log (logMessage));
         }
 
         public static void Loge( string logMessage )

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
+//Version 2: Locked
 namespace CyberN.Utility
 {
     public enum GenderType

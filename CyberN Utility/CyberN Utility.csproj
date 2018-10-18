@@ -48,7 +48,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Basic.cs" />
-    <Compile Include="Utility\Controls.cs" />
     <Compile Include="Utility\FileMonitor.cs" />
     <Compile Include="Utility\Logs.cs" />
     <Compile Include="Utility\Watcher.cs" />
