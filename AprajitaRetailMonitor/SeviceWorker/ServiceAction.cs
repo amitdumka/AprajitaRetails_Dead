@@ -35,10 +35,8 @@ namespace AprajitaRetailMonitor.SeviceWorker
 
             if (voygerBill != null)
             {
-                LogEvent.WriteEvent("voygerBill Readed, it has Data");
                 InsertData insertData = new InsertData();
                 insertData.InsertBillData(voygerBill);
-                LogEvent.WriteEvent("Voy Bill added to db");
             }
             else
             {

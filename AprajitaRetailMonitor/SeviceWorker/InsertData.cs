@@ -80,6 +80,13 @@ namespace AprajitaRetailMonitor.SeviceWorker
                 item.VoyBillId = bill.ID;
                 voyDatabase.VPaymentMode.InsertOnSubmit(item);
             }
+            InsertDataLog dataLog = new InsertDataLog()
+            {
+                BillNumber = bill.BillNumber,
+                Remark = "First Step",
+                VoyBillId = bill.ID,
+            };
+            voyDatabase.InsertDataLogs.InsertOnSubmit(dataLog);
             voyDatabase.SubmitChanges();
         }
 
