@@ -1,6 +1,7 @@
-﻿using System;
+﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
+using System;
 using System.Collections.Generic;
-using AprajitaRetailsDataBase.SqlDataBase.Data;
+using System.Data.SqlClient;
 
 namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 {
@@ -8,6 +9,13 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
     {
         public override int InsertData( Stores obj )
         {
+            SqlCommand cmd = new SqlCommand()
+            {
+                CommandText = InsertSqlQuery
+            };
+            cmd.Parameters.AddWithValue("@Address", obj.Address);
+            cmd.Parameters.AddWithValue("@City", obj.City);
+            return Db.Insert(cmd);
             throw new NotImplementedException();
         }
 

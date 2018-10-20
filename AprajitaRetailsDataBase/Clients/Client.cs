@@ -1,5 +1,9 @@
 ﻿namespace AprajitaRetailsDataBase.Client
 {
+    /// <summary>
+    /// It deal with Client part of Aprajita retails or any other The Arvind Store
+    /// It create An Arvind Store
+    /// </summary>
     public class Client
     {
         private static ClientDB cDB = new ClientDB();

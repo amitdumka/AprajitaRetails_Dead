@@ -20,7 +20,6 @@ namespace AprajitaRetails
                 Logs.LogMe("Creating AuthTable");
                 AuthUser.CreateAuthUserTable(x);
             }
-            //TODO: Create Client
             if (Client.IsClientExist())
             {
                 clients = Client.GetClientDetails();
@@ -28,6 +27,7 @@ namespace AprajitaRetails
             }
             else
             {
+                //TODO: Need to Implement to ask detials for client and create client then procced futher
                 Logs.LogMe("Creating Client Details");
                 if (Client.DefaultClient())
                     clients = Client.GetClientDetails();

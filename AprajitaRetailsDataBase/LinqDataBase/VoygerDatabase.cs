@@ -9,6 +9,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using CyberN.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Linq.Mapping;
@@ -20,7 +22,7 @@ using System.Reflection;
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "VoygerDatabase")]
 public partial class VoygerDatabase : System.Data.Linq.DataContext
 {
-
+    private static string conStr = AppPathList.DataBaseDir + "\\VoygerDatabase.mdf";
     private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 
     #region Extensibility Method Definitions
@@ -40,6 +42,13 @@ public partial class VoygerDatabase : System.Data.Linq.DataContext
 
     #endregion
 
+    /// <summary>
+    /// Created by Amit Kumar
+    /// </summary>
+    public VoygerDatabase() : base(conStr, mappingSource)
+    {
+        OnCreated();
+    }
     public VoygerDatabase( string connection ) :
             base(connection, mappingSource)
     {

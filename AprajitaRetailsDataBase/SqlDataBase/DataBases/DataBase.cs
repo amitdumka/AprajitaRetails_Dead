@@ -26,6 +26,10 @@ namespace AprajitaRetailsDataBase.SqlDataBase
                 DBCon = (SqlConnection)db.GetConnectioObject(DBType);
             Logs.LogMe("DataBase(): Connection is Created");
         }
+        public static void CreateDatase( )
+        {
+            db.CreateDatabase();
+        }
 
         public SqlConnection DBCon { private set; get; }
 

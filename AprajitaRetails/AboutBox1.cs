@@ -103,5 +103,10 @@ namespace AprajitaRetails
             this.Close();
             //this.Dispose ();
         }
+
+        private void textBoxDescription_TextChanged( object sender, EventArgs e )
+        {
+
+        }
     }
 }

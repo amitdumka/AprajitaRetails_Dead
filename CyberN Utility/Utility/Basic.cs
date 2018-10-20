@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -267,6 +268,33 @@ namespace CyberN.Utility
                 list.Add(p.Name);
             }
             return list;
+        }
+
+        public static bool IsDriveExists(string drive )
+        {
+           
+            return Directory.Exists(Path.GetPathRoot(drive));
+        }
+        public static bool IsPathExists( string path )
+        {
+
+            return Directory.Exists(path);
+        }
+        public static bool CopyFile(string source, string dest )
+        {
+            try
+            {
+                if (File.Exists(source))
+                    File.Copy(source, dest);
+                else return false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
         }
     }
 }

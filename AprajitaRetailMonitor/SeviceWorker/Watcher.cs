@@ -77,7 +77,7 @@ namespace AprajitaRetailMonitor
                 }
                 else
                 {
-                    // eventLog1.WriteEntry("Second Entry Exit...");
+                    eventLog1.WriteEntry("Second Entry Exit..."+NoOfEvent);
                     return;
                 }
             }

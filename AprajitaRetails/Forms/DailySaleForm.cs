@@ -1,4 +1,5 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
+﻿using AprajitaRetailsDataBase.CrossLinkedDataSet;
+using AprajitaRetailsDataBase.SqlDataBase.Data;
 using AprajitaRetailsDataBase.SqlDataBase.DataModel;
 using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
 using CyberN.Utility;
@@ -27,6 +28,7 @@ namespace AprajitaRetails.Forms
             {
                 CBPaymentMode.Items.Add(item);
             }
+
             Logs.LogMe("DailySale:PaymentMode Loading is Completed");
         }
 
@@ -55,6 +57,7 @@ namespace AprajitaRetails.Forms
         {
             RefreshSaleInfo();
             LoadSaleList();
+            ShowUnSaveInvoice();
         }
 
         private void PerformSave( )
@@ -77,7 +80,8 @@ namespace AprajitaRetails.Forms
         private DailySaleDM ReadFiled( )
         {
             DailySaleDM data = new DailySaleDM()
-            {  //TODO: No Need to Pass Customer Name, Only If new Customer is Clicked.
+            {
+                //TODO: No Need to Pass Customer Name, Only If new Customer is Clicked.
                 Amount = Double.Parse(TXTBillAmount.Text),
                 CustomerFullName = TXTCustomerName.Text,
                 Discount = Double.Parse(TXTDiscount.Text),
@@ -106,12 +110,14 @@ namespace AprajitaRetails.Forms
                 MessageBox.Show("Bill Amount takes oly Numeric values");
                 return false;
             }
+
             status = Basic.IsNumeric(TXTDiscount.Text);
             if (!status)
             {
                 MessageBox.Show("Discount Amount takes oly Numeric values");
                 return false;
             }
+
             return status;
         }
 
@@ -163,6 +169,7 @@ namespace AprajitaRetails.Forms
                 TXTCustomerName.Text = c.CustomerFirstName + " " + c.CustomerLastName;
                 CBMobileNo.Text = c.CustomerMobileNo;
             }
+
             c.Dispose();
             CKNewCustomer.Checked = true;
         }
@@ -244,5 +251,64 @@ namespace AprajitaRetails.Forms
             //LoadMobileNo ();
             //RefeshUI ();
         }
+
+        #region LinqSql
+
+       // private List<VoygerBill> allBills;
+
+        private void ShowUnSaveInvoice( )
+        {
+            //allBills = viewModel.GetAllVoyBills();
+
+            List<SortedDictionary<string, string>> listItem = viewModel.GetPendingList();
+            if (listItem != null && listItem.Count > 0)
+            {
+                LVPendingInvoice.Items.Clear();
+
+                foreach (var item in listItem)
+                {
+                    string[] it = { item["InvoiceNo"], item["InvoiceDate"], item["Amount"], item["ID"] };
+
+                    LVPendingInvoice.Items.Add(new ListViewItem(it));
+                }
+            }
+            else
+            {
+                if(listItem!=null)
+                Console.WriteLine("ListItem is empty.#" + listItem.Count);
+            }
+            LVPendingInvoice.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            LVPendingInvoice.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void LVPendingInvoice_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            if (BTNAdd.Text == "Save")
+            {
+                var item = LVPendingInvoice.SelectedItems;
+                if (item.Count > 0)
+                {
+                    string s = item[0].SubItems[0].Text + " have ID: " + item[0].SubItems[3].Text;
+                    MessageBox.Show("Selected Invocie No=" + s);
+                    PopulateDailySaleFiels(short.Parse(item[0].SubItems[3].Text));
+                    //ShowDailySaleData(viewModel.GetInvoiceDetails(s.Trim()));
+                }
+            }
+        }
+        
+        private void PopulateDailySaleFiels(int id )
+        {
+            VoygerBill voygerBill = viewModel.GetVoyBillsByID(id);
+            TXTInvoiceNo.Text = voygerBill.bill.BillNumber;
+            TXTCustomerName.Text = voygerBill.bill.CustomerName;
+            TXTBillAmount.Text = ""+voygerBill.bill.BillAmount;
+            TXTDiscount.Text = "" + voygerBill.bill.BillDiscount;
+            CBMobileNo.Text = voygerBill.bill.CustomerMobile;
+            CBPaymentMode.Text = voygerBill.payModes[0].PaymentMode;
+        }
+        
+        #endregion LinqSql
+
+
     }
 }

@@ -83,9 +83,9 @@
       <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
       <Name>AprajitaRetailsDataBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AprajitaRetails\AprajitaRetails.csproj">
-      <Project>{9F3F5A36-9726-42CD-9BC1-83C313B1EA28}</Project>
-      <Name>AprajitaRetails</Name>
+    <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
+      <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
+      <Name>CyberN Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\ExcelReader\ExcelReader.csproj">
       <Project>{7cff76b0-8947-4d04-817d-414cbe1fa8cd}</Project>

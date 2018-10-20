@@ -16,7 +16,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase
         public static string OleDataBaseName = "database";
 
         //TODO: Most Impt Change Consrt to LocalDB
-        private readonly String ConStr = @"Data Source = .\SQLExpress;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + SqlDBName + ";Database=" + SqlDataBaseName + ";Integrated Security = True;Connect TimeOut=30";
+        private readonly String ConStr = @"Data Source = .\SQLExpress;AttachDbFilename=" + AppPathList.DataBaseDir+"\\" + SqlDBName + ";Database=" + SqlDataBaseName + ";Integrated Security = True;Connect TimeOut=30";
 
         //private readonly String ConStr = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + SqlDBName + ";Database=" + SqlDataBaseName + ";Integrated Security = True;Connect TimeOut=30";
 
@@ -29,6 +29,45 @@ namespace AprajitaRetailsDataBase.SqlDataBase
         public DBHelper( )
         {
             Logs.LogMe("DBHelper:()");
+        }
+
+        public void CreateDatabase( )
+        {
+            SqlConnection tmpConn;
+            string sqlCreateDBQuery;
+            tmpConn = new SqlConnection();
+            tmpConn.ConnectionString = "SERVER = " + "localhost" +
+                                 "; DATABASE = master; User ID = sa; Pwd = sa";
+            sqlCreateDBQuery = " CREATE DATABASE "
+                               + DBNames.TAS
+                               + " ON PRIMARY "
+                               + " (NAME = " + DBNames.TAS + ", "
+                               + " FILENAME = '" + AppPathList.DataBaseDir+"\\"+ DBNames.TAS+".mdf" + "', "
+                               + " SIZE = 2MB,"
+                               + " FILEGROWTH =10% ) "
+                               + " LOG ON (NAME =" + DBNames.TAS + ", "
+                               + " FILENAME = '" + AppPathList.DataBaseDir + "\\" + DBNames.TAS + ".ldf" + "', "
+                               + " SIZE = 1MB, "
+                               + " FILEGROWTH =10%" + ") ";
+            SqlCommand myCommand = new SqlCommand(sqlCreateDBQuery, tmpConn);
+            try
+            {
+                tmpConn.Open();
+                LogEvent.WriteEvent(sqlCreateDBQuery);
+                myCommand.ExecuteNonQuery();
+                LogEvent.WriteEvent("Database has been created successfully!" );
+            }
+            catch (System.Exception ex)
+            {
+               LogEvent.WriteEvent( "Create Database:"+
+                                           ex.Message);
+            }
+            finally
+            {
+                tmpConn.Close();
+            }
+            return;
+
         }
 
         protected virtual void Dispose( bool disposing )

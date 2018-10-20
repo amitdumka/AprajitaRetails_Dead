@@ -73,6 +73,12 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -160,12 +166,14 @@
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
@@ -236,6 +244,7 @@
     <Compile Include="Forms\UploaderForm.Designer.cs">
       <DependentUpon>UploaderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ops\ServiceControl.cs" />
     <Compile Include="Printers\PdfPrinter.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -467,6 +476,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AprajitaRetailMonitor\AprajitaRetailMonitor.csproj">
+      <Project>{15d4a665-0594-421a-a8df-38173ffbe10c}</Project>
+      <Name>AprajitaRetailMonitor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AprajitaRetailsDataBase\AprajitaRetailsDataBase.csproj">
       <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
       <Name>AprajitaRetailsDataBase</Name>

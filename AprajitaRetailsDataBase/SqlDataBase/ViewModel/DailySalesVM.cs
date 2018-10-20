@@ -1,20 +1,190 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
+﻿using AprajitaRetailsDataBase.CrossLinkedDataSet;
+using AprajitaRetailsDataBase.LinqDataBase;
+using AprajitaRetailsDataBase.SqlDataBase.Data;
 using AprajitaRetailsDataBase.SqlDataBase.DataModel;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 {   //TODO: Make static function to getID of tables so it will less memory uses and fast
     public class DailySalesVM
     {
         private DailySaleDB DB;
+        private static int LoopCount = 0;
+
+        #region LinqSql
+
+        private LinqDatabase linqDB;
+
+        //private string L_InvoiceID;
+        private List<VoygerBill> voyBillList;
+
+        public List<VoygerBill> GetAllVoyBills( )
+        {
+            List<VoygerBill> allBills = new List<VoygerBill>();
+            if (linqDB == null)
+            {
+                linqDB = new LinqDatabase();
+            }
+
+            var bills = from me in linqDB.db.VoyBill
+                        from you in linqDB.db.InsertDataLogs
+                        where you.DailySaleId.HasValue == false && you.SaleInvoiceId.HasValue == false && me.ID == you.VoyBillId
+                        select me;
+
+            foreach (VoyBill cBill in bills)
+            {
+                var paymode = (from pp in linqDB.db.VPaymentMode
+                               where pp.VoyBillId == cBill.ID
+                               select pp).ToList();
+                var items = (from ll in linqDB.db.LineItems
+                             where ll.VoyBillId == cBill.ID
+                             select ll).ToList();
+
+                allBills.Add(new VoygerBill()
+                {
+                    bill = cBill,
+                    lineItems = items,
+                    payModes = paymode
+                });
+            }
+
+            return allBills;
+        }
+
+        public VoygerBill GetVoyBillsByID(int ID )
+        {
+            if (linqDB == null)
+            {
+                linqDB = new LinqDatabase();
+            }
+
+            var cBill = from me in linqDB.db.VoyBill
+                        where  me.ID == ID
+                        select me;
+            
+            
+                var paymode = (from pp in linqDB.db.VPaymentMode
+                               where pp.VoyBillId == ID
+                               select pp).ToList();
+                var items = (from ll in linqDB.db.LineItems
+                             where ll.VoyBillId == ID
+                             select ll).ToList();
+
+            
+               return new VoygerBill()
+                {
+                    bill = cBill.First(),
+                    lineItems = items,
+                    payModes = paymode
+                };
+            
+
+            //return allBills;
+        }
+
+        private void SetUnSavedVoyBill( List<VoygerBill> bill )
+        {
+            voyBillList = bill;
+        }
+
+        private void SetUnSavedVoyBill( )
+        {
+            List<VoygerBill> allBills = new List<VoygerBill>();
+            if (linqDB == null)
+            {
+                linqDB = new LinqDatabase();
+                Console.WriteLine("Creating New LinqDB object");
+            }
+
+            var bills = from me in linqDB.db.VoyBill
+                        from you in linqDB.db.InsertDataLogs
+                        where you.DailySaleId.HasValue == false && you.SaleInvoiceId.HasValue ==false && me.ID == you.VoyBillId
+                        select me;
+            
+
+            Console.WriteLine("Querry Created");
+
+            if (bills != null && (bills.Count() > 0))
+            {
+                foreach (VoyBill cBill in bills)
+                {
+                    var paymode = (from pp in linqDB.db.VPaymentMode
+                                   where pp.VoyBillId == cBill.ID
+                                   select pp).ToList();
+                    var items = (from ll in linqDB.db.LineItems
+                                 where ll.VoyBillId == cBill.ID
+                                 select ll).ToList();
+
+                    allBills.Add(new VoygerBill()
+                    {
+                        bill = cBill,
+                        lineItems = items,
+                        payModes = paymode
+                    });
+                }
+                this.voyBillList = allBills;
+            }
+            else
+            {
+                Console.WriteLine("bill is null or bills count is zero");
+                this.voyBillList = null;
+                if(bills ==null)
+                    Console.WriteLine("bill is null ");
+
+            }
+
+
+        }
+
+        public List<SortedDictionary<string, string>> GetPendingList( )
+        {
+            List<SortedDictionary<string, string>> list = new List<SortedDictionary<string, string>>();
+            if (voyBillList != null && voyBillList.Count > 0)
+            {
+                Console.WriteLine("Found in PendingList:#" + voyBillList.Count);
+                foreach (var itemBill in voyBillList)
+                {
+                    SortedDictionary<string, string> a = new SortedDictionary<string, string>();
+                    a.Add("InvoiceNo", itemBill.bill.BillNumber);
+                    a.Add("InvoiceDate", itemBill.bill.BillTime.ToString());
+                    a.Add("Amount", itemBill.bill.BillGrossAmount.ToString());
+                    a.Add("ID", itemBill.bill.ID.ToString());
+                    list.Add(a);
+                }
+            }
+            else
+            {
+                if (LoopCount > 0)
+                {
+                    LoopCount = 0;
+                    Console.WriteLine("Exiting pending invoice recurretion");
+                    return null;
+                }
+                Console.WriteLine("Calling PendoingInvoice Again");
+                LoopCount++;
+                SetUnSavedVoyBill();
+                return GetPendingList();
+            }
+
+            return list;
+        }
+
+        #endregion LinqSql
+
+        ~DailySalesVM( )
+        {
+            //linqDB.db.Connection.Close();
+            //linqDB.db.Dispose();
+            linqDB = null;
+        }
 
         public DailySalesVM( )
         {
-            Logs.LogMe("DailySaleVM: Creating DailySaleDB Object");
             DB = new DailySaleDB();
-            Logs.LogMe("DailySaleVM: DailySaleDB object created");
+            linqDB = new LinqDatabase();
         }
 
         public List<SortedDictionary<string, string>> GetSaleList( )
@@ -29,6 +199,8 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 
         public string AddData( )
         {
+            //TODO: Might be removed in version 2 onwards
+            SetUnSavedVoyBill();
             return "";
             //GenerateInvoiceNo ();
         }
@@ -39,7 +211,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         }
 
         public int GetCustomerID( string mobile )
-        {  //TODO: Make CustomerID function static
+        {
             CustomerDB cDM = new CustomerDB();
             return cDM.GetID("MobileNo", mobile);
         }

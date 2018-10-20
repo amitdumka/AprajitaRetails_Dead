@@ -1,4 +1,5 @@
 ﻿using AprajitaRetails.Forms;
+using AprajitaRetails.Ops;
 using AprajitaRetailsDataBase.Client;
 using System;
 using System.Windows.Forms;
@@ -207,6 +208,22 @@ namespace AprajitaRetails
         private void MainMDI_Load( object sender, EventArgs e )
         {
             UpdateUiData();
+        }
+
+        private void menuStrip_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
+        {
+        }
+
+        private void startServiceToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            ServiceControl.Start();
+            MessageBox.Show("start service");
+        }
+
+        private void stopServiceToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            ServiceControl.Stop();
+            MessageBox.Show("Stop Serive");
         }
 
         // end of UI Controls

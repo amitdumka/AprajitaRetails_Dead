@@ -1,5 +1,5 @@
 ﻿//using AprajitaRetails.Utils;
-using System.Diagnostics;
+using CyberN.Utility;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 
@@ -50,7 +50,9 @@ namespace AprajitaRetailMonitor
             eventLog1.Source = "AprajitaRetailsMonitor";
             eventLog1.Log = "AprajitaRetailsLog";
             fileWatcher1 = new Watcher(eventLog1);
-            // fileWatcher2 = new Watcher(eventLog1);
+            //fileWatcher2 = new Watcher(eventLog1);
+            if (!SetUpDataBase.IsApplicationDirPresent())
+                SetUpDataBase.CreateApplicationDir();
         }
 
         protected override void OnStart( string[] args )
@@ -62,7 +64,6 @@ namespace AprajitaRetailMonitor
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             eventLog1.WriteEntry("In OnStart");
-            //Code between this line
 
             fileWatcher1.Watch(PathList.InvoiceXMLFile, PathList.InvoiceXMLPath);
             // fileWatcher2.Watch(PathList.TabletSaleXMLFile, PathList.TabletSaleXMLPath);
@@ -86,12 +87,6 @@ namespace AprajitaRetailMonitor
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
         }
 
-        public void OnTimer( object sender, System.Timers.ElapsedEventArgs args )
-        {
-            // TODO: Insert monitoring activities here.
-            eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
-        }
-
         protected override void OnContinue( )
         {
             eventLog1.WriteEntry("In OnContinue.");
@@ -105,5 +100,6 @@ namespace AprajitaRetailMonitor
         public const string InvoiceXMLFile = "invoice.xml";
         public const string TabletSaleXMLFile = "TabletBill.XML";
         public const string TailoringHubXMLPath = "D:\\VoyagerRetail\\TailoringHub";
+        public const string DataBasePath = @"D:\AprajitaRetails\Databases";
     }
 }

@@ -43,8 +43,10 @@ namespace AprajitaRetailMonitor.SeviceWorker
                 LogEvent.WriteEvent("voygerBill Readed, and it is empty");
                 //TODO: Raise Event  and store in database for futher intervention.
             }
-            LogEvent.WriteEvent("ProcessInvoiceXml is ened");
+            LogEvent.WriteEvent("ProcessInvoiceXml is ened.#" + Watcher.NoOfEvent--);
             Watcher.NoOfEvent--;
+            LogEvent.WriteEvent("NoofEvent:"+Watcher.NoOfEvent);
+
         }
     }
 }

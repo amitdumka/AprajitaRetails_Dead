@@ -1,5 +1,4 @@
-﻿using AprajitaRetails.Utils;
-using AprajitaRetailsDataBase;
+﻿using AprajitaRetailsDataBase.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;

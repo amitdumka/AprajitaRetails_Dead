@@ -46,10 +46,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,8 +73,37 @@
     <Compile Include="Clients\ClientDB.cs" />
     <Compile Include="Clients\Clients.cs" />
     <Compile Include="Clients\CurrentClient.cs" />
+    <Compile Include="CrossLinkedDataSet\VoygerBill.cs" />
+    <Compile Include="ERDB\InsertDataLog.cs">
+      <DependentUpon>VoygerTAS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\LineItem.cs">
+      <DependentUpon>VoygerTAS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\VoyBill.cs">
+      <DependentUpon>VoygerTAS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\VoygerTAS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoygerTAS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\VoygerTAS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoygerTAS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\VoygerTAS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoygerTAS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ERDB\VPaymentMode.cs">
+      <DependentUpon>VoygerTAS.tt</DependentUpon>
+    </Compile>
     <Compile Include="LinqDataBase\InsertDataLog.cs" />
     <Compile Include="LinqDataBase\LineItems.cs" />
+    <Compile Include="LinqDataBase\LinqDatabase.cs" />
     <Compile Include="LinqDataBase\VoyBill.cs" />
     <Compile Include="LinqDataBase\VPaymentMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,6 +228,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EntityDeploy Include="ERDB\VoygerTAS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VoygerTAS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ERDB\VoygerTAS.edmx.diagram">
+      <DependentUpon>VoygerTAS.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -197,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -216,6 +263,18 @@
       <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
       <Name>CyberN Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ERDB\VoygerTAS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VoygerTAS.Context.cs</LastGenOutput>
+      <DependentUpon>VoygerTAS.edmx</DependentUpon>
+    </Content>
+    <Content Include="ERDB\VoygerTAS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VoygerTAS.edmx</DependentUpon>
+      <LastGenOutput>VoygerTAS.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
