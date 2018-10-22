@@ -74,33 +74,6 @@
     <Compile Include="Clients\Clients.cs" />
     <Compile Include="Clients\CurrentClient.cs" />
     <Compile Include="CrossLinkedDataSet\VoygerBill.cs" />
-    <Compile Include="ERDB\InsertDataLog.cs">
-      <DependentUpon>VoygerTAS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\LineItem.cs">
-      <DependentUpon>VoygerTAS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\VoyBill.cs">
-      <DependentUpon>VoygerTAS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\VoygerTAS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VoygerTAS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\VoygerTAS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VoygerTAS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\VoygerTAS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VoygerTAS.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ERDB\VPaymentMode.cs">
-      <DependentUpon>VoygerTAS.tt</DependentUpon>
-    </Compile>
     <Compile Include="LinqDataBase\InsertDataLog.cs" />
     <Compile Include="LinqDataBase\LineItems.cs" />
     <Compile Include="LinqDataBase\LinqDatabase.cs" />
@@ -119,27 +92,10 @@
     <Compile Include="SqlDataBase\DataBases\DataBase.cs" />
     <Compile Include="SqlDataBase\DataBases\DBHelper.cs" />
     <Compile Include="SqlDataBase\DataBases\TableName.cs" />
-    <Compile Include="SqlDataBase\DataModel\Advances.cs" />
-    <Compile Include="SqlDataBase\DataModel\AuthUsersDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\BankDetailsDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\BankDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\CashDetail.cs" />
-    <Compile Include="SqlDataBase\DataModel\CustomerDM.cs" />
     <Compile Include="SqlDataBase\DataModel\DailySaleDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\DayClosingDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\DiscountCodeGeneratorDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\DiscountsDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\Dues.cs" />
-    <Compile Include="SqlDataBase\DataModel\DuesPayment.cs" />
     <Compile Include="SqlDataBase\DataModel\EmployeeDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\ExpensesCategoryDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\ExpensesDM.cs" />
-    <Compile Include="SqlDataBase\DataModel\FootFall.cs" />
-    <Compile Include="SqlDataBase\DataModel\Incentive.cs" />
-    <Compile Include="SqlDataBase\DataModel\PaySlip.cs" />
+    <Compile Include="SqlDataBase\DataModel\Types\AccountTypes.cs" />
     <Compile Include="SqlDataBase\DataModel\PurchaseModel.cs" />
-    <Compile Include="SqlDataBase\DataModel\Salary.cs" />
-    <Compile Include="SqlDataBase\DataModel\StoresDM.cs" />
     <Compile Include="SqlDataBase\Data\Advances.cs" />
     <Compile Include="SqlDataBase\Data\Attendence.cs" />
     <Compile Include="SqlDataBase\Data\AuthUsers.cs" />
@@ -228,13 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EntityDeploy Include="ERDB\VoygerTAS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VoygerTAS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ERDB\VoygerTAS.edmx.diagram">
-      <DependentUpon>VoygerTAS.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -257,24 +206,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ERDB\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
       <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
       <Name>CyberN Utility</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ERDB\VoygerTAS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VoygerTAS.Context.cs</LastGenOutput>
-      <DependentUpon>VoygerTAS.edmx</DependentUpon>
-    </Content>
-    <Content Include="ERDB\VoygerTAS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VoygerTAS.edmx</DependentUpon>
-      <LastGenOutput>VoygerTAS.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

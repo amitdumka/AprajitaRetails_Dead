@@ -104,6 +104,7 @@ namespace AprajitaRetails.Forms
             Basic.ClearUIFields(TLPEmployeeDetails);
         }
 
+
         private void LoadEmpCode( )
         {
             List<string> ecodes = eVM.GetAllEmpCodes();

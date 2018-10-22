@@ -52,5 +52,23 @@ namespace AprajitaRetails.Forms
                 PerformSave();
             }
         }
+
+        private void InitializeComponent( )
+        {
+            this.SuspendLayout();
+            // 
+            // BasicForm
+            // 
+            this.ClientSize = new System.Drawing.Size(274, 229);
+            this.Name = "BasicForm";
+            this.Load += new System.EventHandler(this.BasicForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void BasicForm_Load( object sender, EventArgs e )
+        {
+
+        }
     }
 }

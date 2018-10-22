@@ -13,6 +13,7 @@ namespace AprajitaRetails.Forms
         private void BTNAdd_Click( object sender, EventArgs e )
         {
             //TODO: write it
+            //TODO : Implement it
         }
     }
 }

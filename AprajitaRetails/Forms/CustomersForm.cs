@@ -100,6 +100,7 @@ namespace AprajitaRetails.Forms
             BTNUpdate.Text = "Update";
         }
 
+
         private void CustomersForm_Load( object sender, EventArgs e )
         {
             LoadMobileNo();

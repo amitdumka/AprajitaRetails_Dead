@@ -423,6 +423,7 @@
             this.BTNUpdate.TabIndex = 5;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
             // 
             // GBSaleReport
             // 

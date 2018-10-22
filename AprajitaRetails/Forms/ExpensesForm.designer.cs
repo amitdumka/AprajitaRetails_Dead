@@ -68,10 +68,11 @@
             this.GBExpenses.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBExpenses.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.GBExpenses.Controls.Add(this.TLPExpenses);
-            this.GBExpenses.Location = new System.Drawing.Point(12, 12);
-            this.GBExpenses.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
+            this.GBExpenses.Location = new System.Drawing.Point(9, 10);
+            this.GBExpenses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 16);
             this.GBExpenses.Name = "GBExpenses";
-            this.GBExpenses.Size = new System.Drawing.Size(1060, 261);
+            this.GBExpenses.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBExpenses.Size = new System.Drawing.Size(800, 211);
             this.GBExpenses.TabIndex = 0;
             this.GBExpenses.TabStop = false;
             this.GBExpenses.Text = "Expenses";
@@ -105,7 +106,8 @@
             this.TLPExpenses.Controls.Add(this.TXTBankRef, 1, 4);
             this.TLPExpenses.Controls.Add(this.TXTTranscationRef, 3, 4);
             this.TLPExpenses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TLPExpenses.Location = new System.Drawing.Point(3, 34);
+            this.TLPExpenses.Location = new System.Drawing.Point(2, 26);
+            this.TLPExpenses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TLPExpenses.Name = "TLPExpenses";
             this.TLPExpenses.RowCount = 5;
             this.TLPExpenses.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -113,84 +115,93 @@
             this.TLPExpenses.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPExpenses.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPExpenses.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPExpenses.Size = new System.Drawing.Size(1054, 224);
+            this.TLPExpenses.Size = new System.Drawing.Size(796, 183);
             this.TLPExpenses.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(2, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 32);
+            this.label1.Size = new System.Drawing.Size(57, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Date";
             // 
             // DTPOnDate
             // 
-            this.DTPOnDate.Location = new System.Drawing.Point(199, 3);
+            this.DTPOnDate.Location = new System.Drawing.Point(151, 2);
+            this.DTPOnDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DTPOnDate.Name = "DTPOnDate";
-            this.DTPOnDate.Size = new System.Drawing.Size(303, 38);
+            this.DTPOnDate.Size = new System.Drawing.Size(228, 31);
             this.DTPOnDate.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(508, 0);
+            this.label2.Location = new System.Drawing.Point(383, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 32);
+            this.label2.Size = new System.Drawing.Size(99, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Category";
             // 
             // CBCategory
             // 
             this.CBCategory.FormattingEnabled = true;
-            this.CBCategory.Location = new System.Drawing.Point(748, 3);
+            this.CBCategory.Location = new System.Drawing.Point(566, 2);
+            this.CBCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBCategory.Name = "CBCategory";
-            this.CBCategory.Size = new System.Drawing.Size(303, 39);
+            this.CBCategory.Size = new System.Drawing.Size(228, 33);
             this.CBCategory.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 45);
+            this.label3.Location = new System.Drawing.Point(2, 37);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(113, 32);
+            this.label3.Size = new System.Drawing.Size(86, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Reason";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(508, 45);
+            this.label4.Location = new System.Drawing.Point(383, 37);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 32);
+            this.label4.Size = new System.Drawing.Size(129, 25);
             this.label4.TabIndex = 5;
             this.label4.Text = "ApprovedBy";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 90);
+            this.label5.Location = new System.Drawing.Point(2, 74);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 32);
+            this.label5.Size = new System.Drawing.Size(85, 25);
             this.label5.TabIndex = 6;
             this.label5.Text = "Amount";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(508, 90);
+            this.label6.Location = new System.Drawing.Point(383, 74);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(205, 32);
+            this.label6.Size = new System.Drawing.Size(156, 25);
             this.label6.TabIndex = 7;
             this.label6.Text = "Payment Mode";
             // 
             // LBBankAccount
             // 
             this.LBBankAccount.AutoSize = true;
-            this.LBBankAccount.Location = new System.Drawing.Point(3, 135);
+            this.LBBankAccount.Location = new System.Drawing.Point(2, 111);
+            this.LBBankAccount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBBankAccount.Name = "LBBankAccount";
-            this.LBBankAccount.Size = new System.Drawing.Size(190, 32);
+            this.LBBankAccount.Size = new System.Drawing.Size(145, 25);
             this.LBBankAccount.TabIndex = 8;
             this.LBBankAccount.Text = "Bank Account";
             this.LBBankAccount.Visible = false;
@@ -198,9 +209,10 @@
             // LBTrType
             // 
             this.LBTrType.AutoSize = true;
-            this.LBTrType.Location = new System.Drawing.Point(508, 135);
+            this.LBTrType.Location = new System.Drawing.Point(383, 111);
+            this.LBTrType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBTrType.Name = "LBTrType";
-            this.LBTrType.Size = new System.Drawing.Size(234, 32);
+            this.LBTrType.Size = new System.Drawing.Size(179, 25);
             this.LBTrType.TabIndex = 9;
             this.LBTrType.Text = "Transcation Type";
             this.LBTrType.Visible = false;
@@ -208,9 +220,10 @@
             // LBBankRef
             // 
             this.LBBankRef.AutoSize = true;
-            this.LBBankRef.Location = new System.Drawing.Point(3, 180);
+            this.LBBankRef.Location = new System.Drawing.Point(2, 148);
+            this.LBBankRef.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBBankRef.Name = "LBBankRef";
-            this.LBBankRef.Size = new System.Drawing.Size(139, 32);
+            this.LBBankRef.Size = new System.Drawing.Size(106, 25);
             this.LBBankRef.TabIndex = 10;
             this.LBBankRef.Text = "Bank Ref.";
             this.LBBankRef.Visible = false;
@@ -218,72 +231,81 @@
             // LBTrRef
             // 
             this.LBTrRef.AutoSize = true;
-            this.LBTrRef.Location = new System.Drawing.Point(508, 180);
+            this.LBTrRef.Location = new System.Drawing.Point(383, 148);
+            this.LBTrRef.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBTrRef.Name = "LBTrRef";
-            this.LBTrRef.Size = new System.Drawing.Size(215, 32);
+            this.LBTrRef.Size = new System.Drawing.Size(164, 25);
             this.LBTrRef.TabIndex = 11;
             this.LBTrRef.Text = "Transcation Ref";
             this.LBTrRef.Visible = false;
             // 
             // TXTReason
             // 
-            this.TXTReason.Location = new System.Drawing.Point(199, 48);
+            this.TXTReason.Location = new System.Drawing.Point(151, 39);
+            this.TXTReason.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TXTReason.Name = "TXTReason";
-            this.TXTReason.Size = new System.Drawing.Size(303, 38);
+            this.TXTReason.Size = new System.Drawing.Size(228, 31);
             this.TXTReason.TabIndex = 3;
             // 
             // CBApprovedBy
             // 
             this.CBApprovedBy.FormattingEnabled = true;
-            this.CBApprovedBy.Location = new System.Drawing.Point(748, 48);
+            this.CBApprovedBy.Location = new System.Drawing.Point(566, 39);
+            this.CBApprovedBy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBApprovedBy.Name = "CBApprovedBy";
-            this.CBApprovedBy.Size = new System.Drawing.Size(303, 39);
+            this.CBApprovedBy.Size = new System.Drawing.Size(228, 33);
             this.CBApprovedBy.TabIndex = 4;
             // 
             // TXTAmount
             // 
-            this.TXTAmount.Location = new System.Drawing.Point(199, 93);
+            this.TXTAmount.Location = new System.Drawing.Point(151, 76);
+            this.TXTAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TXTAmount.Name = "TXTAmount";
-            this.TXTAmount.Size = new System.Drawing.Size(303, 38);
+            this.TXTAmount.Size = new System.Drawing.Size(228, 31);
             this.TXTAmount.TabIndex = 5;
             // 
             // CBPaymentMode
             // 
-            this.CBPaymentMode.Location = new System.Drawing.Point(748, 93);
+            this.CBPaymentMode.Location = new System.Drawing.Point(566, 76);
+            this.CBPaymentMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBPaymentMode.Name = "CBPaymentMode";
-            this.CBPaymentMode.Size = new System.Drawing.Size(303, 39);
+            this.CBPaymentMode.Size = new System.Drawing.Size(228, 33);
             this.CBPaymentMode.TabIndex = 6;
             this.CBPaymentMode.SelectedIndexChanged += new System.EventHandler(this.CBPaymentMode_SelectedIndexChanged);
             // 
             // CBBankAccount
             // 
-            this.CBBankAccount.Location = new System.Drawing.Point(199, 138);
+            this.CBBankAccount.Location = new System.Drawing.Point(151, 113);
+            this.CBBankAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBBankAccount.Name = "CBBankAccount";
-            this.CBBankAccount.Size = new System.Drawing.Size(303, 39);
+            this.CBBankAccount.Size = new System.Drawing.Size(228, 33);
             this.CBBankAccount.TabIndex = 7;
             this.CBBankAccount.Visible = false;
             // 
             // CBTranscationType
             // 
-            this.CBTranscationType.Location = new System.Drawing.Point(748, 138);
+            this.CBTranscationType.Location = new System.Drawing.Point(566, 113);
+            this.CBTranscationType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBTranscationType.Name = "CBTranscationType";
-            this.CBTranscationType.Size = new System.Drawing.Size(303, 39);
+            this.CBTranscationType.Size = new System.Drawing.Size(228, 33);
             this.CBTranscationType.TabIndex = 8;
             this.CBTranscationType.Visible = false;
             // 
             // TXTBankRef
             // 
-            this.TXTBankRef.Location = new System.Drawing.Point(199, 183);
+            this.TXTBankRef.Location = new System.Drawing.Point(151, 150);
+            this.TXTBankRef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TXTBankRef.Name = "TXTBankRef";
-            this.TXTBankRef.Size = new System.Drawing.Size(303, 38);
+            this.TXTBankRef.Size = new System.Drawing.Size(228, 31);
             this.TXTBankRef.TabIndex = 9;
             this.TXTBankRef.Visible = false;
             // 
             // TXTTranscationRef
             // 
-            this.TXTTranscationRef.Location = new System.Drawing.Point(748, 183);
+            this.TXTTranscationRef.Location = new System.Drawing.Point(566, 150);
+            this.TXTTranscationRef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TXTTranscationRef.Name = "TXTTranscationRef";
-            this.TXTTranscationRef.Size = new System.Drawing.Size(303, 38);
+            this.TXTTranscationRef.Size = new System.Drawing.Size(228, 31);
             this.TXTTranscationRef.TabIndex = 10;
             this.TXTTranscationRef.Visible = false;
             // 
@@ -292,11 +314,11 @@
             this.GBControls.AutoSize = true;
             this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(12, 315);
-            this.GBControls.Margin = new System.Windows.Forms.Padding(5, 15, 5, 5);
+            this.GBControls.Location = new System.Drawing.Point(9, 254);
+            this.GBControls.Margin = new System.Windows.Forms.Padding(4, 12, 4, 4);
             this.GBControls.Name = "GBControls";
-            this.GBControls.Padding = new System.Windows.Forms.Padding(5);
-            this.GBControls.Size = new System.Drawing.Size(788, 116);
+            this.GBControls.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GBControls.Size = new System.Drawing.Size(593, 92);
             this.GBControls.TabIndex = 4;
             this.GBControls.TabStop = false;
             this.GBControls.Text = "Controls";
@@ -310,19 +332,19 @@
             this.flowLayoutPanel2.Controls.Add(this.Cancel);
             this.flowLayoutPanel2.Controls.Add(this.BTNUpdate);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 36);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 28);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(778, 75);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(585, 60);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // BTNAdd
             // 
             this.BTNAdd.AutoSize = true;
-            this.BTNAdd.Location = new System.Drawing.Point(5, 5);
-            this.BTNAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNAdd.Location = new System.Drawing.Point(4, 4);
+            this.BTNAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BTNAdd.Name = "BTNAdd";
-            this.BTNAdd.Size = new System.Drawing.Size(135, 65);
+            this.BTNAdd.Size = new System.Drawing.Size(101, 52);
             this.BTNAdd.TabIndex = 11;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
@@ -331,10 +353,10 @@
             // BTNDelete
             // 
             this.BTNDelete.AutoSize = true;
-            this.BTNDelete.Location = new System.Drawing.Point(150, 5);
-            this.BTNDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNDelete.Location = new System.Drawing.Point(113, 4);
+            this.BTNDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BTNDelete.Name = "BTNDelete";
-            this.BTNDelete.Size = new System.Drawing.Size(192, 65);
+            this.BTNDelete.Size = new System.Drawing.Size(144, 52);
             this.BTNDelete.TabIndex = 12;
             this.BTNDelete.Text = "Delete";
             this.BTNDelete.UseVisualStyleBackColor = true;
@@ -342,10 +364,10 @@
             // Cancel
             // 
             this.Cancel.AutoSize = true;
-            this.Cancel.Location = new System.Drawing.Point(352, 5);
-            this.Cancel.Margin = new System.Windows.Forms.Padding(5);
+            this.Cancel.Location = new System.Drawing.Point(265, 4);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(203, 65);
+            this.Cancel.Size = new System.Drawing.Size(152, 52);
             this.Cancel.TabIndex = 13;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
@@ -354,24 +376,26 @@
             // BTNUpdate
             // 
             this.BTNUpdate.AutoSize = true;
-            this.BTNUpdate.Location = new System.Drawing.Point(565, 5);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNUpdate.Location = new System.Drawing.Point(425, 4);
+            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BTNUpdate.Name = "BTNUpdate";
-            this.BTNUpdate.Size = new System.Drawing.Size(208, 65);
+            this.BTNUpdate.Size = new System.Drawing.Size(156, 52);
             this.BTNUpdate.TabIndex = 14;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
             // 
             // ExpensesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1113, 513);
+            this.ClientSize = new System.Drawing.Size(835, 414);
             this.Controls.Add(this.GBControls);
             this.Controls.Add(this.GBExpenses);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "ExpensesForm";
             this.Text = "ExpensesForm";

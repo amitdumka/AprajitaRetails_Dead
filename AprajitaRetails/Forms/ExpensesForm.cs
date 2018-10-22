@@ -186,6 +186,7 @@ namespace AprajitaRetails.Forms
 
         private void EnableBankDetails( bool enable )
         {
+            //TODO: implement this 
             //TODO: Based on selected choice make visible element on context of
             //choice made
             //TODO:Change Lable name based on the selection Made.
@@ -207,6 +208,11 @@ namespace AprajitaRetails.Forms
             }
             else
                 CBTranscationType.Enabled = true;
+        }
+
+        private void BTNUpdate_Click( object sender, EventArgs e )
+        {
+
         }
     }
 }

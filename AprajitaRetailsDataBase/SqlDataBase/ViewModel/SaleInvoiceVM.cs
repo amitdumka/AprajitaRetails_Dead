@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
-//using System.Drawing.Printing;
-//using System.Windows.Forms;
 
 namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 {

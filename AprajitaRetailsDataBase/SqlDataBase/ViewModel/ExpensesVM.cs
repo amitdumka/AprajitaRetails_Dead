@@ -66,7 +66,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         }
 
         public void LoadApprovedBy( ComboBox cBApprovedBy )
-        {
+        {//TODO : create or check for no data. create one person with Store Manager and owner
             List<string> list = eDB.GetApprovedByList();
             // cBApprovedBy.Items.Add (list);
             foreach (string item in list)

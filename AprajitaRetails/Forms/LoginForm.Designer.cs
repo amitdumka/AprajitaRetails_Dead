@@ -55,10 +55,10 @@
             this.GBLogin.Controls.Add(this.TLPLoginControls);
             this.GBLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GBLogin.Location = new System.Drawing.Point(0, 311);
-            this.GBLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBLogin.Margin = new System.Windows.Forms.Padding(2);
             this.GBLogin.Name = "GBLogin";
-            this.GBLogin.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.GBLogin.Size = new System.Drawing.Size(873, 307);
+            this.GBLogin.Padding = new System.Windows.Forms.Padding(2);
+            this.GBLogin.Size = new System.Drawing.Size(873, 305);
             this.GBLogin.TabIndex = 0;
             this.GBLogin.TabStop = false;
             this.GBLogin.Text = "Login";
@@ -116,9 +116,9 @@
             this.TLPLoginControls.Controls.Add(this.label1, 0, 0);
             this.TLPLoginControls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.TLPLoginControls.Location = new System.Drawing.Point(216, 160);
-            this.TLPLoginControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TLPLoginControls.Margin = new System.Windows.Forms.Padding(2);
             this.TLPLoginControls.Name = "TLPLoginControls";
-            this.TLPLoginControls.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.TLPLoginControls.Padding = new System.Windows.Forms.Padding(8);
             this.TLPLoginControls.RowCount = 3;
             this.TLPLoginControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPLoginControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -143,7 +143,7 @@
             this.btnLogin.AutoSize = true;
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnLogin.Location = new System.Drawing.Point(49, 89);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(77, 35);
             this.btnLogin.TabIndex = 4;
@@ -157,7 +157,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnCancel.Location = new System.Drawing.Point(133, 89);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 35);
             this.btnCancel.TabIndex = 5;
@@ -168,7 +168,7 @@
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(133, 13);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.MaxLength = 20;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(198, 31);
@@ -178,7 +178,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(133, 51);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.MaxLength = 20;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -205,9 +205,9 @@
             this.groupBox1.Controls.Add(this.PBLogo);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(873, 311);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -217,7 +217,7 @@
             this.PBLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PBLogo.Image = global::AprajitaRetails.Properties.Resources.logo;
             this.PBLogo.Location = new System.Drawing.Point(2, 26);
-            this.PBLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PBLogo.Margin = new System.Windows.Forms.Padding(2);
             this.PBLogo.Name = "PBLogo";
             this.PBLogo.Size = new System.Drawing.Size(869, 283);
             this.PBLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -236,7 +236,7 @@
             this.ClientSize = new System.Drawing.Size(907, 582);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GBLogin);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(933, 653);
             this.Name = "LoginForm";

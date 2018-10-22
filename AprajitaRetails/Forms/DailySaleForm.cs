@@ -306,9 +306,14 @@ namespace AprajitaRetails.Forms
             CBMobileNo.Text = voygerBill.bill.CustomerMobile;
             CBPaymentMode.Text = voygerBill.payModes[0].PaymentMode;
         }
-        
+
+
         #endregion LinqSql
 
+        private void BTNUpdate_Click( object sender, EventArgs e )
+        {
 
+
+        }
     }
 }

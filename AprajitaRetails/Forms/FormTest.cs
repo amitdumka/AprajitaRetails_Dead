@@ -77,5 +77,10 @@ namespace AprajitaRetails.Forms
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
         }
+
+        private void FormTest_Load( object sender, EventArgs e )
+        {
+
+        }
     }
 }

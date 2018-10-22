@@ -8,5 +8,10 @@ namespace AprajitaRetails.Forms
         {
             InitializeComponent();
         }
+
+        private void BTNAdd_Click( object sender, System.EventArgs e )
+        {
+
+        }
     }
 }
