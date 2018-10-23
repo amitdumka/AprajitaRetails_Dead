@@ -1,4 +1,4 @@
-﻿using AprajitaRetailsDB.Models.Voyger;
+﻿using AprajitaRetailsDB.DataBase.Voyager;
 using System.Collections.Generic;
 
 namespace AprajitaRetailsDB.DataTypes
@@ -11,24 +11,24 @@ namespace AprajitaRetailsDB.DataTypes
 
         public VoygerBill( )
         {
-            bill = new VoyBill();
-            lineItems = new List<LineItem>();
-            payModes = new List<VPaymentMode>();
+            bill=new VoyBill();
+            lineItems=new List<LineItem>();
+            payModes=new List<VPaymentMode>();
         }
 
         public void AddBillDetails( VoyBill voyBill )
         {
-            bill = voyBill;
+            bill=voyBill;
         }
 
         public void AddLineItem( LineItem items )
         {
-            lineItems.Add(items);
+            lineItems.Add( items );
         }
 
         public void AddPaymentMode( VPaymentMode vPaymentMode )
         {
-            payModes.Add(vPaymentMode);
+            payModes.Add( vPaymentMode );
         }
     }
 }

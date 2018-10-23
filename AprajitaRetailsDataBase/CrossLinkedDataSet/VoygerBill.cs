@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using AprajitaRetailsDataBase.LinqDataBase;
+using System.Collections.Generic;
 
-namespace AprajitaRetailsDataBase.CrossLinkedDataSet
+namespace AprajitaRetailsDataBase.DataTypes
 {
     public class VoygerBill
     {
@@ -10,24 +11,24 @@ namespace AprajitaRetailsDataBase.CrossLinkedDataSet
 
         public VoygerBill( )
         {
-            bill = new VoyBill();
-            lineItems = new List<LineItems>();
-            payModes = new List<VPaymentMode>();
+            bill=new VoyBill();
+            lineItems=new List<LineItems>();
+            payModes=new List<VPaymentMode>();
         }
 
         public void AddBillDetails( VoyBill voyBill )
         {
-            bill = voyBill;
+            bill=voyBill;
         }
 
         public void AddLineItem( LineItems items )
         {
-            lineItems.Add(items);
+            lineItems.Add( items );
         }
 
         public void AddPaymentMode( VPaymentMode vPaymentMode )
         {
-            payModes.Add(vPaymentMode);
+            payModes.Add( vPaymentMode );
         }
     }
 }

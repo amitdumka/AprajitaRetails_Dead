@@ -17,43 +17,49 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         public List<string> GetMobileNoList( )
         {
             string sql = "select  MobileNo from Customer	  Where MobileNo <> 'NA'";
-            SqlCommand cmd = new SqlCommand(sql, Db.DBCon);
-            return DataBase.GetQueryString(cmd, "MobileNo");
+            SqlCommand cmd = new SqlCommand( sql, Db.DBCon );
+            return DataBase.GetQueryString( cmd, "MobileNo" );
         }
 
         public string GetCustomerName( string mobileno )
         {
             string sql = "select FirstName, LastName from Customer where MobileNo=@mob";
-            SqlCommand cmd = new SqlCommand(sql, Db.DBCon);
-            cmd.Parameters.AddWithValue("@mob", mobileno);
+            SqlCommand cmd = new SqlCommand( sql, Db.DBCon );
+            cmd.Parameters.AddWithValue( "@mob", mobileno );
             SqlDataReader reader = cmd.ExecuteReader();
             string custname = "";
-            if (reader != null && reader.HasRows)
+            if (reader!=null&&reader.HasRows)
             {
                 reader.Read();
-                custname = reader["FirstName"] + " " + reader["LastName"];
-                Logs.LogMe("Cust " + reader[0]);
+                custname=reader["FirstName"]+" "+reader["LastName"];
+                Logs.LogMe( "Cust "+reader[0] );
             }
             else
-                Logs.LogMe("Customer: Error " + mobileno);
+            {
+                Logs.LogMe( "Customer: Error "+mobileno );
+            }
+
             reader.Close();
             return custname;
         }
 
         public string GetCustomerName( int Id )
         {
-            string sql = "select FirstName, LastName, MobileNo from Customer where ID=" + Id;
-            SqlCommand cmd = new SqlCommand(sql, Db.DBCon);
+            string sql = "select FirstName, LastName, MobileNo from Customer where ID="+Id;
+            SqlCommand cmd = new SqlCommand( sql, Db.DBCon );
             SqlDataReader reader = cmd.ExecuteReader();
             string custname = "";
-            if (reader != null && reader.HasRows)
+            if (reader!=null&&reader.HasRows)
             {
                 reader.Read();
-                custname = reader["MobileNo"] + " " + reader["FirstName"] + " " + reader["LastName"] + "  ";
-                Logs.LogMe("Cust " + reader[0]);
+                custname=reader["MobileNo"]+" "+reader["FirstName"]+" "+reader["LastName"]+"  ";
+                Logs.LogMe( "Cust "+reader[0] );
             }
             else
-                Logs.LogMe("Customer: Error " + Id);
+            {
+                Logs.LogMe( "Customer: Error "+Id );
+            }
+
             reader.Close();
             return custname;
         }
@@ -67,10 +73,10 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         {   //TODO: Move to Static one
             SqlCommand cmd = new SqlCommand
             {
-                CommandText = "select * from " + tabName
+                CommandText="select * from "+tabName
             };
-            Logs.LogMe("GetDataFrom:TableName=" + tabName);
-            return DataBase.GetSqlStoreProcedureString(cmd);
+            Logs.LogMe( "GetDataFrom:TableName="+tabName );
+            return DataBase.GetSqlStoreProcedureString( cmd );
         }
 
         /// <summary>
@@ -83,18 +89,18 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             DailySale dailySale;
             SortedDictionary<string, string> element = data[0];
 
-            dailySale = new DailySale()
+            dailySale=new DailySale()
             {
-                Fabric = Basic.ToInt(element["Fabric"]),
-                PaymentMode = Basic.ToInt(element["PaymentMode"]),
-                RMZ = Basic.ToInt(element["RMZ"]),
-                Tailoring = Basic.ToInt(element["Tailoring"]),
-                Amount = Double.Parse(element["Amount"]),
-                CustomerID = Basic.ToInt(element["CustomerID"]),
-                Discount = Double.Parse(element["Discount"]),
-                ID = Basic.ToInt(element["ID"]),
-                InvoiceNo = element["InvoiceNo"],
-                SaleDate = DateTime.Parse(element["SaleDate"])
+                Fabric=Basic.ToInt( element["Fabric"] ),
+                PaymentMode=Basic.ToInt( element["PaymentMode"] ),
+                RMZ=Basic.ToInt( element["RMZ"] ),
+                Tailoring=Basic.ToInt( element["Tailoring"] ),
+                Amount=Double.Parse( element["Amount"] ),
+                CustomerID=Basic.ToInt( element["CustomerID"] ),
+                Discount=Double.Parse( element["Discount"] ),
+                ID=Basic.ToInt( element["ID"] ),
+                InvoiceNo=element["InvoiceNo"],
+                SaleDate=DateTime.Parse( element["SaleDate"] )
             };
 
             return dailySale;
@@ -111,14 +117,14 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             DailySale dailySale;
             foreach (SortedDictionary<string, string> element in data)
             {
-                dailySale = new DailySale()
+                dailySale=new DailySale()
                 {
-                    Amount = Double.Parse(element["Amount"]),
-                    CustomerID = Basic.ToInt(element["CustomerId"]),
-                    Discount = Double.Parse(element["Discount"]),
-                    ID = Basic.ToInt(element["ID"]),
-                    InvoiceNo = element["InvoiceNo"],
-                    SaleDate = DateTime.Parse(element["SaleDate"])
+                    Amount=Double.Parse( element["Amount"] ),
+                    CustomerID=Basic.ToInt( element["CustomerId"] ),
+                    Discount=Double.Parse( element["Discount"] ),
+                    ID=Basic.ToInt( element["ID"] ),
+                    InvoiceNo=element["InvoiceNo"],
+                    SaleDate=DateTime.Parse( element["SaleDate"] )
                 };
             }
             return listData;
@@ -130,15 +136,15 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 
         public DailySaleDB( )
         {
-            Logs.LogMe("DailySaleDB: Init");
-            Db = new DataBase(ConType.SQLDB);
-            Logs.LogMe("DailySaleDB: DB is created");
-            t = new TableClass(typeof(DailySale));
-            Logs.LogMe("DailySaleDB:Table is Created");
-            InsertSqlQuery = t.CreateInsertScript();
-            Logs.LogMe("DailySaleDB:InsertQuery=" + InsertSqlQuery);
-            Tablename = t.ClassName;
-            Logs.LogMe("DailySaleDB:ClassTableName=" + Tablename);
+            Logs.LogMe( "DailySaleDB: Init" );
+            Db=new DataBase( ConType.SQLDB );
+            Logs.LogMe( "DailySaleDB: DB is created" );
+            t=new TableClass( typeof( DailySale ) );
+            Logs.LogMe( "DailySaleDB:Table is Created" );
+            InsertSqlQuery=t.CreateInsertScript();
+            Logs.LogMe( "DailySaleDB:InsertQuery="+InsertSqlQuery );
+            Tablename=t.ClassName;
+            Logs.LogMe( "DailySaleDB:ClassTableName="+Tablename );
             if (!IsTableExist())
             {
                 CreateTable();
@@ -149,9 +155,10 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         {
             string sqlQ = t.CreateTableScript();
             SqlCommand cmd = Db.DBCon.CreateCommand();
-            cmd.CommandText = sqlQ;
-            Console.WriteLine("Sql=" + sqlQ);
-            Console.WriteLine("Table Creation is ", cmd.ExecuteNonQuery());
+            cmd.CommandText=sqlQ;
+            cmd.ExecuteNonQuery();
+            // Console.WriteLine( "Sql="+sqlQ );
+            //  Console.WriteLine( "Table Creation is ", cmd.ExecuteNonQuery() );
         }
 
         public int Delete( object obj )
@@ -174,11 +181,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         {
             SqlCommand cmd = new SqlCommand
             {
-                CommandText = "select * from " + Tablename + " where " + colName + "=@values"
+                CommandText="select * from "+Tablename+" where "+colName+"=@values"
             };
-            cmd.Parameters.AddWithValue("@values", colValue);
-            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString(cmd);
-            DailySale dailySale = ToDailySale(resultData);
+            cmd.Parameters.AddWithValue( "@values", colValue );
+            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString( cmd );
+            DailySale dailySale = ToDailySale( resultData );
             return dailySale;
         }
 
@@ -190,9 +197,9 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         public DailySale GetByID( int id )
         {
             SqlCommand cmd = new SqlCommand()
-            { CommandText = "select * from " + Tablename + " where ID =" + id };
-            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString(cmd);
-            DailySale dailySale = ToDailySale(resultData);
+            { CommandText="select * from "+Tablename+" where ID ="+id };
+            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString( cmd );
+            DailySale dailySale = ToDailySale( resultData );
             return dailySale;
         }
 
@@ -204,10 +211,10 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         /// <returns></returns>
         public int GetID( string colName, Object colValue )
         {    //TODO make it genric put in abstract
-            SqlConnection con = (SqlConnection)DataBase.GetConnectionObject(ConType.SQLDB);
-            string cmdText = "select ID from " + Tablename + " where " + colName + "= @values";
-            SqlCommand cmd = new SqlCommand(cmdText, con);
-            cmd.Parameters.AddWithValue("@values", colValue);
+            SqlConnection con = (SqlConnection)DataBase.GetConnectionObject( ConType.SQLDB );
+            string cmdText = "select ID from "+Tablename+" where "+colName+"= @values";
+            SqlCommand cmd = new SqlCommand( cmdText, con );
+            cmd.Parameters.AddWithValue( "@values", colValue );
             return (int)cmd.ExecuteScalar();
         }
 
@@ -220,24 +227,24 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         {
             SqlCommand cmd = new SqlCommand()
             {
-                CommandText = InsertSqlQuery
+                CommandText=InsertSqlQuery
             };
-            cmd.Parameters.AddWithValue("@CustomerId", obj.CustomerID);
-            cmd.Parameters.AddWithValue("@Amount", obj.Amount);
-            cmd.Parameters.AddWithValue("@Discount", obj.Discount);
-            cmd.Parameters.AddWithValue("@InvoiceNo", obj.InvoiceNo);
-            cmd.Parameters.AddWithValue("@SaleDate", obj.SaleDate);
-            cmd.Parameters.AddWithValue("@Tailoring", obj.Tailoring);
-            cmd.Parameters.AddWithValue("@RMZ", obj.RMZ);
-            cmd.Parameters.AddWithValue("@PaymentMode", obj.PaymentMode);
-            cmd.Parameters.AddWithValue("@Fabric", obj.Fabric);
-            return Db.Insert(cmd);
+            cmd.Parameters.AddWithValue( "@CustomerId", obj.CustomerID );
+            cmd.Parameters.AddWithValue( "@Amount", obj.Amount );
+            cmd.Parameters.AddWithValue( "@Discount", obj.Discount );
+            cmd.Parameters.AddWithValue( "@InvoiceNo", obj.InvoiceNo );
+            cmd.Parameters.AddWithValue( "@SaleDate", obj.SaleDate );
+            cmd.Parameters.AddWithValue( "@Tailoring", obj.Tailoring );
+            cmd.Parameters.AddWithValue( "@RMZ", obj.RMZ );
+            cmd.Parameters.AddWithValue( "@PaymentMode", obj.PaymentMode );
+            cmd.Parameters.AddWithValue( "@Fabric", obj.Fabric );
+            return Db.Insert( cmd );
         }
 
         public bool IsTableExist( )
         {
             //TODO: Make Class or const field from where it should fetch tablename
-            return DataBase.IsTableExit(Tablename);
+            return DataBase.IsTableExit( Tablename );
         }
 
         public int UpdateData( DailySale obj )
@@ -245,76 +252,79 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             throw new NotImplementedException();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities" )]
         public List<DailySale> GetAllRecord( )
         {
             SqlCommand cmd = new SqlCommand()
             {
-                CommandText = "select * from " + Tablename
+                CommandText="select * from "+Tablename
             };
-            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString(cmd);
-            return ToDailySales(resultData);
+            List<SortedDictionary<string, string>> resultData = DataBase.GetSqlStoreProcedureString( cmd );
+            return ToDailySales( resultData );
         }
 
         public List<SortedDictionary<string, string>> GetSaleList( )
         {
-            string sql = " select  InvoiceNo, Amount, ID from DailySale " +
+            string sql = " select  InvoiceNo, Amount, ID from DailySale "+
                     " where DATEDIFF(day, SaleDate,@dates)= 0 order by ID Desc ";
-            SqlCommand cmd = new SqlCommand(sql, Db.DBCon);
-            cmd.Parameters.AddWithValue("@dates", DateTime.Now);
+            SqlCommand cmd = new SqlCommand( sql, Db.DBCon );
+            cmd.Parameters.AddWithValue( "@dates", DateTime.Now );
 
-            return DataBase.GetSqlStoreProcedureString(cmd);
+            return DataBase.GetSqlStoreProcedureString( cmd );
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities" )]
         public SaleInfo GetSaleInfo( DateTime saleDate )
         {
-            Logs.LogMe("Sale Info Date: " + saleDate.ToShortDateString());
-            string cd = "" + saleDate.Month + "/" + saleDate.Day + "/" + saleDate.Year;
-            string cy = "" + saleDate.Year;
-            string cm = "" + saleDate.Month;
-            Logs.LogMe("Date " + cd + "=" + saleDate.ToLongDateString());
+            Logs.LogMe( "Sale Info Date: "+saleDate.ToShortDateString() );
+            string cd = ""+saleDate.Month+"/"+saleDate.Day+"/"+saleDate.Year;
+            string cy = ""+saleDate.Year;
+            string cm = ""+saleDate.Month;
+            Logs.LogMe( "Date "+cd+"="+saleDate.ToLongDateString() );
 
-            SqlCommand cmd = new SqlCommand(SaleQuery.QueryAll, Db.DBCon);
-            cmd.Parameters.AddWithValue("@CDate", cd);
-            cmd.Parameters.AddWithValue("@CYear2", cy);
-            cmd.Parameters.AddWithValue("@CMon", cm);
-            cmd.Parameters.AddWithValue("@CYear", cy);
+            SqlCommand cmd = new SqlCommand( SaleQuery.QueryAll, Db.DBCon );
+            cmd.Parameters.AddWithValue( "@CDate", cd );
+            cmd.Parameters.AddWithValue( "@CYear2", cy );
+            cmd.Parameters.AddWithValue( "@CMon", cm );
+            cmd.Parameters.AddWithValue( "@CYear", cy );
             SqlDataReader reader = cmd.ExecuteReader();
             SaleInfo info = new SaleInfo();
-            if (reader != null && reader.HasRows)
+            if (reader!=null&&reader.HasRows)
             {
                 reader.Read();
-                info.MonthlySale = "" + reader["MAmount"];
-                info.TodaySale = "" + reader["TAmount"];
-                info.YearlySale = "" + reader["YAmount"];
-                Logs.LogMe("Sale Info: " + reader["TAmount"] + "==" + reader["MAmount"] + "==" + reader["YAmount"]);
+                info.MonthlySale=""+reader["MAmount"];
+                info.TodaySale=""+reader["TAmount"];
+                info.YearlySale=""+reader["YAmount"];
+                Logs.LogMe( "Sale Info: "+reader["TAmount"]+"=="+reader["MAmount"]+"=="+reader["YAmount"] );
             }
             reader.Close();
             return info;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities" )]
         public SaleInfo GetSaleInfo( )
         {
             DateTime s = DateTime.Now;
-            Logs.LogMe("Sale Info Date: " + s.ToShortDateString());
-            string cd = "" + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
-            string cy = "" + DateTime.Now.Year;
-            string cm = "" + DateTime.Now.Month;
-            Logs.LogMe("Date " + cd + "=" + DateTime.Now.ToLongDateString());
+            Logs.LogMe( "Sale Info Date: "+s.ToShortDateString() );
+            string cd = ""+DateTime.Now.Month+"/"+DateTime.Now.Day+"/"+DateTime.Now.Year;
+            string cy = ""+DateTime.Now.Year;
+            string cm = ""+DateTime.Now.Month;
+            Logs.LogMe( "Date "+cd+"="+DateTime.Now.ToLongDateString() );
 
-            SqlCommand cmd = new SqlCommand(SaleQuery.QueryAll, Db.DBCon);
-            cmd.Parameters.AddWithValue("@CDate", cd);
-            cmd.Parameters.AddWithValue("@CYear2", cy);
-            cmd.Parameters.AddWithValue("@CMon", cm);
-            cmd.Parameters.AddWithValue("@CYear", cy);
+            SqlCommand cmd = new SqlCommand( SaleQuery.QueryAll, Db.DBCon );
+            cmd.Parameters.AddWithValue( "@CDate", cd );
+            cmd.Parameters.AddWithValue( "@CYear2", cy );
+            cmd.Parameters.AddWithValue( "@CMon", cm );
+            cmd.Parameters.AddWithValue( "@CYear", cy );
             SqlDataReader reader = cmd.ExecuteReader();
             SaleInfo info = new SaleInfo();
-            if (reader != null && reader.HasRows)
+            if (reader!=null&&reader.HasRows)
             {
                 reader.Read();
-                info.MonthlySale = "" + reader["MAmount"];
-                info.TodaySale = "" + reader["TAmount"];
-                info.YearlySale = "" + reader["YAmount"];
-                Logs.LogMe("Sale Info: " + reader["TAmount"] + "==" + reader["MAmount"] + "==" + reader["YAmount"]);
+                info.MonthlySale=""+reader["MAmount"];
+                info.TodaySale=""+reader["TAmount"];
+                info.YearlySale=""+reader["YAmount"];
+                Logs.LogMe( "Sale Info: "+reader["TAmount"]+"=="+reader["MAmount"]+"=="+reader["YAmount"] );
             }
             reader.Close();
             return info;

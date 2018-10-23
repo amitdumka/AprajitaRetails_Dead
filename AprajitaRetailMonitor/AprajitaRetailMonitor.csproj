@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AprajitaRetailMonitor</RootNamespace>
     <AssemblyName>AprajitaRetailMonitor</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -28,6 +28,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,7 +65,14 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -78,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,15 +101,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeviceWorker\InsertData.cs" />
+    <Compile Include="SeviceWorker\EF\InsertData.cs" />
+    <Compile Include="SeviceWorker\Common\VBEle.cs" />
+    <Compile Include="SeviceWorker\Common\VoyTable.cs" />
     <Compile Include="SeviceWorker\LogEvent.cs" />
     <Compile Include="SeviceWorker\ServiceAction.cs" />
-    <Compile Include="SeviceWorker\VoygerXMLToLinqDB.cs" />
+    <Compile Include="SeviceWorker\EF\VoygerXMLToLinqDB.cs" />
+    <Compile Include="SeviceWorker\Linq\InsertData.cs" />
+    <Compile Include="SeviceWorker\Linq\VoygerXMLToLinqDB.cs" />
     <Compile Include="SeviceWorker\Watcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="aws.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
@@ -114,6 +128,10 @@
     <ProjectReference Include="..\AprajitaRetailsDataBase\AprajitaRetailsDataBase.csproj">
       <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
       <Name>AprajitaRetailsDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AprajitaRetailsDB\AprajitaRetailsDB.csproj">
+      <Project>{504c9bf6-ceda-44d2-a98c-daa24b146086}</Project>
+      <Name>AprajitaRetailsDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
       <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>

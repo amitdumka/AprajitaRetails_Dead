@@ -16,8 +16,10 @@ namespace AprajitaRetails.Forms
         private BindingSource vBsource = new BindingSource();
         private int vCustId = -1;
         private double vGrandTotal = 0.0;
-        private bool vIsNew = false;
+
+        // TODO : check private bool vIsNew = false;
         private ProductItems vItem;
+
         private DataTable vItemTable;
         private SalePayMode vPayMode = SalePayMode.Cash;
         private string vSMCode = "NotFound";
@@ -38,8 +40,9 @@ namespace AprajitaRetails.Forms
         private ReceiptDetails vReciptDetails;
         private List<ReceiptItemDetails> vReciptItems;
         private ReceiptItemTotal vReciptItemTotal;
-        private const int MinimumSize = 10;
-        private int CurrentSize = MinimumSize;
+        private const int MinimumSizes = 10;
+
+        // private int CurrentSize = MinimumSizes;
         private int ItemCount = 0;
 
         /// <summary>
@@ -47,23 +50,23 @@ namespace AprajitaRetails.Forms
         /// </summary>
         private void ResetVariables( )
         {
-            ItemID = 0;
-            vCustId = -1;
-            vGrandTotal = 0.0;
+            ItemID=0;
+            vCustId=-1;
+            vGrandTotal=0.0;
 
-            vIsNew = false;
-            vPayMode = SalePayMode.Cash;
-            vRoundOffAmt = 0.0;
-            vTotalAmount = 0.0;
-            vTotalDiscount = 0.0;
-            vTotalItems = 0;
-            vTotalQty = 0;
-            vTotalRoundOff = 0.0;
-            vTotalTax = 0.0;
-            vTotalGST = 0.0;
-            wantToPrint = true;
-            CurrentSize = MinimumSize;
-            ItemCount = 0;
+            //TODO: vIsNew=false;
+            vPayMode=SalePayMode.Cash;
+            vRoundOffAmt=0.0;
+            vTotalAmount=0.0;
+            vTotalDiscount=0.0;
+            vTotalItems=0;
+            vTotalQty=0;
+            vTotalRoundOff=0.0;
+            vTotalTax=0.0;
+            vTotalGST=0.0;
+            wantToPrint=true;
+            //  CurrentSize=MinimumSizes;
+            ItemCount=0;
         }
 
         public SaleInvoiceForm( )
@@ -79,94 +82,94 @@ namespace AprajitaRetails.Forms
 
         private void AddItemRow( )
         {
-            if (vItem != null)
+            if (vItem!=null)
             {
                 string vBarcode = TXTBarCode.Text;
                 string vQty = TXTQty.Text;
                 string vAmount = TXTAmount.Text;
                 DataTable dt = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
                 DataRow nRow = dt.NewRow();
-                double vAmtd = double.Parse(vAmount);
-                double vAmtWhole = Math.Round(vAmtd);
-                vRoundOffAmt = vAmtWhole - vAmtd;
-                double vDiscount = double.Parse(TXTItemDiscount.Text.Trim());
+                double vAmtd = double.Parse( vAmount );
+                double vAmtWhole = Math.Round( vAmtd );
+                vRoundOffAmt=vAmtWhole-vAmtd;
+                double vDiscount = double.Parse( TXTItemDiscount.Text.Trim() );
                 //ID, InvoiceNo, ItemCode, BarCode, StyleCode,  Qty, Rate, Discount, Tax, Amount
-                nRow[0] = (++ItemID);
-                nRow[1] = CBInvoiceNo.Text;
-                nRow[2] = vItem.ID;
-                nRow[3] = vBarcode;
-                nRow[4] = vItem.StyleCode;
-                nRow[5] = vQty;
-                nRow[6] = vItem.MRP;
-                nRow[7] = vDiscount;
-                nRow[8] = vItem.Tax; //TODO: GST ChangesTax need to update
-                nRow[9] = double.Parse(vAmount);
-                nRow[10] = vSMCode;
-                dt.Rows.Add(nRow);
+                nRow[0]=(++ItemID);
+                nRow[1]=CBInvoiceNo.Text;
+                nRow[2]=vItem.ID;
+                nRow[3]=vBarcode;
+                nRow[4]=vItem.StyleCode;
+                nRow[5]=vQty;
+                nRow[6]=vItem.MRP;
+                nRow[7]=vDiscount;
+                nRow[8]=vItem.Tax; //TODO: GST ChangesTax need to update
+                nRow[9]=double.Parse( vAmount );
+                nRow[10]=vSMCode;
+                dt.Rows.Add( nRow );
 
                 vTotalItems++;
-                vTotalQty = vTotalQty + double.Parse(vQty);
+                vTotalQty=vTotalQty+double.Parse( vQty );
 
                 //Total Section
-                vTotalRoundOff += vRoundOffAmt;
-                vTotalAmount += vAmtWhole;
-                vTotalTax += vItem.Tax;
-                vTotalDiscount += vDiscount;
-                vGrandTotal = vTotalAmount + vTotalTax - vTotalDiscount;
+                vTotalRoundOff+=vRoundOffAmt;
+                vTotalAmount+=vAmtWhole;
+                vTotalTax+=vItem.Tax;
+                vTotalDiscount+=vDiscount;
+                vGrandTotal=vTotalAmount+vTotalTax-vTotalDiscount;
                 //Update UI
-                TXTGrandTotal.Text = "" + vGrandTotal;
-                TXTTaxAmount.Text = "" + vTotalTax;
-                TXTDiscount.Text = "" + vTotalDiscount;
-                TXTSubTotal.Text = "" + vTotalAmount;
+                TXTGrandTotal.Text=""+vGrandTotal;
+                TXTTaxAmount.Text=""+vTotalTax;
+                TXTDiscount.Text=""+vTotalDiscount;
+                TXTSubTotal.Text=""+vTotalAmount;
                 double gstRate = 0.00;
                 double basicrate = 0.00;
                 double gstAmount = 0.00;
-                if (vItem.Tax > 0)
+                if (vItem.Tax>0)
                 {
-                    gstRate = 5.00;
+                    gstRate=5.00;
                 }
                 else
                 {       //TODO: make 1000 as readable from GST Table and parameterised and make cosnt vairable while load app
-                    if (vItem.MRP <= 1000 || double.Parse(vAmount) <= 1000)
+                    if (vItem.MRP<=1000||double.Parse( vAmount )<=1000)
                     {
-                        gstRate = 5.00;
+                        gstRate=5.00;
                     }
                     else
                     {
-                        gstRate = 12.00;
+                        gstRate=12.00;
                     }
                 }
-                basicrate = double.Parse(vAmount) / (1 + (gstRate / 100));
-                gstAmount = (basicrate * gstRate / 100) / 2;
+                basicrate=double.Parse( vAmount )/(1+(gstRate/100));
+                gstAmount=(basicrate*gstRate/100)/2;
 
-                vReciptItems.Add(new ReceiptItemDetails()
+                vReciptItems.Add( new ReceiptItemDetails()
                 {       //TODO: Need to Implement GST  and Make Int/Double
-                    QTY = vQty,
-                    Discount = "" + vDiscount,
-                    MRP = "" + vItem.MRP,
-                    SKU_Description = vItem.Barcode + " / " + vItem.ItemDesc,
-                    HSN = "00000000",
-                    GSTAmount = "" + Math.Round((gstAmount), 2),
-                    BasicPrice = "" + Math.Round(basicrate, 2),
-                    GSTPercentage = "" + Math.Round((gstRate / 2), 2)
-                });
-                vTotalGST += gstAmount;//TODO: GST Update
+                    QTY=vQty,
+                    Discount=""+vDiscount,
+                    MRP=""+vItem.MRP,
+                    SKU_Description=vItem.Barcode+" / "+vItem.ItemDesc,
+                    HSN="00000000",
+                    GSTAmount=""+Math.Round( (gstAmount), 2 ),
+                    BasicPrice=""+Math.Round( basicrate, 2 ),
+                    GSTPercentage=""+Math.Round( (gstRate/2), 2 )
+                } );
+                vTotalGST+=gstAmount;//TODO: GST Update
                 ItemCount++; //Incrementing InvoiceCount.
 
-                Basic.ClearUIFields(TLPItemDetails);
+                Basic.ClearUIFields( TLPItemDetails );
             }
         }
 
         // Mouse Click Operation
         private void BTNAdd_Click( object sender, EventArgs e )
         {
-            if (BTNAdd.Text == "Add")
+            if (BTNAdd.Text=="Add")
             {
-                EnableEditUI(true);
+                EnableEditUI( true );
                 PerformAdd();
                 InitPrintInvoice();//Init Print Serive
             }
-            else if (BTNAdd.Text == "Save")
+            else if (BTNAdd.Text=="Save")
             {
                 PerformSave();
             }
@@ -175,20 +178,22 @@ namespace AprajitaRetails.Forms
         private void BTNDelete_Click( object sender, EventArgs e )
         {
             //TODO: Implement delete
-            MessageBox.Show("You are not allowed to delete record");
+            MessageBox.Show( "You are not allowed to delete record" );
         }
 
         private void BTNDiscount_Click( object sender, EventArgs e )
         {
             //TODO: Implement Discount
-            MessageBox.Show("Discount Bill in manual is not allowed");
+            MessageBox.Show( "Discount Bill in manual is not allowed" );
             // PdfPrinter.PrintRecipts ();
         }
 
         private void BTNItemAdd_Click( object sender, EventArgs e )
         {
-            if (Basic.ValidateFormUI(TLPItemDetails))
+            if (Basic.ValidateFormUI( TLPItemDetails ))
+            {
                 AddItemRow();
+            }
         }
 
         private void BTNNewCustomer_Click( object sender, EventArgs e )
@@ -196,54 +201,54 @@ namespace AprajitaRetails.Forms
             //TODO: when MobileNo is added to text , disable  field change event
             CustomersForm c = new CustomersForm()
             {
-                IsDailog = true
+                IsDailog=true
             };
             DialogResult r = c.ShowDialog();
-            if (c.DialogResult == DialogResult.OK)
+            if (c.DialogResult==DialogResult.OK)
             {
-                TXTFirstName.Text = c.CustomerFirstName;
-                TXTLastName.Text = c.CustomerLastName;
-                CBMobileNo.Items.Add(c.CustomerMobileNo);
-                CBMobileNo.Text = c.CustomerMobileNo;
+                TXTFirstName.Text=c.CustomerFirstName;
+                TXTLastName.Text=c.CustomerLastName;
+                CBMobileNo.Items.Add( c.CustomerMobileNo );
+                CBMobileNo.Text=c.CustomerMobileNo;
             }
             c.Dispose();
         }
 
         private void Cancel_Click( object sender, EventArgs e )
         {
-            Basic.ClearUIFields(TLPInvoiceDetails);
-            BTNAdd.Text = "Add";
-            BTNUpdate.Text = "Update";
-            EnableEditUI(false);
+            Basic.ClearUIFields( TLPInvoiceDetails );
+            BTNAdd.Text="Add";
+            BTNUpdate.Text="Update";
+            EnableEditUI( false );
         }
 
         //End of Mouse Click Operations
 
         private void GetItemDetais( string barCode )
         {
-            vItem = sVM.GetProductItemDetais(barCode);
-            if (vItem != null)
+            vItem=sVM.GetProductItemDetais( barCode );
+            if (vItem!=null)
             {
-                TXTItemDetail.Text = vItem.ItemDesc;// ["ItemDetail"];
-                TXTRate.Text = "" + vItem.MRP;// ["MRP"];
-                TXTQty.Text = "" + vItem.Qty;//["Qty"];
+                TXTItemDetail.Text=vItem.ItemDesc;// ["ItemDetail"];
+                TXTRate.Text=""+vItem.MRP;// ["MRP"];
+                TXTQty.Text=""+vItem.Qty;//["Qty"];
             }
         }
 
         private DataTable GetTableReady( )
         {
-            DataTable vsItemTable = new DataTable("SaleDetails");
-            vsItemTable.Columns.Add("ID", typeof(int));
-            vsItemTable.Columns.Add("InvoiceNo", typeof(string));
-            vsItemTable.Columns.Add("ItemCode", typeof(int));
-            vsItemTable.Columns.Add("BarCode", typeof(string));
-            vsItemTable.Columns.Add("StyleCode", typeof(string));
-            vsItemTable.Columns.Add("QTY", typeof(double));
-            vsItemTable.Columns.Add("MRP", typeof(double));
-            vsItemTable.Columns.Add("Discount", typeof(double));
-            vsItemTable.Columns.Add("Tax", typeof(double));
-            vsItemTable.Columns.Add("Amount", typeof(double));
-            vItemTable.Columns.Add("Salesman", typeof(string));
+            DataTable vsItemTable = new DataTable( "SaleDetails" );
+            vsItemTable.Columns.Add( "ID", typeof( int ) );
+            vsItemTable.Columns.Add( "InvoiceNo", typeof( string ) );
+            vsItemTable.Columns.Add( "ItemCode", typeof( int ) );
+            vsItemTable.Columns.Add( "BarCode", typeof( string ) );
+            vsItemTable.Columns.Add( "StyleCode", typeof( string ) );
+            vsItemTable.Columns.Add( "QTY", typeof( double ) );
+            vsItemTable.Columns.Add( "MRP", typeof( double ) );
+            vsItemTable.Columns.Add( "Discount", typeof( double ) );
+            vsItemTable.Columns.Add( "Tax", typeof( double ) );
+            vsItemTable.Columns.Add( "Amount", typeof( double ) );
+            vItemTable.Columns.Add( "Salesman", typeof( string ) );
 
             return vsItemTable;
             //vBsource.DataSource = vItemTable;
@@ -258,17 +263,17 @@ namespace AprajitaRetails.Forms
 
         private void LoadCardTypes( )
         {
-            Basic.AddListToComboBox(CBCardType, Basic.FeildList(typeof(CardType)));
+            Basic.AddListToComboBox( CBCardType, Basic.FeildList( typeof( CardType ) ) );
         }
 
         private void LoadInvoiceNoList( )
         {
-            sVM.GetInvoiceNoList(CBInvoiceNo);
+            sVM.GetInvoiceNoList( CBInvoiceNo );
         }
 
         private void LoadMobileNoList( )
         {
-            sVM.GetCustomerMobileNoList(CBMobileNo);
+            sVM.GetCustomerMobileNoList( CBMobileNo );
         }
 
         private void LoadUiElements( )
@@ -278,31 +283,31 @@ namespace AprajitaRetails.Forms
             LoadCardTypes();
             MakeTableReady();
             LoadSalesmanList();
-            EnableEditUI(false);//TODO: Move to onLoad Function
+            EnableEditUI( false );//TODO: Move to onLoad Function
         }
 
         private void MakeTableReady( )
         {
-            vItemTable = new DataTable("SaleDetails");
-            vItemTable.Columns.Add("ID", typeof(int));
-            vItemTable.Columns.Add("InvoiceNo", typeof(string));
-            vItemTable.Columns.Add("ItemCode", typeof(int));
-            vItemTable.Columns.Add("BarCode", typeof(string));
-            vItemTable.Columns.Add("StyleCode", typeof(string));
-            vItemTable.Columns.Add("QTY", typeof(double));
-            vItemTable.Columns.Add("MRP", typeof(double));
-            vItemTable.Columns.Add("Discount", typeof(double));
-            vItemTable.Columns.Add("Tax", typeof(double));
-            vItemTable.Columns.Add("Amount", typeof(double));
-            vItemTable.Columns.Add("Salesman", typeof(string));
+            vItemTable=new DataTable( "SaleDetails" );
+            vItemTable.Columns.Add( "ID", typeof( int ) );
+            vItemTable.Columns.Add( "InvoiceNo", typeof( string ) );
+            vItemTable.Columns.Add( "ItemCode", typeof( int ) );
+            vItemTable.Columns.Add( "BarCode", typeof( string ) );
+            vItemTable.Columns.Add( "StyleCode", typeof( string ) );
+            vItemTable.Columns.Add( "QTY", typeof( double ) );
+            vItemTable.Columns.Add( "MRP", typeof( double ) );
+            vItemTable.Columns.Add( "Discount", typeof( double ) );
+            vItemTable.Columns.Add( "Tax", typeof( double ) );
+            vItemTable.Columns.Add( "Amount", typeof( double ) );
+            vItemTable.Columns.Add( "Salesman", typeof( string ) );
             //vItemTable.Columns.Add ("Date", typeof (DateTime));
 
-            vBsource.DataSource = vItemTable;
-            DGVSaleItems.DataSource = vBsource;
-            DGVSaleItems.Columns[0].Visible = false;
-            DGVSaleItems.Columns[1].Visible = false;
+            vBsource.DataSource=vItemTable;
+            DGVSaleItems.DataSource=vBsource;
+            DGVSaleItems.Columns[0].Visible=false;
+            DGVSaleItems.Columns[1].Visible=false;
 
-            DGVSaleItems.Columns[2].Visible = false;
+            DGVSaleItems.Columns[2].Visible=false;
             //DGVSaleItems.Columns [6].Visible = false;
             //ID, InvoiceNo, ItemCode, BarCode, StyleCode,  Qty, Rate, Discount, Tax, Amount
         }
@@ -310,71 +315,73 @@ namespace AprajitaRetails.Forms
         private void LoadSalesmanList( )
         {
             List<string> list = sVM.GetSalesmanNameList();
-            if (list.Count <= 0)
+            if (list.Count<=0)
             {   //TODO: replace to prompt to enter salesman names , show popup
                 sVM.SampleSalesman();
-                list = sVM.GetSalesmanNameList();
-                Logs.LogMe("Creating default salesman");
+                list=sVM.GetSalesmanNameList();
+                Logs.LogMe( "Creating default salesman" );
             }
 
             foreach (string name in list)
-                CBSalesman.Items.Add(name);
+            {
+                CBSalesman.Items.Add( name );
+            }
         }
 
         private void UpdateSalesmanList( string smcode )
         {
-            vSMCode = smcode;
+            vSMCode=smcode;
         }
 
         private void PerformAdd( )
         {
-            vIsNew = true;
-            BTNAdd.Text = "Save";
-            CBInvoiceNo.Text = sVM.GenerateInvoiceNo().ToString();
+            //TODO: vIsNew=true;
+            BTNAdd.Text="Save";
+            CBInvoiceNo.Text=sVM.GenerateInvoiceNo().ToString();
         }
 
         private void ResetForm( )
         {
-            Basic.ClearUIFields(TLPInvoiceDetails);
+            Basic.ClearUIFields( TLPInvoiceDetails );
             // DGVSaleItems.Rows.Clear ();
             DataTable dt = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
             dt.Clear();
-            BTNAdd.Text = "Add";
-            BTNUpdate.Text = "Update";
+            BTNAdd.Text="Add";
+            BTNUpdate.Text="Update";
             ResetVariables();
         }
 
         private void PerformSave( )
         {
-            if (ValidateInvoice() && ValidateSaleItems())
+            if (ValidateInvoice()&&ValidateSaleItems())
             {
                 //TODO: make it work
                 int status = ReadAllData();
-                if (status > 0)
+                if (status>0)
                 {
-                    vIsNew = false;
-                    BTNAdd.Text = "Add";
+                    //TODO: vIsNew=false;
+                    BTNAdd.Text="Add";
                     if (wantToPrint)
                     {
-                        vReciptDetails.BillDate = DTPInvoiceDate.Value.ToShortDateString();
-                        vReciptDetails.BillTime = DTPInvoiceDate.Value.ToShortTimeString();
-                        vReciptDetails.BillNo = "Bill No: " + CBInvoiceNo.Text;
-                        vReciptItemTotal.ItemCount = "" + ItemCount;
-                        vReciptItemTotal.TotalItem = "" + vTotalQty;
-                        vReciptItemTotal.NetAmount = "" + vTotalAmount;
-                        vReciptItemTotal.CashAmount = "" + vTotalAmount;
+                        vReciptDetails.BillDate=DTPInvoiceDate.Value.ToShortDateString();
+                        vReciptDetails.BillTime=DTPInvoiceDate.Value.ToShortTimeString();
+                        vReciptDetails.BillNo="Bill No: "+CBInvoiceNo.Text;
+                        vReciptItemTotal.ItemCount=""+ItemCount;
+                        vReciptItemTotal.TotalItem=""+vTotalQty;
+                        vReciptItemTotal.NetAmount=""+vTotalAmount;
+                        vReciptItemTotal.CashAmount=""+vTotalAmount;
                         PrintRecipts();
                     }
                     ResetForm();
                     ResetVariables();
-                    EnableEditUI(false);
+                    EnableEditUI( false );
                 }
-                MessageBox.Show("Invoice is saved!");
+                MessageBox.Show( "Invoice is saved!" );
             }
             else
             {
                 //TODO: make it two step
-                MessageBox.Show("Kindly Enter Proper details and try again");
+                MessageBox.Show( "Kindly Enter Proper details and try again" );
             }
         }
 
@@ -383,7 +390,7 @@ namespace AprajitaRetails.Forms
         {
             DataTable dt = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
 
-            if (dt.Rows.Count > 0)
+            if (dt.Rows.Count>0)
             {
                 return true;
             }
@@ -395,49 +402,49 @@ namespace AprajitaRetails.Forms
 
         private bool ValidateInvoice( )
         {
-            if (CBInvoiceNo.Text == "")
+            if (CBInvoiceNo.Text=="")
             {
                 CBInvoiceNo.Focus();
-                MessageBox.Show("Invoice No has not been generated, kindly enter Invoice No");
+                MessageBox.Show( "Invoice No has not been generated, kindly enter Invoice No" );
                 return false;
             }
-            if (CBMobileNo.Text == "" || TXTFirstName.Text == "")
+            if (CBMobileNo.Text==""||TXTFirstName.Text=="")
             {
                 CBMobileNo.Focus();
-                MessageBox.Show("Kindly enter Customer Details");
+                MessageBox.Show( "Kindly enter Customer Details" );
                 return false;
             }
-            if (RBDebitCard.Checked || RBCreditCard.Checked)
+            if (RBDebitCard.Checked||RBCreditCard.Checked)
             {
-                if (TXTCardAmount.Text == "")
+                if (TXTCardAmount.Text=="")
                 {
                     TXTCardAmount.Focus();
-                    MessageBox.Show("Enter Card Amount");
+                    MessageBox.Show( "Enter Card Amount" );
                     return false;
                 }
-                if (TXTAuthCode.Text == "")
+                if (TXTAuthCode.Text=="")
                 {
                     TXTAuthCode.Focus();
-                    MessageBox.Show("Enter AuthCode");
+                    MessageBox.Show( "Enter AuthCode" );
                     return false;
                 }
-                if (TXTFourDigit.Text == "")
+                if (TXTFourDigit.Text=="")
                 {
                     TXTFourDigit.Focus();
-                    MessageBox.Show("Enter Card Last Four Digit");
+                    MessageBox.Show( "Enter Card Last Four Digit" );
                     return false;
                 }
-                if (CBCardType.Text == "")
+                if (CBCardType.Text=="")
                 {
                     CBCardType.Focus();
-                    MessageBox.Show("Select Card type");
+                    MessageBox.Show( "Select Card type" );
                     return false;
                 }
             }
-            else if (TXTCashAmount.Text == "")
+            else if (TXTCashAmount.Text=="")
             {
                 TXTCashAmount.Focus();
-                MessageBox.Show("Enter Cash Amount");
+                MessageBox.Show( "Enter Cash Amount" );
                 return false;
             }
             return true;
@@ -447,7 +454,7 @@ namespace AprajitaRetails.Forms
         //Saving All Data to Database
         private int SaveAllData( SaleInvoice inv, SalePaymentDetails payments, DataTable saleItemDataTable )
         {
-            return sVM.SaveInvoiceData(inv, saleItemDataTable, payments);
+            return sVM.SaveInvoiceData( inv, saleItemDataTable, payments );
         }
 
         //Reading data for Entry
@@ -458,10 +465,14 @@ namespace AprajitaRetails.Forms
             SalePaymentDetails payment = ReadPaymentDetails();
             DataTable saleitems = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
 
-            if (inv != null && payment != null && saleitems != null)
-                return SaveAllData(inv, payment, saleitems);
+            if (inv!=null&&payment!=null&&saleitems!=null)
+            {
+                return SaveAllData( inv, payment, saleitems );
+            }
             else
+            {
                 return -1;
+            }
         }
 
         /**
@@ -474,33 +485,33 @@ namespace AprajitaRetails.Forms
         {
             SaleInvoice inv = new SaleInvoice()
             {
-                ID = -1,
-                InvoiceNo = CBInvoiceNo.Text,
-                OnDate = DTPInvoiceDate.Value,
-                TotalBillAmount = double.Parse(TXTGrandTotal.Text),
-                TotalDiscountAmount = double.Parse(TXTDiscount.Text),
-                TotalTaxAmount = double.Parse(TXTTaxAmount.Text),
-                TotalItems = vTotalItems,
-                TotalQty = vTotalQty,
-                RoundOffAmount = vRoundOffAmt,
-                CustomerId = vCustId
+                ID=-1,
+                InvoiceNo=CBInvoiceNo.Text,
+                OnDate=DTPInvoiceDate.Value,
+                TotalBillAmount=double.Parse( TXTGrandTotal.Text ),
+                TotalDiscountAmount=double.Parse( TXTDiscount.Text ),
+                TotalTaxAmount=double.Parse( TXTTaxAmount.Text ),
+                TotalItems=vTotalItems,
+                TotalQty=vTotalQty,
+                RoundOffAmount=vRoundOffAmt,
+                CustomerId=vCustId
             };
             return inv;
         }
 
         private int GetPaymentMode( )
         {
-            double cashA = Double.Parse(TXTCashAmount.Text);
-            double cardA = Double.Parse(TXTCardAmount.Text);
-            if (vPayMode == SalePayMode.Cash && cashA > 0 && cardA == 0)
+            double cashA = Double.Parse( TXTCashAmount.Text );
+            double cardA = Double.Parse( TXTCardAmount.Text );
+            if (vPayMode==SalePayMode.Cash&&cashA>0&&cardA==0)
             {
                 return 1;
             }
-            if (vPayMode == SalePayMode.Card && cardA > 0 && cashA == 0)
+            if (vPayMode==SalePayMode.Card&&cardA>0&&cashA==0)
             {
                 return 2;
             }
-            if (vPayMode == SalePayMode.Mix && cashA > 0 && cardA > 0)
+            if (vPayMode==SalePayMode.Mix&&cashA>0&&cardA>0)
             {
                 return 3;
             }
@@ -511,19 +522,19 @@ namespace AprajitaRetails.Forms
 
         private int GetCardType( string cardType )
         {
-            return (1 + Basic.FeildList(typeof(CardType)).IndexOf(cardType));
+            return (1+Basic.FeildList( typeof( CardType ) ).IndexOf( cardType ));
         }
 
         private CardPaymentDetails ReadCardDetails( )
         {
             CardPaymentDetails cardDetails = new CardPaymentDetails()
             {
-                ID = -1,
-                Amount = Double.Parse(TXTCardAmount.Text),
-                AuthCode = Int32.Parse(TXTAuthCode.Text),
-                CardType = GetCardType(CBCardType.Text),
-                InvoiceNo = CBInvoiceNo.Text,
-                LastDigit = Int32.Parse(TXTFourDigit.Text)
+                ID=-1,
+                Amount=Double.Parse( TXTCardAmount.Text ),
+                AuthCode=Int32.Parse( TXTAuthCode.Text ),
+                CardType=GetCardType( CBCardType.Text ),
+                InvoiceNo=CBInvoiceNo.Text,
+                LastDigit=Int32.Parse( TXTFourDigit.Text )
             };
             return cardDetails;
         }
@@ -532,15 +543,18 @@ namespace AprajitaRetails.Forms
         {
             SalePaymentDetails payDetails = new SalePaymentDetails()
             {
-                ID = -1,
-                CardAmount = double.Parse(TXTCardAmount.Text),
-                CashAmount = double.Parse(TXTCashAmount.Text),
-                InvoiceNo = CBInvoiceNo.Text,
-                PayMode = GetPaymentMode(),
-                CardDetails = null
+                ID=-1,
+                CardAmount=double.Parse( TXTCardAmount.Text ),
+                CashAmount=double.Parse( TXTCashAmount.Text ),
+                InvoiceNo=CBInvoiceNo.Text,
+                PayMode=GetPaymentMode(),
+                CardDetails=null
             };
-            if (vPayMode == SalePayMode.Card || vPayMode == SalePayMode.Mix)
-                payDetails.CardDetails = ReadCardDetails();
+            if (vPayMode==SalePayMode.Card||vPayMode==SalePayMode.Mix)
+            {
+                payDetails.CardDetails=ReadCardDetails();
+            }
+
             return payDetails;
         }
 
@@ -548,8 +562,8 @@ namespace AprajitaRetails.Forms
         //Startup Code
         private void SaleInvoiceForm_Activated( object sender, EventArgs e )
         {
-            sVM = new SaleInvoiceVM();
-            itemTable = new DataTable();
+            sVM=new SaleInvoiceVM();
+            itemTable=new DataTable();
         }
 
         private void SaleInvoiceForm_Load( object sender, EventArgs e )
@@ -576,47 +590,50 @@ namespace AprajitaRetails.Forms
 
         private void CBSalesman_SelectedIndexChanged( object sender, EventArgs e )
         {
-            UpdateSalesmanList(sVM.GetSalesmanCode(CBSalesman.Text));
+            UpdateSalesmanList( sVM.GetSalesmanCode( CBSalesman.Text ) );
         }
 
         private void CBMobileNo_SelectedIndexChanged( object sender, EventArgs e )
         {
-            UpdateCustomerField(sVM.GetCustomerInfo(CBMobileNo.Text));
+            UpdateCustomerField( sVM.GetCustomerInfo( CBMobileNo.Text ) );
         }
 
         private void RBCreditCard_CheckedChanged( object sender, EventArgs e )
         {
-            if (RBDebitCard.Checked || RBCreditCard.Checked)
+            if (RBDebitCard.Checked||RBCreditCard.Checked)
             {
-                TXTCardAmount.Text = TXTGrandTotal.Text;
-                TXTCashAmount.Text = "0.0";
-                vPayMode = SalePayMode.Card;
+                TXTCardAmount.Text=TXTGrandTotal.Text;
+                TXTCashAmount.Text="0.0";
+                vPayMode=SalePayMode.Card;
             }
         }
 
         private void RBDebitCard_CheckedChanged( object sender, EventArgs e )
         {
-            if (RBDebitCard.Checked || RBCreditCard.Checked)
+            if (RBDebitCard.Checked||RBCreditCard.Checked)
             {
-                TXTCardAmount.Text = TXTGrandTotal.Text;
-                TXTCashAmount.Text = "0.0";
-                vPayMode = SalePayMode.Card;
+                TXTCardAmount.Text=TXTGrandTotal.Text;
+                TXTCashAmount.Text="0.0";
+                vPayMode=SalePayMode.Card;
             }
         }
 
         private void TXTBarCode_TextChanged( object sender, EventArgs e )
         {
             // TODO: Check Constrainst so that only select Barcode will go
-            if (TXTBarCode.Text.Length >= 10)
-                GetItemDetais(TXTBarCode.Text);
-            TXTItemDiscount.Text = "0.00";
+            if (TXTBarCode.Text.Length>=10)
+            {
+                GetItemDetais( TXTBarCode.Text );
+            }
+
+            TXTItemDiscount.Text="0.00";
         }
 
         private void TXTCardAmount_MouseClick( object sender, MouseEventArgs e )
         {
-            TXTCardAmount.Text = TXTGrandTotal.Text;
-            TXTCashAmount.Text = "0";
-            vPayMode = SalePayMode.Cash;
+            TXTCardAmount.Text=TXTGrandTotal.Text;
+            TXTCashAmount.Text="0";
+            vPayMode=SalePayMode.Cash;
         }
 
         private void TXTCardAmount_TextChanged( object sender, EventArgs e )
@@ -628,11 +645,11 @@ namespace AprajitaRetails.Forms
 
         private void TXTCashAmount_MouseClick( object sender, MouseEventArgs e )
         {
-            TXTCashAmount.Text = TXTGrandTotal.Text;
-            TXTCardAmount.Text = "0";
-            vPayMode = SalePayMode.Cash;
-            RBCreditCard.Checked = false;
-            RBDebitCard.Checked = false;
+            TXTCashAmount.Text=TXTGrandTotal.Text;
+            TXTCardAmount.Text="0";
+            vPayMode=SalePayMode.Cash;
+            RBCreditCard.Checked=false;
+            RBDebitCard.Checked=false;
         }
 
         private void TXTCashAmount_TextChanged( object sender, EventArgs e )
@@ -645,20 +662,20 @@ namespace AprajitaRetails.Forms
 
         private void TXTQty_TextChanged( object sender, EventArgs e )
         {
-            if (Basic.IsDecimal(TXTQty.Text))
+            if (Basic.IsDecimal( TXTQty.Text ))
             {
-                double qty = double.Parse(TXTQty.Text);
-                if (qty <= vItem.Qty)
+                double qty = double.Parse( TXTQty.Text );
+                if (qty<=vItem.Qty)
                 {
-                    double rate = double.Parse(TXTRate.Text);
-                    double amts = rate * qty;
-                    TXTAmount.Text = String.Format("{0}", amts);
+                    double rate = double.Parse( TXTRate.Text );
+                    double amts = rate*qty;
+                    TXTAmount.Text=String.Format( "{0}", amts );
                 }
                 else
                 {
-                    TXTQty.Text = "" + vItem.Qty;
+                    TXTQty.Text=""+vItem.Qty;
 
-                    MessageBox.Show("Quantity should be equal or lesser than " + vItem.Qty);
+                    MessageBox.Show( "Quantity should be equal or lesser than "+vItem.Qty );
                 }
             }
         }
@@ -668,13 +685,13 @@ namespace AprajitaRetails.Forms
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
             {
-                cb.Text = "Print Invoice On";
-                wantToPrint = true;
+                cb.Text="Print Invoice On";
+                wantToPrint=true;
             }
             if (!cb.Checked)
             {
-                cb.Text = "Print Invoice Off";
-                wantToPrint = false;
+                cb.Text="Print Invoice Off";
+                wantToPrint=false;
             }
         }
 
@@ -683,33 +700,35 @@ namespace AprajitaRetails.Forms
         // UI Update and refresh Section
         private void UpdateCustomerField( SortedDictionary<string, string> cinfo )
         {
-            if (cinfo != null && cinfo.Count > 0)
+            if (cinfo!=null&&cinfo.Count>0)
             {
                 SortedDictionary<string, string> cust = cinfo;
-                TXTFirstName.Text = cust["FirstName"];
-                TXTLastName.Text = cust["LastName"];
-                vCustId = Basic.ToInt(cust["ID"]);
-                if (vReciptDetails != null)
-                    this.vReciptDetails.CustomerName = cust["FirstName"] + cust["LastName"];
+                TXTFirstName.Text=cust["FirstName"];
+                TXTLastName.Text=cust["LastName"];
+                vCustId=Basic.ToInt( cust["ID"] );
+                if (vReciptDetails!=null)
+                {
+                    this.vReciptDetails.CustomerName=cust["FirstName"]+cust["LastName"];
+                }
             }
         }
 
         private void UpdateSaleUI( string invoiceNo )
         {
-            SortedDictionary<string, string> saleInfo = sVM.GetInvoiceDetails(invoiceNo);
-            if (saleInfo != null && saleInfo.Count > 0)
+            SortedDictionary<string, string> saleInfo = sVM.GetInvoiceDetails( invoiceNo );
+            if (saleInfo!=null&&saleInfo.Count>0)
             {
-                CBMobileNo.Text = saleInfo["MobileNo"];
-                TXTFirstName.Text = saleInfo["FirstName"];
-                TXTLastName.Text = saleInfo["LastName"];
-                TXTTaxAmount.Text = saleInfo["TaxAmount"];
-                TXTSubTotal.Text = saleInfo["SubTotal"];
-                TXTGrandTotal.Text = saleInfo["GrandTotal"];
-                TXTAuthCode.Text = saleInfo["AuthCode"];
-                TXTCardAmount.Text = saleInfo["CardAmount"];
-                TXTCashAmount.Text = saleInfo["CashAmount"];
-                TXTDiscount.Text = saleInfo["Discount"];
-                TXTFourDigit.Text = saleInfo["FourDigit"];
+                CBMobileNo.Text=saleInfo["MobileNo"];
+                TXTFirstName.Text=saleInfo["FirstName"];
+                TXTLastName.Text=saleInfo["LastName"];
+                TXTTaxAmount.Text=saleInfo["TaxAmount"];
+                TXTSubTotal.Text=saleInfo["SubTotal"];
+                TXTGrandTotal.Text=saleInfo["GrandTotal"];
+                TXTAuthCode.Text=saleInfo["AuthCode"];
+                TXTCardAmount.Text=saleInfo["CardAmount"];
+                TXTCashAmount.Text=saleInfo["CashAmount"];
+                TXTDiscount.Text=saleInfo["Discount"];
+                TXTFourDigit.Text=saleInfo["FourDigit"];
             }
         }
 
@@ -718,42 +737,42 @@ namespace AprajitaRetails.Forms
         //Print Invoice Section
         private void InitPrintInvoice( )
         {   //TODO: Print Invoice
-            vReciptHeader = new ReceiptHeader();
-            vReciptFooter = new ReceiptFooter();
-            vReciptDetails = new ReceiptDetails();
-            vReciptItems = new List<ReceiptItemDetails>();
-            vReciptItemTotal = new ReceiptItemTotal();
-            CurrentSize = MinimumSize;
+            vReciptHeader=new ReceiptHeader();
+            vReciptFooter=new ReceiptFooter();
+            vReciptDetails=new ReceiptDetails();
+            vReciptItems=new List<ReceiptItemDetails>();
+            vReciptItemTotal=new ReceiptItemTotal();
+            // CurrentSize=MinimumSizes;
         }
 
         private void PrintRecipts( )
         {
-            PdfPrinter.PrintRecipts(vReciptHeader, vReciptFooter, vReciptItemTotal, vReciptDetails, vReciptItems);
+            PdfPrinter.PrintRecipts( vReciptHeader, vReciptFooter, vReciptItemTotal, vReciptDetails, vReciptItems );
         }
 
         //End of Invoice Print Section
         private void EnableEditUI( bool enable )
         {   // Enabling UI Elements for Adding or disabling when not requried
-            CBMobileNo.Enabled = enable;
-            TXTCashAmount.Enabled = enable;
-            TXTCardAmount.Enabled = enable;
-            TXTFourDigit.Enabled = enable;
-            CBCardType.Enabled = enable;
-            TXTAuthCode.Enabled = enable;
-            RBCreditCard.Enabled = enable;
-            RBDebitCard.Enabled = enable;
-            TXTBarCode.Enabled = enable;
-            CBSalesman.Enabled = enable;
-            TXTQty.Enabled = enable;
-            BTNItemAdd.Enabled = enable;
-            BTNDiscount.Enabled = enable;
+            CBMobileNo.Enabled=enable;
+            TXTCashAmount.Enabled=enable;
+            TXTCardAmount.Enabled=enable;
+            TXTFourDigit.Enabled=enable;
+            CBCardType.Enabled=enable;
+            TXTAuthCode.Enabled=enable;
+            RBCreditCard.Enabled=enable;
+            RBDebitCard.Enabled=enable;
+            TXTBarCode.Enabled=enable;
+            CBSalesman.Enabled=enable;
+            TXTQty.Enabled=enable;
+            BTNItemAdd.Enabled=enable;
+            BTNDiscount.Enabled=enable;
         }
 
         private void BTNUpdate_Click( object sender, EventArgs e )
         {
             //TODO: Implements Update
 
-            MessageBox.Show("You are not allowed to update record");
+            MessageBox.Show( "You are not allowed to update record" );
         }
     }
 }

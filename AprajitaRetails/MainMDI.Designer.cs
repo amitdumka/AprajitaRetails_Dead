@@ -73,6 +73,8 @@
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,10 +99,7 @@
             this.TSBManualInvoice = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStripPanelItem1 = new Syncfusion.Windows.Forms.Tools.StatusStripPanelItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.startServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -148,7 +147,7 @@
             this.exitToolStripMenuItem});
             this.MainMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(81, 38);
+            this.MainMenu.Size = new System.Drawing.Size(81, 36);
             this.MainMenu.Text = "&Main";
             // 
             // TSMIDailySale
@@ -260,7 +259,7 @@
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customersDetailToolStripMenuItem});
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(140, 38);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(140, 36);
             this.toolStripMenuItem6.Text = "Customers";
             // 
             // customersDetailToolStripMenuItem
@@ -277,7 +276,7 @@
             this.stockInwardToolStripMenuItem,
             this.purchaseInvoiceToolStripMenuItem});
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(122, 38);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(122, 36);
             this.toolStripMenuItem9.Text = "Purchase";
             // 
             // stockInwardToolStripMenuItem
@@ -303,7 +302,7 @@
             this.attendenceToolStripMenuItem,
             this.salaryToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(142, 38);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(142, 36);
             this.toolStripMenuItem4.Text = "Employees";
             // 
             // payRollToolStripMenuItem
@@ -364,7 +363,7 @@
             this.uploadPurchaseInwardToolStripMenuItem,
             this.uploadVoygerDataToolStripMenuItem});
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(97, 38);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(97, 36);
             this.toolStripMenuItem5.Text = "Admin";
             // 
             // updateEmployeeToolStripMenuItem
@@ -420,7 +419,7 @@
             this.toolBarToolStripMenuItem,
             this.statusBarToolStripMenuItem});
             this.viewMenu.Name = "viewMenu";
-            this.viewMenu.Size = new System.Drawing.Size(78, 38);
+            this.viewMenu.Size = new System.Drawing.Size(78, 36);
             this.viewMenu.Text = "&View";
             // 
             // toolBarToolStripMenuItem
@@ -456,8 +455,22 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(245, 38);
             this.optionsToolStripMenuItem.Text = "&Options";
+            // 
+            // startServiceToolStripMenuItem
+            // 
+            this.startServiceToolStripMenuItem.Name = "startServiceToolStripMenuItem";
+            this.startServiceToolStripMenuItem.Size = new System.Drawing.Size(245, 38);
+            this.startServiceToolStripMenuItem.Text = "Start Service";
+            this.startServiceToolStripMenuItem.Click += new System.EventHandler(this.startServiceToolStripMenuItem_Click);
+            // 
+            // stopServiceToolStripMenuItem
+            // 
+            this.stopServiceToolStripMenuItem.Name = "stopServiceToolStripMenuItem";
+            this.stopServiceToolStripMenuItem.Size = new System.Drawing.Size(245, 38);
+            this.stopServiceToolStripMenuItem.Text = "Stop Service";
+            this.stopServiceToolStripMenuItem.Click += new System.EventHandler(this.stopServiceToolStripMenuItem_Click);
             // 
             // windowsMenu
             // 
@@ -469,7 +482,7 @@
             this.closeAllToolStripMenuItem,
             this.arrangeIconsToolStripMenuItem});
             this.windowsMenu.Name = "windowsMenu";
-            this.windowsMenu.Size = new System.Drawing.Size(124, 38);
+            this.windowsMenu.Size = new System.Drawing.Size(124, 36);
             this.windowsMenu.Text = "&Windows";
             // 
             // newWindowToolStripMenuItem
@@ -522,7 +535,7 @@
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(77, 38);
+            this.helpMenu.Size = new System.Drawing.Size(77, 36);
             this.helpMenu.Text = "&Help";
             // 
             // contentsToolStripMenuItem
@@ -537,7 +550,7 @@
             this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
             this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(332, 46);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(303, 38);
             this.indexToolStripMenuItem.Text = "&Index";
             // 
             // searchToolStripMenuItem
@@ -652,12 +665,11 @@
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.statusStripPanelItem1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 827);
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 826);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(3, 0, 30, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1783, 37);
+            this.statusStrip.Size = new System.Drawing.Size(1783, 38);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             this.statusStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip_ItemClicked);
@@ -667,33 +679,8 @@
             this.toolStripStatusLabel.AutoToolTip = true;
             this.toolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(79, 32);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(79, 33);
             this.toolStripStatusLabel.Text = "Status";
-            // 
-            // statusStripPanelItem1
-            // 
-            this.statusStripPanelItem1.CausesValidation = false;
-            this.statusStripPanelItem1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.statusStripPanelItem1.Margin = new System.Windows.Forms.Padding(0, 4, 0, 2);
-            this.statusStripPanelItem1.Name = "statusStripPanelItem1";
-            this.statusStripPanelItem1.Size = new System.Drawing.Size(23, 31);
-            this.statusStripPanelItem1.Text = "Testing Module";
-            this.statusStripPanelItem1.Transparent = true;
-            // 
-            // startServiceToolStripMenuItem
-            // 
-            this.startServiceToolStripMenuItem.Name = "startServiceToolStripMenuItem";
-            this.startServiceToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
-            this.startServiceToolStripMenuItem.Text = "Start Service";
-            this.startServiceToolStripMenuItem.Click += new System.EventHandler(this.startServiceToolStripMenuItem_Click);
-            // 
-            // stopServiceToolStripMenuItem
-            // 
-            this.stopServiceToolStripMenuItem.Name = "stopServiceToolStripMenuItem";
-            this.stopServiceToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
-            this.stopServiceToolStripMenuItem.Text = "Stop Service";
-            this.stopServiceToolStripMenuItem.Click += new System.EventHandler(this.stopServiceToolStripMenuItem_Click);
-
             // 
             // MainMDI
             // 
@@ -710,7 +697,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainMDI";
             this.Text = "AprajitaRetails:The ArvindStore";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -796,7 +783,6 @@
         private System.Windows.Forms.ToolStripMenuItem uploadVoygerDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton TSBCustomer;
         private System.Windows.Forms.ToolStripButton TSBManualInvoice;
-        private Syncfusion.Windows.Forms.Tools.StatusStripPanelItem statusStripPanelItem1;
         private System.Windows.Forms.ToolStripMenuItem startServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopServiceToolStripMenuItem;
     }

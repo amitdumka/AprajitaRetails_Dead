@@ -1,4 +1,4 @@
-﻿using AprajitaRetailsDataBase.CrossLinkedDataSet;
+﻿using AprajitaRetailsDataBase.DataTypes;
 using AprajitaRetailsDataBase.SqlDataBase.Data;
 using AprajitaRetailsDataBase.SqlDataBase.DataModel;
 using AprajitaRetailsDataBase.SqlDataBase.ViewModel;

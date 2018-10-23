@@ -221,6 +221,11 @@
     <Compile Include="DataBase\AprajitaRetails\Stock.cs" />
     <Compile Include="DataBase\AprajitaRetails\StockSale.cs" />
     <Compile Include="DataBase\AprajitaRetails\User.cs" />
+    <Compile Include="DataBase\Voyager\InsertDataLog.cs" />
+    <Compile Include="DataBase\Voyager\LineItem.cs" />
+    <Compile Include="DataBase\Voyager\VoyagerDB.cs" />
+    <Compile Include="DataBase\Voyager\VoyBill.cs" />
+    <Compile Include="DataBase\Voyager\VPaymentMode.cs" />
     <Compile Include="DataTypes\VoygerBill.cs" />
     <Compile Include="Data\AprajitaRetailsDB.cs" />
     <Compile Include="Data\HRMDB.cs" />
@@ -285,6 +290,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DAL\Voyager\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

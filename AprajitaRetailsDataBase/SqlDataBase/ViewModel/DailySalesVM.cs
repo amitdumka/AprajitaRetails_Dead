@@ -1,4 +1,4 @@
-﻿using AprajitaRetailsDataBase.CrossLinkedDataSet;
+﻿using AprajitaRetailsDataBase.DataTypes;
 using AprajitaRetailsDataBase.LinqDataBase;
 using AprajitaRetailsDataBase.SqlDataBase.Data;
 using AprajitaRetailsDataBase.SqlDataBase.DataModel;
@@ -133,11 +133,13 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
                 Console.WriteLine( "Found in PendingList:#"+voyBillList.Count );
                 foreach (var itemBill in voyBillList)
                 {
-                    SortedDictionary<string, string> a = new SortedDictionary<string, string>();
-                    a.Add( "InvoiceNo", itemBill.bill.BillNumber );
-                    a.Add( "InvoiceDate", itemBill.bill.BillTime.ToString() );
-                    a.Add( "Amount", itemBill.bill.BillGrossAmount.ToString() );
-                    a.Add( "ID", itemBill.bill.ID.ToString() );
+                    SortedDictionary<string, string> a = new SortedDictionary<string, string>
+                    {
+                        { "InvoiceNo", itemBill.bill.BillNumber },
+                        { "InvoiceDate", itemBill.bill.BillTime.ToString() },
+                        { "Amount", itemBill.bill.BillGrossAmount.ToString() },
+                        { "ID", itemBill.bill.ID.ToString() }
+                    };
                     list.Add( a );
                 }
             }
@@ -160,11 +162,6 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         }
 
         #endregion LinqSql
-
-        ~DailySalesVM( )
-        {
-            linqDB=null;
-        }
 
         public DailySalesVM( )
         {

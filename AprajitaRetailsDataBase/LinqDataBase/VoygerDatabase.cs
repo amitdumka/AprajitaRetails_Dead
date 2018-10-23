@@ -18,92 +18,96 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "VoygerDatabase")]
-public partial class VoygerDatabase : System.Data.Linq.DataContext
+namespace AprajitaRetailsDataBase.LinqDataBase
 {
-    private static string conStr = AppPathList.DataBaseDir + "\\VoygerDatabase.mdf";
-    private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 
-    #region Extensibility Method Definitions
-    partial void OnCreated( );
-    partial void InsertLineItems( LineItems instance );
-    partial void UpdateLineItems( LineItems instance );
-    partial void DeleteLineItems( LineItems instance );
-    partial void InsertVoyBill( VoyBill instance );
-    partial void UpdateVoyBill( VoyBill instance );
-    partial void DeleteVoyBill( VoyBill instance );
-    partial void InsertVPaymentMode( VPaymentMode instance );
-    partial void UpdateVPaymentMode( VPaymentMode instance );
-    partial void DeleteVPaymentMode( VPaymentMode instance );
-    partial void InsertInsertDataLog( InsertDataLog instance );
-    partial void UpdateInsertDataLog( InsertDataLog instance );
-    partial void DeleteInsertDataLog( InsertDataLog instance );
 
-    #endregion
-
-    /// <summary>
-    /// Created by Amit Kumar
-    /// </summary>
-    public VoygerDatabase() : base(conStr, mappingSource)
+    [global::System.Data.Linq.Mapping.DatabaseAttribute( Name = "VoygerDatabase" )]
+    public partial class VoygerDatabase : System.Data.Linq.DataContext
     {
-        OnCreated();
-    }
-    public VoygerDatabase( string connection ) :
-            base(connection, mappingSource)
-    {
-        OnCreated();
-    }
+        private static string conStr = AppPathList.DataBaseDir+"\\VoygerDatabase.mdf";
+        private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 
-    public VoygerDatabase( System.Data.IDbConnection connection ) :
-            base(connection, mappingSource)
-    {
-        OnCreated();
-    }
+        #region Extensibility Method Definitions
+        partial void OnCreated( );
+        partial void InsertLineItems( LineItems instance );
+        partial void UpdateLineItems( LineItems instance );
+        partial void DeleteLineItems( LineItems instance );
+        partial void InsertVoyBill( VoyBill instance );
+        partial void UpdateVoyBill( VoyBill instance );
+        partial void DeleteVoyBill( VoyBill instance );
+        partial void InsertVPaymentMode( VPaymentMode instance );
+        partial void UpdateVPaymentMode( VPaymentMode instance );
+        partial void DeleteVPaymentMode( VPaymentMode instance );
+        partial void InsertInsertDataLog( InsertDataLog instance );
+        partial void UpdateInsertDataLog( InsertDataLog instance );
+        partial void DeleteInsertDataLog( InsertDataLog instance );
 
-    public VoygerDatabase( string connection, System.Data.Linq.Mapping.MappingSource mappingSource ) :
-            base(connection, mappingSource)
-    {
-        OnCreated();
-    }
+        #endregion
 
-    public VoygerDatabase( System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource ) :
-            base(connection, mappingSource)
-    {
-        OnCreated();
-    }
-
-    public System.Data.Linq.Table<LineItems> LineItems
-    {
-        get
+        /// <summary>
+        /// Created by Amit Kumar
+        /// </summary>
+        public VoygerDatabase( ) : base( conStr, mappingSource )
         {
-            return this.GetTable<LineItems>();
+            OnCreated();
+        }
+        public VoygerDatabase( string connection ) :
+                base( connection, mappingSource )
+        {
+            OnCreated();
+        }
+
+        public VoygerDatabase( System.Data.IDbConnection connection ) :
+                base( connection, mappingSource )
+        {
+            OnCreated();
+        }
+
+        public VoygerDatabase( string connection, System.Data.Linq.Mapping.MappingSource mappingSource ) :
+                base( connection, mappingSource )
+        {
+            OnCreated();
+        }
+
+        public VoygerDatabase( System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource ) :
+                base( connection, mappingSource )
+        {
+            OnCreated();
+        }
+
+        public System.Data.Linq.Table<LineItems> LineItems
+        {
+            get
+            {
+                return this.GetTable<LineItems>();
+            }
+        }
+
+        public System.Data.Linq.Table<VoyBill> VoyBill
+        {
+            get
+            {
+                return this.GetTable<VoyBill>();
+            }
+        }
+
+        public System.Data.Linq.Table<VPaymentMode> VPaymentMode
+        {
+            get
+            {
+                return this.GetTable<VPaymentMode>();
+            }
+        }
+        public System.Data.Linq.Table<InsertDataLog> InsertDataLogs
+        {
+            get
+            {
+                return this.GetTable<InsertDataLog>();
+            }
         }
     }
-
-    public System.Data.Linq.Table<VoyBill> VoyBill
-    {
-        get
-        {
-            return this.GetTable<VoyBill>();
-        }
-    }
-
-    public System.Data.Linq.Table<VPaymentMode> VPaymentMode
-    {
-        get
-        {
-            return this.GetTable<VPaymentMode>();
-        }
-    }
-    public System.Data.Linq.Table<InsertDataLog> InsertDataLogs
-    {
-        get
-        {
-            return this.GetTable<InsertDataLog>();
-        }
-    }
-}
 
 #pragma warning restore 1591
 
+}

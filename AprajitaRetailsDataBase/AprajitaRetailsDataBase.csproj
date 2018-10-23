@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AprajitaRetailsDataBase</RootNamespace>
     <AssemblyName>AprajitaRetailsDataBase</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,6 +75,7 @@
     <Compile Include="Clients\Clients.cs" />
     <Compile Include="Clients\CurrentClient.cs" />
     <Compile Include="CrossLinkedDataSet\VoygerBill.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LinqDataBase\InsertDataLog.cs" />
     <Compile Include="LinqDataBase\LineItems.cs" />
     <Compile Include="LinqDataBase\LinqDatabase.cs" />

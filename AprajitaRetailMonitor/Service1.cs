@@ -8,7 +8,8 @@ namespace AprajitaRetailMonitor
     public partial class Service1 : ServiceBase
     {
         private System.Diagnostics.EventLog eventLog1;
-        private int eventId = 1;
+
+        //private int eventId = 1;
         public Watcher fileWatcher1;//, fileWatcher2;
 
         public enum ServiceState
@@ -22,7 +23,7 @@ namespace AprajitaRetailMonitor
             SERVICE_PAUSED = 0x00000007,
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout( LayoutKind.Sequential )]
         public struct ServiceStatus
         {
             public int dwServiceType;
@@ -34,62 +35,68 @@ namespace AprajitaRetailMonitor
             public int dwWaitHint;
         };
 
-        [DllImport("advapi32.dll", SetLastError = true)]
+        [DllImport( "advapi32.dll", SetLastError = true )]
         private static extern bool SetServiceStatus( System.IntPtr handle, ref ServiceStatus serviceStatus );
 
         public Service1( )
         {
             InitializeComponent();
 
-            eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists("AprajitaRetailsMonitor"))
+            eventLog1=new System.Diagnostics.EventLog();
+            if (!System.Diagnostics.EventLog.SourceExists( "AprajitaRetailsMonitor" ))
             {
                 System.Diagnostics.EventLog.CreateEventSource(
-                    "AprajitaRetailsMonitor", "AprajitaRetailsLog");
+                    "AprajitaRetailsMonitor", "AprajitaRetailsLog" );
             }
-            eventLog1.Source = "AprajitaRetailsMonitor";
-            eventLog1.Log = "AprajitaRetailsLog";
-            fileWatcher1 = new Watcher(eventLog1);
+            eventLog1.Source="AprajitaRetailsMonitor";
+            eventLog1.Log="AprajitaRetailsLog";
+            fileWatcher1=new Watcher( eventLog1 );
             //fileWatcher2 = new Watcher(eventLog1);
             if (!SetUpDataBase.IsApplicationDirPresent())
+            {
                 SetUpDataBase.CreateApplicationDir();
+            }
         }
 
         protected override void OnStart( string[] args )
         {
             // Update the service state to Start Pending.
-            ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            serviceStatus.dwWaitHint = 100000;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            ServiceStatus serviceStatus = new ServiceStatus
+            {
+                dwCurrentState=ServiceState.SERVICE_START_PENDING,
+                dwWaitHint=100000
+            };
+            SetServiceStatus( this.ServiceHandle, ref serviceStatus );
 
-            eventLog1.WriteEntry("In OnStart");
+            eventLog1.WriteEntry( "In OnStart" );
 
-            fileWatcher1.Watch(PathList.InvoiceXMLFile, PathList.InvoiceXMLPath);
+            fileWatcher1.Watch( PathList.InvoiceXMLFile, PathList.InvoiceXMLPath );
             // fileWatcher2.Watch(PathList.TabletSaleXMLFile, PathList.TabletSaleXMLPath);
 
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            serviceStatus.dwCurrentState=ServiceState.SERVICE_RUNNING;
+            SetServiceStatus( this.ServiceHandle, ref serviceStatus );
         }
 
         protected override void OnStop( )
         {
             // Update the service state to Start Pending.
-            ServiceStatus serviceStatus = new ServiceStatus();
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            serviceStatus.dwWaitHint = 100000;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            eventLog1.WriteEntry("In OnStop");
+            ServiceStatus serviceStatus = new ServiceStatus
+            {
+                dwCurrentState=ServiceState.SERVICE_START_PENDING,
+                dwWaitHint=100000
+            };
+            SetServiceStatus( this.ServiceHandle, ref serviceStatus );
+            eventLog1.WriteEntry( "In OnStop" );
             //User code above line
 
             // Update the service state to Running.
-            serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+            serviceStatus.dwCurrentState=ServiceState.SERVICE_RUNNING;
+            SetServiceStatus( this.ServiceHandle, ref serviceStatus );
         }
 
         protected override void OnContinue( )
         {
-            eventLog1.WriteEntry("In OnContinue.");
+            eventLog1.WriteEntry( "In OnContinue." );
         }
     }
 

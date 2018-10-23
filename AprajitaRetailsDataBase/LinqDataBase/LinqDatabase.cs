@@ -4,7 +4,7 @@ using System.Data;
 
 namespace AprajitaRetailsDataBase.LinqDataBase
 {
-    public class LinqDatabase : IDisposable
+    public sealed class LinqDatabase : IDisposable
     {
         public VoygerDatabase db;
         private static string dbPathWithName = AppPathList.DataBaseDir+"\\"+DBNames.Voy+".mdf";
