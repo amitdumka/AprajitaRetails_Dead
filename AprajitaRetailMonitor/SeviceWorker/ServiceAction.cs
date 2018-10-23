@@ -11,12 +11,13 @@ namespace AprajitaRetailMonitor.SeviceWorker
 
         public static void InsertInvoiceXML( string filename, System.Diagnostics.EventLog eventLog )
         {
-            t = Task.Run(( ) => ProcessInvoiceXML(filename));
+            LogEvent.WriteEvent( "insertinvoicexml" );
+            t=Task.Run( ( ) => ProcessInvoiceXML( filename ) );
         }
 
         public static void InsertInvoiceXML( string filename )
         {
-            t = Task.Run(( ) => ProcessInvoiceXML(filename));
+            t=Task.Run( ( ) => ProcessInvoiceXML( filename ) );
         }
 
         public static void InsertTabletBillXML( )
@@ -31,22 +32,23 @@ namespace AprajitaRetailMonitor.SeviceWorker
 
         private static void ProcessInvoiceXML( string invoiceXMLFile )
         {
-            VoygerBillWithLinq voygerBill = VoygerXMLReader.ReadInvoiceXML(invoiceXMLFile);
+            LogEvent.WriteEvent( "processinvoicexml" );
+            VoygerBillWithLinq voygerBill = VoygerXMLReader.ReadInvoiceXML( invoiceXMLFile );
+            LogEvent.WriteEvent( "voygerBill Readed" );
 
-            if (voygerBill != null)
+            if (voygerBill!=null)
             {
-                InsertData insertData = new InsertData();
-                insertData.InsertBillData(voygerBill);
+                LogEvent.WriteEvent( "voygerBill Readed and have data" );
+                InsertData.InsertBillData( voygerBill );
             }
             else
             {
-                LogEvent.WriteEvent("voygerBill Readed, and it is empty");
+                LogEvent.WriteEvent( "voygerBill Readed, and it is empty" );
                 //TODO: Raise Event  and store in database for futher intervention.
             }
-            LogEvent.WriteEvent("ProcessInvoiceXml is ened.#" + Watcher.NoOfEvent--);
+            LogEvent.WriteEvent( "ProcessInvoiceXml is ened.#"+Watcher.NoOfEvent );
             Watcher.NoOfEvent--;
-            LogEvent.WriteEvent("NoofEvent:"+Watcher.NoOfEvent);
-
+            LogEvent.WriteEvent( "NoofEvent:"+Watcher.NoOfEvent );
         }
     }
 }

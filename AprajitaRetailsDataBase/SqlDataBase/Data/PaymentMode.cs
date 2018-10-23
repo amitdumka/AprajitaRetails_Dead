@@ -18,11 +18,11 @@
             string sMode = "Cash";
             switch (id)
             {
-                case 7:
+                case 1:
                     sMode = "Cash";
                     break;
 
-                case 1:
+                case 7:
                     sMode = "Cheque";
                     break;
 
@@ -67,11 +67,11 @@
             switch (name)
             {
                 case "Cash":
-                    sMode = 7;
+                    sMode = 1;
                     break;
 
                 case "Cheque":
-                    sMode = 1;
+                    sMode = 7;
                     break;
 
                 case "RTGS":

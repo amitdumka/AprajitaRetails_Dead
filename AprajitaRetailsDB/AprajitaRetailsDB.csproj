@@ -291,13 +291,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aprajitaRetails.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="aprajitaRetails_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>aprajitaRetails.mdf</DependentUpon>
-    </Content>
     <Content Include="DAL\AprajitaRetails\AprajitaRetails.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AprajitaRetails.edmx</DependentUpon>

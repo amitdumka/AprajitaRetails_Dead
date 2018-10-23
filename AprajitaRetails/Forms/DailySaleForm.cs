@@ -16,29 +16,29 @@ namespace AprajitaRetails.Forms
         public DailySaleForm( )
         {
             InitializeComponent();
-            Logs.LogMe("DailySale: Intizlition done");
-            viewModel = new DailySalesVM();
+            Logs.LogMe( "DailySale: Intizlition done" );
+            viewModel=new DailySalesVM();
         }
 
         private void LoadPaymentMode( )
         {
-            Logs.LogMe("DailySale:Loading Payment Mode ");
+            Logs.LogMe( "DailySale:Loading Payment Mode " );
             List<PaymentMode> lists = viewModel.GetPaymentTypes();
             foreach (PaymentMode item in lists)
             {
-                CBPaymentMode.Items.Add(item);
+                CBPaymentMode.Items.Add( item );
             }
 
-            Logs.LogMe("DailySale:PaymentMode Loading is Completed");
+            Logs.LogMe( "DailySale:PaymentMode Loading is Completed" );
         }
 
         private void BTNAdd_Click( object sender, EventArgs e )
         {
-            if (BTNAdd.Text == "Add")
+            if (BTNAdd.Text=="Add")
             {
                 PerformAdd();
             }
-            else if (BTNAdd.Text == "Save")
+            else if (BTNAdd.Text=="Save")
             {
                 PerformSave();
             }
@@ -46,10 +46,10 @@ namespace AprajitaRetails.Forms
 
         private void PerformAdd( )
         {
-            BTNAdd.Text = "Save";
-            Basic.ClearUIFields(TLPInvoiceDetails);
+            BTNAdd.Text="Save";
+            Basic.ClearUIFields( TLPInvoiceDetails );
             viewModel.AddData();
-            CKNewCustomer.Checked = false;
+            CKNewCustomer.Checked=false;
             TXTInvoiceNo.Focus();
         }
 
@@ -64,15 +64,15 @@ namespace AprajitaRetails.Forms
         {
             if (ValidateFileds())
             {
-                if (viewModel.SaveData(ReadFiled()))
+                if (viewModel.SaveData( ReadFiled() ))
                 {
-                    BTNAdd.Text = "Add";
-                    MessageBox.Show("Your Record got Save!");
+                    BTNAdd.Text="Add";
+                    MessageBox.Show( "Your Record got Save!" );
                     RefeshUI();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to save data, kindly chech and try again!");
+                    MessageBox.Show( "Failed to save data, kindly chech and try again!" );
                 }
             }
         }
@@ -82,18 +82,18 @@ namespace AprajitaRetails.Forms
             DailySaleDM data = new DailySaleDM()
             {
                 //TODO: No Need to Pass Customer Name, Only If new Customer is Clicked.
-                Amount = Double.Parse(TXTBillAmount.Text),
-                CustomerFullName = TXTCustomerName.Text,
-                Discount = Double.Parse(TXTDiscount.Text),
-                CustomerMobileNo = CBMobileNo.Text,
-                InvoiceNo = TXTInvoiceNo.Text,
-                Fabric = (int)NUDFabric.Value,
-                RMZ = (int)NUDRmz.Value,
-                Tailoring = (int)NUDTailoring.Value,
-                NewCustomer = Basic.ReadChechBox(CKNewCustomer),
-                PaymentMode = ((PaymentMode)CBPaymentMode.SelectedItem).ID,
-                SaleDate = DTPDate.Value,
-                ID = -1
+                Amount=Double.Parse( TXTBillAmount.Text ),
+                CustomerFullName=TXTCustomerName.Text,
+                Discount=Double.Parse( TXTDiscount.Text ),
+                CustomerMobileNo=CBMobileNo.Text,
+                InvoiceNo=TXTInvoiceNo.Text,
+                Fabric=(int)NUDFabric.Value,
+                RMZ=(int)NUDRmz.Value,
+                Tailoring=(int)NUDTailoring.Value,
+                NewCustomer=Basic.ReadChechBox( CKNewCustomer ),
+                PaymentMode=((PaymentMode)CBPaymentMode.SelectedItem).ID,
+                SaleDate=DTPDate.Value,
+                ID=-1
             };
             return data;
         }
@@ -101,20 +101,23 @@ namespace AprajitaRetails.Forms
         private bool ValidateFileds( )
         {
             bool status = false;
-            status = Basic.ValidateFormUI(TLPInvoiceDetails);
-            if (!status)
-                return false;
-            status = Basic.IsNumeric(TXTBillAmount.Text);
+            status=Basic.ValidateFormUI( TLPInvoiceDetails );
             if (!status)
             {
-                MessageBox.Show("Bill Amount takes oly Numeric values");
                 return false;
             }
 
-            status = Basic.IsNumeric(TXTDiscount.Text);
+            status=Basic.IsNumeric( TXTBillAmount.Text );
             if (!status)
             {
-                MessageBox.Show("Discount Amount takes oly Numeric values");
+                MessageBox.Show( "Bill Amount takes oly Numeric values" );
+                return false;
+            }
+
+            status=Basic.IsNumeric( TXTDiscount.Text );
+            if (!status)
+            {
+                MessageBox.Show( "Discount Amount takes oly Numeric values" );
                 return false;
             }
 
@@ -123,26 +126,38 @@ namespace AprajitaRetails.Forms
 
         private void Cancel_Click( object sender, EventArgs e )
         {
-            if (BTNAdd.Text == "Save")
-                BTNAdd.Text = "Add";
-            if (BTNUpdate.Text == "Save")
-                BTNUpdate.Text = "Update";
-            Basic.ClearUIFields(TLPInvoiceDetails);
+            if (BTNAdd.Text=="Save")
+            {
+                BTNAdd.Text="Add";
+            }
+
+            if (BTNUpdate.Text=="Save")
+            {
+                BTNUpdate.Text="Update";
+            }
+
+            Basic.ClearUIFields( TLPInvoiceDetails );
         }
 
         public void RefreshSaleInfo( )
         {
             SaleInfo info = viewModel.GetSaleInfo();
-            if (info != null)
+            if (info!=null)
             {
-                if (info.TodaySale != null)
-                    LBTodaySale.Text = info.TodaySale;
+                if (info.TodaySale!=null)
+                {
+                    LBTodaySale.Text=info.TodaySale;
+                }
 
-                if (info.MonthlySale != null)
-                    LBMontlySale.Text = info.MonthlySale;
+                if (info.MonthlySale!=null)
+                {
+                    LBMontlySale.Text=info.MonthlySale;
+                }
 
-                if (info.YearlySale != null)
-                    LBYearlySale.Text = info.YearlySale;
+                if (info.YearlySale!=null)
+                {
+                    LBYearlySale.Text=info.YearlySale;
+                }
             }
         }
 
@@ -161,74 +176,77 @@ namespace AprajitaRetails.Forms
         {
             CustomersForm c = new CustomersForm()
             {
-                IsDailog = true
+                IsDailog=true
             };
             DialogResult r = c.ShowDialog();
-            if (c.DialogResult == DialogResult.OK)
+            if (c.DialogResult==DialogResult.OK)
             {
-                TXTCustomerName.Text = c.CustomerFirstName + " " + c.CustomerLastName;
-                CBMobileNo.Text = c.CustomerMobileNo;
+                TXTCustomerName.Text=c.CustomerFirstName+" "+c.CustomerLastName;
+                CBMobileNo.Text=c.CustomerMobileNo;
             }
 
             c.Dispose();
-            CKNewCustomer.Checked = true;
+            CKNewCustomer.Checked=true;
         }
 
         private void CBMobileNo_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (CBMobileNo.Text.Length >= 10)
+            if (CBMobileNo.Text.Length>=10)
             {
                 string mob = CBMobileNo.Text;
-                Logs.LogMe("MobileN0: " + mob);
-                if (!mob.StartsWith("91"))
-                    mob = "91" + mob;
-                TXTCustomerName.Text = viewModel.GetCustomerName(mob);
+                Logs.LogMe( "MobileN0: "+mob );
+                if (!mob.StartsWith( "91" ))
+                {
+                    mob="91"+mob;
+                }
+
+                TXTCustomerName.Text=viewModel.GetCustomerName( mob );
             }
             else
             {
-                Logs.LogMe("Less: ");
+                Logs.LogMe( "Less: " );
             }
         }
 
         public void LoadMobileNo( )
         {
             List<string> list = viewModel.GetMobileNoList();
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i<list.Count; i++)
             {
-                CBMobileNo.Items.Add(list[i]);
+                CBMobileNo.Items.Add( list[i] );
             }
         }
 
         private void ShowDailySaleData( DailySale saleD )
         {
-            TXTBillAmount.Text = "" + saleD.Amount;
+            TXTBillAmount.Text=""+saleD.Amount;
 
-            string s1 = viewModel.GetCustomerName(saleD.CustomerID);
-            string[] s = s1.Split(' ');
-            CBMobileNo.Text = s[0];
-            s[0] = "";
-            TXTCustomerName.Text = String.Join(" ", s);
-            Logs.LogMe("CustN=" + s1);
+            string s1 = viewModel.GetCustomerName( saleD.CustomerID );
+            string[] s = s1.Split( ' ' );
+            CBMobileNo.Text=s[0];
+            s[0]="";
+            TXTCustomerName.Text=String.Join( " ", s );
+            Logs.LogMe( "CustN="+s1 );
             //TODO: get Customer Details from Customer Table
-            TXTDiscount.Text = "" + saleD.Discount;
-            NUDFabric.Text = "" + saleD.Fabric;
-            TXTInvoiceNo.Text = saleD.InvoiceNo;
-            CBPaymentMode.SelectedIndex = saleD.PaymentMode - 1;
-            NUDRmz.Text = "" + saleD.RMZ;
-            DTPDate.Value = saleD.SaleDate;
-            NUDTailoring.Text = "" + saleD.Tailoring;
+            TXTDiscount.Text=""+saleD.Discount;
+            NUDFabric.Text=""+saleD.Fabric;
+            TXTInvoiceNo.Text=saleD.InvoiceNo;
+            CBPaymentMode.SelectedIndex=saleD.PaymentMode-1;
+            NUDRmz.Text=""+saleD.RMZ;
+            DTPDate.Value=saleD.SaleDate;
+            NUDTailoring.Text=""+saleD.Tailoring;
         }
 
         private void ListView1_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (BTNAdd.Text != "Save")
+            if (BTNAdd.Text!="Save")
             {
                 var item = LVSaleList.SelectedItems;
-                if (item.Count > 0)
+                if (item.Count>0)
                 {
                     string s = item[0].SubItems[0].Text;
                     //MessageBox.Show ("Selected Invocie No=" + s);
-                    ShowDailySaleData(viewModel.GetInvoiceDetails(s.Trim()));
+                    ShowDailySaleData( viewModel.GetInvoiceDetails( s.Trim() ) );
                 }
             }
         }
@@ -241,7 +259,7 @@ namespace AprajitaRetails.Forms
             {
                 string[] it = { item["InvoiceNo"], item["Amount"], item["ID"] };
 
-                LVSaleList.Items.Add(new ListViewItem(it));
+                LVSaleList.Items.Add( new ListViewItem( it ) );
             }
         }
 
@@ -254,14 +272,10 @@ namespace AprajitaRetails.Forms
 
         #region LinqSql
 
-       // private List<VoygerBill> allBills;
-
         private void ShowUnSaveInvoice( )
         {
-            //allBills = viewModel.GetAllVoyBills();
-
             List<SortedDictionary<string, string>> listItem = viewModel.GetPendingList();
-            if (listItem != null && listItem.Count > 0)
+            if (listItem!=null&&listItem.Count>0)
             {
                 LVPendingInvoice.Items.Clear();
 
@@ -269,51 +283,50 @@ namespace AprajitaRetails.Forms
                 {
                     string[] it = { item["InvoiceNo"], item["InvoiceDate"], item["Amount"], item["ID"] };
 
-                    LVPendingInvoice.Items.Add(new ListViewItem(it));
+                    LVPendingInvoice.Items.Add( new ListViewItem( it ) );
                 }
             }
             else
             {
-                if(listItem!=null)
-                Console.WriteLine("ListItem is empty.#" + listItem.Count);
+                if (listItem!=null)
+                {
+                    Console.WriteLine( "ListItem is empty.#"+listItem.Count );
+                }
             }
-            LVPendingInvoice.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            LVPendingInvoice.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            LVPendingInvoice.AutoResizeColumns( ColumnHeaderAutoResizeStyle.ColumnContent );
+            LVPendingInvoice.AutoResizeColumns( ColumnHeaderAutoResizeStyle.HeaderSize );
         }
 
         private void LVPendingInvoice_SelectedIndexChanged( object sender, EventArgs e )
         {
-            if (BTNAdd.Text == "Save")
+            if (BTNAdd.Text=="Save")
             {
                 var item = LVPendingInvoice.SelectedItems;
-                if (item.Count > 0)
+                if (item.Count>0)
                 {
-                    string s = item[0].SubItems[0].Text + " have ID: " + item[0].SubItems[3].Text;
-                    MessageBox.Show("Selected Invocie No=" + s);
-                    PopulateDailySaleFiels(short.Parse(item[0].SubItems[3].Text));
+                    string s = item[0].SubItems[0].Text+" have ID: "+item[0].SubItems[3].Text;
+                    MessageBox.Show( "Selected Invocie No="+s );
+                    PopulateDailySaleFiels( short.Parse( item[0].SubItems[3].Text ) );
                     //ShowDailySaleData(viewModel.GetInvoiceDetails(s.Trim()));
                 }
             }
         }
-        
-        private void PopulateDailySaleFiels(int id )
-        {
-            VoygerBill voygerBill = viewModel.GetVoyBillsByID(id);
-            TXTInvoiceNo.Text = voygerBill.bill.BillNumber;
-            TXTCustomerName.Text = voygerBill.bill.CustomerName;
-            TXTBillAmount.Text = ""+voygerBill.bill.BillAmount;
-            TXTDiscount.Text = "" + voygerBill.bill.BillDiscount;
-            CBMobileNo.Text = voygerBill.bill.CustomerMobile;
-            CBPaymentMode.Text = voygerBill.payModes[0].PaymentMode;
-        }
 
+        private void PopulateDailySaleFiels( int id )
+        {
+            VoygerBill voygerBill = viewModel.GetVoyBillsByID( id );
+            TXTInvoiceNo.Text=voygerBill.bill.BillNumber;
+            TXTCustomerName.Text=voygerBill.bill.CustomerName;
+            TXTBillAmount.Text=""+voygerBill.bill.BillAmount;
+            TXTDiscount.Text=""+voygerBill.bill.BillDiscount;
+            CBMobileNo.Text=voygerBill.bill.CustomerMobile;
+            CBPaymentMode.Text=voygerBill.payModes[0].PaymentMode;
+        }
 
         #endregion LinqSql
 
         private void BTNUpdate_Click( object sender, EventArgs e )
         {
-
-
         }
     }
 }
