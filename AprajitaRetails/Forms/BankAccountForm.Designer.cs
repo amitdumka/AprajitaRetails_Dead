@@ -28,142 +28,278 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankAccountForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.GBControls = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.BTNAdd = new System.Windows.Forms.Button();
-            this.BTNDelete = new System.Windows.Forms.Button();
-            this.Cancel = new System.Windows.Forms.Button();
-            this.BTNUpdate = new System.Windows.Forms.Button();
+            this.bankDataGridView = new System.Windows.Forms.DataGridView();
+            this.bankBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bankBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bankBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
-            this.GBControls.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bankDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankBindingNavigator)).BeginInit();
+            this.bankBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(48, 39);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.bankDataGridView);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(467, 380);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 10, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1526, 659);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Banks";
             // 
-            // tableLayoutPanel1
+            // bankDataGridView
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 26);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(463, 352);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.bankDataGridView.AllowUserToOrderColumns = true;
+            this.bankDataGridView.AutoGenerateColumns = false;
+            this.bankDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.bankDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.bankDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bankDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.bankDataGridView.DataSource = this.bankBindingSource;
+            this.bankDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bankDataGridView.Location = new System.Drawing.Point(2, 34);
+            this.bankDataGridView.Name = "bankDataGridView";
+            this.bankDataGridView.RowTemplate.Height = 33;
+            this.bankDataGridView.Size = new System.Drawing.Size(1522, 623);
+            this.bankDataGridView.TabIndex = 0;
+            this.bankDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bankDataGridView_CellContentClick);
             // 
-            // GBControls
+            // bankBindingSource
             // 
-            this.GBControls.AutoSize = true;
-            this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(48, 477);
-            this.GBControls.Margin = new System.Windows.Forms.Padding(4, 8, 4, 4);
-            this.GBControls.Name = "GBControls";
-            this.GBControls.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.GBControls.Size = new System.Drawing.Size(593, 92);
-            this.GBControls.TabIndex = 6;
-            this.GBControls.TabStop = false;
-            this.GBControls.Text = "Controls";
+            this.bankBindingSource.DataSource = typeof(AprajitaRetailsDB.DataBase.AprajitaRetails.Bank);
             // 
-            // flowLayoutPanel2
+            // bankBindingNavigator
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.Controls.Add(this.BTNAdd);
-            this.flowLayoutPanel2.Controls.Add(this.BTNDelete);
-            this.flowLayoutPanel2.Controls.Add(this.Cancel);
-            this.flowLayoutPanel2.Controls.Add(this.BTNUpdate);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 28);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(585, 60);
-            this.flowLayoutPanel2.TabIndex = 0;
+            this.bankBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bankBindingNavigator.BindingSource = this.bankBindingSource;
+            this.bankBindingNavigator.CanOverflow = false;
+            this.bankBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.bankBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bankBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bankBindingNavigator.GripMargin = new System.Windows.Forms.Padding(2, 2, 2, 20);
+            this.bankBindingNavigator.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.bankBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.bankBindingNavigatorSaveItem});
+            this.bankBindingNavigator.Location = new System.Drawing.Point(0, 620);
+            this.bankBindingNavigator.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.bankBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bankBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bankBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bankBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bankBindingNavigator.Name = "bankBindingNavigator";
+            this.bankBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.bankBindingNavigator.Size = new System.Drawing.Size(1526, 39);
+            this.bankBindingNavigator.TabIndex = 7;
+            this.bankBindingNavigator.Text = "bindingNavigator1";
             // 
-            // BTNAdd
+            // bindingNavigatorAddNewItem
             // 
-            this.BTNAdd.AutoSize = true;
-            this.BTNAdd.Location = new System.Drawing.Point(4, 4);
-            this.BTNAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BTNAdd.Name = "BTNAdd";
-            this.BTNAdd.Size = new System.Drawing.Size(101, 52);
-            this.BTNAdd.TabIndex = 4;
-            this.BTNAdd.Text = "Add";
-            this.BTNAdd.UseVisualStyleBackColor = true;
-            this.BTNAdd.Click += new System.EventHandler(this.BTNAdd_Click);
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
-            // BTNDelete
+            // bindingNavigatorCountItem
             // 
-            this.BTNDelete.AutoSize = true;
-            this.BTNDelete.Location = new System.Drawing.Point(113, 4);
-            this.BTNDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BTNDelete.Name = "BTNDelete";
-            this.BTNDelete.Size = new System.Drawing.Size(144, 52);
-            this.BTNDelete.TabIndex = 6;
-            this.BTNDelete.Text = "Delete";
-            this.BTNDelete.UseVisualStyleBackColor = true;
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(71, 36);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
-            // Cancel
+            // bindingNavigatorDeleteItem
             // 
-            this.Cancel.AutoSize = true;
-            this.Cancel.Location = new System.Drawing.Point(265, 4);
-            this.Cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(152, 52);
-            this.Cancel.TabIndex = 7;
-            this.Cancel.Text = "Cancel";
-            this.Cancel.UseVisualStyleBackColor = true;
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
-            // BTNUpdate
+            // bindingNavigatorMoveFirstItem
             // 
-            this.BTNUpdate.AutoSize = true;
-            this.BTNUpdate.Location = new System.Drawing.Point(425, 4);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BTNUpdate.Name = "BTNUpdate";
-            this.BTNUpdate.Size = new System.Drawing.Size(156, 52);
-            this.BTNUpdate.TabIndex = 5;
-            this.BTNUpdate.Text = "Update";
-            this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 39);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 39);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(36, 36);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // bankBindingNavigatorSaveItem
+            // 
+            this.bankBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bankBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("bankBindingNavigatorSaveItem.Image")));
+            this.bankBindingNavigatorSaveItem.Name = "bankBindingNavigatorSaveItem";
+            this.bankBindingNavigatorSaveItem.Size = new System.Drawing.Size(36, 36);
+            this.bankBindingNavigatorSaveItem.Text = "Save Data";
+            this.bankBindingNavigatorSaveItem.Click += new System.EventHandler(this.bankBindingNavigatorSaveItem_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "BankID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "BankID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 126;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "BankName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "BankName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 162;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "AccountNo";
+            this.dataGridViewTextBoxColumn3.HeaderText = "AccountNo";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 162;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "AccountType";
+            this.dataGridViewTextBoxColumn4.HeaderText = "AccountType";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 183;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "IFSCCode";
+            this.dataGridViewTextBoxColumn5.HeaderText = "IFSCCode";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 155;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Branch";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Branch";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "BranchCity";
+            this.dataGridViewTextBoxColumn7.HeaderText = "BranchCity";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 162;
             // 
             // BankAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 659);
-            this.Controls.Add(this.GBControls);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1526, 659);
+            this.Controls.Add(this.bankBindingNavigator);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BankAccountForm";
             this.Text = "BankAccountForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.BankAccountForm_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.GBControls.ResumeLayout(false);
-            this.GBControls.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bankDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankBindingNavigator)).EndInit();
+            this.bankBindingNavigator.ResumeLayout(false);
+            this.bankBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,12 +308,27 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox GBControls;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button BTNAdd;
-        private System.Windows.Forms.Button BTNDelete;
-        private System.Windows.Forms.Button Cancel;
-        private System.Windows.Forms.Button BTNUpdate;
+        private System.Windows.Forms.DataGridView bankDataGridView;
+        private System.Windows.Forms.BindingSource bankBindingSource;
+        private System.Windows.Forms.BindingNavigator bankBindingNavigator;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton bankBindingNavigatorSaveItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

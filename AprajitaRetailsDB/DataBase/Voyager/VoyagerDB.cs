@@ -8,7 +8,7 @@ namespace AprajitaRetailsDB.DataBase.Voyager
     public partial class VoyagerDB : DbContext
     {
         public VoyagerDB( )
-            : base( "name=VoyagerDB" )
+            : base( "VoyagerDB" )
         {
         }
 

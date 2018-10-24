@@ -5,10 +5,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class AprajitaRetailsHRM : DbContext
+    public partial class AprajitaRetailsHRMDB : DbContext
     {
-        public AprajitaRetailsHRM( )
-            : base( "name=AprajitaRetailsHRMDataBaseConStr" )
+        public AprajitaRetailsHRMDB( )
+            : base( "AprajitaRetailsHRMDB" )
         {
         }
 

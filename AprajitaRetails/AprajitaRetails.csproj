@@ -153,6 +153,18 @@
     <Reference Include="Svg, Version=2.2.1.39233, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
       <HintPath>..\packages\Stimulsoft.Reports.Net.2018.3.2\lib\net40\Svg.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Core.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Data.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Grid.Base, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Grid.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.GridCommon.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.SfInput.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SfListView.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Shared.Base, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Shared.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Tools.Base, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Tools.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
@@ -161,7 +173,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Extensions" />
@@ -176,6 +190,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +245,12 @@
     </Compile>
     <Compile Include="Forms\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Telik\RadAboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Telik\RadAboutBox1.Designer.cs">
+      <DependentUpon>RadAboutBox1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UploaderForm.cs">
       <SubType>Form</SubType>
@@ -359,12 +383,16 @@
     <EmbeddedResource Include="Forms\SaleInvoiceForm.resx">
       <DependentUpon>SaleInvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Telik\RadAboutBox1.resx">
+      <DependentUpon>RadAboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UploaderForm.resx">
       <DependentUpon>UploaderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMDI.resx">
       <DependentUpon>MainMDI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -381,6 +409,8 @@
     </EmbeddedResource>
     <None Include="AprajitaRetails_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Bank.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.BankDetail.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -477,6 +507,10 @@
       <Project>{51052987-97f8-4301-a381-8dd7baebdf9d}</Project>
       <Name>AprajitaRetailsDataBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AprajitaRetailsDB\AprajitaRetailsDB.csproj">
+      <Project>{504c9bf6-ceda-44d2-a98c-daa24b146086}</Project>
+      <Name>AprajitaRetailsDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
       <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
       <Name>CyberN Utility</Name>
@@ -511,6 +545,7 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

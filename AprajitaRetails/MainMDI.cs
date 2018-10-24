@@ -1,4 +1,5 @@
 ﻿using AprajitaRetails.Forms;
+using AprajitaRetails.Forms.Telik;
 using AprajitaRetails.Ops;
 using AprajitaRetailsDataBase.Client;
 using System;
@@ -18,7 +19,7 @@ namespace AprajitaRetails
         private void ShowNewForm( Form childForm )
         {
             // Form childForm = new Form ();
-            childForm.MdiParent = this;
+            childForm.MdiParent=this;
             //childForm.Text = "Window " + childFormNumber++;
             childFormNumber++;
             childForm.Show();
@@ -56,32 +57,32 @@ namespace AprajitaRetails
 
         private void ToolBarToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            toolStrip.Visible = toolBarToolStripMenuItem.Checked;
+            toolStrip.Visible=toolBarToolStripMenuItem.Checked;
         }
 
         private void StatusBarToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            statusStrip.Visible = statusBarToolStripMenuItem.Checked;
+            statusStrip.Visible=statusBarToolStripMenuItem.Checked;
         }
 
         private void CascadeToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi(MdiLayout.Cascade);
+            LayoutMdi( MdiLayout.Cascade );
         }
 
         private void TileVerticalToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi(MdiLayout.TileVertical);
+            LayoutMdi( MdiLayout.TileVertical );
         }
 
         private void TileHorizontalToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi(MdiLayout.TileHorizontal);
+            LayoutMdi( MdiLayout.TileHorizontal );
         }
 
         private void ArrangeIconsToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            LayoutMdi(MdiLayout.ArrangeIcons);
+            LayoutMdi( MdiLayout.ArrangeIcons );
         }
 
         private void CloseAllToolStripMenuItem_Click( object sender, EventArgs e )
@@ -94,109 +95,110 @@ namespace AprajitaRetails
 
         private void toolStripMenuItem1_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new DailySaleForm());
+            ShowNewForm( new DailySaleForm() );
         }
 
         private void toolStripMenuItem2_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new DayClosingForm());
+            ShowNewForm( new DayClosingForm() );
         }
 
         private void toolStripMenuItem7_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new FootFallForm());
+            ShowNewForm( new FootFallForm() );
         }
 
         private void uploadSaleRegisterToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new Form1());
+            ShowNewForm( new Form1() );
         }
 
         private void printToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new FormTest());
+            ShowNewForm( new FormTest() );
         }
 
         private void customersDetailToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new CustomersForm());
+            ShowNewForm( new CustomersForm() );
         }
 
         private void toolStripMenuItem8_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new SaleInvoiceForm());
+            ShowNewForm( new SaleInvoiceForm() );
         }
 
         private void salaryToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new SalaryForm());
+            ShowNewForm( new SalaryForm() );
         }
 
         private void toolStripMenuItem3_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new ExpensesForm());
+            ShowNewForm( new ExpensesForm() );
         }
 
         private void employeeDetailsToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new EmployeeForm());
+            ShowNewForm( new EmployeeForm() );
         }
 
         private void attendenceToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new AttendenceForm());
+            ShowNewForm( new AttendenceForm() );
         }
 
         private void updateEmployeeToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new EmployeeForm());
+            ShowNewForm( new EmployeeForm() );
         }
 
         private void TSMIExpenses_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new ExpensesForm());
+            ShowNewForm( new ExpensesForm() );
         }
 
         private void aboutToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new AboutBox1());
+              ShowNewForm( new AboutBox1() );
+            ShowNewForm( new RadAboutBox1() );
         }
 
         private void TSBDailySale_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new DailySaleForm());
+            ShowNewForm( new DailySaleForm() );
         }
 
         private void TSBDayClosing_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new DayClosingForm());
+            ShowNewForm( new DayClosingForm() );
         }
 
         private void TSBExpenses_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new ExpensesForm());
+            ShowNewForm( new ExpensesForm() );
         }
 
         private void TSBAttendence_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new AttendenceForm());
+            ShowNewForm( new AttendenceForm() );
         }
 
         private void uploadVoygerDataToolStripMenuItem_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new UploaderForm(0));
+            ShowNewForm( new UploaderForm( 0 ) );
         }
 
         private void TSBManualInvoice_Click( object sender, EventArgs e )
         {
-            ShowNewForm(new SaleInvoiceForm());
+            ShowNewForm( new SaleInvoiceForm() );
         }
 
         //TODO: All UI Control Code from here
         //Clients clients = Client.GetClientDetails();
         private void UpdateUiData( )
         {
-            this.Text = CurrentClient.LoggedClient.ClientName + ":The Arvind Store, " + CurrentClient.LoggedClient.ClientCity + "(" + CurrentClient.LoggedClient.ClientCode + ")";
+            this.Text=CurrentClient.LoggedClient.ClientName+":The Arvind Store, "+CurrentClient.LoggedClient.ClientCity+"("+CurrentClient.LoggedClient.ClientCode+")";
             //TODO: in StatusBar UserName must be shown
             //TODO: show Time, Open Form, Progress bar
         }
@@ -217,13 +219,22 @@ namespace AprajitaRetails
         private void startServiceToolStripMenuItem_Click( object sender, EventArgs e )
         {
             ServiceControl.Start();
-            MessageBox.Show("start service");
+            MessageBox.Show( "start service" );
         }
 
         private void stopServiceToolStripMenuItem_Click( object sender, EventArgs e )
         {
             ServiceControl.Stop();
-            MessageBox.Show("Stop Serive");
+            MessageBox.Show( "Stop Serive" );
+        }
+
+        private void toolStrip_ItemClicked( object sender, ToolStripItemClickedEventArgs e )
+        {
+        }
+
+        private void TSMIBanks_Click( object sender, EventArgs e )
+        {
+            ShowNewForm( new BankAccountForm() );
         }
 
         // end of UI Controls

@@ -80,119 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DAL\AprajitaRetails\AprajitaRetails.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetails.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\AprajitaRetails.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\AprajitaRetails.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetails.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Bank.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\BankDetail.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\CardPaymentDetail.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Client.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Customer.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\DailySale.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\DayClosing.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Expens.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\ExpensesCategory.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetailsHRM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetailsHRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AprajitaRetailsHRM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\Attendence.cs">
-      <DependentUpon>AprajitaRetailsHRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\Employee.cs">
-      <DependentUpon>AprajitaRetailsHRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\HRM\EmpType.cs">
-      <DependentUpon>AprajitaRetailsHRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\PaymentDetail.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\PaymentMode.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\ProductItem.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Purchase.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\PurchaseItem.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\PurchaseRegister.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Sale.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\SaleInvoice.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\SaleItem.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Salesman.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\SalesRegister.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\SaleType.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\Stock.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\StockSale.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\AprajitaRetails\User.cs">
-      <DependentUpon>AprajitaRetails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBase\AprajitaRetails\AprajitaRetails.cs" />
+    <Compile Include="DataBase\AprajitaRetails\AprajitaRetailsMainDB.cs" />
     <Compile Include="DataBase\AprajitaRetails\Bank.cs" />
     <Compile Include="DataBase\AprajitaRetails\BankDetail.cs" />
     <Compile Include="DataBase\AprajitaRetails\CardPaymentDetail.cs" />
@@ -202,7 +90,7 @@
     <Compile Include="DataBase\AprajitaRetails\DayClosing.cs" />
     <Compile Include="DataBase\AprajitaRetails\Expens.cs" />
     <Compile Include="DataBase\AprajitaRetails\ExpensesCategory.cs" />
-    <Compile Include="DataBase\AprajitaRetails\HRM\AprajitaRetailsHRM.cs" />
+    <Compile Include="DataBase\AprajitaRetails\HRM\AprajitaRetailsHRMDB.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\Attendence.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\Employee.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\EmpType.cs" />
@@ -221,6 +109,7 @@
     <Compile Include="DataBase\AprajitaRetails\Stock.cs" />
     <Compile Include="DataBase\AprajitaRetails\StockSale.cs" />
     <Compile Include="DataBase\AprajitaRetails\User.cs" />
+    <Compile Include="DataBase\ObservableListSource.cs" />
     <Compile Include="DataBase\Voyager\InsertDataLog.cs" />
     <Compile Include="DataBase\Voyager\LineItem.cs" />
     <Compile Include="DataBase\Voyager\VoyagerDB.cs" />
@@ -233,6 +122,7 @@
     <Compile Include="Models\Advances.cs" />
     <Compile Include="Models\Attendence.cs" />
     <Compile Include="Models\AuthUsers.cs" />
+    <Compile Include="Models\Bank.AccountTypes.cs" />
     <Compile Include="Models\Bank.cs" />
     <Compile Include="Models\BankDetails.cs" />
     <Compile Include="Models\CashDetail.cs" />
@@ -273,50 +163,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AprajitaRetailsHRM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <EntityDeploy Include="DAL\AprajitaRetails\AprajitaRetails.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AprajitaRetails.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DAL\AprajitaRetails\AprajitaRetails.edmx.diagram">
-      <DependentUpon>AprajitaRetails.edmx</DependentUpon>
-    </None>
-    <None Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.edmx.diagram">
-      <DependentUpon>AprajitaRetailsHRM.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DAL\AprajitaRetails\HRM\" />
     <Folder Include="DAL\Voyager\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\AprajitaRetails\AprajitaRetails.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AprajitaRetails.edmx</DependentUpon>
-      <LastGenOutput>AprajitaRetails.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\AprajitaRetails\AprajitaRetails.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AprajitaRetails.edmx</DependentUpon>
-      <LastGenOutput>AprajitaRetails.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AprajitaRetailsHRM.edmx</DependentUpon>
-      <LastGenOutput>AprajitaRetailsHRM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAL\AprajitaRetails\HRM\AprajitaRetailsHRM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AprajitaRetailsHRM.edmx</DependentUpon>
-      <LastGenOutput>AprajitaRetailsHRM.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

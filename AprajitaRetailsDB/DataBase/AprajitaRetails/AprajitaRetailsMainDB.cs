@@ -5,10 +5,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class AprajitaRetails : DbContext
+    public partial class AprajitaRetailsMainDB : DbContext
     {
-        public AprajitaRetails( )
-            : base( "name=AprajitaRetailsDatabaseConStr" )
+        public AprajitaRetailsMainDB( )
+            : base( "AprajitaRetailsMainDB" )
         {
         }
 
