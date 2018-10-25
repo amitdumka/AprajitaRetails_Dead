@@ -155,9 +155,11 @@
     </Reference>
     <Reference Include="Syncfusion.Core.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Data.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Gauge.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.GridCommon.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.SfBarcode.Windows, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfInput.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.SfListView.WinForms, Version=16.3460.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -246,12 +248,7 @@
     <Compile Include="Forms\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Telik\RadAboutBox1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Telik\RadAboutBox1.Designer.cs">
-      <DependentUpon>RadAboutBox1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Forms\SaleInvoiceViewModel.cs" />
     <Compile Include="Forms\UploaderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,9 +379,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SaleInvoiceForm.resx">
       <DependentUpon>SaleInvoiceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Telik\RadAboutBox1.resx">
-      <DependentUpon>RadAboutBox1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UploaderForm.resx">
       <DependentUpon>UploaderForm.cs</DependentUpon>
@@ -545,7 +539,10 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Forms\sync\" />
+    <Folder Include="Forms\Telik\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

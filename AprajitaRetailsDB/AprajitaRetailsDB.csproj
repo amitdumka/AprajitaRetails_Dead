@@ -115,6 +115,7 @@
     <Compile Include="DataBase\Voyager\VoyagerDB.cs" />
     <Compile Include="DataBase\Voyager\VoyBill.cs" />
     <Compile Include="DataBase\Voyager\VPaymentMode.cs" />
+    <Compile Include="DataTypes\EnumList.cs" />
     <Compile Include="DataTypes\VoygerBill.cs" />
     <Compile Include="Data\AprajitaRetailsDB.cs" />
     <Compile Include="Data\HRMDB.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Models\Clients.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DailySale.cs" />
+    <Compile Include="Models\Data\SalePaymentDetails.cs" />
     <Compile Include="Models\DayClosing.cs" />
     <Compile Include="Models\DayEndDetails.cs" />
     <Compile Include="Models\DiscountCodeGenerator.cs" />

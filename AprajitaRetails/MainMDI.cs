@@ -1,5 +1,5 @@
 ﻿using AprajitaRetails.Forms;
-using AprajitaRetails.Forms.Telik;
+
 using AprajitaRetails.Ops;
 using AprajitaRetailsDataBase.Client;
 using System;
@@ -161,7 +161,7 @@ namespace AprajitaRetails
         private void aboutToolStripMenuItem_Click( object sender, EventArgs e )
         {
               ShowNewForm( new AboutBox1() );
-            ShowNewForm( new RadAboutBox1() );
+            
         }
 
         private void TSBDailySale_Click( object sender, EventArgs e )

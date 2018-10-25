@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" data-ng-app="shared">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<title>Project Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="apple-touch-icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="120x120" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="152x152" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta content="Shared Framework based project" name="description" />
+	<meta content="Leno Carvalho" name="author" />
+	<!-- BEGIN VENDOR CSS-->
+	<link href="plugins/angular-ui-select/select.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/bootstrapv3/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="plugins/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/jquery-metrojs/MetroJs.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="plugins/jquery-datatable/DataTables-1.10.12/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/jquery-datatable/Buttons-1.2.1/css/buttons.bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/jquery-datatable/FixedColumns-3.2.2/css/fixedColumns.bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/bootstrap-timepicker/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" />
+	<!-- END VENDOR CSS-->
+	<!-- BEGIN BASE CSS-->
+	<link href="base/css/base-icons.css" rel="stylesheet" type="text/css">
+	<link href="base/css/base.css" rel="stylesheet" type="text/css" />
+	<!-- END BASE CSS-->
+	<!-- BEGIN CORE CSS-->
+	<link href="assets/css/core.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+	<!-- END CORE CSS-->
+	<!--[if lte IE 9]>
+		<link href="base/css/base-ie9.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<script type="text/javascript">
+		window.onload = function () {
+			if (navigator.appVersion.indexOf("Windows NT 6.2") != -1)
+				document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="base/css/base-chrome-fix.css" />'
+		}
+	</script>
+</head>
+<body class="fixed-header">
+	<div class="modal fade slide-up disable-scroll upper" id="modal-loading" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content-wrapper">
+				<div class="modal-content">
+					<div class="modal-body text-center m-t-20">
+						<h4 id="modal-loading-title" class="fs-12 no-margin p-b-10 font-montserrat upper">Carregando...</h4>
+						<img id="loading" src="base/img/progress/progress-circle-master.svg" alt="logo" class="modal-loading" width="30">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="full-height" ui-view></div>
+	<!-- BEGIN JQUERY JS -->
+	<script src="plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+	<!-- END JQUERY JS -->
+	<!-- BEGIN VENDOR JS -->
+	<script src="plugins/pace/pace.min.js" type="text/javascript"></script>
+	<script src="plugins/modernizr.custom.js" type="text/javascript"></script>
+	<script src="plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-ui-touch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+	<script src="plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+	<script src="plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-actual/jquery.actual.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-scrollbar/jquery.scrollbar.min.js" type="text/javascript"></script>
+	<script src="plugins/owl-carousel/owl.carousel.js" type="text/javascript"></script>
+	<script src="plugins/classie/classie.js" type="text/javascript"></script>
+	<script src="plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+	<script src="plugins/moment/moment.min.js" type="text/javascript"></script>
+	<script src="plugins/moment/moment-with-locales.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript"></script>
+	<!-- END VENDOR JS -->
+	<!-- BEGIN DATATABLES JS -->
+	<script src="plugins/jquery-datatable/DataTables-1.10.12/js/jquery.dataTables.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/DataTables-1.10.12/js/dataTables.bootstrap.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/Buttons-1.2.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/Buttons-1.2.1/js/buttons.flash.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/Buttons-1.2.1/js/buttons.bootstrap.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/JSZip-2.5.0/jszip.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/pdfmake-0.1.18/build/pdfmake.min.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/pdfmake-0.1.18/build/vfs_fonts.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/Buttons-1.2.1/js/buttons.html5.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/Buttons-1.2.1/js/buttons.print.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/FixedColumns-3.2.2/js/dataTables.fixedColumns.js" type="text/javascript"></script>
+	<script src="plugins/jquery-datatable/datatables-moment.js" type="text/javascript"></script>
+	<!-- END DATATABLES JS -->
+	<!-- BEGIN ANGULAR JS -->
+	<script src="plugins/angular/angular.js" type="text/javascript"></script>
+	<script src="plugins/angular-ui-router/angular-ui-router.min.js" type="text/javascript"></script>
+	<script src="plugins/angular-ui-util/ui-utils.min.js" type="text/javascript"></script>
+	<script src="plugins/angular-ui-select/select.js" type="text/javascript"></script>
+	<script src="plugins/angular-sanitize/angular-sanitize.min.js" type="text/javascript"></script>
+	<!-- END ANGULAR JS -->
+	<!-- BEGIN BOOTSTRAP JS -->
+	<script src="plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+	<script src="plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js" type="text/javascript"></script>
+	<script src="plugins/bootstrap-timepicker/bootstrap-timepicker.js" type="text/javascript"></script>
+	<!-- END BOOTSTRAP JS -->
+	<!-- BEGIN TEMPLATE JS -->
+	<!-- BEGIN BASE JS -->
+	<script src="base/js/base.js" type="text/javascript"></script>
+	<script src="assets/js/shared.js" type="text/javascript"></script>
+	<!-- END BASE JS -->
+	<!-- BEGIN INTERCEPTORS JS -->
+	<script src="assets/js/core/interceptor.js" type="text/javascript"></script>
+	<!-- END INTERCEPTORS JS -->
+	<!-- BEGIN CONFIG JS -->
+	<script src="assets/js/config/config.js" type="text/javascript"></script>
+	<!-- END CONFIG JS -->
+	<!-- BEGIN CORE JS -->
+	<script src="assets/js/core/alerts.js" type="text/javascript"></script>
+	<script src="assets/js/core/core.js" type="text/javascript"></script>
+	<script src="assets/js/core/culture.js" type="text/javascript"></script>
+	<script src="assets/js/core/exceptions.js" type="text/javascript"></script>
+	<script src="assets/js/core/layouts.js" type="text/javascript"></script>
+	<script src="assets/js/core/modals.js" type="text/javascript"></script>
+	<script src="assets/js/core/navbar.js" type="text/javascript"></script>
+	<script src="assets/js/core/tables.js" type="text/javascript"></script>
+	<script src="assets/js/core/version.js" type="text/javascript"></script>
+	<!-- END CORE JS -->
+	<!-- BEGIN STARTUP JS -->
+	<script src="assets/js/startup/startup.js" type="text/javascript"></script>
+	<!-- END STARTUP JS -->
+	<!-- BEGIN DIRECTIVES JS -->
+	<script src="assets/js/directives/cs-select.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-clean.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-sidebar.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-confirm.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-container.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-tooltip.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-dropdown.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-datepicker.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-daterangepicker.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-form-group.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-mask.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-navbar.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-navigate.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-nofilters.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-notification-center.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-portlet-options.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-portlet.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-search.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-scrolltop.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-tab.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-timepicker.js" type="text/javascript"></script>
+	<script src="assets/js/directives/pg-upload.js" type="text/javascript"></script>
+	<script src="plugins/ng-switchery/ng-switchery.js" type="text/javascript"></script>
+	<!-- END DIRECTIVES JS -->
+	<!-- BEGIN BLOCKS CONTROLLERS JS -->
+	<script src="assets/js/controllers/blocks/footer.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/blocks/header.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/blocks/quickview.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/blocks/sidebar.js" type="text/javascript"></script>
+	<!-- END BLOCKS CONTROLLERS JS -->
+	<!-- BEGIN EXTRAS CONTROLLERS JS -->
+	<script src="assets/js/controllers/extras/maintenance.js" type="text/javascript"></script>
+	<!-- END EXTRAS CONTROLLERS JS -->
+	<!-- BEGIN CONTROLLERS JS -->
+	<script src="assets/js/controllers/errors.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/home.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/logs.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/menus.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/notifications.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/settings.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/submenus.js" type="text/javascript"></script>
+	<script src="assets/js/controllers/users.js" type="text/javascript"></script>
+	<!-- END CONTROLLERS JS -->
+	<!-- START CUSTOM CONTROLLERS JS -->
+	<!-- END CUSTOM CONTROLLERS JS -->
+	<!-- END TEMPLATE JS -->
+</body>
+</html>

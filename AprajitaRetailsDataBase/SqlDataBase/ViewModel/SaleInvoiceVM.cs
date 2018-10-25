@@ -37,11 +37,18 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             smDB.SampleData();
         }
 
+        /// <summary>
+        /// Get list of Salesman
+        /// </summary>
+        /// <returns></returns>
         public List<Salesman> GetSalesmanList( )
         {
             return smDB.GetAllRecord();
         }
-
+        /// <summary>
+        /// get Saleman name list
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetSalesmanNameList( )
         {
             List<string> list = new List<string>();
@@ -52,7 +59,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             }
             return list;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetSalesmanName( int id )
         {
             if (id > 0)
@@ -60,14 +71,23 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             else
                 return "NotFound";
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="smcode"></param>
+        /// <returns></returns>
         public string GetSalesmanName( string smcode )
         {
             if (smcode != null && smcode != "")
                 return smDB.GetByColName("SMCode", smcode).SalesmanName;
             return "NotFound";
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="salesmanname"></param>
+        /// <param name="smcode"></param>
+        /// <returns></returns>
         public int GetSalesmanID( string salesmanname, string smcode )
         {
             if (salesmanname != null && salesmanname != "")
@@ -77,7 +97,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
                 return smDB.GetID("SMCode", smcode);
             return -1;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetSalesmanCode( int id )
         {
             if (id > 0)
@@ -85,7 +109,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             else
                 return "NotFound";
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="salesman"></param>
+        /// <returns></returns>
         public string GetSalesmanCode( string salesman )
         {
             if (salesman != null && salesman != "")
@@ -93,14 +121,21 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             return "NotFound";
         }
 
+        
         public List<string> GetBarCodesList( int x )
-        {
+        {// by size
             return pDB.GetBarCodeList(x);
         }
 
         //Functions/Methods
         public void AddData( ) { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="saleInv"></param>
+        /// <param name="itemTable"></param>
+        /// <param name="payDetails"></param>
+        /// <returns></returns>
         public int SaveInvoiceData( SaleInvoice saleInv, DataTable itemTable, SalePaymentDetails payDetails )
         {    //TODO: Urgent SaveInoviceData.
             int status = SaveData(saleInv);
@@ -147,17 +182,30 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
                 return -1;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int SaveData( SaleInvoice obj )
         {
             return sDB.InsertData(obj);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemTable"></param>
+        /// <returns></returns>
         public int SaveItemsDetails( DataTable itemTable )
         {
             return siDB.InsertData(itemTable);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pd"></param>
+        /// <param name="cardDetailsID"></param>
+        /// <returns></returns>
         public int SavePaymentDetails( SalePaymentDetails pd, int cardDetailsID )
         {
             PaymentDetails payDetails = new PaymentDetails()
@@ -171,29 +219,47 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             };
             return payDB.InsertData(payDetails);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cardDetails"></param>
+        /// <returns></returns>
         public int SaveCardDetails( CardPaymentDetails cardDetails )
         {
             return cpDB.InsertData(cardDetails);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetInvoiceNoList( )
         {
             return sDB.GetInvoiceList();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mobileNo"></param>
+        /// <returns></returns>
         public SortedDictionary<string, string> GetCustomerInfo( string mobileNo )
         {
             if (mobileNo.Trim().Length <= 0)
                 return null;
             return sDB.GetCustomerInfo(0, mobileNo, 2);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public SortedDictionary<string, string> GetCustomerInfo( int custId )
         {
             return sDB.GetCustomerInfo(custId, "", 1);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetCustomerMobileNoList( )
         {
             return sDB.GetCustomerMobileList();
@@ -204,6 +270,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             return sDB.GetItemDetails(barcode);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <returns></returns>
         public ProductItems GetProductItemDetais( string barcode )
         {
             return pDB.GetProductItemDetais(barcode);
@@ -224,7 +295,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cBInvoiceNo"></param>
+        /// <returns></returns>
         public int GetInvoiceNoList( ComboBox cBInvoiceNo )
         {
             List<string> itemList = GetInvoiceNoList();
@@ -234,7 +309,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             }
             return itemList.Count;
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="cBMobileNo"></param>
+        /// <returns></returns>
         public int GetCustomerMobileNoList( ComboBox cBMobileNo )
         {
             List<string> itemList = GetCustomerMobileNoList();

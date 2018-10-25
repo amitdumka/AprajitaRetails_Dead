@@ -9,7 +9,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
     {
         public List<string> GetBarCodeList( int x )
         {
-            string sql = "select BarCode from " + this.Tablename + " where  Size = '44'";
+            string sql = "select BarCode from " + this.Tablename + " where  Size = "+x;
             //select* from ProductItems where Size = '44'
             SqlCommand cmd = new SqlCommand(sql, Db.DBCon);
             return DataBase.GetQueryString(cmd, "BarCode");
