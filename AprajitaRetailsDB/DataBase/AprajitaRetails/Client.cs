@@ -23,7 +23,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public string ClientCity { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(20)]
         public string ClientCode { get; set; }
 
         [StringLength(100)]

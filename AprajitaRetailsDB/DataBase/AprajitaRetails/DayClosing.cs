@@ -40,5 +40,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public int? Coin2 { get; set; }
 
         public int? Coin1 { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
     }
 }

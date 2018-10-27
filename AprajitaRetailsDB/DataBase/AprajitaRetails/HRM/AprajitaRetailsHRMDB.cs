@@ -10,6 +10,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
         public AprajitaRetailsHRMDB( )
             : base( "AprajitaRetailsHRMDB" )
         {
+            Database.SetInitializer( new HRMDBSeeder() );
         }
 
         public virtual DbSet<Attendence> Attendences { get; set; }
@@ -23,8 +24,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
                 .IsUnicode( false );
 
             modelBuilder.Entity<Attendence>()
-                .Property( e => e.AttendenceNo )
-                .HasPrecision( 19, 4 );
+                .Property( e => e.AttendenceDeviceID ); 
+                
 
             modelBuilder.Entity<Employee>()
                 .Property( e => e.EMPCode )
@@ -68,7 +69,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
                 .WillCascadeOnDelete( false );
 
             modelBuilder.Entity<EmpType>()
-                .Property( e => e.EmpType1 )
+                .Property( e => e.EmpTypeName )
                 .IsUnicode( false );
 
             modelBuilder.Entity<EmpType>()

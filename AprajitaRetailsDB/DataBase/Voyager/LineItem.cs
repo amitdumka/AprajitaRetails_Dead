@@ -12,12 +12,12 @@ namespace AprajitaRetailsDB.DataBase.Voyager
 
         public int VoyBillId { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string LineType { get; set; }
 
         public int Serial { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string ItemCode { get; set; }
 
         public double Qty { get; set; }
@@ -30,7 +30,7 @@ namespace AprajitaRetailsDB.DataBase.Voyager
 
         public double Amount { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(200)]
         public string Description { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AprajitaRetailsDB.Models.Data
+namespace AprajitaRetailsDB.Models
 {
     public class Employee
     {

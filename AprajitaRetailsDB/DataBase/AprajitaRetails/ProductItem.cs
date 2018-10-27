@@ -54,6 +54,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         [Column(TypeName = "money")]
         public decimal? Qty { get; set; }
 
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
+
         public virtual Stock Stock { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

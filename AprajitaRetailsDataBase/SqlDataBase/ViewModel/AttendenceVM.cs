@@ -12,10 +12,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             return aDM.GetEmpCodes();
         }
 
-        public List<string> GetEmpName( string empCode )
-        {
-            return aDM.GetEmpName(empCode);
-        }
+        public List<string> GetEmpName( string empCode ) => aDM.GetEmpName( empCode );
 
         public int SaveData( Attendence attendence )
         {

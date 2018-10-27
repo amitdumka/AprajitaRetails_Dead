@@ -1,5 +1,8 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+﻿using AprajitaRetailsDataBase.Client;
+//using AprajitaRetailsDataBase.SqlDataBase.Data;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using AprajitaRetailsDB.DataBase.AprajitaRetails;
+using AprajitaRetailsViewModels.EF6;
 using CyberN.Utility;
 using System;
 using System.Windows.Forms;
@@ -10,12 +13,14 @@ namespace AprajitaRetails.Forms
     {
         private int vTotalCount = 0;
         private int vTotalAmount = 0;
-        private DayClosingVM DCVm;
+       // private DayClosingVM DCVm;
+        private DayClosingViewModel DCVm;
 
         public DayClosingForm( )
         {
             InitializeComponent();
-            DCVm = new DayClosingVM();
+            //DCVm = new DayClosingVM();
+            DCVm=new DayClosingViewModel();
         }
 
         private void CalculateTotalAmount( )
@@ -111,9 +116,11 @@ namespace AprajitaRetails.Forms
                 Coin10 = Basic.ToInt(C10.Text.Trim()),
                 Coin2 = Basic.ToInt(C2.Text.Trim()),
                 Coin5 = Basic.ToInt(C5.Text.Trim()),
-                ID = -1,
+                DayClosingID = -1,
                 TotalAmount = vTotalAmount,
-                OnDate = DateTime.Now
+                OnDate = DateTime.Now, 
+                StoreCode=CurrentClient.LoggedClient.ClientCode
+               
             };
             return cDs;
         }

@@ -12,7 +12,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
     public class EmployeeVM
     {
         private EmployeeDB eDM;
-
+        
         public int SetGenderList( ComboBox genderBox )
         {
             genderBox.Items.Add("Male");

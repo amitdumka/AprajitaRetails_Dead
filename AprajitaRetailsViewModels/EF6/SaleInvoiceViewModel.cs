@@ -16,16 +16,7 @@ namespace AprajitaRetailsViewModels.EF6
 
         private static string StoreCode;
         private readonly bool IsManualInvoice = false;
-
         private AprajitaRetailsMainDB mainDB;
-
-       // private readonly Salesman salesman;
-       // private readonly SaleInvoice saleInvoice;
-       // private readonly ProductItem productItem;
-       // private readonly SaleItem saleItem;
-       // private readonly CardPaymentDetail cardPaymentDetail;
-       // private readonly PaymentDetail paymentDetail;
-
         private const string ManualSeries = "MI";
         private const long SeriesStart = 10000000;
 
@@ -41,6 +32,7 @@ namespace AprajitaRetailsViewModels.EF6
         {
             IsManualInvoice=manualBill; StoreCode=storeCode;
             mainDB=new AprajitaRetailsMainDB();
+            //TODO: Need to Implement StoreCode So Data based on storecode is changed
         }
 
         /// <summary>
@@ -70,7 +62,7 @@ namespace AprajitaRetailsViewModels.EF6
         /// <returns></returns>
         public List<string> GetSalesmanNameList( )
         {
-            mainDB.Salesmen.LoadAsync();
+            mainDB.Salesmen.Load();
 
             List<string> list = new List<string>();
             List<Salesman> salesman = mainDB.Salesmen.Local.ToList();
@@ -155,7 +147,7 @@ namespace AprajitaRetailsViewModels.EF6
 
         public ProductItem GetProductItemDetais( string barcode )
         {
-            mainDB.ProductItems.LoadAsync();
+            mainDB.ProductItems.Load();
             return mainDB.ProductItems.Local.Where( s => s.Barcode==barcode ).FirstOrDefault();
             // return pDB.GetProductItemDetais( barcode );
 
@@ -197,13 +189,13 @@ namespace AprajitaRetailsViewModels.EF6
 
         public List<string> GetInvoiceNoList( )
         {
-            mainDB.SaleInvoices.LoadAsync();
+            mainDB.SaleInvoices.Load();
             return mainDB.SaleInvoices.Local.Select( s => s.InvoiceNo ).ToList();
         }
 
         private string GetLastInvoiceNo( )
         {
-            mainDB.SaleInvoices.LoadAsync();
+            mainDB.SaleInvoices.Load();
             return mainDB.SaleInvoices.Local.Where( s => s.SaleTypeID==(int)EnumList.SaleInvoiceTypes.Manual ).LastOrDefault().InvoiceNo;
         }
 
@@ -219,7 +211,7 @@ namespace AprajitaRetailsViewModels.EF6
             }
             else
             {
-                mainDB.Customers.LoadAsync();
+                mainDB.Customers.Load();
                 var cust = mainDB.Customers.Local.Where( s => s.MobileNo==mobileNo ).FirstOrDefault();
                 return (new SortedDictionary<string, string>()
                 {{"FirstName",cust.FirstName},{"LastName",cust.LastName},{"ID",""+cust.CustomerID},
@@ -232,7 +224,7 @@ namespace AprajitaRetailsViewModels.EF6
         {
             if (custId>0)
             {
-                mainDB.Customers.LoadAsync();
+                mainDB.Customers.Load();
                 var cust = mainDB.Customers.Local.Where( s => s.CustomerID==custId ).FirstOrDefault();
                 return (new SortedDictionary<string, string>()
                 {{"FirstName",cust.FirstName},{"LastName",cust.LastName},{"ID",""+cust.CustomerID},
@@ -247,7 +239,7 @@ namespace AprajitaRetailsViewModels.EF6
 
         public List<string> GetCustomerMobileNoList( )
         {
-            mainDB.Customers.LoadAsync();
+            mainDB.Customers.Load();
             return mainDB.Customers.Local.Select( s => s.MobileNo ).ToList();
         }
 

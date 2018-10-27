@@ -58,7 +58,7 @@
             this.GBLogin.Margin = new System.Windows.Forms.Padding(2);
             this.GBLogin.Name = "GBLogin";
             this.GBLogin.Padding = new System.Windows.Forms.Padding(2);
-            this.GBLogin.Size = new System.Drawing.Size(873, 305);
+            this.GBLogin.Size = new System.Drawing.Size(873, 299);
             this.GBLogin.TabIndex = 0;
             this.GBLogin.TabStop = false;
             this.GBLogin.Text = "Login";

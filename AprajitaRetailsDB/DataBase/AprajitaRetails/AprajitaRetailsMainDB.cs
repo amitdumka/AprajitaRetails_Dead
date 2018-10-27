@@ -10,6 +10,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public AprajitaRetailsMainDB( )
             : base( "AprajitaRetailsMainDB" )
         {
+            Database.SetInitializer( new AprajitaRetailsMainDBSeeder() );
         }
 
         public virtual DbSet<Bank> Banks { get; set; }

@@ -83,11 +83,11 @@
             this.GBControls.AutoSize = true;
             this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(24, 630);
-            this.GBControls.Margin = new System.Windows.Forms.Padding(5, 20, 5, 5);
+            this.GBControls.Location = new System.Drawing.Point(18, 508);
+            this.GBControls.Margin = new System.Windows.Forms.Padding(4, 16, 4, 4);
             this.GBControls.Name = "GBControls";
-            this.GBControls.Padding = new System.Windows.Forms.Padding(5);
-            this.GBControls.Size = new System.Drawing.Size(788, 116);
+            this.GBControls.Padding = new System.Windows.Forms.Padding(4);
+            this.GBControls.Size = new System.Drawing.Size(593, 92);
             this.GBControls.TabIndex = 6;
             this.GBControls.TabStop = false;
             this.GBControls.Text = "Controls";
@@ -101,19 +101,19 @@
             this.flowLayoutPanel2.Controls.Add(this.Cancel);
             this.flowLayoutPanel2.Controls.Add(this.BTNUpdate);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 36);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 28);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(778, 75);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(585, 60);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // BTNAdd
             // 
             this.BTNAdd.AutoSize = true;
-            this.BTNAdd.Location = new System.Drawing.Point(5, 5);
-            this.BTNAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNAdd.Location = new System.Drawing.Point(4, 4);
+            this.BTNAdd.Margin = new System.Windows.Forms.Padding(4);
             this.BTNAdd.Name = "BTNAdd";
-            this.BTNAdd.Size = new System.Drawing.Size(135, 65);
+            this.BTNAdd.Size = new System.Drawing.Size(101, 52);
             this.BTNAdd.TabIndex = 18;
             this.BTNAdd.Text = "Add";
             this.BTNAdd.UseVisualStyleBackColor = true;
@@ -122,10 +122,10 @@
             // BTNDelete
             // 
             this.BTNDelete.AutoSize = true;
-            this.BTNDelete.Location = new System.Drawing.Point(150, 5);
-            this.BTNDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNDelete.Location = new System.Drawing.Point(113, 4);
+            this.BTNDelete.Margin = new System.Windows.Forms.Padding(4);
             this.BTNDelete.Name = "BTNDelete";
-            this.BTNDelete.Size = new System.Drawing.Size(192, 65);
+            this.BTNDelete.Size = new System.Drawing.Size(144, 52);
             this.BTNDelete.TabIndex = 19;
             this.BTNDelete.Text = "Delete";
             this.BTNDelete.UseVisualStyleBackColor = true;
@@ -133,10 +133,10 @@
             // Cancel
             // 
             this.Cancel.AutoSize = true;
-            this.Cancel.Location = new System.Drawing.Point(352, 5);
-            this.Cancel.Margin = new System.Windows.Forms.Padding(5);
+            this.Cancel.Location = new System.Drawing.Point(265, 4);
+            this.Cancel.Margin = new System.Windows.Forms.Padding(4);
             this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(203, 65);
+            this.Cancel.Size = new System.Drawing.Size(152, 52);
             this.Cancel.TabIndex = 20;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
@@ -145,23 +145,24 @@
             // BTNUpdate
             // 
             this.BTNUpdate.AutoSize = true;
-            this.BTNUpdate.Location = new System.Drawing.Point(565, 5);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNUpdate.Location = new System.Drawing.Point(425, 4);
+            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.BTNUpdate.Name = "BTNUpdate";
-            this.BTNUpdate.Size = new System.Drawing.Size(208, 65);
+            this.BTNUpdate.Size = new System.Drawing.Size(156, 52);
             this.BTNUpdate.TabIndex = 21;
             this.BTNUpdate.Text = "Update";
             this.BTNUpdate.UseVisualStyleBackColor = true;
+            this.BTNUpdate.Click += new System.EventHandler(this.BTNUpdate_Click);
             // 
             // GBSearch
             // 
             this.GBSearch.AutoSize = true;
             this.GBSearch.Controls.Add(this.TPLSearch);
-            this.GBSearch.Location = new System.Drawing.Point(24, 2);
-            this.GBSearch.Margin = new System.Windows.Forms.Padding(18, 15, 18, 15);
+            this.GBSearch.Location = new System.Drawing.Point(18, 2);
+            this.GBSearch.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.GBSearch.Name = "GBSearch";
-            this.GBSearch.Padding = new System.Windows.Forms.Padding(5);
-            this.GBSearch.Size = new System.Drawing.Size(1028, 124);
+            this.GBSearch.Padding = new System.Windows.Forms.Padding(4);
+            this.GBSearch.Size = new System.Drawing.Size(771, 100);
             this.GBSearch.TabIndex = 5;
             this.GBSearch.TabStop = false;
             this.GBSearch.Text = "Search";
@@ -177,59 +178,59 @@
             this.TPLSearch.Controls.Add(this.CBNameSearch);
             this.TPLSearch.Controls.Add(this.BTNFind);
             this.TPLSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TPLSearch.Location = new System.Drawing.Point(5, 36);
-            this.TPLSearch.Margin = new System.Windows.Forms.Padding(5);
+            this.TPLSearch.Location = new System.Drawing.Point(4, 28);
+            this.TPLSearch.Margin = new System.Windows.Forms.Padding(4);
             this.TPLSearch.Name = "TPLSearch";
-            this.TPLSearch.Padding = new System.Windows.Forms.Padding(18, 15, 18, 15);
-            this.TPLSearch.Size = new System.Drawing.Size(1018, 82);
+            this.TPLSearch.Padding = new System.Windows.Forms.Padding(14, 12, 14, 12);
+            this.TPLSearch.Size = new System.Drawing.Size(763, 67);
             this.TPLSearch.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 15);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 18, 0);
+            this.label7.Location = new System.Drawing.Point(18, 12);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 14, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 32);
+            this.label7.Size = new System.Drawing.Size(76, 25);
             this.label7.TabIndex = 0;
             this.label7.Text = "Mobile";
             // 
             // CBMobileSearch
             // 
             this.CBMobileSearch.FormattingEnabled = true;
-            this.CBMobileSearch.Location = new System.Drawing.Point(146, 20);
-            this.CBMobileSearch.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
+            this.CBMobileSearch.Location = new System.Drawing.Point(112, 16);
+            this.CBMobileSearch.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.CBMobileSearch.Name = "CBMobileSearch";
-            this.CBMobileSearch.Size = new System.Drawing.Size(212, 39);
+            this.CBMobileSearch.Size = new System.Drawing.Size(160, 33);
             this.CBMobileSearch.TabIndex = 1;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(416, 15);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 36, 0);
+            this.label8.Location = new System.Drawing.Point(316, 12);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 27, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(90, 32);
+            this.label8.Size = new System.Drawing.Size(68, 25);
             this.label8.TabIndex = 2;
             this.label8.Text = "Name";
             // 
             // CBNameSearch
             // 
             this.CBNameSearch.FormattingEnabled = true;
-            this.CBNameSearch.Location = new System.Drawing.Point(547, 20);
-            this.CBNameSearch.Margin = new System.Windows.Forms.Padding(5, 5, 53, 5);
+            this.CBNameSearch.Location = new System.Drawing.Point(415, 16);
+            this.CBNameSearch.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.CBNameSearch.Name = "CBNameSearch";
-            this.CBNameSearch.Size = new System.Drawing.Size(212, 39);
+            this.CBNameSearch.Size = new System.Drawing.Size(160, 33);
             this.CBNameSearch.TabIndex = 2;
             // 
             // BTNFind
             // 
             this.BTNFind.AutoSize = true;
             this.BTNFind.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BTNFind.Location = new System.Drawing.Point(817, 20);
-            this.BTNFind.Margin = new System.Windows.Forms.Padding(5);
+            this.BTNFind.Location = new System.Drawing.Point(619, 16);
+            this.BTNFind.Margin = new System.Windows.Forms.Padding(4);
             this.BTNFind.Name = "BTNFind";
-            this.BTNFind.Size = new System.Drawing.Size(81, 42);
+            this.BTNFind.Size = new System.Drawing.Size(64, 35);
             this.BTNFind.TabIndex = 3;
             this.BTNFind.Text = "Find";
             this.BTNFind.UseVisualStyleBackColor = true;
@@ -241,11 +242,11 @@
             this.GBEmployeeDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBEmployeeDetails.BackColor = System.Drawing.Color.Transparent;
             this.GBEmployeeDetails.Controls.Add(this.TLPEmployeeDetails);
-            this.GBEmployeeDetails.Location = new System.Drawing.Point(24, 137);
-            this.GBEmployeeDetails.Margin = new System.Windows.Forms.Padding(18, 15, 18, 15);
+            this.GBEmployeeDetails.Location = new System.Drawing.Point(18, 110);
+            this.GBEmployeeDetails.Margin = new System.Windows.Forms.Padding(14, 12, 14, 12);
             this.GBEmployeeDetails.Name = "GBEmployeeDetails";
-            this.GBEmployeeDetails.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.GBEmployeeDetails.Size = new System.Drawing.Size(1174, 431);
+            this.GBEmployeeDetails.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GBEmployeeDetails.Size = new System.Drawing.Size(883, 348);
             this.GBEmployeeDetails.TabIndex = 4;
             this.GBEmployeeDetails.TabStop = false;
             this.GBEmployeeDetails.Text = "Employee Details";
@@ -256,9 +257,9 @@
             this.TLPEmployeeDetails.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TLPEmployeeDetails.ColumnCount = 4;
             this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 396F));
+            this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 297F));
             this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 421F));
+            this.TLPEmployeeDetails.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 316F));
             this.TLPEmployeeDetails.Controls.Add(this.label1, 0, 1);
             this.TLPEmployeeDetails.Controls.Add(this.label2, 0, 2);
             this.TLPEmployeeDetails.Controls.Add(this.label3, 0, 3);
@@ -286,8 +287,8 @@
             this.TLPEmployeeDetails.Controls.Add(this.txtMobileNo, 1, 13);
             this.TLPEmployeeDetails.Controls.Add(this.label14, 2, 13);
             this.TLPEmployeeDetails.Controls.Add(this.TXTAttendenceID, 3, 13);
-            this.TLPEmployeeDetails.Location = new System.Drawing.Point(5, 37);
-            this.TLPEmployeeDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TLPEmployeeDetails.Location = new System.Drawing.Point(4, 30);
+            this.TLPEmployeeDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TLPEmployeeDetails.Name = "TLPEmployeeDetails";
             this.TLPEmployeeDetails.RowCount = 14;
             this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -304,82 +305,78 @@
             this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.TLPEmployeeDetails.Size = new System.Drawing.Size(1161, 357);
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.TLPEmployeeDetails.Size = new System.Drawing.Size(873, 290);
             this.TLPEmployeeDetails.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 45);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 32);
+            this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 89);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 32);
+            this.label2.Size = new System.Drawing.Size(50, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Age";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 133);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(3, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 32);
+            this.label3.Size = new System.Drawing.Size(83, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Gender";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 178);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(3, 144);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 32);
+            this.label4.Size = new System.Drawing.Size(91, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Address";
             // 
             // TXTFirstName
             // 
-            this.TXTFirstName.Location = new System.Drawing.Point(155, 48);
-            this.TXTFirstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TXTFirstName.Location = new System.Drawing.Point(118, 39);
+            this.TXTFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TXTFirstName.Name = "TXTFirstName";
-            this.TXTFirstName.Size = new System.Drawing.Size(386, 38);
+            this.TXTFirstName.Size = new System.Drawing.Size(290, 31);
             this.TXTFirstName.TabIndex = 6;
             this.TXTFirstName.Text = "Amit";
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(155, 92);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtAge.Location = new System.Drawing.Point(118, 74);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(386, 38);
+            this.txtAge.Size = new System.Drawing.Size(290, 31);
             this.txtAge.TabIndex = 8;
             this.txtAge.Text = "29";
             // 
@@ -389,208 +386,219 @@
             this.txtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
             this.txtAddress.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAddress.Location = new System.Drawing.Point(155, 181);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtAddress.Location = new System.Drawing.Point(118, 146);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.TLPEmployeeDetails.SetRowSpan(this.txtAddress, 3);
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtAddress.Size = new System.Drawing.Size(386, 119);
+            this.txtAddress.Size = new System.Drawing.Size(290, 97);
             this.txtAddress.TabIndex = 12;
             this.txtAddress.Text = "Dumka";
             // 
             // cbGender
             // 
             this.cbGender.FormattingEnabled = true;
-            this.cbGender.Location = new System.Drawing.Point(155, 136);
-            this.cbGender.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbGender.Location = new System.Drawing.Point(118, 109);
+            this.cbGender.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(386, 39);
+            this.cbGender.Size = new System.Drawing.Size(290, 33);
             this.cbGender.TabIndex = 10;
             this.cbGender.Text = "Male";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Location = new System.Drawing.Point(2, 0);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(141, 32);
+            this.label9.Size = new System.Drawing.Size(106, 25);
             this.label9.TabIndex = 10;
             this.label9.Text = "EmpCode";
             // 
             // CBEmpCode
             // 
             this.CBEmpCode.FormattingEnabled = true;
-            this.CBEmpCode.Location = new System.Drawing.Point(154, 3);
+            this.CBEmpCode.Location = new System.Drawing.Point(117, 2);
+            this.CBEmpCode.Margin = new System.Windows.Forms.Padding(2);
             this.CBEmpCode.Name = "CBEmpCode";
-            this.CBEmpCode.Size = new System.Drawing.Size(357, 39);
+            this.CBEmpCode.Size = new System.Drawing.Size(269, 33);
             this.CBEmpCode.TabIndex = 4;
             this.CBEmpCode.SelectedIndexChanged += new System.EventHandler(this.CBEmpCode_SelectedIndexChanged);
             // 
             // TXTLastName
             // 
             this.TLPEmployeeDetails.SetColumnSpan(this.TXTLastName, 2);
-            this.TXTLastName.Location = new System.Drawing.Point(551, 48);
-            this.TXTLastName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TXTLastName.Location = new System.Drawing.Point(415, 39);
+            this.TXTLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TXTLastName.Name = "TXTLastName";
-            this.TXTLastName.Size = new System.Drawing.Size(386, 38);
+            this.TXTLastName.Size = new System.Drawing.Size(290, 31);
             this.TXTLastName.TabIndex = 7;
             this.TXTLastName.Text = "Kumar";
             // 
             // DTPBirthDate
             // 
-            this.DTPBirthDate.Location = new System.Drawing.Point(743, 92);
+            this.DTPBirthDate.Location = new System.Drawing.Point(559, 74);
+            this.DTPBirthDate.Margin = new System.Windows.Forms.Padding(2);
             this.DTPBirthDate.Name = "DTPBirthDate";
-            this.DTPBirthDate.Size = new System.Drawing.Size(387, 38);
+            this.DTPBirthDate.Size = new System.Drawing.Size(291, 31);
             this.DTPBirthDate.TabIndex = 9;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(550, 89);
+            this.label11.Location = new System.Drawing.Point(414, 72);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(134, 32);
+            this.label11.Size = new System.Drawing.Size(101, 25);
             this.label11.TabIndex = 15;
             this.label11.Text = "BirthDate";
             // 
             // CBCity
             // 
             this.CBCity.FormattingEnabled = true;
-            this.CBCity.Location = new System.Drawing.Point(744, 181);
-            this.CBCity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CBCity.Location = new System.Drawing.Point(560, 146);
+            this.CBCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CBCity.Name = "CBCity";
-            this.CBCity.Size = new System.Drawing.Size(386, 39);
+            this.CBCity.Size = new System.Drawing.Size(290, 33);
             this.CBCity.TabIndex = 13;
             this.CBCity.Text = "Dumka";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(550, 178);
+            this.label12.Location = new System.Drawing.Point(414, 144);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 32);
+            this.label12.Size = new System.Drawing.Size(49, 25);
             this.label12.TabIndex = 16;
             this.label12.Text = "City";
             // 
             // cbState
             // 
             this.cbState.FormattingEnabled = true;
-            this.cbState.Location = new System.Drawing.Point(744, 226);
-            this.cbState.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbState.Location = new System.Drawing.Point(560, 183);
+            this.cbState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbState.Name = "cbState";
-            this.cbState.Size = new System.Drawing.Size(386, 39);
+            this.cbState.Size = new System.Drawing.Size(290, 33);
             this.cbState.TabIndex = 14;
             this.cbState.Text = "Jharkhand";
             // 
             // CBCountry
             // 
             this.CBCountry.FormattingEnabled = true;
-            this.CBCountry.Location = new System.Drawing.Point(744, 271);
-            this.CBCountry.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.CBCountry.Location = new System.Drawing.Point(560, 220);
+            this.CBCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CBCountry.Name = "CBCountry";
-            this.CBCountry.Size = new System.Drawing.Size(152, 39);
+            this.CBCountry.Size = new System.Drawing.Size(115, 33);
             this.CBCountry.TabIndex = 15;
             this.CBCountry.Text = "India";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(551, 223);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(415, 181);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 32);
+            this.label5.Size = new System.Drawing.Size(62, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "State";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(550, 268);
+            this.label15.Location = new System.Drawing.Point(414, 218);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(114, 32);
+            this.label15.Size = new System.Drawing.Size(87, 25);
             this.label15.TabIndex = 19;
             this.label15.Text = "Country";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(550, 0);
+            this.label13.Location = new System.Drawing.Point(414, 0);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(143, 32);
+            this.label13.Size = new System.Drawing.Size(109, 25);
             this.label13.TabIndex = 20;
             this.label13.Text = "Emp Type";
             // 
             // CBEmpType
             // 
             this.CBEmpType.FormattingEnabled = true;
-            this.CBEmpType.Location = new System.Drawing.Point(743, 3);
+            this.CBEmpType.Location = new System.Drawing.Point(559, 2);
+            this.CBEmpType.Margin = new System.Windows.Forms.Padding(2);
             this.CBEmpType.Name = "CBEmpType";
-            this.CBEmpType.Size = new System.Drawing.Size(272, 39);
+            this.CBEmpType.Size = new System.Drawing.Size(205, 33);
             this.CBEmpType.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(550, 133);
+            this.label10.Location = new System.Drawing.Point(414, 107);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(174, 32);
+            this.label10.Size = new System.Drawing.Size(132, 25);
             this.label10.TabIndex = 12;
             this.label10.Text = "Joining Date";
             // 
             // DTPJoiningDate
             // 
-            this.DTPJoiningDate.Location = new System.Drawing.Point(743, 136);
+            this.DTPJoiningDate.Location = new System.Drawing.Point(559, 109);
+            this.DTPJoiningDate.Margin = new System.Windows.Forms.Padding(2);
             this.DTPJoiningDate.Name = "DTPJoiningDate";
-            this.DTPJoiningDate.Size = new System.Drawing.Size(387, 38);
+            this.DTPJoiningDate.Size = new System.Drawing.Size(291, 31);
             this.DTPJoiningDate.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 313);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(3, 255);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(143, 32);
+            this.label6.Size = new System.Drawing.Size(109, 25);
             this.label6.TabIndex = 5;
             this.label6.Text = "Mobile No";
             // 
             // txtMobileNo
             // 
-            this.txtMobileNo.Location = new System.Drawing.Point(155, 316);
-            this.txtMobileNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtMobileNo.Location = new System.Drawing.Point(118, 257);
+            this.txtMobileNo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(386, 38);
+            this.txtMobileNo.Size = new System.Drawing.Size(290, 31);
             this.txtMobileNo.TabIndex = 16;
             this.txtMobileNo.Text = "7779997556";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(550, 313);
+            this.label14.Location = new System.Drawing.Point(414, 255);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(187, 32);
+            this.label14.Size = new System.Drawing.Size(141, 25);
             this.label14.TabIndex = 22;
             this.label14.Text = "AttendenceID";
             // 
             // TXTAttendenceID
             // 
-            this.TXTAttendenceID.Location = new System.Drawing.Point(743, 316);
+            this.TXTAttendenceID.Location = new System.Drawing.Point(559, 257);
+            this.TXTAttendenceID.Margin = new System.Windows.Forms.Padding(2);
             this.TXTAttendenceID.Name = "TXTAttendenceID";
-            this.TXTAttendenceID.Size = new System.Drawing.Size(194, 38);
+            this.TXTAttendenceID.Size = new System.Drawing.Size(146, 31);
             this.TXTAttendenceID.TabIndex = 17;
             // 
             // EmployeeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1690, 994);
+            this.ClientSize = new System.Drawing.Size(1268, 802);
             this.Controls.Add(this.GBControls);
             this.Controls.Add(this.GBSearch);
             this.Controls.Add(this.GBEmployeeDetails);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EmployeeForm";
-            this.Text = "EmployeeForm";
+            this.Text = "Employee:Payroll";
             this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.GBControls.ResumeLayout(false);
             this.GBControls.PerformLayout();

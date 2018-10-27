@@ -35,7 +35,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase\AprajitaRetails\AprajitaRetailsMainDB.cs" />
+    <Compile Include="DataBase\AprajitaRetails\AprajitaRetailsMainDBSeeder.cs" />
     <Compile Include="DataBase\AprajitaRetails\Bank.cs" />
     <Compile Include="DataBase\AprajitaRetails\BankDetail.cs" />
     <Compile Include="DataBase\AprajitaRetails\CardPaymentDetail.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="DataBase\AprajitaRetails\HRM\Attendence.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\Employee.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\EmpType.cs" />
+    <Compile Include="DataBase\AprajitaRetails\HRM\HRMDBSeeder.cs" />
     <Compile Include="DataBase\AprajitaRetails\PaymentDetail.cs" />
     <Compile Include="DataBase\AprajitaRetails\PaymentMode.cs" />
     <Compile Include="DataBase\AprajitaRetails\ProductItem.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="Data\AprajitaRetailsDB.cs" />
     <Compile Include="Data\HRMDB.cs" />
     <Compile Include="Data\VoygerDB.cs" />
+    <Compile Include="Migrations\HRMDBConfiguration.cs" />
+    <Compile Include="Migrations\MainDBConfiguration.cs" />
     <Compile Include="Models\Advances.cs" />
     <Compile Include="Models\Attendence.cs" />
     <Compile Include="Models\AuthUsers.cs" />
@@ -140,7 +144,7 @@
     <Compile Include="Models\DuesPayment.cs" />
     <Compile Include="Models\EmpCode.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\EmployeeType.cs" />
+    <Compile Include="Models\Data\EmployeeType.cs" />
     <Compile Include="Models\Expenses.cs" />
     <Compile Include="Models\ExpensesCategory.cs" />
     <Compile Include="Models\ExpensesLevel.cs" />
@@ -186,6 +190,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
+      <Project>{822029AC-F319-45BD-AF91-57F44CFB40A2}</Project>
+      <Name>CyberN Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

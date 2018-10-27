@@ -1,5 +1,5 @@
 ﻿using AprajitaRetails.Forms;
-
+using AprajitaRetails.Forms.EF6;
 using AprajitaRetails.Ops;
 using AprajitaRetailsDataBase.Client;
 using System;
@@ -235,6 +235,11 @@ namespace AprajitaRetails
         private void TSMIBanks_Click( object sender, EventArgs e )
         {
             ShowNewForm( new BankAccountForm() );
+        }
+
+        private void empTypesToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            ShowNewForm( new EmpTypeForm() );
         }
 
         // end of UI Controls

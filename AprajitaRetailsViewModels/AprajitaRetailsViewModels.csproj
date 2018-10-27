@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF6\AttendenceViewModel.cs" />
+    <Compile Include="EF6\CustomerViewModel.cs" />
+    <Compile Include="EF6\DayClosingViewModel.cs" />
+    <Compile Include="EF6\EmployeeViewModel.cs" />
     <Compile Include="EF6\SaleInvoiceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +64,10 @@
     <ProjectReference Include="..\AprajitaRetailsDB\AprajitaRetailsDB.csproj">
       <Project>{504c9bf6-ceda-44d2-a98c-daa24b146086}</Project>
       <Name>AprajitaRetailsDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
+      <Project>{822029AC-F319-45BD-AF91-57F44CFB40A2}</Project>
+      <Name>CyberN Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

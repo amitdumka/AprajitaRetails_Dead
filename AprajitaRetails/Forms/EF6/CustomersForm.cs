@@ -1,9 +1,11 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+﻿//using AprajitaRetailsDataBase.SqlDataBase.Data;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using AprajitaRetailsViewModels.EF6;
+using AprajitaRetailsDB.DataBase.AprajitaRetails;
 
 //TODO: Add Option to search based of name or phone or both or only one .
 // now is first option is mobile then name
@@ -11,7 +13,9 @@ namespace AprajitaRetails.Forms
 {
     public partial class CustomersForm : Form
     {
-        private CustomerVM cVm;
+
+        //private CustomerVM cVm;
+        private CustomerViewModel cVm;
         public string CustomerMobileNo;
         public string CustomerFirstName;
         public string CustomerLastName;
@@ -22,7 +26,8 @@ namespace AprajitaRetails.Forms
         {
             InitializeComponent();
 
-            cVm = new CustomerVM();
+            //cVm = new CustomerVM();
+            cVm=new CustomerViewModel();
         }
 
         private void BTNAdd_Click( object sender, EventArgs e )
@@ -57,8 +62,8 @@ namespace AprajitaRetails.Forms
                 if (cVm.SaveData(ReadFields()) > 0)
                 {
                     BTNAdd.Text = "Add";
-                    MessageBox.Show("Your Record got saved!", "Cusotmer Save");
-
+                    MessageBox.Show("Your Record got saved!", "Cusotmer details is saved");
+                    CBMobileNos.Items.Add( txtMobileNo.Text );
                     if (IsDailog)
                     {
                         CustomerMobileNo = txtMobileNo.Text;
@@ -79,11 +84,13 @@ namespace AprajitaRetails.Forms
                 FirstName = txtFirstName.Text,
                 LastName = txtLastname.Text,
                 Age = Int32.Parse(txtAge.Text.Trim()),
-                ID = -1,
+                CustomerID = -1,
                 MobileNo = txtMobileNo.Text,
                 NoOfBills = 0,
-                TotalAmount = 0.00,
-                Gender = Gender.GetGenderId(cbGender.Text)
+                TotalAmount = 0,
+                Gender = Gender.GetGenderId(cbGender.Text),
+                
+                
             };
             return cust;
         }

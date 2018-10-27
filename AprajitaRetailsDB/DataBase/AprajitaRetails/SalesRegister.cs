@@ -47,5 +47,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         [Required]
         [StringLength(50)]
         public string PaymentMode { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
     }
 }

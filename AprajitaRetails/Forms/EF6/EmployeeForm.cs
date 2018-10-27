@@ -1,5 +1,9 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+﻿//using AprajitaRetailsDataBase.SqlDataBase.Data;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using AprajitaRetailsDataBase.Client;
+using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
+using AprajitaRetailsDB.Models.Data;
+using AprajitaRetailsViewModels.EF6;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
@@ -11,12 +15,14 @@ namespace AprajitaRetails.Forms
 {
     public partial class EmployeeForm : Form
     {
-        private EmployeeVM eVM = new EmployeeVM();
+        //        private EmployeeVM eVM = new EmployeeVM();
+        private EmployeeViewModel eVM;
         private Employee emp;
 
         public EmployeeForm( )
         {
             InitializeComponent();
+            eVM=new EmployeeViewModel();
         }
 
         private void BTNAdd_Click( object sender, EventArgs e )
@@ -44,7 +50,7 @@ namespace AprajitaRetails.Forms
                 if (eVM.SaveData(ReadFields()) > 0)
                 {
                     BTNAdd.Text = "Add";
-                    MessageBox.Show("Your Record got Saved", "Employee");
+                    MessageBox.Show("Your Employee details is saved!", "Employee");
                     LoadEmpCode();
                     Basic.ClearUIFields(TLPEmployeeDetails);
                 }
@@ -64,7 +70,7 @@ namespace AprajitaRetails.Forms
         {
             Employee eDM = new Employee()
             {
-                ID = -1,
+                EMPID = -1,
                 Age = Basic.ToInt(txtAge.Text.Trim()),
                 AddressLine1 = txtAddress.Text,
                 Gender = Gender.GetGenderId(cbGender.Text),
@@ -75,18 +81,19 @@ namespace AprajitaRetails.Forms
                 LastName = TXTLastName.Text,
                 FirstName = TXTFirstName.Text,
                 State = cbState.Text,
-                AttendenceId = Basic.ToInt(TXTAttendenceID.Text.Trim()),
+                AttendenceDeviceId = Basic.ToInt(TXTAttendenceID.Text.Trim()),
                 DateOfBirth = DTPBirthDate.Value,
                 DateOfJoining = DTPJoiningDate.Value,
-                EmpType = EmpCode.GetCategory(CBEmpType.Text),
+                EmpTypeID = EmpCode.GetCategory(CBEmpType.Text),
                 DateOfLeaving = DTPJoiningDate.Value,
-                EMPCode = EmpCode.GenerateEmpCode(EmpCode.GetCategory(CBEmpType.Text))
-            };
+                EMPCode = eVM.GenerateEmpCode(EmpCode.GetCategory(CBEmpType.Text)),
+                StoreCode=CurrentClient.LoggedClient.ClientCode            };
             return eDM;
         }
 
         private void EmployeeForm_Load( object sender, EventArgs e )
         {
+            
             int x = eVM.GetEmployeeTypeList(CBEmpType);
             LoadUiItems();
         }
@@ -120,6 +127,7 @@ namespace AprajitaRetails.Forms
             emp = eVM.GetEmployeeDetails(CBEmpCode.Items[index].ToString());
             DisplayEmployeeData();
         }
+        //TODO: emptype use db  load and update from there Bug 
 
         private void DisplayEmployeeData( )
         {
@@ -134,11 +142,11 @@ namespace AprajitaRetails.Forms
                 CBEmpCode.Text = emp.EMPCode;
                 txtAddress.Text = emp.AddressLine1;
                 txtAge.Text = "" + emp.Age;
-                TXTAttendenceID.Text = "" + emp.AttendenceId;
-                DTPBirthDate.Value = emp.DateOfBirth;
+                TXTAttendenceID.Text = "" + emp.AttendenceDeviceId;
+                DTPBirthDate.Value =emp.DateOfBirth;
                 DTPJoiningDate.Value = emp.DateOfJoining;
                 cbGender.Text = Gender.GetGender(emp.Gender);
-                CBEmpType.Text = EmpCode.EmpTypeToCategory(emp.EmpType);
+                CBEmpType.Text = EmpCode.EmpTypeToCategory(emp.EmpTypeID);
             }
         }
 
@@ -150,6 +158,11 @@ namespace AprajitaRetails.Forms
 
         private void BTNFind_Click( object sender, EventArgs e )
         {
+        }
+
+        private void BTNUpdate_Click( object sender, EventArgs e )
+        {
+
         }
     }
 }

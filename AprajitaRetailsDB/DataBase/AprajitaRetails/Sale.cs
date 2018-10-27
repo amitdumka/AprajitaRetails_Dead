@@ -80,5 +80,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         [StringLength(50)]
         public string IsDataConsumed { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
     }
 }

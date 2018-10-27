@@ -11,10 +11,10 @@ namespace AprajitaRetailsDB.DataBase.Voyager
     {
         public int ID { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string BillType { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string BillNumber { get; set; }
 
         [Column(TypeName = "datetime2")]
@@ -26,13 +26,13 @@ namespace AprajitaRetailsDB.DataBase.Voyager
 
         public double BillDiscount { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string CustomerName { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string CustomerMobile { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(20)]
         public string StoreID { get; set; }
     }
 }

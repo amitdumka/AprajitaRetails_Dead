@@ -35,6 +35,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public double? CGSTRate { get; set; }
 
         public double? SGSTRate { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
 
         public int? PurchaseInvoiceID { get; set; }
 

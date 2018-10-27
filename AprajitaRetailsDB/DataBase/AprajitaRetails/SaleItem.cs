@@ -55,6 +55,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         public int IsAdjusted { get; set; }
 
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
+
         public virtual ProductItem ProductItem { get; set; }
 
         public virtual SaleInvoice SaleInvoice { get; set; }

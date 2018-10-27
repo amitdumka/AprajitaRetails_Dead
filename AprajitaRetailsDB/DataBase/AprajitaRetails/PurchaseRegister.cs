@@ -41,5 +41,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         [Column(TypeName = "money")]
         public decimal? TaxAmt { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
     }
 }

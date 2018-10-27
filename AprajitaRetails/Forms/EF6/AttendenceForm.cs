@@ -103,5 +103,15 @@ namespace AprajitaRetails.Forms
         {
             return Basic.ValidateFormUI(TLPAttendence);
         }
+
+        private void BTNDelete_Click( object sender, EventArgs e )
+        {
+
+        }
+
+        private void BTNUpdate_Click( object sender, EventArgs e )
+        {
+
+        }
     }
 }

@@ -5,20 +5,28 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 {
     public class CustomerVM
     {
+        public CustomerVM( )
+        {
+            DB=new CustomerDB();
+        }
+
         public void AddData( )
         {
         }
 
-        public int SaveData( Customer cust )
+        public Customer GetCustomer( string mob )
         {
-            return DB.InsertData(cust);
+            return DB.GetCustomer( mob );
         }
 
-        private CustomerDB DB;
-
-        public CustomerVM( )
+        public Customer GetCustomerByName( string name )
         {
-            DB = new CustomerDB();
+            return DB.GetCustomerByName( name );
+        }
+
+        public List<Customer> GetCustomersByName( string name )
+        {
+            return DB.GetCustomersByName( name );
         }
 
         public List<string> GetMobileList( )
@@ -26,19 +34,11 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
             return DB.GetMobileList();
         }
 
-        public Customer GetCustomer( string mob )
+        public int SaveData( Customer cust )
         {
-            return DB.GetCustomer(mob);
+            return DB.InsertData( cust );
         }
 
-        public Customer GetCustomerByName( string name )
-        {
-            return DB.GetCustomerByName(name);
-        }
-
-        public List<Customer> GetCustomersByName( string name )
-        {
-            return DB.GetCustomersByName(name);
-        }
+        private CustomerDB DB;
     }
 }

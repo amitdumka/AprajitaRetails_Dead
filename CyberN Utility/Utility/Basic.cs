@@ -26,11 +26,19 @@ namespace CyberN.Utility
         {
             if (i <= 0)
                 return genders[1];
-            return (genders[i - 1]);
+            return (genders[i -1]);
         }
 
         public Gender( )
         {
+
+        }
+
+        public static string GetGender( int? i )
+        {
+            if (i<=0)
+                return genders[1];
+            return (genders[i??-1]);
         }
     }
 

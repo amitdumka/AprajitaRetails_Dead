@@ -27,6 +27,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         public int? BankDetailsID { get; set; }
 
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
+
         public virtual BankDetail BankDetail { get; set; }
 
         public virtual ExpensesCategory ExpensesCategory { get; set; }

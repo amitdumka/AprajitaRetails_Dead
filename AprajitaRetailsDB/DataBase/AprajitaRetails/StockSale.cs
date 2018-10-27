@@ -21,6 +21,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public double? MQty { get; set; }
 
         public double? AcutalQty { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
 
         public virtual ProductItem ProductItem { get; set; }
     }

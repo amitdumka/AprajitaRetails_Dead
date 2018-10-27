@@ -28,6 +28,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         [Column(TypeName = "money")]
         public decimal? MRPValue { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
 
         public virtual ProductItem ProductItem { get; set; }
     }

@@ -19,5 +19,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public string passwd { get; set; }
 
         public int role { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
     }
 }

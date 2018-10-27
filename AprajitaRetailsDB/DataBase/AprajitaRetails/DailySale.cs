@@ -31,6 +31,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public int? Tailoring { get; set; }
 
         public int? PaymentModeID { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
 
         public virtual Customer Customer { get; set; }
 

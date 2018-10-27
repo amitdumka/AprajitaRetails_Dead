@@ -209,26 +209,32 @@
     <Compile Include="Constant\Constants.cs" />
     <Compile Include="Excels\ExcelToDataBase.cs" />
     <Compile Include="Excels\ExcelUploader.cs" />
-    <Compile Include="Forms\AttendenceForm.cs">
+    <Compile Include="Forms\EF6\AttendenceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AttendenceForm.Designer.cs">
+    <Compile Include="Forms\EF6\AttendenceForm.Designer.cs">
       <DependentUpon>AttendenceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BankAccountForm.cs">
+    <Compile Include="Forms\EF6\BankAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BankAccountForm.Designer.cs">
+    <Compile Include="Forms\EF6\BankAccountForm.Designer.cs">
       <DependentUpon>BankAccountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BasicForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EmployeeForm.cs">
+    <Compile Include="Forms\EF6\EmployeeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EmployeeForm.Designer.cs">
+    <Compile Include="Forms\EF6\EmployeeForm.Designer.cs">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EF6\EmpTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EF6\EmpTypeForm.Designer.cs">
+      <DependentUpon>EmpTypeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ExpensesCategoryForm.cs">
       <SubType>Form</SubType>
@@ -248,7 +254,6 @@
     <Compile Include="Forms\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SaleInvoiceViewModel.cs" />
     <Compile Include="Forms\UploaderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,10 +282,10 @@
     <Compile Include="CleanUp\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CustomersForm.cs">
+    <Compile Include="Forms\EF6\CustomersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CustomersForm.Designer.cs">
+    <Compile Include="Forms\EF6\CustomersForm.Designer.cs">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DailySaleForm.cs">
@@ -289,10 +294,10 @@
     <Compile Include="Forms\DailySaleForm.Designer.cs">
       <DependentUpon>DailySaleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DayClosingForm.cs">
+    <Compile Include="Forms\EF6\DayClosingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DayClosingForm.Designer.cs">
+    <Compile Include="Forms\EF6\DayClosingForm.Designer.cs">
       <DependentUpon>DayClosingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FootFallForm.cs">
@@ -332,26 +337,29 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AttendenceForm.resx">
+    <EmbeddedResource Include="Forms\EF6\AttendenceForm.resx">
       <DependentUpon>AttendenceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BankAccountForm.resx">
+    <EmbeddedResource Include="Forms\EF6\BankAccountForm.resx">
       <DependentUpon>BankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BasicForm.resx">
       <DependentUpon>BasicForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomersForm.resx">
+    <EmbeddedResource Include="Forms\EF6\CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DailySaleForm.resx">
       <DependentUpon>DailySaleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DayClosingForm.resx">
+    <EmbeddedResource Include="Forms\EF6\DayClosingForm.resx">
       <DependentUpon>DayClosingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EmployeeForm.resx">
+    <EmbeddedResource Include="Forms\EF6\EmployeeForm.resx">
       <DependentUpon>EmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EF6\EmpTypeForm.resx">
+      <DependentUpon>EmpTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExpensesCategoryForm.resx">
       <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
@@ -405,6 +413,9 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Bank.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.BankDetail.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.Attendence.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.Employee.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.EmpType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -463,8 +474,6 @@
     <Content Include="Localization\zh-CHT.xml" />
     <Content Include="TextFile1.txt" />
     <None Include="Resources\Image1.png" />
-    <None Include="Resources\Icon2.ico" />
-    <None Include="Resources\Icon1.ico" />
     <None Include="Resources\arvind.jpeg" />
     <None Include="Resources\thearvindstore1.jpg" />
     <None Include="Resources\thearvindstore.jpg" />
@@ -505,6 +514,10 @@
       <Project>{504c9bf6-ceda-44d2-a98c-daa24b146086}</Project>
       <Name>AprajitaRetailsDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AprajitaRetailsViewModels\AprajitaRetailsViewModels.csproj">
+      <Project>{680ff0ca-2f6b-418d-bf9f-747149253d13}</Project>
+      <Name>AprajitaRetailsViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CyberN Utility\CyberN Utility.csproj">
       <Project>{822029ac-f319-45bd-af91-57f44cfb40a2}</Project>
       <Name>CyberN Utility</Name>
@@ -539,10 +552,7 @@
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\sync\" />
-    <Folder Include="Forms\Telik\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -15,13 +15,13 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
             Employees = new HashSet<Employee>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmpTypeID { get; set; }
 
         [Column("EmpType")]
         [Required]
         [StringLength(50)]
-        public string EmpType1 { get; set; }
+        public string EmpTypeName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }

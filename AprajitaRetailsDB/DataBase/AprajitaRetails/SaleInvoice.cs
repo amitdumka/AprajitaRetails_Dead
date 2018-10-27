@@ -48,6 +48,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public decimal? TotalTaxAmount { get; set; }
 
         public int IsManualBillAdjusted { get; set; }
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CardPaymentDetail> CardPaymentDetails { get; set; }

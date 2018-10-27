@@ -24,6 +24,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         [StringLength(100)]
         public string SalesmanName { get; set; }
 
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleItem> SaleItems { get; set; }
     }

@@ -24,7 +24,7 @@ namespace AprajitaRetails
         {
             bool status = false;
             string sql = "CREATE TABLE Users (Id INT NOT NULL," +
-                "username varchar(50) NOT NULL,passwd varchar(20) NOT NULL,role INT NOT NULL, " +
+                "username varchar(50) NOT NULL,passwd varchar(20) NOT NULL,role INT NOT NULL, StoreCode varchar(20) Not Null," +
                 "CONSTRAINT unTb UNIQUE (Id));";
             Logs.LogMe("CreateAuthUserTable:MODE: " + mode);
 
@@ -42,8 +42,11 @@ namespace AprajitaRetails
             if (ctr > 0)
             {
                 Console.WriteLine("Table Created");
-                sql = "insert into users values(1,'admin','admin',1);";
+                sql = "insert into users values(1,'admin','admin',1,'JH006');";
                 ctr = db.InsertQuerySql(sql);
+                sql="insert into users values(2,'admin','admin',1,'JH014');";
+                ctr=ctr+db.InsertQuerySql( sql );
+
                 Logs.LogMe("Defaults Added");
                 if (ctr > 0)
                     status = true;
@@ -69,7 +72,7 @@ namespace AprajitaRetails
             if (username == "" || password == "")
                 return -1;
             int status = 0;
-            string sql = "select * from Users where username='" + username + "';";
+            string sql = "select * from Users where username='" + username + "';";//TODO: Implement StoreCode
             DBHelper db = new DBHelper();
             SqlDataReader data = db.QueryStrSql(sql).ExecuteReader();
             if (data != null)
@@ -97,13 +100,13 @@ namespace AprajitaRetails
         }
 
         /// <summary>
-        ///
+        ///  TODO: Need to Reimplemnt
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public int AddUser( String username, String password, String role )
+        public int AddUser( String username, String password, String role , string storeCode)
         {
             if (username != "" && password != "" && role != "")
             {
@@ -116,6 +119,7 @@ namespace AprajitaRetails
                 cmd.Parameters.Add(new SqlParameter("@username", username));
                 cmd.Parameters.Add(new SqlParameter("@passwd", password));
                 cmd.Parameters.Add(new SqlParameter("@roles", role));
+                cmd.Parameters.Add( new SqlParameter( "@StoreCode", storeCode ) );
                 //cmd.Connection = sqlConnection;
                 int count = 0;
                 try

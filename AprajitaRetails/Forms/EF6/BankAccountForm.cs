@@ -21,7 +21,7 @@ namespace AprajitaRetails.Forms
 
         private void BTNAdd_Click( object sender, System.EventArgs e )
         {
-            dbAprajitaRetails.SaveChanges();
+           // dbAprajitaRetails.SaveChanges();
 
         }
 
@@ -31,7 +31,7 @@ namespace AprajitaRetails.Forms
 
         private void BankAccountForm_Load( object sender, System.EventArgs e )
         {
-            //dbAprajitaRetails=new AprajitaRetailsMainDB();
+           
 
 
         }
@@ -57,6 +57,11 @@ namespace AprajitaRetails.Forms
         }
 
         private void bankDataGridView_CellContentClick( object sender, DataGridViewCellEventArgs e )
+        {
+
+        }
+
+        private void bindingNavigatorAddNewItem_Click( object sender, EventArgs e )
         {
 
         }

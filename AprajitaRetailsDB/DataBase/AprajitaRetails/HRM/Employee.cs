@@ -48,10 +48,11 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
         public string State { get; set; }
 
         public int EmpTypeID { get; set; }
+        public int? AttendenceDeviceId { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public DateTime? DateOfJoining { get; set; }
+        public DateTime DateOfJoining { get; set; }
 
         public DateTime? DateOfLeaving { get; set; }
 
@@ -61,9 +62,13 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
         [StringLength(100)]
         public string Status { get; set; }
 
+        [StringLength( 20 )]
+        public string StoreCode { get; set; }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendence> Attendences { get; set; }
 
         public virtual EmpType EmpType { get; set; }
-    }
+       }
 }

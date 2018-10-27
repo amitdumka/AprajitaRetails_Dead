@@ -19,12 +19,13 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
 
         public DateTime? OnDate { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal? AttendenceNo { get; set; }
+        public int? AttendenceDeviceID { get; set; }
 
         public int? IsAbesent { get; set; }
 
         public int? IsPaidLeave { get; set; }
+        [StringLength(20)]
+        public string StoreCode { get; set; }
 
         public virtual Employee Employee { get; set; }
     }

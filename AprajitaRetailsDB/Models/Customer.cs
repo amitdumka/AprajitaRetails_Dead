@@ -1,4 +1,4 @@
-﻿namespace AprajitaRetailsDB.Models.Data
+﻿namespace AprajitaRetailsDB.Models
 {
     /// <summary>
     /// TableName: Customer

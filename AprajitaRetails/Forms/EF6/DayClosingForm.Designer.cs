@@ -90,9 +90,9 @@
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.TLPCashDetails);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(418, 652);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -150,7 +150,7 @@
             this.TLPCashDetails.Controls.Add(this.T200, 1, 4);
             this.TLPCashDetails.Controls.Add(this.TT200, 2, 4);
             this.TLPCashDetails.Location = new System.Drawing.Point(8, 43);
-            this.TLPCashDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TLPCashDetails.Margin = new System.Windows.Forms.Padding(4);
             this.TLPCashDetails.Name = "TLPCashDetails";
             this.TLPCashDetails.RowCount = 14;
             this.TLPCashDetails.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -254,7 +254,7 @@
             // T2000
             // 
             this.T2000.Location = new System.Drawing.Point(78, 35);
-            this.T2000.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T2000.Margin = new System.Windows.Forms.Padding(4);
             this.T2000.Name = "T2000";
             this.T2000.Size = new System.Drawing.Size(132, 31);
             this.T2000.TabIndex = 9;
@@ -263,7 +263,7 @@
             // T1000
             // 
             this.T1000.Location = new System.Drawing.Point(78, 77);
-            this.T1000.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T1000.Margin = new System.Windows.Forms.Padding(4);
             this.T1000.Name = "T1000";
             this.T1000.Size = new System.Drawing.Size(132, 31);
             this.T1000.TabIndex = 10;
@@ -272,7 +272,7 @@
             // T500
             // 
             this.T500.Location = new System.Drawing.Point(78, 119);
-            this.T500.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T500.Margin = new System.Windows.Forms.Padding(4);
             this.T500.Name = "T500";
             this.T500.Size = new System.Drawing.Size(132, 31);
             this.T500.TabIndex = 11;
@@ -281,7 +281,7 @@
             // T100
             // 
             this.T100.Location = new System.Drawing.Point(78, 203);
-            this.T100.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T100.Margin = new System.Windows.Forms.Padding(4);
             this.T100.Name = "T100";
             this.T100.Size = new System.Drawing.Size(132, 31);
             this.T100.TabIndex = 13;
@@ -290,7 +290,7 @@
             // T50
             // 
             this.T50.Location = new System.Drawing.Point(78, 245);
-            this.T50.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T50.Margin = new System.Windows.Forms.Padding(4);
             this.T50.Name = "T50";
             this.T50.Size = new System.Drawing.Size(132, 31);
             this.T50.TabIndex = 14;
@@ -299,7 +299,7 @@
             // T20
             // 
             this.T20.Location = new System.Drawing.Point(78, 287);
-            this.T20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T20.Margin = new System.Windows.Forms.Padding(4);
             this.T20.Name = "T20";
             this.T20.Size = new System.Drawing.Size(132, 31);
             this.T20.TabIndex = 15;
@@ -308,7 +308,7 @@
             // T10
             // 
             this.T10.Location = new System.Drawing.Point(78, 329);
-            this.T10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T10.Margin = new System.Windows.Forms.Padding(4);
             this.T10.Name = "T10";
             this.T10.Size = new System.Drawing.Size(132, 31);
             this.T10.TabIndex = 16;
@@ -317,7 +317,7 @@
             // T5
             // 
             this.T5.Location = new System.Drawing.Point(78, 371);
-            this.T5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T5.Margin = new System.Windows.Forms.Padding(4);
             this.T5.Name = "T5";
             this.T5.Size = new System.Drawing.Size(132, 31);
             this.T5.TabIndex = 17;
@@ -326,7 +326,7 @@
             // C2
             // 
             this.C2.Location = new System.Drawing.Point(78, 413);
-            this.C2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C2.Margin = new System.Windows.Forms.Padding(4);
             this.C2.Name = "C2";
             this.C2.Size = new System.Drawing.Size(132, 31);
             this.C2.TabIndex = 18;
@@ -335,7 +335,7 @@
             // C1
             // 
             this.C1.Location = new System.Drawing.Point(78, 455);
-            this.C1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C1.Margin = new System.Windows.Forms.Padding(4);
             this.C1.Name = "C1";
             this.C1.Size = new System.Drawing.Size(132, 31);
             this.C1.TabIndex = 19;
@@ -344,7 +344,7 @@
             // C5
             // 
             this.C5.Location = new System.Drawing.Point(78, 497);
-            this.C5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C5.Margin = new System.Windows.Forms.Padding(4);
             this.C5.Name = "C5";
             this.C5.Size = new System.Drawing.Size(132, 31);
             this.C5.TabIndex = 20;
@@ -353,7 +353,7 @@
             // C10
             // 
             this.C10.Location = new System.Drawing.Point(78, 539);
-            this.C10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C10.Margin = new System.Windows.Forms.Padding(4);
             this.C10.Name = "C10";
             this.C10.Size = new System.Drawing.Size(132, 31);
             this.C10.TabIndex = 21;
@@ -392,7 +392,7 @@
             // TT2000
             // 
             this.TT2000.Location = new System.Drawing.Point(221, 35);
-            this.TT2000.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT2000.Margin = new System.Windows.Forms.Padding(4);
             this.TT2000.Name = "TT2000";
             this.TT2000.Size = new System.Drawing.Size(174, 31);
             this.TT2000.TabIndex = 24;
@@ -400,7 +400,7 @@
             // TT1000
             // 
             this.TT1000.Location = new System.Drawing.Point(221, 77);
-            this.TT1000.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT1000.Margin = new System.Windows.Forms.Padding(4);
             this.TT1000.Name = "TT1000";
             this.TT1000.Size = new System.Drawing.Size(174, 31);
             this.TT1000.TabIndex = 25;
@@ -408,7 +408,7 @@
             // TT500
             // 
             this.TT500.Location = new System.Drawing.Point(221, 119);
-            this.TT500.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT500.Margin = new System.Windows.Forms.Padding(4);
             this.TT500.Name = "TT500";
             this.TT500.Size = new System.Drawing.Size(174, 31);
             this.TT500.TabIndex = 26;
@@ -416,7 +416,7 @@
             // TT100
             // 
             this.TT100.Location = new System.Drawing.Point(221, 203);
-            this.TT100.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT100.Margin = new System.Windows.Forms.Padding(4);
             this.TT100.Name = "TT100";
             this.TT100.Size = new System.Drawing.Size(174, 31);
             this.TT100.TabIndex = 27;
@@ -424,7 +424,7 @@
             // TT50
             // 
             this.TT50.Location = new System.Drawing.Point(221, 245);
-            this.TT50.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT50.Margin = new System.Windows.Forms.Padding(4);
             this.TT50.Name = "TT50";
             this.TT50.Size = new System.Drawing.Size(174, 31);
             this.TT50.TabIndex = 28;
@@ -432,7 +432,7 @@
             // TT20
             // 
             this.TT20.Location = new System.Drawing.Point(221, 287);
-            this.TT20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT20.Margin = new System.Windows.Forms.Padding(4);
             this.TT20.Name = "TT20";
             this.TT20.Size = new System.Drawing.Size(174, 31);
             this.TT20.TabIndex = 29;
@@ -440,7 +440,7 @@
             // TT10
             // 
             this.TT10.Location = new System.Drawing.Point(221, 329);
-            this.TT10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT10.Margin = new System.Windows.Forms.Padding(4);
             this.TT10.Name = "TT10";
             this.TT10.Size = new System.Drawing.Size(174, 31);
             this.TT10.TabIndex = 30;
@@ -449,7 +449,7 @@
             // TT5
             // 
             this.TT5.Location = new System.Drawing.Point(221, 371);
-            this.TT5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT5.Margin = new System.Windows.Forms.Padding(4);
             this.TT5.Name = "TT5";
             this.TT5.Size = new System.Drawing.Size(174, 31);
             this.TT5.TabIndex = 31;
@@ -457,7 +457,7 @@
             // TC2
             // 
             this.TC2.Location = new System.Drawing.Point(221, 413);
-            this.TC2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TC2.Margin = new System.Windows.Forms.Padding(4);
             this.TC2.Name = "TC2";
             this.TC2.Size = new System.Drawing.Size(174, 31);
             this.TC2.TabIndex = 32;
@@ -465,7 +465,7 @@
             // TC1
             // 
             this.TC1.Location = new System.Drawing.Point(221, 455);
-            this.TC1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TC1.Margin = new System.Windows.Forms.Padding(4);
             this.TC1.Name = "TC1";
             this.TC1.Size = new System.Drawing.Size(174, 31);
             this.TC1.TabIndex = 33;
@@ -473,7 +473,7 @@
             // TC5
             // 
             this.TC5.Location = new System.Drawing.Point(221, 497);
-            this.TC5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TC5.Margin = new System.Windows.Forms.Padding(4);
             this.TC5.Name = "TC5";
             this.TC5.Size = new System.Drawing.Size(174, 31);
             this.TC5.TabIndex = 34;
@@ -481,7 +481,7 @@
             // TC10
             // 
             this.TC10.Location = new System.Drawing.Point(221, 539);
-            this.TC10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TC10.Margin = new System.Windows.Forms.Padding(4);
             this.TC10.Name = "TC10";
             this.TC10.Size = new System.Drawing.Size(174, 31);
             this.TC10.TabIndex = 35;
@@ -539,7 +539,7 @@
             // T200
             // 
             this.T200.Location = new System.Drawing.Point(78, 161);
-            this.T200.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.T200.Margin = new System.Windows.Forms.Padding(4);
             this.T200.Name = "T200";
             this.T200.Size = new System.Drawing.Size(132, 31);
             this.T200.TabIndex = 12;
@@ -548,7 +548,7 @@
             // TT200
             // 
             this.TT200.Location = new System.Drawing.Point(221, 161);
-            this.TT200.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TT200.Margin = new System.Windows.Forms.Padding(4);
             this.TT200.Name = "TT200";
             this.TT200.Size = new System.Drawing.Size(174, 31);
             this.TT200.TabIndex = 27;
@@ -558,10 +558,10 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(664, 273);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(483, 58);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(161, 254);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
@@ -578,7 +578,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 28);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(153, 222);
@@ -589,7 +589,7 @@
             this.BTNAdd.AutoSize = true;
             this.BTNAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNAdd.Location = new System.Drawing.Point(31, 29);
-            this.BTNAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNAdd.Margin = new System.Windows.Forms.Padding(4);
             this.BTNAdd.Name = "BTNAdd";
             this.BTNAdd.Size = new System.Drawing.Size(60, 35);
             this.BTNAdd.TabIndex = 0;
@@ -602,7 +602,7 @@
             this.BTNUpdate.AutoSize = true;
             this.BTNUpdate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNUpdate.Location = new System.Drawing.Point(31, 72);
-            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.BTNUpdate.Name = "BTNUpdate";
             this.BTNUpdate.Size = new System.Drawing.Size(91, 35);
             this.BTNUpdate.TabIndex = 1;
@@ -614,7 +614,7 @@
             this.BTNDelete.AutoSize = true;
             this.BTNDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNDelete.Location = new System.Drawing.Point(31, 115);
-            this.BTNDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNDelete.Margin = new System.Windows.Forms.Padding(4);
             this.BTNDelete.Name = "BTNDelete";
             this.BTNDelete.Size = new System.Drawing.Size(84, 35);
             this.BTNDelete.TabIndex = 2;
@@ -626,7 +626,7 @@
             this.BTNCancel.AutoSize = true;
             this.BTNCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BTNCancel.Location = new System.Drawing.Point(31, 158);
-            this.BTNCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTNCancel.Margin = new System.Windows.Forms.Padding(4);
             this.BTNCancel.Name = "BTNCancel";
             this.BTNCancel.Size = new System.Drawing.Size(89, 35);
             this.BTNCancel.TabIndex = 3;
@@ -637,10 +637,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 695);
+            this.ClientSize = new System.Drawing.Size(694, 857);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DayClosingForm";
             this.Text = "Day Closing";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

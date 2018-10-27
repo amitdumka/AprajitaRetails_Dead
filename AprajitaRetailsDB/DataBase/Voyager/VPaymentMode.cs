@@ -13,13 +13,13 @@ namespace AprajitaRetailsDB.DataBase.Voyager
 
         public int VoyBillId { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string PaymentMode { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(100)]
         public string PaymentValue { get; set; }
 
-        [StringLength(4000)]
+        [StringLength(200)]
         public string Notes { get; set; }
     }
 }
