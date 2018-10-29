@@ -15,7 +15,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
             SaleInvoices = new HashSet<SaleInvoice>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SaleTypeID { get; set; }
 
         [Required]

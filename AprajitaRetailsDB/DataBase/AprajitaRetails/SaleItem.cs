@@ -21,6 +21,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         [Column(TypeName = "money")]
         public decimal Qty { get; set; }
+        public int UnitID { get; set; }
 
         [Column(TypeName = "money")]
         public decimal? MRP { get; set; }
@@ -64,5 +65,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public virtual SaleInvoice SaleInvoice { get; set; }
 
         public virtual Salesman Salesman { get; set; }
+
+        public virtual Unit Unit { get; set; }
     }
 }

@@ -96,7 +96,7 @@
             this.bankDataGridView.RowTemplate.Height = 33;
             this.bankDataGridView.Size = new System.Drawing.Size(1522, 610);
             this.bankDataGridView.TabIndex = 0;
-            this.bankDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bankDataGridView_CellContentClick);
+            //this.bankDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bankDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -195,7 +195,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(36, 36);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+           // this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -294,7 +294,7 @@
             this.Name = "BankAccountForm";
             this.Text = "BankAccountForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.BankAccountForm_Load);
+            //this.Load += new System.EventHandler(this.BankAccountForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bankDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankBindingSource)).EndInit();

@@ -32,4 +32,6 @@ namespace AprajitaRetailsDataBase.SqlDataBase.Data
         public double TotalAccessicorySale { get; set; }
         public int TotalAccessicoryNo { get; set; }
     }
+
+
 }

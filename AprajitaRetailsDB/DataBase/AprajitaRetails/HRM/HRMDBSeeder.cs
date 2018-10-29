@@ -22,6 +22,14 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails.HRM
             defaultEmpType.Add( new EmpType() { EmpTypeID=7, EmpTypeName="Others" } );
             
             context.EmpTypes.AddRange( defaultEmpType );
+            Employee employee = new Employee() {
+                AddressLine1="Bhagalpur Road, Dumka",Age=36, AttendenceDeviceId=1,
+                City="Dumka",Country="India",DateOfBirth=DateTime.Parse("24/07/1982"),
+                DateOfJoining=DateTime.Parse("17/02/2016"),EMPCode="MD20160001",FirstName="Amit",
+                LastName="Kumar",MobileNo="7779997556",State="Jharkhand",Status="Active",
+                StoreCode="JH006",EmpTypeID=1,Gender=1
+            };
+            context.Employees.Add( employee );
 
             base.Seed( context );
         }

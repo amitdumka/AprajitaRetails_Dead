@@ -9,7 +9,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     [Table("PurchaseItem")]
     public partial class PurchaseItem
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PurchaseItemId { get; set; }
 
         [Required]
@@ -17,6 +17,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public string BarCode { get; set; }
 
         public double QTY { get; set; }
+        public int UnitID { get; set; }
 
         [Column(TypeName = "money")]
         public decimal MPR { get; set; }
@@ -42,5 +43,6 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public int? PurchaseInvoiceID { get; set; }
 
         public virtual ProductItem ProductItem { get; set; }
+        public virtual Unit Unit { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
 {
     public class ExpensesVM
     {
+
         private BankAccountsDB bDB;
         private ExpensesCategoryDB cDB;
         private ExpensesDB eDB;

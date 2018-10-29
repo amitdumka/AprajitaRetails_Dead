@@ -13,7 +13,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public PaymentMode()
         {
             DailySales = new HashSet<DailySale>();
-            Expenses = new HashSet<Expens>();
+            Expenses = new HashSet<Expenses>();
         }
 
         public int PaymentModeID { get; set; }
@@ -26,6 +26,6 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public virtual ICollection<DailySale> DailySales { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expens> Expenses { get; set; }
+        public virtual ICollection<Expenses> Expenses { get; set; }
     }
 }

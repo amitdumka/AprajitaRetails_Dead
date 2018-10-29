@@ -9,7 +9,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     [Table("StockSale")]
     public partial class StockSale
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StockSaleID { get; set; }
 
         [Required]
@@ -21,10 +21,11 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public double? MQty { get; set; }
 
         public double? AcutalQty { get; set; }
+        public int UnitID { get; set; }
         [StringLength( 20 )]
         public string StoreCode { get; set; }
 
-
+        public virtual Unit Unit{ get; set; }
         public virtual ProductItem ProductItem { get; set; }
     }
 }

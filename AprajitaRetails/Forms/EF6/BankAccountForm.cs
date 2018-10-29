@@ -19,22 +19,9 @@ namespace AprajitaRetails.Forms
             InitializeComponent();
         }
 
-        private void BTNAdd_Click( object sender, System.EventArgs e )
-        {
-           // dbAprajitaRetails.SaveChanges();
-
-        }
-
-
+       
         AprajitaRetailsMainDB dbAprajitaRetails;
 
-
-        private void BankAccountForm_Load( object sender, System.EventArgs e )
-        {
-           
-
-
-        }
         protected override void OnLoad( EventArgs e )
         {
             base.OnLoad( e );
@@ -56,14 +43,6 @@ namespace AprajitaRetails.Forms
             this.dbAprajitaRetails.Dispose();
         }
 
-        private void bankDataGridView_CellContentClick( object sender, DataGridViewCellEventArgs e )
-        {
-
-        }
-
-        private void bindingNavigatorAddNewItem_Click( object sender, EventArgs e )
-        {
-
-        }
+        
     }
 }

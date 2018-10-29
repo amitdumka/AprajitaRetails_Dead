@@ -7,12 +7,14 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     using System.Data.Entity.Spatial;
 
     [Table("Expenses")]
-    public partial class Expens
+    public partial class Expenses
     {
+        //TODO: Need to add datetime
         [Key]
         public int ExpensesID { get; set; }
 
-        public int? ExpensesCategoryID { get; set; }
+        public int ExpensesCategoryID { get; set; }
+        public DateTime OnDate { get; set; }
 
         [StringLength(100)]
         public string ExpensesReason { get; set; }

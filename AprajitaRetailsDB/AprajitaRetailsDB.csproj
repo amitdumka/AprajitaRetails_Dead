@@ -91,6 +91,7 @@
     <Compile Include="DataBase\AprajitaRetails\DayClosing.cs" />
     <Compile Include="DataBase\AprajitaRetails\Expens.cs" />
     <Compile Include="DataBase\AprajitaRetails\ExpensesCategory.cs" />
+    <Compile Include="DataBase\AprajitaRetails\ExtraTables.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\AprajitaRetailsHRMDB.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\Attendence.cs" />
     <Compile Include="DataBase\AprajitaRetails\HRM\Employee.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="DataBase\AprajitaRetails\SaleType.cs" />
     <Compile Include="DataBase\AprajitaRetails\Stock.cs" />
     <Compile Include="DataBase\AprajitaRetails\StockSale.cs" />
+    <Compile Include="DataBase\AprajitaRetails\Units.cs" />
     <Compile Include="DataBase\AprajitaRetails\User.cs" />
     <Compile Include="DataBase\ObservableListSource.cs" />
     <Compile Include="DataBase\Voyager\InsertDataLog.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="DataBase\Voyager\VoyBill.cs" />
     <Compile Include="DataBase\Voyager\VPaymentMode.cs" />
     <Compile Include="DataTypes\EnumList.cs" />
+    <Compile Include="DataTypes\Transcation.cs" />
     <Compile Include="DataTypes\VoygerBill.cs" />
     <Compile Include="Data\AprajitaRetailsDB.cs" />
     <Compile Include="Data\HRMDB.cs" />

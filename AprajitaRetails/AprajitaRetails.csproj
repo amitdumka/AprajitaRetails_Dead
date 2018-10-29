@@ -236,16 +236,28 @@
     <Compile Include="Forms\EF6\EmpTypeForm.Designer.cs">
       <DependentUpon>EmpTypeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EF6\ExpensesCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EF6\ExpensesCategoryForm.Designer.cs">
+      <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EF6\UnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EF6\UnitForm.Designer.cs">
+      <DependentUpon>UnitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExpensesCategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ExpensesCategoryForm.Designer.cs">
       <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ExpensesForm.cs">
+    <Compile Include="Forms\EF6\ExpensesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ExpensesForm.designer.cs">
+    <Compile Include="Forms\EF6\ExpensesForm.designer.cs">
       <DependentUpon>ExpensesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormTest.cs">
@@ -361,10 +373,16 @@
     <EmbeddedResource Include="Forms\EF6\EmpTypeForm.resx">
       <DependentUpon>EmpTypeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EF6\ExpensesCategoryForm.resx">
+      <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EF6\UnitForm.resx">
+      <DependentUpon>UnitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExpensesCategoryForm.resx">
       <DependentUpon>ExpensesCategoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ExpensesForm.resx">
+    <EmbeddedResource Include="Forms\EF6\ExpensesForm.resx">
       <DependentUpon>ExpensesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FootFallForm.resx">
@@ -411,11 +429,34 @@
     </EmbeddedResource>
     <None Include="AprajitaRetails_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.AprajitaRetailsMainDB.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Bank.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.BankDetail.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.CardPaymentDetail.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Client.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Customer.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.DailySale.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.DayClosing.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Expens.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.ExpensesCategory.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.Attendence.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.Employee.datasource" />
     <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.HRM.EmpType.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.PaymentDetail.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.PaymentMode.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.ProductItem.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Purchase.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.PurchaseItem.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.PurchaseRegister.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Sale.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.SaleInvoice.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.SaleItem.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Salesman.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.SalesRegister.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.SaleType.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.Stock.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.StockSale.datasource" />
+    <None Include="Properties\DataSources\AprajitaRetailsDB.DataBase.AprajitaRetails.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

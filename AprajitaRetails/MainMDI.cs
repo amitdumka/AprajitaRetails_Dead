@@ -242,6 +242,11 @@ namespace AprajitaRetails
             ShowNewForm( new EmpTypeForm() );
         }
 
+        private void expenseCategoryToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            ShowNewForm( new AprajitaRetails.Forms.EF6.ExpensesCategoryForm() );
+        }
+
         // end of UI Controls
     }
 }

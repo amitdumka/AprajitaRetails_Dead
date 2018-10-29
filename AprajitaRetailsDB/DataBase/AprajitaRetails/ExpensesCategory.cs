@@ -12,7 +12,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ExpensesCategory()
         {
-            Expenses = new HashSet<Expens>();
+            Expenses = new HashSet<Expenses>();
         }
 
         public int ExpensesCategoryID { get; set; }
@@ -24,6 +24,6 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public int? Level { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expens> Expenses { get; set; }
+        public virtual ICollection<Expenses> Expenses { get; set; }
     }
 }

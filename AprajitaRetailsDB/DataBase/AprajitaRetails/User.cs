@@ -8,6 +8,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
     public partial class User
     {
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
         public int UserId { get; set; }
 
         [Key]

@@ -7,6 +7,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     using System.Data.Entity.Spatial;
 
     [Table("Stock")]
+
     public partial class Stock
     {
         [Key]
@@ -14,6 +15,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public string BarCode { get; set; }
 
         public double Qty { get; set; }
+
+        public int UnitID { get; set; }
 
         public double PurchaseQty { get; set; }
 
@@ -31,6 +34,8 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         [StringLength( 20 )]
         public string StoreCode { get; set; }
 
+
+        public virtual Unit Unit { get; set; }
 
         public virtual ProductItem ProductItem { get; set; }
     }

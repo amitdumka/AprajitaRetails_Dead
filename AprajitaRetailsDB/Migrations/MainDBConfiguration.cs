@@ -21,6 +21,11 @@ namespace AprajitaRetailsDB.Migrations.MainDB
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
             //TODO: Basic Data Need to Addhere
+            //DataBase.AprajitaRetails.AprajitaRetailsMainDBSeeder dBSeeder = new DataBase.AprajitaRetails.AprajitaRetailsMainDBSeeder();
+            //dBSeeder.InitializeDatabase(context);
+
+            //TODO: update this section for Update version or db change happens in future upgrades
+            
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="EF6\CustomerViewModel.cs" />
     <Compile Include="EF6\DayClosingViewModel.cs" />
     <Compile Include="EF6\EmployeeViewModel.cs" />
+    <Compile Include="EF6\ExpenseViewModel.cs" />
     <Compile Include="EF6\SaleInvoiceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AprajitaRetailsViewModels.EF6
 {
-    internal class AttendenceViewModel
+    public  class AttendenceViewModel
     {
         private AprajitaRetailsHRMDB hrDB = new AprajitaRetailsHRMDB();
 

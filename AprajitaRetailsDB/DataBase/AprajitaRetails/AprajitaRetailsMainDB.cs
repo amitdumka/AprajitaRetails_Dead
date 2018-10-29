@@ -20,7 +20,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DailySale> DailySales { get; set; }
         public virtual DbSet<DayClosing> DayClosings { get; set; }
-        public virtual DbSet<Expens> Expenses { get; set; }
+        public virtual DbSet<Expenses> Expenses { get; set; }
         public virtual DbSet<ExpensesCategory> ExpensesCategories { get; set; }
         public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
         public virtual DbSet<PaymentMode> PaymentModes { get; set; }
@@ -37,6 +37,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<StockSale> StockSales { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
 
         protected override void OnModelCreating( DbModelBuilder modelBuilder )
         {
@@ -155,15 +156,15 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
                 .Property( e => e.Discount )
                 .HasPrecision( 19, 4 );
 
-            modelBuilder.Entity<Expens>()
+            modelBuilder.Entity<Expenses>()
                 .Property( e => e.ExpensesReason )
                 .IsUnicode( false );
 
-            modelBuilder.Entity<Expens>()
+            modelBuilder.Entity<Expenses>()
                 .Property( e => e.ApprovedBy )
                 .IsUnicode( false );
 
-            modelBuilder.Entity<Expens>()
+            modelBuilder.Entity<Expenses>()
                 .Property( e => e.Amount )
                 .HasPrecision( 19, 4 );
 
@@ -594,6 +595,23 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
             modelBuilder.Entity<User>()
                 .Property( e => e.passwd )
                 .IsUnicode( false );
+
+            modelBuilder.Entity<Unit>()
+               .HasMany( e => e.PurchaseItems ).WithRequired( e => e.Unit )
+               .WillCascadeOnDelete( false );
+
+            modelBuilder.Entity<Unit>()
+                .HasMany( e => e.StockSales ).WithRequired(e=>e.Unit)
+                .WillCascadeOnDelete( false );
+
+            modelBuilder.Entity<Unit>()
+                .HasMany( e => e.SaleItems ).WithRequired( e => e.Unit )
+                .WillCascadeOnDelete( false );
+            modelBuilder.Entity<Unit>()
+               .HasMany( e => e.Stocks )
+               .WithRequired( e => e.Unit )
+               .WillCascadeOnDelete( false );
+
         }
     }
 }

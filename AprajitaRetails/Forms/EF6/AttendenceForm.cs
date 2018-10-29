@@ -1,5 +1,7 @@
-﻿using AprajitaRetailsDataBase.SqlDataBase.Data;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+﻿//using AprajitaRetailsDataBase.SqlDataBase.Data;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
+using AprajitaRetailsViewModels.EF6;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
@@ -9,12 +11,12 @@ namespace AprajitaRetails.Forms
 {
     public partial class AttendenceForm : Form
     {
-        private AttendenceVM aVM;
+        private AttendenceViewModel aVM;
 
         public AttendenceForm( )
         {
             InitializeComponent();
-            aVM = new AttendenceVM();
+            aVM = new AttendenceViewModel();
         }
 
         private void AttendenceForm_Load( object sender, EventArgs e )
@@ -90,9 +92,9 @@ namespace AprajitaRetails.Forms
             Attendence att = new Attendence()
             {
                 EMPCode = CBEmpCode.Text,
-                ID = -1,
+                AttendenceID = -1,
                 OnDate = DateTime.Now,
-                AttendenceNo = Basic.ToInt(TXTAttendenceNo.Text),
+                AttendenceDeviceID = Basic.ToInt(TXTAttendenceNo.Text),
                 IsAbesent = Basic.ReadChechBox(CKAbesent),
                 IsPaidLeave = Basic.ReadChechBox(CKPaidLeaves)
             };
