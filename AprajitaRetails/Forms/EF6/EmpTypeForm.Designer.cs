@@ -178,7 +178,7 @@
             this.empTypeBindingNavigatorSaveItem.Name = "empTypeBindingNavigatorSaveItem";
             this.empTypeBindingNavigatorSaveItem.Size = new System.Drawing.Size(36, 36);
             this.empTypeBindingNavigatorSaveItem.Text = "Save Data";
-            this.empTypeBindingNavigatorSaveItem.Click += new System.EventHandler(this.empTypeBindingNavigatorSaveItem_Click);
+            this.empTypeBindingNavigatorSaveItem.Click += new System.EventHandler(this.EmpTypeBindingNavigatorSaveItem_Click);
             // 
             // empTypeDataGridView
             // 

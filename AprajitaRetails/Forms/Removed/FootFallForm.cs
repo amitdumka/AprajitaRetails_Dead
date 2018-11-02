@@ -13,5 +13,10 @@ namespace AprajitaRetails.Forms
         {
             //TODO: impement this
         }
+
+        private void GBFootFallDetails_Enter( object sender, System.EventArgs e )
+        {
+
+        }
     }
 }

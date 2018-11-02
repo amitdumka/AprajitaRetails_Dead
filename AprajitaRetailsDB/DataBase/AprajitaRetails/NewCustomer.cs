@@ -12,10 +12,15 @@ using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    public class ExtraTables
-    {
-        //TODO: list of table is here 
-        //implement it
+    public class NewCustomer
+    {//TODO: Be part of CRM in future
+        [Key]
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
+        public int NewCustomerID { set; get; }
+        public int CustomerID { set; get; }
+        public string InvoiceNo { set; get; }
+        public DateTime OnDate { set; get; }
+        public string CustomerFullName { get; set; }
     }
 
 

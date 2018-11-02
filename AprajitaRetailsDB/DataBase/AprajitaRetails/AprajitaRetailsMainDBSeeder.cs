@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    class AprajitaRetailsMainDBSeeder : DropCreateDatabaseAlways<AprajitaRetailsMainDB>
+    class AprajitaRetailsMainDBSeeder : DropCreateDatabaseIfModelChanges/*DropCreateDatabaseAlways*/<AprajitaRetailsMainDB>
     {
         protected override void Seed( AprajitaRetailsMainDB context )
         {
@@ -76,6 +76,15 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
             units.Add( new Unit() { UnitName="Nos" } );
             context.Units.AddRange( units );
+
+
+            IList<ProductType> pTypes = new List<ProductType>();
+            pTypes.Add( new ProductType {ProductTypeName="Fabric",RateOfFrieghtCharged=3,IsFrieghtCharged=1 } );
+            pTypes.Add( new ProductType { ProductTypeName="ReadyMade", RateOfFrieghtCharged=0, IsFrieghtCharged=2 } );
+            pTypes.Add( new ProductType { ProductTypeName="Accessiory", RateOfFrieghtCharged=0, IsFrieghtCharged=2 } );
+            pTypes.Add( new ProductType { ProductTypeName="Others", RateOfFrieghtCharged=0, IsFrieghtCharged=2 } );
+            pTypes.Add( new ProductType { ProductTypeName="InnerWear", RateOfFrieghtCharged=0, IsFrieghtCharged=2 } );
+            context.ProductTypes.AddRange( pTypes );
 
             base.Seed( context );
         }

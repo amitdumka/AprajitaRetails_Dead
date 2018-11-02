@@ -12,10 +12,14 @@ using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    public class ExtraTables
-    {
-        //TODO: list of table is here 
-        //implement it
+    [Table( "Incentive")]
+    public class Incentive
+    {//TODO: Move To HRM DB
+        [Key]
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
+        public int IncentiveID { get; set; }
+        public double IncentivePercentage { get; set; }
+        public double TargetAmount { get; set; }
     }
 
 

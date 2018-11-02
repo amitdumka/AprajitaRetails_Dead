@@ -78,6 +78,11 @@ namespace AprajitaRetails.Forms
 
         private Customer ReadFields( )
         {
+            string mobileno = "";
+            if (txtMobileNo.TextLength<=10 && !txtMobileNo.Text.StartsWith("+91")) {
+                mobileno="+91"+txtMobileNo.Text;
+            }
+
             Customer cust = new Customer()
             {
                 City = CBCity.Text,
@@ -85,7 +90,7 @@ namespace AprajitaRetails.Forms
                 LastName = txtLastname.Text,
                 Age = Int32.Parse(txtAge.Text.Trim()),
                 CustomerID = -1,
-                MobileNo = txtMobileNo.Text,
+                MobileNo = mobileno,
                 NoOfBills = 0,
                 TotalAmount = 0,
                 Gender = Gender.GetGenderId(cbGender.Text),
@@ -143,9 +148,13 @@ namespace AprajitaRetails.Forms
 
         private void BTNFind_Click( object sender, EventArgs e )
         {
-            if (CBMobileNos.Text.Trim().Length >= 10)
-            {  //TODO: Add for 91
+            if (CBMobileNos.Text.Trim().Length > 10)
+            {
                 MoveTOUI(CBMobileNos.Text.Trim());
+            }
+            else if (CBMobileNos.Text.Trim().Length==10 && !CBMobileNos.Text.Trim().StartsWith("+"))
+            {
+                MoveTOUI( "+91"+CBMobileNos.Text.Trim() );
             }
             else if (CBNames.Text.Trim().Length > 0)
             {

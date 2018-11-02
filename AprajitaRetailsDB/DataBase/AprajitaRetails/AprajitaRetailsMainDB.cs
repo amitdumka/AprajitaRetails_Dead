@@ -38,6 +38,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
         public virtual DbSet<StockSale> StockSales { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<FootFall> FootFalls { get; set; }
+        public virtual DbSet<CashDetail>CashDetails { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
+        public virtual DbSet<PurchaseInward> PurchaseInwards { get; set; }
 
         protected override void OnModelCreating( DbModelBuilder modelBuilder )
         {
@@ -611,6 +615,9 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
                .HasMany( e => e.Stocks )
                .WithRequired( e => e.Unit )
                .WillCascadeOnDelete( false );
+            modelBuilder.Entity<ProductType>()
+              .HasMany( e => e.PurchaseInwards ).WithRequired( e => e.ProductType )
+              .WillCascadeOnDelete( false );
 
         }
     }

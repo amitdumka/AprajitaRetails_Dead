@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace AprajitaRetailsDataBase.SqlDataBase.ViewModel
-{   //TODO: Make static function to getID of tables so it will less memory uses and fast
+{   
+    //TODO: Make static function to getID of tables so it will less memory uses and fast
     public class DailySalesVM
     {
         private DailySaleDB DB;

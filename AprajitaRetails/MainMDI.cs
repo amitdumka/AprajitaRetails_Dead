@@ -105,7 +105,7 @@ namespace AprajitaRetails
 
         private void toolStripMenuItem7_Click( object sender, EventArgs e )
         {
-            ShowNewForm( new FootFallForm() );
+            ShowNewForm( new Forms.EF6.FootFallForm() );
         }
 
         private void uploadSaleRegisterToolStripMenuItem_Click( object sender, EventArgs e )
@@ -245,6 +245,16 @@ namespace AprajitaRetails
         private void expenseCategoryToolStripMenuItem_Click( object sender, EventArgs e )
         {
             ShowNewForm( new AprajitaRetails.Forms.EF6.ExpensesCategoryForm() );
+        }
+
+        private void purchaseInvoiceToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+
+        }
+
+        private void purchaseInwardToolStripMenuItem_Click( object sender, EventArgs e )
+        {
+            ShowNewForm( new PurchaseInwardForm() );
         }
 
         // end of UI Controls

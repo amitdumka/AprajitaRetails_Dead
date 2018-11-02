@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PBLogo = new System.Windows.Forms.PictureBox();
-            this.splashControl1 = new Syncfusion.Windows.Forms.Tools.SplashControl();
             this.GBLogin.SuspendLayout();
             this.TLPLoginControls.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -59,7 +58,7 @@
             this.GBLogin.Margin = new System.Windows.Forms.Padding(2);
             this.GBLogin.Name = "GBLogin";
             this.GBLogin.Padding = new System.Windows.Forms.Padding(2);
-            this.GBLogin.Size = new System.Drawing.Size(873, 297);
+            this.GBLogin.Size = new System.Drawing.Size(873, 299);
             this.GBLogin.TabIndex = 0;
             this.GBLogin.TabStop = false;
             this.GBLogin.Text = "Login";
@@ -225,11 +224,6 @@
             this.PBLogo.TabIndex = 2;
             this.PBLogo.TabStop = false;
             // 
-            // splashControl1
-            // 
-            this.splashControl1.CloseSplashForm = true;
-            this.splashControl1.HostForm = this;
-            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -275,6 +269,5 @@
         private System.Windows.Forms.Label LBStoreName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox PBLogo;
-        private Syncfusion.Windows.Forms.Tools.SplashControl splashControl1;
     }
 }

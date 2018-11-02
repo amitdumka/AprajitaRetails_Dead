@@ -254,7 +254,7 @@ namespace AprajitaRetailsViewModels.EF6
         /// <param name="itemTable"></param>
         /// <param name="pd"></param>
         /// <returns></returns>
-        public int SaveInvoiceData( SaleInvoice saleInv, DataTable itemTable, SalePaymentDetails pd )
+        public int SaveInvoiceData( SaleInvoice saleInv, DataTable itemTable, PaymentDetail pd )
         {    //TODO: for payment mode need check and insert
             int vSaleId = mainDB.SaleInvoices.Local.LastOrDefault().SaleInvoiceID;
             string vInvNo = mainDB.SaleInvoices.Local.LastOrDefault().InvoiceNo;
@@ -287,12 +287,12 @@ namespace AprajitaRetailsViewModels.EF6
 
             CardPaymentDetail cd = new CardPaymentDetail()
             {
-                Amount=pd.CardDetails.Amount,
-                AuthCode=pd.CardDetails.AuthCode,
-                CardPaymentDetailsID=pd.CardDetails.ID,
-                CardType=pd.CardDetails.CardType,
-                InvoiceNo=pd.CardDetails.InvoiceNo,
-                LastDigit=pd.CardDetails.LastDigit
+                Amount=pd.CardPaymentDetail.Amount,
+                AuthCode=pd.CardPaymentDetail.AuthCode,
+                CardPaymentDetailsID=pd.CardPaymentDetail.CardPaymentDetailsID,
+                CardType=pd.CardPaymentDetail.CardType,
+                InvoiceNo=pd.CardPaymentDetail.InvoiceNo,
+                LastDigit=pd.CardPaymentDetail.LastDigit
             };
             PaymentDetail payDetails = new PaymentDetail()
             {
@@ -300,7 +300,7 @@ namespace AprajitaRetailsViewModels.EF6
                 CashAmount=pd.CashAmount,
                 InvoiceNo=pd.InvoiceNo,
                 PayMode=pd.PayMode,
-                PaymentDetailsID=pd.ID,
+                PaymentDetailsID=pd.PaymentDetailsID,
                 CardPaymentDetail=cd,
             };
 
@@ -354,6 +354,11 @@ namespace AprajitaRetailsViewModels.EF6
                 //Logs.LogMe( "Future check :Inv="+inv.TP );
             }
             return inv;
+        }
+
+        public SortedDictionary<string, string> GetInvoiceNoLists( string invoiceNo )
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
-namespace AprajitaRetailsDB.Models.Data
+namespace AprajitaRetailsDB.DataTypes
 {
     /// <summary>
     /// Its store Invoice Details
@@ -17,25 +27,25 @@ namespace AprajitaRetailsDB.Models.Data
 
         public InvoiceNo( string sp )
         {
-            this.SP = sp;
+            this.SP=sp;
         }
 
         public InvoiceNo( string sp, long tp )
         {
-            this.SP = sp;
-            this.TP = tp;
+            this.SP=sp;
+            this.TP=tp;
         }
 
         public override string ToString( )
         {
-            return FP + SP + TP;
+            return FP+SP+TP;
         }
 
         public static string GetInvoiceNo( int old, int newno )
         {  //C33 IN 500001
             InvoiceNo inv = new InvoiceNo
             {
-                TP = newno
+                TP=newno
             };
             return inv.ToString();
         }
@@ -44,7 +54,7 @@ namespace AprajitaRetailsDB.Models.Data
         {  //C33 IN 500001
             InvoiceNo inv = new InvoiceNo
             {
-                TP = nos
+                TP=nos
             };
             return inv.ToString();
         }
@@ -53,7 +63,7 @@ namespace AprajitaRetailsDB.Models.Data
         {
             InvoiceNo inv = new InvoiceNo
             {
-                TP = oldinv + 1
+                TP=oldinv+1
             };
             return inv;
         }
@@ -66,17 +76,17 @@ namespace AprajitaRetailsDB.Models.Data
 
         public static long GetInvNo( string inv )
         {
-            string s = inv.Substring(5).Trim();
+            string s = inv.Substring( 5 ).Trim();
             long nums = -1;
-            if (s != null && s.Length > 0)
+            if (s!=null&&s.Length>0)
             {
                 try
                 {
-                    nums = long.Parse(s);
+                    nums=long.Parse( s );
                 }
                 catch (Exception)
                 {
-                    nums = -2;
+                    nums=-2;
                     return -2;
                 }
             }
@@ -92,8 +102,8 @@ namespace AprajitaRetailsDB.Models.Data
         {  //C33 IN 500001
             InvoiceNo inv = new InvoiceNo
             {
-                TP = newno,
-                SP = sp
+                TP=newno,
+                SP=sp
             };
             return inv.ToString();
         }
@@ -102,8 +112,8 @@ namespace AprajitaRetailsDB.Models.Data
         {  //C33 IN 500001
             InvoiceNo inv = new InvoiceNo
             {
-                TP = nos,
-                SP = sp
+                TP=nos,
+                SP=sp
             };
             return inv.ToString();
         }
@@ -112,10 +122,13 @@ namespace AprajitaRetailsDB.Models.Data
         {
             InvoiceNo inv = new InvoiceNo
             {
-                TP = oldinv + 1,
-                SP = sp
+                TP=oldinv+1,
+                SP=sp
             };
             return inv;
         }
     }
+
+
 }
+

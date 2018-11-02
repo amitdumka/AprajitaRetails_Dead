@@ -12,10 +12,15 @@ using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    public class ExtraTables
-    {
-        //TODO: list of table is here 
-        //implement it
+    [Table("Salary")]
+    public class Salary
+    {//TODO:HRM 
+        [Key]
+        [DatabaseGenerated( DatabaseGeneratedOption.Identity )]
+        public int SalaryID { get; set; }
+        public double BasicSalary { get; set; }
+        public double ExtraSalary { get; set; }
+        public Incentive IncentiveID { get; set; }
     }
 
 

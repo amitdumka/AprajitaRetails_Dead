@@ -27,5 +27,10 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenses> Expenses { get; set; }
+
+        public override string ToString( )
+        {
+            return PayMode;
+        }
     }
 }

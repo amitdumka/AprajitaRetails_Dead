@@ -51,10 +51,14 @@
   <ItemGroup>
     <Compile Include="EF6\AttendenceViewModel.cs" />
     <Compile Include="EF6\CustomerViewModel.cs" />
+    <Compile Include="EF6\DailySaleViewModel.cs" />
     <Compile Include="EF6\DayClosingViewModel.cs" />
     <Compile Include="EF6\EmployeeViewModel.cs" />
     <Compile Include="EF6\ExpenseViewModel.cs" />
+    <Compile Include="EF6\PaySlipViewModel.cs" />
+    <Compile Include="EF6\PuchaseInwardViewModel.cs" />
     <Compile Include="EF6\SaleInvoiceViewModel.cs" />
+    <Compile Include="EF6\ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

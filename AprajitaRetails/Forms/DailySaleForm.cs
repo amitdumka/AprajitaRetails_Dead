@@ -1,7 +1,11 @@
-﻿using AprajitaRetailsDataBase.DataTypes;
-using AprajitaRetailsDataBase.SqlDataBase.Data;
-using AprajitaRetailsDataBase.SqlDataBase.DataModel;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+﻿//using AprajitaRetailsDataBase.DataTypes;
+//using AprajitaRetailsDataBase.SqlDataBase.Data;
+//using AprajitaRetailsDataBase.SqlDataBase.DataModel;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using AprajitaRetailsDataBase.Client;
+using AprajitaRetailsDB.DataBase.AprajitaRetails;
+using AprajitaRetailsDB.DataTypes;
+using AprajitaRetailsViewModels.EF6;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
@@ -11,39 +15,18 @@ namespace AprajitaRetails.Forms
 {
     public partial class DailySaleForm : Form
     {
-        private DailySalesVM viewModel;
-
+        // private DailySalesVM viewModel;
+        DailySaleViewModel viewModel;
         public DailySaleForm( )
         {
             InitializeComponent();
             Logs.LogMe( "DailySale: Intizlition done" );
-            viewModel=new DailySalesVM();
+            viewModel=new DailySaleViewModel();
+            //viewModel=new DailySalesVM();
         }
 
-        private void LoadPaymentMode( )
-        {
-            Logs.LogMe( "DailySale:Loading Payment Mode " );
-            List<PaymentMode> lists = viewModel.GetPaymentTypes();
-            foreach (PaymentMode item in lists)
-            {
-                CBPaymentMode.Items.Add( item );
-            }
-
-            Logs.LogMe( "DailySale:PaymentMode Loading is Completed" );
-        }
-
-        private void BTNAdd_Click( object sender, EventArgs e )
-        {
-            if (BTNAdd.Text=="Add")
-            {
-                PerformAdd();
-            }
-            else if (BTNAdd.Text=="Save")
-            {
-                PerformSave();
-            }
-        }
-
+        
+       
         private void PerformAdd( )
         {
             BTNAdd.Text="Save";
@@ -79,21 +62,39 @@ namespace AprajitaRetails.Forms
 
         private DailySaleDM ReadFiled( )
         {
-            DailySaleDM data = new DailySaleDM()
+            DailySale dailySale = new DailySale()
             {
-                //TODO: No Need to Pass Customer Name, Only If new Customer is Clicked.
-                Amount=Double.Parse( TXTBillAmount.Text ),
-                CustomerFullName=TXTCustomerName.Text,
-                Discount=Double.Parse( TXTDiscount.Text ),
-                CustomerMobileNo=CBMobileNo.Text,
+                Amount=decimal.Parse( TXTBillAmount.Text ),
+                // CustomerFullName=TXTCustomerName.Text,
+                Discount=decimal.Parse( TXTDiscount.Text ),
+                // CustomerMobileNo=CBMobileNo.Text,
                 InvoiceNo=TXTInvoiceNo.Text,
                 Fabric=(int)NUDFabric.Value,
                 RMZ=(int)NUDRmz.Value,
                 Tailoring=(int)NUDTailoring.Value,
-                NewCustomer=Basic.ReadChechBox( CKNewCustomer ),
-                PaymentMode=((PaymentMode)CBPaymentMode.SelectedItem).ID,
+                // NewCustomer=Basic.ReadChechBox( CKNewCustomer ),
+                //TODO: CBPaymentMode need to get it from DB or implement it as we have done sql db mode. check in d drive project 
+                PaymentModeID=((PaymentMode)CBPaymentMode.SelectedItem).PaymentModeID,
                 SaleDate=DTPDate.Value,
-                ID=-1
+                
+                StoreCode=CurrentClient.LoggedClient.ClientCode,
+                CustomerID=viewModel.GetCustomerID( CBMobileNo.Text )
+
+            };
+            NewCustomer newCustomer = new NewCustomer() {
+                CustomerFullName=TXTCustomerName.Text,
+                CustomerID=dailySale.CustomerID,
+                OnDate=DTPDate.Value,InvoiceNo=dailySale.InvoiceNo
+            };
+            DailySaleDM data = new DailySaleDM()
+            {
+                //TODO: No Need to Pass Customer Name, Only If new Customer is Clicked.
+                FullCustomerName=TXTCustomerName.Text,
+                IsNewCustomer=Basic.IntToBool( Basic.ReadChechBox( CKNewCustomer ))
+                ,NewCustomer=newCustomer, DailySale=dailySale
+
+
+
             };
             return data;
         }
@@ -123,6 +124,8 @@ namespace AprajitaRetails.Forms
 
             return status;
         }
+      
+        #region EventHandling
 
         private void Cancel_Click( object sender, EventArgs e )
         {
@@ -139,8 +142,108 @@ namespace AprajitaRetails.Forms
             Basic.ClearUIFields( TLPInvoiceDetails );
         }
 
-        public void RefreshSaleInfo( )
+
+        private void BTNAdd_Click( object sender, EventArgs e )
         {
+            if (BTNAdd.Text=="Add")
+            {
+                PerformAdd();
+            }
+            else if (BTNAdd.Text=="Save")
+            {
+                PerformSave();
+            }
+        }
+
+        private void CBPaymentMode_SelectedIndexChanged( object sender, EventArgs e )
+        {
+        }
+
+        private void BTNDelete_Click( object sender, EventArgs e )
+        {//TODO check it 
+            CustomersForm c = new CustomersForm()
+            {
+                IsDailog=true
+            };
+            DialogResult r = c.ShowDialog();
+            if (c.DialogResult==DialogResult.OK)
+            {
+                TXTCustomerName.Text=c.CustomerFirstName+" "+c.CustomerLastName;
+                CBMobileNo.Text=c.CustomerMobileNo;
+            }
+
+            c.Dispose();
+            CKNewCustomer.Checked=true;
+        }
+
+        private void CBMobileNo_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            if (CBMobileNo.Text.Length>=10)
+            {
+                string mob = CBMobileNo.Text;
+                Logs.LogMe( "MobileN0: "+mob );
+                if (!mob.StartsWith( "+91" ) && mob.Length==10)
+                {
+                    mob="+91"+mob;
+                }
+               
+                string name= viewModel.GetCustomerName( mob );
+                if (name==""||name=="NotFound")
+                    MessageBox.Show( "Customer Not found Kindly Check mobile and enter again!" );
+                else
+                    TXTCustomerName.Text=name;
+            }
+            else 
+            {
+                Logs.LogMe( "Less: " );
+                //TXTCustomerName.Text=viewModel.GetCustomerName( CBMobileNo.Text );
+                MessageBox.Show( "Kindly enter Proper mobile to search!" );
+            }
+        }
+
+
+        private void ListView1_SelectedIndexChanged( object sender, EventArgs e )
+        {
+            if (BTNAdd.Text!="Save")
+            {
+                var item = LVSaleList.SelectedItems;
+                if (item.Count>0)
+                {
+                    string s = item[0].SubItems[0].Text;
+                    ShowDailySaleData( viewModel.GetInvoiceDetails( s.Trim() ) );
+                }
+            }
+        }
+        #endregion
+
+        #region UI_opertations
+        /// <summary>
+        /// Load Payment Mode to UI
+        /// </summary>
+        private void LoadPaymentMode( )
+        {
+            Logs.LogMe( "DailySale:Loading Payment Mode " );
+           // List<string> listPay = viewModel.GetPaymentTypeName();
+
+           // CBPaymentMode.Items.AddRange( listPay.ToArray() );
+            Logs.LogMe( "DailySale:PaymentMode Loading is Completed" );
+
+            List<PaymentMode> lists = viewModel.GetPaymentTypes();
+            foreach (PaymentMode item in lists)
+            {
+                CBPaymentMode.Items.Add( item );
+            }
+        }
+
+        private void DailySaleForm_Shown( object sender, EventArgs e )
+        {
+            //LoadPaymentMode ();
+            //LoadMobileNo ();
+            //RefeshUI ();
+        }
+
+        public void RefreshSaleInfo( )
+        {//TODO : implement properly
             SaleInfo info = viewModel.GetSaleInfo();
             if (info!=null)
             {
@@ -163,112 +266,62 @@ namespace AprajitaRetails.Forms
 
         private void DailySaleForm_Load( object sender, EventArgs e )
         {
+            Console.WriteLine( "DailySale_form is loaded" );
             LoadPaymentMode();
             LoadMobileNo();
             RefeshUI();
-        }
-
-        private void CBPaymentMode_SelectedIndexChanged( object sender, EventArgs e )
-        {
-        }
-
-        private void BTNDelete_Click( object sender, EventArgs e )
-        {
-            CustomersForm c = new CustomersForm()
-            {
-                IsDailog=true
-            };
-            DialogResult r = c.ShowDialog();
-            if (c.DialogResult==DialogResult.OK)
-            {
-                TXTCustomerName.Text=c.CustomerFirstName+" "+c.CustomerLastName;
-                CBMobileNo.Text=c.CustomerMobileNo;
-            }
-
-            c.Dispose();
-            CKNewCustomer.Checked=true;
-        }
-
-        private void CBMobileNo_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if (CBMobileNo.Text.Length>=10)
-            {
-                string mob = CBMobileNo.Text;
-                Logs.LogMe( "MobileN0: "+mob );
-                if (!mob.StartsWith( "91" ))
-                {
-                    mob="91"+mob;
-                }
-
-                TXTCustomerName.Text=viewModel.GetCustomerName( mob );
-            }
-            else
-            {
-                Logs.LogMe( "Less: " );
-            }
-        }
-
-        public void LoadMobileNo( )
-        {
-            List<string> list = viewModel.GetMobileNoList();
-            for (int i = 0; i<list.Count; i++)
-            {
-                CBMobileNo.Items.Add( list[i] );
-            }
         }
 
         private void ShowDailySaleData( DailySale saleD )
         {
             TXTBillAmount.Text=""+saleD.Amount;
 
-            string s1 = viewModel.GetCustomerName( saleD.CustomerID );
-            string[] s = s1.Split( ' ' );
-            CBMobileNo.Text=s[0];
-            s[0]="";
-            TXTCustomerName.Text=String.Join( " ", s );
-            Logs.LogMe( "CustN="+s1 );
-            //TODO: get Customer Details from Customer Table
+            //string s1 = viewModel.GetCustomerName( saleD.CustomerID );
+            //string[] s = s1.Split( ' ' );
+            //CBMobileNo.Text=s[0];
+            //s[0]="";
+            //TXTCustomerName.Text=String.Join( " ", s );
+
+            CustomerInfo cInfo = viewModel.GetCustomerInfo( saleD.CustomerID );
+            Logs.LogMe( "CustN="+cInfo.CustomerName );
+            TXTCustomerName.Text=cInfo.CustomerName;
+            CBMobileNo.Text=cInfo.MobileNo;
+            //TODO: stop triggering mobileno change event or do some thing else
             TXTDiscount.Text=""+saleD.Discount;
             NUDFabric.Text=""+saleD.Fabric;
             TXTInvoiceNo.Text=saleD.InvoiceNo;
-            CBPaymentMode.SelectedIndex=saleD.PaymentMode-1;
+            CBPaymentMode.SelectedIndex=saleD.PaymentModeID-1??0;
             NUDRmz.Text=""+saleD.RMZ;
             DTPDate.Value=saleD.SaleDate;
             NUDTailoring.Text=""+saleD.Tailoring;
-        }
-
-        private void ListView1_SelectedIndexChanged( object sender, EventArgs e )
-        {
-            if (BTNAdd.Text!="Save")
-            {
-                var item = LVSaleList.SelectedItems;
-                if (item.Count>0)
-                {
-                    string s = item[0].SubItems[0].Text;
-                    //MessageBox.Show ("Selected Invocie No=" + s);
-                    ShowDailySaleData( viewModel.GetInvoiceDetails( s.Trim() ) );
-                }
-            }
+            //TODO : check properly
         }
 
         private void LoadSaleList( )
         {
-            List<SortedDictionary<string, string>> listItem = viewModel.GetSaleList();
+            List<DSInfo> listItem = viewModel.GetSaleList();
             LVSaleList.Items.Clear();
-            foreach (var item in listItem)
+            foreach (DSInfo item in listItem)
             {
-                string[] it = { item["InvoiceNo"], item["Amount"], item["ID"] };
+                string[] it = { item.InvoiceNo, item.Amount.ToString(), item.DailySaleId.ToString() };
 
                 LVSaleList.Items.Add( new ListViewItem( it ) );
             }
+            Console.WriteLine( "salelist:{0}", listItem.Count );
         }
-
-        private void DailySaleForm_Shown( object sender, EventArgs e )
+        public void LoadMobileNo( )
         {
-            //LoadPaymentMode ();
-            //LoadMobileNo ();
-            //RefeshUI ();
-        }
+            List<string> list = viewModel.GetMobileNoList();
+            for (int i = 0; i<list.Count; i++)
+            {
+                CBMobileNo.Items.Add( list[i] );
+                Console.WriteLine( "Mob: "+list[i] );
+            }
+          }
+
+
+
+        #endregion
 
         #region LinqSql
 

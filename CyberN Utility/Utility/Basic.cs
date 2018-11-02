@@ -44,6 +44,18 @@ namespace CyberN.Utility
 
     public class Basic
     {
+
+        public static bool IntToBool(int value )
+        {
+            if (value==1) return true;
+            else if (value==2 ||value==0) return false;
+            else return false;
+        }
+        public static int BoolToInt(bool flag )
+        {
+            if (flag) return 1; else return 0;
+        }
+
         public static void AddListToComboBox( ComboBox cb, List<string> list )
         {
             if (list != null && list.Count > 0)

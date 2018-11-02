@@ -81,7 +81,7 @@ namespace AprajitaRetailsViewModels.EF6
         {
             //List<SortedDictionary<string, string>> list = GetAllBankAccounts();
             mainDB.Banks.Load();
-            var list = mainDB.Banks.Local.Select( s => new { BankID = s.BankID, BankName = s.BankName, AccountNo = s.AccountNo } ).ToList();
+            var list = mainDB.Banks.Local.Select( s => new { s.BankID, s.BankName, s.AccountNo } ).ToList();
             foreach (var item in list)
             {
                 cb.Items.Add( item.BankID+" "+item.BankName+" "+item.AccountNo );

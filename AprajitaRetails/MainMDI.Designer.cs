@@ -74,6 +74,7 @@
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIBackOffice = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIBanks = new System.Windows.Forms.ToolStripMenuItem();
+            this.expenseCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.expenseCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseInwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -279,7 +280,8 @@
             // 
             this.toolStripMenuItem9.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stockInwardToolStripMenuItem,
-            this.purchaseInvoiceToolStripMenuItem});
+            this.purchaseInvoiceToolStripMenuItem,
+            this.purchaseInwardToolStripMenuItem});
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(122, 38);
             this.toolStripMenuItem9.Text = "Purchase";
@@ -287,14 +289,15 @@
             // stockInwardToolStripMenuItem
             // 
             this.stockInwardToolStripMenuItem.Name = "stockInwardToolStripMenuItem";
-            this.stockInwardToolStripMenuItem.Size = new System.Drawing.Size(292, 38);
+            this.stockInwardToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.stockInwardToolStripMenuItem.Text = "Stock Inward";
             // 
             // purchaseInvoiceToolStripMenuItem
             // 
             this.purchaseInvoiceToolStripMenuItem.Name = "purchaseInvoiceToolStripMenuItem";
-            this.purchaseInvoiceToolStripMenuItem.Size = new System.Drawing.Size(292, 38);
+            this.purchaseInvoiceToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
             this.purchaseInvoiceToolStripMenuItem.Text = "Purchase Invoice";
+            this.purchaseInvoiceToolStripMenuItem.Click += new System.EventHandler(this.purchaseInvoiceToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -383,7 +386,7 @@
             // updateEmployeeToolStripMenuItem
             // 
             this.updateEmployeeToolStripMenuItem.Name = "updateEmployeeToolStripMenuItem";
-            this.updateEmployeeToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.updateEmployeeToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.updateEmployeeToolStripMenuItem.Text = "Update Employee";
             this.updateEmployeeToolStripMenuItem.Click += new System.EventHandler(this.updateEmployeeToolStripMenuItem_Click);
             // 
@@ -391,39 +394,39 @@
             // 
             this.usersToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.user_add;
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.usersToolStripMenuItem.Text = "Users";
             // 
             // updateDailySaleToolStripMenuItem
             // 
             this.updateDailySaleToolStripMenuItem.Name = "updateDailySaleToolStripMenuItem";
-            this.updateDailySaleToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.updateDailySaleToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.updateDailySaleToolStripMenuItem.Text = "Update Daily Sale";
             // 
             // uploadSalesToolStripMenuItem
             // 
             this.uploadSalesToolStripMenuItem.Name = "uploadSalesToolStripMenuItem";
-            this.uploadSalesToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.uploadSalesToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.uploadSalesToolStripMenuItem.Text = "Upload Sales";
             // 
             // uploadSaleRegisterToolStripMenuItem
             // 
             this.uploadSaleRegisterToolStripMenuItem.Name = "uploadSaleRegisterToolStripMenuItem";
-            this.uploadSaleRegisterToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.uploadSaleRegisterToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.uploadSaleRegisterToolStripMenuItem.Text = "Upload Sale Register";
             this.uploadSaleRegisterToolStripMenuItem.Click += new System.EventHandler(this.uploadSaleRegisterToolStripMenuItem_Click);
             // 
             // uploadPurchaseInwardToolStripMenuItem
             // 
             this.uploadPurchaseInwardToolStripMenuItem.Name = "uploadPurchaseInwardToolStripMenuItem";
-            this.uploadPurchaseInwardToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.uploadPurchaseInwardToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.uploadPurchaseInwardToolStripMenuItem.Text = "Upload Purchase Inward";
             // 
             // uploadVoygerDataToolStripMenuItem
             // 
             this.uploadVoygerDataToolStripMenuItem.Image = global::AprajitaRetails.Properties.Resources.application_sub;
             this.uploadVoygerDataToolStripMenuItem.Name = "uploadVoygerDataToolStripMenuItem";
-            this.uploadVoygerDataToolStripMenuItem.Size = new System.Drawing.Size(378, 46);
+            this.uploadVoygerDataToolStripMenuItem.Size = new System.Drawing.Size(370, 38);
             this.uploadVoygerDataToolStripMenuItem.Text = "Upload Voyger Data";
             this.uploadVoygerDataToolStripMenuItem.Click += new System.EventHandler(this.uploadVoygerDataToolStripMenuItem_Click);
             // 
@@ -468,9 +471,16 @@
             // TSMIBanks
             // 
             this.TSMIBanks.Name = "TSMIBanks";
-            this.TSMIBanks.Size = new System.Drawing.Size(324, 38);
+            this.TSMIBanks.Size = new System.Drawing.Size(314, 38);
             this.TSMIBanks.Text = "Banks";
             this.TSMIBanks.Click += new System.EventHandler(this.TSMIBanks_Click);
+            // 
+            // expenseCategoryToolStripMenuItem
+            // 
+            this.expenseCategoryToolStripMenuItem.Name = "expenseCategoryToolStripMenuItem";
+            this.expenseCategoryToolStripMenuItem.Size = new System.Drawing.Size(314, 38);
+            this.expenseCategoryToolStripMenuItem.Text = "Expenses Category";
+            this.expenseCategoryToolStripMenuItem.Click += new System.EventHandler(this.expenseCategoryToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 
@@ -713,12 +723,12 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(79, 32);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // expenseCategoryToolStripMenuItem
+            // purchaseInwardToolStripMenuItem
             // 
-            this.expenseCategoryToolStripMenuItem.Name = "expenseCategoryToolStripMenuItem";
-            this.expenseCategoryToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
-            this.expenseCategoryToolStripMenuItem.Text = "Expenses Category";
-            this.expenseCategoryToolStripMenuItem.Click += new System.EventHandler(this.expenseCategoryToolStripMenuItem_Click);
+            this.purchaseInwardToolStripMenuItem.Name = "purchaseInwardToolStripMenuItem";
+            this.purchaseInwardToolStripMenuItem.Size = new System.Drawing.Size(324, 38);
+            this.purchaseInwardToolStripMenuItem.Text = "Purchase Inward";
+            this.purchaseInwardToolStripMenuItem.Click += new System.EventHandler(this.purchaseInwardToolStripMenuItem_Click);
             // 
             // MainMDI
             // 
@@ -827,6 +837,7 @@
         private System.Windows.Forms.ToolStripMenuItem TSMIBanks;
         private System.Windows.Forms.ToolStripMenuItem empTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expenseCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseInwardToolStripMenuItem;
     }
 }
 

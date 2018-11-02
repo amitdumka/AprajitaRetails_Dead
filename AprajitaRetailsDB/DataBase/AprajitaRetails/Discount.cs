@@ -12,10 +12,14 @@ using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    public class ExtraTables
+    [Table("Discount")]
+    public class Discount
     {
-        //TODO: list of table is here 
-        //implement it
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int DiscountID { set; get; }
+        [StringLength(25)]
+        public string DiscountCode { set; get; }
     }
 
 

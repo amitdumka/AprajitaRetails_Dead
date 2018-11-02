@@ -12,10 +12,11 @@ using AprajitaRetailsDB.DataBase.AprajitaRetails.HRM;
 
 namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 {
-    public class ExtraTables
-    {
-        //TODO: list of table is here 
-        //implement it
+    public class SaleInfo
+    {//TODO: Data /Datamodel or model / data type / data helper
+        public string TodaySale { get; set; }
+        public string MonthlySale { get; set; }
+        public string YearlySale { get; set; }
     }
 
 

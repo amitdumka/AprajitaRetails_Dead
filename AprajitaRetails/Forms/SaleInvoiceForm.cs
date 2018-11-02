@@ -1,37 +1,50 @@
 ﻿using AprajitaRetails.Printers;
-using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+using AprajitaRetailsDataBase.Client;
+using AprajitaRetailsDB.DataBase.AprajitaRetails;
+using AprajitaRetailsDB.DataTypes;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
+//using AprajitaRetailsDB.DataBase.AprajitaRetails;
+//using AprajitaRetailsDB.Models.Data;
+using AprajitaRetailsViewModels.EF6;
+//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
 using CyberN.Utility;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using static AprajitaRetailsDB.DataTypes.EnumList;
 
 namespace AprajitaRetails.Forms
 {
     public partial class SaleInvoiceForm : Form
     {
+        //TODO: Simplefy this class at max level. 
+        // Move MaxPart of VM or helper class so can be used every where and every type of form
+
         private int ItemID = 0;
         private DataTable itemTable;
-        private SaleInvoiceVM sVM;
+        //private SaleInvoiceVM sVM;
+        private SaleInvoiceViewModel sVM;
         private BindingSource vBsource = new BindingSource();
         private int vCustId = -1;
-        private double vGrandTotal = 0.0;
+        private decimal vGrandTotal = 0.0m;
 
         // TODO : check private bool vIsNew = false;
-        private ProductItems vItem;
+       // private ProductItems vItem;
+        private ProductItem vItem;
 
         private DataTable vItemTable;
         private SalePayMode vPayMode = SalePayMode.Cash;
         private string vSMCode = "NotFound";
-        private double vRoundOffAmt = 0.0;
-        private double vTotalAmount = 0.0;
-        private double vTotalDiscount = 0.0;
+        private decimal vRoundOffAmt = 0.0M;
+        private decimal vTotalAmount = 0.0M;
+        private decimal vTotalDiscount = 0.0M;
         private int vTotalItems = 0;
-        private double vTotalQty = 0;
-        private double vTotalRoundOff = 0.0;
-        private double vTotalTax = 0.0;
-        private double vTotalGST = 0.0;
-
+        private decimal vTotalQty = 0;
+        private decimal vTotalRoundOff = 0.0M;
+        private decimal vTotalTax = 0.0M;
+        private decimal vTotalGST = 0.0M;
+    
         //Recipt Printing Delcartation
         private bool wantToPrint = true;
 
@@ -52,18 +65,18 @@ namespace AprajitaRetails.Forms
         {
             ItemID=0;
             vCustId=-1;
-            vGrandTotal=0.0;
+            vGrandTotal=0.0m;
 
             //TODO: vIsNew=false;
             vPayMode=SalePayMode.Cash;
-            vRoundOffAmt=0.0;
-            vTotalAmount=0.0;
-            vTotalDiscount=0.0;
+            vRoundOffAmt=0.0m;
+            vTotalAmount=0.0m;
+            vTotalDiscount=0.0m;
             vTotalItems=0;
             vTotalQty=0;
-            vTotalRoundOff=0.0;
-            vTotalTax=0.0;
-            vTotalGST=0.0;
+            vTotalRoundOff=0.0m;
+            vTotalTax=0.0m;
+            vTotalGST=0.0m;
             wantToPrint=true;
             //  CurrentSize=MinimumSizes;
             ItemCount=0;
@@ -89,31 +102,32 @@ namespace AprajitaRetails.Forms
                 string vAmount = TXTAmount.Text;
                 DataTable dt = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
                 DataRow nRow = dt.NewRow();
-                double vAmtd = double.Parse( vAmount );
-                double vAmtWhole = Math.Round( vAmtd );
+                decimal vAmtd = decimal.Parse( vAmount );
+                decimal vAmtWhole = Math.Round( vAmtd );
                 vRoundOffAmt=vAmtWhole-vAmtd;
-                double vDiscount = double.Parse( TXTItemDiscount.Text.Trim() );
+                decimal vDiscount = decimal.Parse( TXTItemDiscount.Text.Trim() );
                 //ID, InvoiceNo, ItemCode, BarCode, StyleCode,  Qty, Rate, Discount, Tax, Amount
                 nRow[0]=(++ItemID);
                 nRow[1]=CBInvoiceNo.Text;
-                nRow[2]=vItem.ID;
+                nRow[2]=vItem.ProductItemID;
+                //nRow[2]=vItem.ID;
                 nRow[3]=vBarcode;
                 nRow[4]=vItem.StyleCode;
                 nRow[5]=vQty;
                 nRow[6]=vItem.MRP;
                 nRow[7]=vDiscount;
                 nRow[8]=vItem.Tax; //TODO: GST ChangesTax need to update
-                nRow[9]=double.Parse( vAmount );
+                nRow[9]=decimal.Parse( vAmount );
                 nRow[10]=vSMCode;
                 dt.Rows.Add( nRow );
 
                 vTotalItems++;
-                vTotalQty=vTotalQty+double.Parse( vQty );
+                vTotalQty=vTotalQty+decimal.Parse( vQty );
 
                 //Total Section
                 vTotalRoundOff+=vRoundOffAmt;
                 vTotalAmount+=vAmtWhole;
-                vTotalTax+=vItem.Tax;
+                vTotalTax+=vItem.Tax??0;
                 vTotalDiscount+=vDiscount;
                 vGrandTotal=vTotalAmount+vTotalTax-vTotalDiscount;
                 //Update UI
@@ -121,25 +135,25 @@ namespace AprajitaRetails.Forms
                 TXTTaxAmount.Text=""+vTotalTax;
                 TXTDiscount.Text=""+vTotalDiscount;
                 TXTSubTotal.Text=""+vTotalAmount;
-                double gstRate = 0.00;
-                double basicrate = 0.00;
-                double gstAmount = 0.00;
+                decimal gstRate = 0.00m;
+                decimal basicrate = 0.00m;
+                decimal gstAmount = 0.00m;
                 if (vItem.Tax>0)
                 {
-                    gstRate=5.00;
+                    gstRate=5.00m;
                 }
                 else
                 {       //TODO: make 1000 as readable from GST Table and parameterised and make cosnt vairable while load app
                     if (vItem.MRP<=1000||double.Parse( vAmount )<=1000)
                     {
-                        gstRate=5.00;
+                        gstRate=5.00m;
                     }
                     else
                     {
-                        gstRate=12.00;
+                        gstRate=12.00m;
                     }
                 }
-                basicrate=double.Parse( vAmount )/(1+(gstRate/100));
+                basicrate=decimal.Parse( vAmount )/(1+(gstRate/100));
                 gstAmount=(basicrate*gstRate/100)/2;
 
                 vReciptItems.Add( new ReceiptItemDetails()
@@ -317,7 +331,7 @@ namespace AprajitaRetails.Forms
             List<string> list = sVM.GetSalesmanNameList();
             if (list.Count<=0)
             {   //TODO: replace to prompt to enter salesman names , show popup
-                sVM.SampleSalesman();
+                //sVM.SampleSalesman();
                 list=sVM.GetSalesmanNameList();
                 Logs.LogMe( "Creating default salesman" );
             }
@@ -452,7 +466,7 @@ namespace AprajitaRetails.Forms
 
         //End of Validation
         //Saving All Data to Database
-        private int SaveAllData( SaleInvoice inv, SalePaymentDetails payments, DataTable saleItemDataTable )
+        private int SaveAllData( SaleInvoice inv, PaymentDetail payments, DataTable saleItemDataTable )
         {
             return sVM.SaveInvoiceData( inv, saleItemDataTable, payments );
         }
@@ -462,7 +476,7 @@ namespace AprajitaRetails.Forms
         private int ReadAllData( )
         {
             SaleInvoice inv = ReadSaleInvoiceFeilds();
-            SalePaymentDetails payment = ReadPaymentDetails();
+            PaymentDetail payment = ReadPaymentDetails();
             DataTable saleitems = (DGVSaleItems.DataSource as BindingSource).DataSource as DataTable;
 
             if (inv!=null&&payment!=null&&saleitems!=null)
@@ -485,16 +499,19 @@ namespace AprajitaRetails.Forms
         {
             SaleInvoice inv = new SaleInvoice()
             {
-                ID=-1,
+                //ID=-1,
                 InvoiceNo=CBInvoiceNo.Text,
                 OnDate=DTPInvoiceDate.Value,
-                TotalBillAmount=double.Parse( TXTGrandTotal.Text ),
-                TotalDiscountAmount=double.Parse( TXTDiscount.Text ),
-                TotalTaxAmount=double.Parse( TXTTaxAmount.Text ),
+                TotalBillAmount=decimal.Parse( TXTGrandTotal.Text ),
+                TotalDiscountAmount=decimal.Parse( TXTDiscount.Text ),
+                TotalTaxAmount=decimal.Parse( TXTTaxAmount.Text ),
                 TotalItems=vTotalItems,
                 TotalQty=vTotalQty,
                 RoundOffAmount=vRoundOffAmt,
-                CustomerId=vCustId
+                CustomerID=vCustId, StoreCode=CurrentClient.LoggedClient.ClientCode,
+                IsManualBillAdjusted=0, SaleTypeID=3/*Manul sale TODO: update is */
+
+                
             };
             return inv;
         }
@@ -525,12 +542,12 @@ namespace AprajitaRetails.Forms
             return (1+Basic.FeildList( typeof( CardType ) ).IndexOf( cardType ));
         }
 
-        private CardPaymentDetails ReadCardDetails( )
+        private CardPaymentDetail ReadCardDetails( )
         {
-            CardPaymentDetails cardDetails = new CardPaymentDetails()
+            CardPaymentDetail cardDetails = new CardPaymentDetail()
             {
-                ID=-1,
-                Amount=Double.Parse( TXTCardAmount.Text ),
+                //ID=-1,
+                Amount=decimal.Parse( TXTCardAmount.Text ),
                 AuthCode=Int32.Parse( TXTAuthCode.Text ),
                 CardType=GetCardType( CBCardType.Text ),
                 InvoiceNo=CBInvoiceNo.Text,
@@ -539,20 +556,20 @@ namespace AprajitaRetails.Forms
             return cardDetails;
         }
 
-        private SalePaymentDetails ReadPaymentDetails( )
+        private PaymentDetail ReadPaymentDetails( )
         {
-            SalePaymentDetails payDetails = new SalePaymentDetails()
+            PaymentDetail payDetails = new PaymentDetail()
             {
-                ID=-1,
-                CardAmount=double.Parse( TXTCardAmount.Text ),
-                CashAmount=double.Parse( TXTCashAmount.Text ),
+                //ID=-1,
+                CardAmount=decimal.Parse( TXTCardAmount.Text ),
+                CashAmount=decimal.Parse( TXTCashAmount.Text ),
                 InvoiceNo=CBInvoiceNo.Text,
                 PayMode=GetPaymentMode(),
-                CardDetails=null
+                CardDetailsID=null
             };
             if (vPayMode==SalePayMode.Card||vPayMode==SalePayMode.Mix)
             {
-                payDetails.CardDetails=ReadCardDetails();
+                payDetails.CardPaymentDetail=ReadCardDetails();
             }
 
             return payDetails;
@@ -562,7 +579,7 @@ namespace AprajitaRetails.Forms
         //Startup Code
         private void SaleInvoiceForm_Activated( object sender, EventArgs e )
         {
-            sVM=new SaleInvoiceVM();
+            sVM=new SaleInvoiceViewModel(true, CurrentClient.LoggedClient.ClientCode);
             itemTable=new DataTable();
         }
 
@@ -664,11 +681,11 @@ namespace AprajitaRetails.Forms
         {
             if (Basic.IsDecimal( TXTQty.Text ))
             {
-                double qty = double.Parse( TXTQty.Text );
+                decimal qty = decimal.Parse( TXTQty.Text );
                 if (qty<=vItem.Qty)
                 {
-                    double rate = double.Parse( TXTRate.Text );
-                    double amts = rate*qty;
+                    decimal rate = decimal.Parse( TXTRate.Text );
+                    decimal amts = rate*qty;
                     TXTAmount.Text=String.Format( "{0}", amts );
                 }
                 else
@@ -714,8 +731,8 @@ namespace AprajitaRetails.Forms
         }
 
         private void UpdateSaleUI( string invoiceNo )
-        {
-            SortedDictionary<string, string> saleInfo = sVM.GetInvoiceDetails( invoiceNo );
+        {//TODO: Use Class instead is sortedDict
+            SortedDictionary<string, string> saleInfo = sVM.GetInvoiceNoLists( invoiceNo );
             if (saleInfo!=null&&saleInfo.Count>0)
             {
                 CBMobileNo.Text=saleInfo["MobileNo"];
