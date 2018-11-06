@@ -276,6 +276,7 @@
             // 
             // NUDFabric
             // 
+            this.NUDFabric.DecimalPlaces = 2;
             this.NUDFabric.Location = new System.Drawing.Point(506, 49);
             this.NUDFabric.Margin = new System.Windows.Forms.Padding(4);
             this.NUDFabric.Name = "NUDFabric";
@@ -352,7 +353,7 @@
             this.GBControls.AutoSize = true;
             this.GBControls.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBControls.Controls.Add(this.flowLayoutPanel2);
-            this.GBControls.Location = new System.Drawing.Point(31, 284);
+            this.GBControls.Location = new System.Drawing.Point(31, 231);
             this.GBControls.Margin = new System.Windows.Forms.Padding(4);
             this.GBControls.Name = "GBControls";
             this.GBControls.Padding = new System.Windows.Forms.Padding(4);
@@ -430,11 +431,11 @@
             this.GBSaleReport.AutoSize = true;
             this.GBSaleReport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GBSaleReport.Controls.Add(this.TLPSaleReport);
-            this.GBSaleReport.Location = new System.Drawing.Point(669, 248);
+            this.GBSaleReport.Location = new System.Drawing.Point(675, 231);
             this.GBSaleReport.Margin = new System.Windows.Forms.Padding(2);
             this.GBSaleReport.Name = "GBSaleReport";
             this.GBSaleReport.Padding = new System.Windows.Forms.Padding(2);
-            this.GBSaleReport.Size = new System.Drawing.Size(242, 148);
+            this.GBSaleReport.Size = new System.Drawing.Size(238, 148);
             this.GBSaleReport.TabIndex = 5;
             this.GBSaleReport.TabStop = false;
             this.GBSaleReport.Text = "Sale Info";
@@ -461,7 +462,7 @@
             this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TLPSaleReport.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TLPSaleReport.Size = new System.Drawing.Size(238, 120);
+            this.TLPSaleReport.Size = new System.Drawing.Size(234, 120);
             this.TLPSaleReport.TabIndex = 0;
             // 
             // label10
@@ -503,47 +504,48 @@
             // LBTodaySale
             // 
             this.LBTodaySale.AutoSize = true;
-            this.LBTodaySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBTodaySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBTodaySale.ForeColor = System.Drawing.Color.Red;
             this.LBTodaySale.Location = new System.Drawing.Point(200, 3);
             this.LBTodaySale.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBTodaySale.Name = "LBTodaySale";
-            this.LBTodaySale.Size = new System.Drawing.Size(33, 36);
+            this.LBTodaySale.Size = new System.Drawing.Size(29, 31);
             this.LBTodaySale.TabIndex = 3;
             this.LBTodaySale.Text = "0";
             // 
             // LBMontlySale
             // 
             this.LBMontlySale.AutoSize = true;
-            this.LBMontlySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBMontlySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBMontlySale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.LBMontlySale.Location = new System.Drawing.Point(200, 42);
             this.LBMontlySale.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBMontlySale.Name = "LBMontlySale";
-            this.LBMontlySale.Size = new System.Drawing.Size(33, 36);
+            this.LBMontlySale.Size = new System.Drawing.Size(29, 31);
             this.LBMontlySale.TabIndex = 4;
             this.LBMontlySale.Text = "0";
             // 
             // LBYearlySale
             // 
             this.LBYearlySale.AutoSize = true;
-            this.LBYearlySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBYearlySale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBYearlySale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.LBYearlySale.Location = new System.Drawing.Point(200, 81);
             this.LBYearlySale.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LBYearlySale.Name = "LBYearlySale";
-            this.LBYearlySale.Size = new System.Drawing.Size(33, 36);
+            this.LBYearlySale.Size = new System.Drawing.Size(29, 31);
             this.LBYearlySale.TabIndex = 5;
             this.LBYearlySale.Text = "0";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.LVSaleList);
-            this.groupBox2.Location = new System.Drawing.Point(1108, 248);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(1235, 0);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(375, 681);
+            this.groupBox2.Size = new System.Drawing.Size(346, 933);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Invoice List";
@@ -559,7 +561,7 @@
             this.LVSaleList.Location = new System.Drawing.Point(2, 26);
             this.LVSaleList.Margin = new System.Windows.Forms.Padding(2);
             this.LVSaleList.Name = "LVSaleList";
-            this.LVSaleList.Size = new System.Drawing.Size(371, 653);
+            this.LVSaleList.Size = new System.Drawing.Size(342, 905);
             this.LVSaleList.TabIndex = 0;
             this.LVSaleList.UseCompatibleStateImageBehavior = false;
             this.LVSaleList.View = System.Windows.Forms.View.Details;
@@ -577,24 +579,31 @@
             // 
             // GBPendingInv
             // 
+            this.GBPendingInv.AutoSize = true;
             this.GBPendingInv.Controls.Add(this.LVPendingInvoice);
-            this.GBPendingInv.Location = new System.Drawing.Point(12, 541);
+            this.GBPendingInv.Location = new System.Drawing.Point(12, 426);
             this.GBPendingInv.Name = "GBPendingInv";
-            this.GBPendingInv.Size = new System.Drawing.Size(764, 388);
+            this.GBPendingInv.Size = new System.Drawing.Size(630, 503);
             this.GBPendingInv.TabIndex = 1;
             this.GBPendingInv.TabStop = false;
             this.GBPendingInv.Text = "Pending Invoice";
             // 
             // LVPendingInvoice
             // 
+            this.LVPendingInvoice.AllowColumnReorder = true;
+            this.LVPendingInvoice.BackColor = System.Drawing.SystemColors.HighlightText;
             this.LVPendingInvoice.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
             this.LVPendingInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LVPendingInvoice.GridLines = true;
+            this.LVPendingInvoice.LabelWrap = false;
             this.LVPendingInvoice.Location = new System.Drawing.Point(3, 27);
+            this.LVPendingInvoice.MultiSelect = false;
             this.LVPendingInvoice.Name = "LVPendingInvoice";
-            this.LVPendingInvoice.Size = new System.Drawing.Size(758, 358);
+            this.LVPendingInvoice.Size = new System.Drawing.Size(624, 473);
+            this.LVPendingInvoice.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.LVPendingInvoice.TabIndex = 0;
             this.LVPendingInvoice.UseCompatibleStateImageBehavior = false;
             this.LVPendingInvoice.View = System.Windows.Forms.View.Details;
@@ -602,10 +611,12 @@
             // 
             // columnHeader3
             // 
+            this.columnHeader3.DisplayIndex = 0;
             this.columnHeader3.Text = "InvoiceNo";
             // 
             // columnHeader4
             // 
+            this.columnHeader4.DisplayIndex = 1;
             this.columnHeader4.Text = "Date";
             // 
             // columnHeader5

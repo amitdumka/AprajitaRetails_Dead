@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace AprajitaRetailsViewModels.EF6
 {
-    class ViewModels<T>:IDisposable
+    partial class ViewModels<T>:IDisposable
     {
        protected AprajitaRetailsMainDB mainDB;
-        protected AprajitaRetailsHRMDB hrmDB;
-        protected T MainTable;
+       protected AprajitaRetailsHRMDB hrmDB;
+       protected  T MainTable;
         public void Dispose( )
         {
             ((IDisposable)mainDB).Dispose();
             ((IDisposable)hrmDB).Dispose();
+            ((IDisposable)MainTable).Dispose();
         }
     }
 }

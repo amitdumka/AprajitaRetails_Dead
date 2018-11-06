@@ -1,8 +1,4 @@
-﻿//using AprajitaRetailsDataBase.DataTypes;
-//using AprajitaRetailsDataBase.SqlDataBase.Data;
-//using AprajitaRetailsDataBase.SqlDataBase.DataModel;
-//using AprajitaRetailsDataBase.SqlDataBase.ViewModel;
-using AprajitaRetailsDataBase.Client;
+﻿using AprajitaRetailsDataBase.Client;
 using AprajitaRetailsDB.DataBase.AprajitaRetails;
 using AprajitaRetailsDB.DataTypes;
 using AprajitaRetailsViewModels.EF6;
@@ -13,9 +9,17 @@ using System.Windows.Forms;
 
 namespace AprajitaRetails.Forms
 {
+    //TODO: auto get selected if any new customer is created and used for billing here.
+    //TODO: supply customer name and mobile to new customer saving so same customer . and check checkbox of new customer
+    //TODO: pop box to save basic info when customer is not found in database. and make sure that mobile no and customer exist in our db
+    //TODO: then only save dailysale data. 
+    //TODO: show time diff for pending invoice saving so when it store. it should be pop up dealy and generate a rating for Store Manger. which can be used for further aprisale
+    //TODO: pop an dialog to select salesman name for which can be used to save other data. 
+    //TODO: save sale Invoice also same time and ask for saleman name for all items or sperate items
+    //TODO: Genertate WOW Bill  message option to provide send message to owner email id 
+
     public partial class DailySaleForm : Form
     {
-        // private DailySalesVM viewModel;
         DailySaleViewModel viewModel;
         public DailySaleForm( )
         {
@@ -25,8 +29,6 @@ namespace AprajitaRetails.Forms
             //viewModel=new DailySalesVM();
         }
 
-        
-       
         private void PerformAdd( )
         {
             BTNAdd.Text="Save";
@@ -65,22 +67,18 @@ namespace AprajitaRetails.Forms
             DailySale dailySale = new DailySale()
             {
                 Amount=decimal.Parse( TXTBillAmount.Text ),
-                // CustomerFullName=TXTCustomerName.Text,
                 Discount=decimal.Parse( TXTDiscount.Text ),
-                // CustomerMobileNo=CBMobileNo.Text,
                 InvoiceNo=TXTInvoiceNo.Text,
-                Fabric=(int)NUDFabric.Value,
+                Fabric=(double)NUDFabric.Value,
                 RMZ=(int)NUDRmz.Value,
                 Tailoring=(int)NUDTailoring.Value,
-                // NewCustomer=Basic.ReadChechBox( CKNewCustomer ),
-                //TODO: CBPaymentMode need to get it from DB or implement it as we have done sql db mode. check in d drive project 
                 PaymentModeID=((PaymentMode)CBPaymentMode.SelectedItem).PaymentModeID,
                 SaleDate=DTPDate.Value,
-                
                 StoreCode=CurrentClient.LoggedClient.ClientCode,
                 CustomerID=viewModel.GetCustomerID( CBMobileNo.Text )
 
             };
+            
             NewCustomer newCustomer = new NewCustomer() {
                 CustomerFullName=TXTCustomerName.Text,
                 CustomerID=dailySale.CustomerID,
@@ -92,9 +90,6 @@ namespace AprajitaRetails.Forms
                 FullCustomerName=TXTCustomerName.Text,
                 IsNewCustomer=Basic.IntToBool( Basic.ReadChechBox( CKNewCustomer ))
                 ,NewCustomer=newCustomer, DailySale=dailySale
-
-
-
             };
             return data;
         }
@@ -174,10 +169,13 @@ namespace AprajitaRetails.Forms
 
             c.Dispose();
             CKNewCustomer.Checked=true;
+            CheckedNewCustomerFlag( true );
         }
 
         private void CBMobileNo_SelectedIndexChanged( object sender, EventArgs e )
         {
+            //TODO: when Saving dailysale data. and Mobile no is not present. ask and make it create new customer 
+            //TODO: or Save a customer with just basic info.
             if (CBMobileNo.Text.Length>=10)
             {
                 string mob = CBMobileNo.Text;
@@ -188,7 +186,7 @@ namespace AprajitaRetails.Forms
                 }
                
                 string name= viewModel.GetCustomerName( mob );
-                if (name==""||name=="NotFound")
+                if (name==""||name=="NotFound" && BTNAdd.Text.Trim()=="Save")
                     MessageBox.Show( "Customer Not found Kindly Check mobile and enter again!" );
                 else
                     TXTCustomerName.Text=name;
@@ -196,8 +194,8 @@ namespace AprajitaRetails.Forms
             else 
             {
                 Logs.LogMe( "Less: " );
-                //TXTCustomerName.Text=viewModel.GetCustomerName( CBMobileNo.Text );
-                MessageBox.Show( "Kindly enter Proper mobile to search!" );
+                TXTCustomerName.Text="";
+                //MessageBox.Show( "Kindly enter Proper mobile to search!" );
             }
         }
 
@@ -223,16 +221,10 @@ namespace AprajitaRetails.Forms
         private void LoadPaymentMode( )
         {
             Logs.LogMe( "DailySale:Loading Payment Mode " );
-           // List<string> listPay = viewModel.GetPaymentTypeName();
-
-           // CBPaymentMode.Items.AddRange( listPay.ToArray() );
+            List<PaymentMode> lists = viewModel.GetPaymentTypes();
+            CBPaymentMode.Items.AddRange( lists.ToArray() );
             Logs.LogMe( "DailySale:PaymentMode Loading is Completed" );
 
-            List<PaymentMode> lists = viewModel.GetPaymentTypes();
-            foreach (PaymentMode item in lists)
-            {
-                CBPaymentMode.Items.Add( item );
-            }
         }
 
         private void DailySaleForm_Shown( object sender, EventArgs e )
@@ -243,7 +235,7 @@ namespace AprajitaRetails.Forms
         }
 
         public void RefreshSaleInfo( )
-        {//TODO : implement properly
+        {
             SaleInfo info = viewModel.GetSaleInfo();
             if (info!=null)
             {
@@ -251,11 +243,12 @@ namespace AprajitaRetails.Forms
                 {
                     LBTodaySale.Text=info.TodaySale;
                 }
-
+               
                 if (info.MonthlySale!=null)
                 {
                     LBMontlySale.Text=info.MonthlySale;
                 }
+                
 
                 if (info.YearlySale!=null)
                 {
@@ -275,18 +268,12 @@ namespace AprajitaRetails.Forms
         private void ShowDailySaleData( DailySale saleD )
         {
             TXTBillAmount.Text=""+saleD.Amount;
-
-            //string s1 = viewModel.GetCustomerName( saleD.CustomerID );
-            //string[] s = s1.Split( ' ' );
-            //CBMobileNo.Text=s[0];
-            //s[0]="";
-            //TXTCustomerName.Text=String.Join( " ", s );
-
             CustomerInfo cInfo = viewModel.GetCustomerInfo( saleD.CustomerID );
             Logs.LogMe( "CustN="+cInfo.CustomerName );
             TXTCustomerName.Text=cInfo.CustomerName;
             CBMobileNo.Text=cInfo.MobileNo;
             //TODO: stop triggering mobileno change event or do some thing else
+
             TXTDiscount.Text=""+saleD.Discount;
             NUDFabric.Text=""+saleD.Fabric;
             TXTInvoiceNo.Text=saleD.InvoiceNo;
@@ -294,7 +281,7 @@ namespace AprajitaRetails.Forms
             NUDRmz.Text=""+saleD.RMZ;
             DTPDate.Value=saleD.SaleDate;
             NUDTailoring.Text=""+saleD.Tailoring;
-            //TODO : check properly
+            // check properly
         }
 
         private void LoadSaleList( )
@@ -373,7 +360,8 @@ namespace AprajitaRetails.Forms
             TXTBillAmount.Text=""+voygerBill.bill.BillAmount;
             TXTDiscount.Text=""+voygerBill.bill.BillDiscount;
             CBMobileNo.Text=voygerBill.bill.CustomerMobile;
-            CBPaymentMode.Text=voygerBill.payModes[0].PaymentMode;
+            // TODO: implement in voyger class to so that it will be accross solution
+            CBPaymentMode.Text=viewModel.ConvertToPaymentMode(voygerBill.payModes[0].PaymentMode);
         }
 
         #endregion LinqSql
@@ -381,5 +369,27 @@ namespace AprajitaRetails.Forms
         private void BTNUpdate_Click( object sender, EventArgs e )
         {
         }
+
+        #region Not Implemented
+        public void SendWowBillEmail( string invNo, decimal billAmt, int salesmanID, DateTime bDate ) { }
+        public void SaveWowBill( string invNo, decimal billAmt, int salesmanID, DateTime bDate) {
+            if (billAmt>=10000)
+            {
+                viewModel.SaveWowBill( invNo, billAmt, salesmanID, bDate );
+                SendWowBillEmail( invNo, billAmt, salesmanID, bDate );
+            }
+        }
+        public void SaveSaleInvoice( string inv) {
+            viewModel.SaveSaleInvoices( inv );
+        }
+        public void UpdateSalesmanForItems( bool allitems/* parameter to take data*/) { }
+        public void CheckedNewCustomerFlag(bool check )
+        {
+            CKNewCustomer.Checked=check;
+        }
+        public void UpdateCustomersBillCount(int custID, decimal billAmount ) {
+            viewModel.UpdateCustomerBillCount( custID, billAmount );
+        }
+        #endregion
     }
 }

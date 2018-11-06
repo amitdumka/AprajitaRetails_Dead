@@ -1,5 +1,4 @@
-﻿//using AprajitaRetailsDB.DataTypes;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace AprajitaRetailMonitor.SeviceWorker
 {
@@ -12,7 +11,7 @@ namespace AprajitaRetailMonitor.SeviceWorker
 
         public static void InsertInvoiceXML( string filename, int DBType )
         {
-            LogEvent.WriteEvent( "insertinvoicexml" );
+            //LogEvent.WriteEvent( "insertinvoicexml" );
             t=Task.Run( ( ) => ProcessInvoiceXML( filename, DBType ) );
         }
 
@@ -45,15 +44,15 @@ namespace AprajitaRetailMonitor.SeviceWorker
                     //TODO: Raise Event  and store in database for futher intervention.
                 }
             }
-            else
+            else if (DBType==2)           
             {
-                LogEvent.WriteEvent( "processinvoicexml" );
+                //LogEvent.WriteEvent( "processinvoicexml _with_EF6" );
                 AprajitaRetailsDB.DataTypes.VoygerBill voygerBill = EF.VoygerXMLReader.ReadInvoiceXML( invoiceXMLFile );
-                LogEvent.WriteEvent( "voygerBill Readed" );
+                //LogEvent.WriteEvent( "voygerBill Readed _with_EF6" );
 
                 if (voygerBill!=null)
                 {
-                    LogEvent.WriteEvent( "voygerBill Readed and have data" );
+                    //LogEvent.WriteEvent( "voygerBill Readed and have data _with_EF6" );
                     EF.InsertData.InsertBillData( voygerBill );
                 }
                 else
@@ -63,8 +62,8 @@ namespace AprajitaRetailMonitor.SeviceWorker
                 }
             }
 
-            LogEvent.WriteEvent( "ProcessInvoiceXml is ened.#"+Watcher.NoOfEvent );
-            Watcher.NoOfEvent--;
+            LogEvent.WriteEvent( "ProcessInvoiceXml is ended.#"+Watcher.NoOfEvent );
+            Watcher.NoOfEvent=0;
             LogEvent.WriteEvent( "NoofEvent:"+Watcher.NoOfEvent );
         }
     }

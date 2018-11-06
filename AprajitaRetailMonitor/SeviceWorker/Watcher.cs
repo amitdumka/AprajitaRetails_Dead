@@ -10,6 +10,10 @@ namespace AprajitaRetailMonitor
 
         public static int DBType { get; private set; }
 
+        /// <summary>
+        /// watching and using EF6
+        /// </summary>
+        /// <param name="eventLog"></param>
         public Watcher( System.Diagnostics.EventLog eventLog )
         {
             eventLog1=eventLog;

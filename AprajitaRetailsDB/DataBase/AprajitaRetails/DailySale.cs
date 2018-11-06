@@ -26,7 +26,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
 
         public int? RMZ { get; set; }
 
-        public int? Fabric { get; set; }
+        public double? Fabric { get; set; }
 
         public int? Tailoring { get; set; }
 

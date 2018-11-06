@@ -5,7 +5,7 @@ namespace AprajitaRetailsDB.DataBase.AprajitaRetails
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
+    //TODO: Add Produtype so Category can be checked
     [Table("ProductItem")]
     public partial class ProductItem
     {

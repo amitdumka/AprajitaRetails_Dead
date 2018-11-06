@@ -9,7 +9,7 @@ namespace AprajitaRetailsDB.DataBase.Voyager
     [Table("InsertDataLog")]
     public partial class InsertDataLog
     {
-        public int ID { get; set; }
+        public int InsertDataLogID { get; set; }
 
         [Required]
         public string BillNumber { get; set; }

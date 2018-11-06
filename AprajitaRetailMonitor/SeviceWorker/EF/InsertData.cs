@@ -1,10 +1,9 @@
-﻿using System;
+﻿using AprajitaRetailsDB.DataBase.Voyager;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
 namespace AprajitaRetailMonitor.SeviceWorker.EF
-
 {
     public class InsertData
     {
@@ -16,26 +15,44 @@ namespace AprajitaRetailMonitor.SeviceWorker.EF
         /// <param name="voygerBill"></param>
         public static void InsertBillData( AprajitaRetailsDB.DataTypes.VoygerBill voygerBill )
         {
-            LogEvent.WriteEvent( "insert bill data" );
-            AprajitaRetailsDB.DataBase.Voyager.VoyBill bill = voygerBill.bill;
-            List<AprajitaRetailsDB.DataBase.Voyager.LineItem> lineItemList = voygerBill.lineItems;
-            List<AprajitaRetailsDB.DataBase.Voyager.VPaymentMode> paymentList = voygerBill.payModes;
-            //ConnectLinqDataBase();
-            AprajitaRetailsDB.DataBase.Voyager.VoyagerDB voyDatabase;
-            using (voyDatabase=new AprajitaRetailsDB.DataBase.Voyager.VoyagerDB())
+            LogEvent.WriteEvent( "insert bill data _with_EF6" );
+            if (voygerBill!=null)
             {
+                LogEvent.WriteEvent( " voy bil is not null" );
+                if (voygerBill.bill.BillType!=null)
+                {
+                    LogEvent.WriteEvent( "bill tye: "+voygerBill.bill.BillType );
+                }
+            }
+            VoyBill bill = voygerBill.bill;
+
+            List<LineItem> lineItemList = voygerBill.lineItems;
+            List<VPaymentMode> paymentList = voygerBill.payModes;
+
+            VoyagerDB voyDatabase;
+
+            using (voyDatabase=new VoyagerDB())
+            {
+                LogEvent.WriteEvent( "Voyager DB is connected" );
                 var v = from vyb in voyDatabase.VoyBills
                         where vyb.BillNumber==bill.BillNumber&&vyb.BillTime==bill.BillTime
                         select new { vyb.ID };
 
                 if (v.Count()>0)
                 {
-                    Console.WriteLine( "Invoice all ready Present in file" );
                     LogEvent.WriteEvent( "Invoice all ready Present in file" );
                     return;
                 }
-                voyDatabase.VoyBills.Add( bill );//.InsertOnSubmit( bill );
-                voyDatabase.SaveChanges();//.SubmitChanges();
+
+                voyDatabase.VoyBills.Add( bill );
+                if (voyDatabase.SaveChanges()>0)
+                {
+                    LogEvent.WriteEvent( "Bill is saved!!!" );
+                }
+                else
+                {
+                    LogEvent.WriteEvent( "bill is not Saved" );
+                }
                 foreach (AprajitaRetailsDB.DataBase.Voyager.LineItem item in lineItemList)
                 {
                     item.VoyBillId=bill.ID;
@@ -56,7 +73,8 @@ namespace AprajitaRetailMonitor.SeviceWorker.EF
                 };
                 LogEvent.WriteEvent( "Inserted Datalog" );
                 voyDatabase.InsertDataLogs.Add( dataLog );
-                voyDatabase.SaveChanges();//.SubmitChanges();
+
+                voyDatabase.SaveChanges();
                 LogEvent.WriteEvent( "VoyBill is added with BillId: "+bill.ID+"and BillNo: "+bill.BillNumber );
             }
         }

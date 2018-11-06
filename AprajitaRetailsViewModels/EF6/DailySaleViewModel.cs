@@ -1,4 +1,5 @@
-﻿using AprajitaRetailsDB.DataBase.AprajitaRetails;
+﻿using AprajitaRetailsDataBase.Client;
+using AprajitaRetailsDB.DataBase.AprajitaRetails;
 using AprajitaRetailsDB.DataBase.Voyager;
 using AprajitaRetailsDB.DataTypes;
 using CyberN.Utility;
@@ -18,13 +19,14 @@ namespace AprajitaRetailsViewModels.EF6
         public bool IsNewCustomer { get; set; }
         public NewCustomer NewCustomer { get; set; }
     }
+
     public class DSInfo
     {//TODO : move to proper place
         public int DailySaleId { get; set; }
         public decimal Amount { get; set; }
         public String InvoiceNo { get; set; }
-
     }
+
     public class CustomerInfo
     {
         public int CustomerID { get; set; }
@@ -52,45 +54,43 @@ namespace AprajitaRetailsViewModels.EF6
                                         "Group By DatePart(MM, SaleDate) ,DatePart(YY, SaleDate) ) as MS , "+
                                         " (  select Sum(Amount) as YAmount , DatePart(YY, SaleDate) as Years from DailySale "+
                                         " where   DatePart(YY, SaleDate)=@CYear2   Group By DatePart(YY, SaleDate) ) as YS";
+
         private static AprajitaRetailsMainDB mainDB;
 
         public static decimal GetMonthlySaleData( )
         {
-            using (mainDB= new AprajitaRetailsMainDB())
+            using (mainDB=new AprajitaRetailsMainDB())
             {
-               // var c= from DailySale cn in mainDB where  
+                // var c= from DailySale cn in mainDB where
 
                 DateTime period = DateTime.Today.Subtract( TimeSpan.FromDays( 30 ) );
                 return mainDB.DailySales.Where( s => s.SaleDate==period&&s.SaleDate==DateTime.Today ).Sum( s => s.Amount )??0;
-                
             }
-
         }
+
         public static decimal GetDailySaleData( )
         {
-
             using (mainDB=new AprajitaRetailsMainDB())
-            
-            return mainDB.DailySales.Where( s => s.SaleDate==DateTime.Today ).Sum( s => s.Amount )??0;
+            {
+                return mainDB.DailySales.Where( s => s.SaleDate==DateTime.Today ).Sum( s => s.Amount )??0;
+            }
         }
+
         public static decimal GetYearlySaleData( )
         {
-
             using (mainDB=new AprajitaRetailsMainDB())
             {
                 DateTime period;
                 period=DateTime.Today.Subtract( TimeSpan.FromDays( 365 ) );
                 return mainDB.DailySales.Where( s => s.SaleDate==period&&s.SaleDate==DateTime.Today ).Sum( s => s.Amount )??0;
-
-
             }
-
         }
-
     }
 
     public class DailySaleViewModel : IDisposable
     {
+        #region Declartions
+
         //public AprajitaRetailsHRMDB hrmDB;
         public AprajitaRetailsMainDB mainDB;
 
@@ -105,6 +105,8 @@ namespace AprajitaRetailsViewModels.EF6
         {
             ((IDisposable)mainDB).Dispose();
         }
+
+        #endregion Declartions
 
         #region MainDB
 
@@ -138,19 +140,26 @@ namespace AprajitaRetailsViewModels.EF6
             mainDB.Customers.Load();
             return mainDB.Customers.Local.Where( s => s.CustomerID==id ).FirstOrDefault().FirstName;
         }
+
         public CustomerInfo GetCustomerInfo( int id )
         {
             mainDB.Customers.Load();
-            return mainDB.Customers.Local.Where( s => s.CustomerID==id ).Select(s=>new CustomerInfo() {CustomerID=s.CustomerID, CustomerName=s.FirstName+" "+s.LastName, MobileNo=s.MobileNo } ).FirstOrDefault();
+            return mainDB.Customers.Local.Where( s => s.CustomerID==id ).Select( s => new CustomerInfo() { CustomerID=s.CustomerID, CustomerName=s.FirstName+" "+s.LastName, MobileNo=s.MobileNo } ).FirstOrDefault();
         }
+
         public string GetCustomerName( string mobileNo )
         {
-            //TODO: Handle Null Exception here . if it return null
             mainDB.Customers.Load();
-             
-            var custName=    mainDB.Customers.Local.Where( s => s.MobileNo==mobileNo ).FirstOrDefault();
+
+            var custName = mainDB.Customers.Local.Where( s => s.MobileNo==mobileNo ).FirstOrDefault();
             if (custName!=null)
-                return custName.FirstName+" "+custName.LastName; else return "";
+            {
+                return custName.FirstName+" "+custName.LastName;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public DailySale GetInvoiceDetails( string invoiceno )
@@ -168,10 +177,13 @@ namespace AprajitaRetailsViewModels.EF6
         public List<string> GetMobileNoList( )
         {
             mainDB.Customers.Load();
-            List<string > lists= mainDB.Customers.Local.Select( s => s.MobileNo ).ToList();
+            List<string> lists = mainDB.Customers.Local.Select( s => s.MobileNo ).ToList();
             Console.WriteLine( "MobileList No ={0}", lists.Count );
             foreach (string v in lists)
+            {
                 Console.WriteLine( v );
+            }
+
             return lists;
         }
 
@@ -198,42 +210,52 @@ namespace AprajitaRetailsViewModels.EF6
             //}
             //return listItem;
         }
+
         public List<string> GetPaymentTypeName( )
         {
             mainDB.PaymentModes.Load();
             return mainDB.PaymentModes.Select( s => s.PayMode ).ToList();
         }
-            #endregion Get Data
 
-            public SaleInfo GetSaleInfo( )
+        #endregion Get Data
+
+        public SaleInfo GetSaleInfo( )
         {
             //TODO:implement this very impt
-            DateTime s = DateTime.Now;
-            Logs.LogMe( "Sale Info Date: "+s.ToShortDateString() );
+            //  DateTime s = DateTime.Now;
+            // Logs.LogMe( "Sale Info Date: "+s.ToShortDateString() );
 
-            string cd = ""+DateTime.Now.Month+"/"+DateTime.Now.Day+"/"+DateTime.Now.Year;
-            string cy = ""+DateTime.Now.Year;
-            string cm = ""+DateTime.Now.Month;
+            //  string cd = ""+DateTime.Now.Month+"/"+DateTime.Now.Day+"/"+DateTime.Now.Year;
+            //  string cy = ""+DateTime.Now.Year;
+            //  string cm = ""+DateTime.Now.Month;
 
-            Logs.LogMe( "Date "+cd+"="+DateTime.Now.ToLongDateString() );
+            //   Logs.LogMe( "Date "+cd+"="+DateTime.Now.ToLongDateString() );
 
-            //SqlCommand cmd = new SqlCommand( SaleQuery.QueryAll, Db.DBCon );
-            //cmd.Parameters.AddWithValue( "@CDate", cd );
-            //cmd.Parameters.AddWithValue( "@CYear2", cy );
-            //cmd.Parameters.AddWithValue( "@CMon", cm );
-            //cmd.Parameters.AddWithValue( "@CYear", cy );
-            //SqlDataReader reader = cmd.ExecuteReader();
+            //Today
+            decimal? totalTodaySale = mainDB.DailySales.Where( d => DbFunctions.DiffDays( d.SaleDate, DateTime.Today )==0 ).Sum( d => d.Amount );
+
+            // Current Month
+            decimal? tMSale = mainDB.DailySales.Where( d => DbFunctions.DiffMonths( d.SaleDate, DateTime.Today )==0 ).Select( d => d.Amount ).Sum();
+
+            //Current Year
+            decimal? tYSale = mainDB.DailySales.Where( d => DbFunctions.DiffYears( d.SaleDate, DateTime.Today )==0 ).Select( d => d.Amount ).Sum();
 
             SaleInfo info = new SaleInfo();
-            //if (reader!=null&&reader.HasRows)
-            //{
-            //    reader.Read();
-            //    info.MonthlySale=""+reader["MAmount"];
-            //    info.TodaySale=""+reader["TAmount"];
-            //    info.YearlySale=""+reader["YAmount"];
-            //    Logs.LogMe( "Sale Info: "+reader["TAmount"]+"=="+reader["MAmount"]+"=="+reader["YAmount"] );
-            //}
-            //reader.Close();
+            if (totalTodaySale!=null)
+            {
+                info.TodaySale=""+totalTodaySale;
+            }
+
+            if (tMSale!=null)
+            {
+                info.MonthlySale=""+tMSale;
+            }
+
+            if (tYSale!=null)
+            {
+                info.YearlySale=""+tYSale;
+            }
+
             return info;
         }
 
@@ -275,22 +297,24 @@ namespace AprajitaRetailsViewModels.EF6
 
         public List<DSInfo> GetSaleList( )
         {
-            string sql = " select  InvoiceNo, Amount, ID from DailySale "+
-                    " where DATEDIFF(day, SaleDate,@dates)= 0 order by ID Desc ";
+            //string sql = " select  InvoiceNo, Amount, ID from DailySale "+
+            //        " where DATEDIFF(day, SaleDate,@dates)= 0 order by ID Desc ";
             mainDB.DailySales.Load();
-           return mainDB.DailySales.Local.Where( s => DateTime.Compare(s.SaleDate.Date,DateTime.Today.Date )==0).Select( s => new DSInfo{ InvoiceNo= s.InvoiceNo, Amount= s.Amount??0,DailySaleId= s.DailySaleID } ).ToList();
-            
+            return mainDB.DailySales.Local.Where( s => DateTime.Compare( s.SaleDate.Date, DateTime.Today.Date )==0 ).Select( s => new DSInfo { InvoiceNo=s.InvoiceNo, Amount=s.Amount??0, DailySaleId=s.DailySaleID } ).ToList();
         }
 
         public void UpdateInvoiceDetails( DailySale data )
         {
         }
 
-        
         #endregion MainDB
 
         #region VoygerDB
 
+        /// <summary>
+        /// Get All Voyager Bill using EF 6
+        /// </summary>
+        /// <returns></returns>
         public List<VoygerBill> GetAllVoyBills( )
         {
             List<VoygerBill> allBills = new List<VoygerBill>();
@@ -321,12 +345,18 @@ namespace AprajitaRetailsViewModels.EF6
             }
         }
 
+        /// <summary>
+        /// Get pendingList using EF6
+        /// </summary>
+        /// <returns></returns>
         public List<SortedDictionary<string, string>> GetPendingList( )
         {
             List<SortedDictionary<string, string>> list = new List<SortedDictionary<string, string>>();
+
             if (voyBillList!=null&&voyBillList.Count>0)
             {
                 Console.WriteLine( "Found in PendingList:#"+voyBillList.Count );
+
                 foreach (var itemBill in voyBillList)
                 {
                     SortedDictionary<string, string> a = new SortedDictionary<string, string>
@@ -357,6 +387,60 @@ namespace AprajitaRetailsViewModels.EF6
             return list;
         }
 
+        public void UpdateCustomerBillCount( int custID, decimal billAmount )
+        {
+            var customer = mainDB.Customers.Where( s => s.CustomerID==custID ).FirstOrDefault();
+            if (customer.NoOfBills!=null)
+            {
+                customer.NoOfBills++;
+            }
+            else
+            {
+                customer.NoOfBills=1;
+            }
+
+            if (customer.TotalAmount!=null)
+            {
+                customer.TotalAmount=+billAmount;
+            }
+            else
+            {
+                customer.TotalAmount=billAmount;
+            }
+        }
+
+        public void VerifyCustomerBillCountData( )
+        {
+            //TODO: implement
+        }
+
+        public bool VerifyCustomerBillCountData( int custId )
+        {
+            //TODO: implemnt
+            decimal? totalAmount = mainDB.DailySales.Where( s => s.CustomerID==custId ).Select( s => s.Amount ).Sum();
+
+            int totalCtr = mainDB.DailySales.Where( s => s.CustomerID==custId ).Select( s => s.InvoiceNo ).Count();
+            int c = mainDB.Customers.Where( s => s.CustomerID==custId&&s.TotalAmount==totalAmount&&s.NoOfBills==totalCtr ).Count();
+            if (c<1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public void CorrectCustomerBillCountData( int CustID )
+        {
+            //TODO: implement
+        }
+
+        /// <summary>
+        /// Get Voyager Bill by ID using EF6
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public VoygerBill GetVoyBillsByID( int ID )
         {
             using (voyDB=new VoyagerDB())
@@ -383,9 +467,6 @@ namespace AprajitaRetailsViewModels.EF6
         }
 
         private static int LoopCount = 0;
-        // private VoyagerDB voyDB;
-
-        //private string L_InvoiceID;
         private List<VoygerBill> voyBillList;
 
         private void SetUnSavedVoyBill( List<VoygerBill> bill )
@@ -393,6 +474,9 @@ namespace AprajitaRetailsViewModels.EF6
             voyBillList=bill;
         }
 
+        /// <summary>
+        /// Assign all UnSaved Bill to object
+        /// </summary>
         private void SetUnSavedVoyBill( )
         {
             List<VoygerBill> allBills = new List<VoygerBill>();
@@ -402,8 +486,6 @@ namespace AprajitaRetailsViewModels.EF6
                             from you in voyDB.InsertDataLogs
                             where you.DailySaleId.HasValue==false&&you.SaleInvoiceId.HasValue==false&&me.ID==you.VoyBillId
                             select me;
-
-                Console.WriteLine( "Querry Created" );
 
                 if (bills!=null&&(bills.Count()>0))
                 {
@@ -437,6 +519,132 @@ namespace AprajitaRetailsViewModels.EF6
             }
         }
 
+        public void UpdateVoyagerBill( int voyBillID, int DailySaleId )
+        {
+            using (voyDB=new VoyagerDB())
+            {
+                var iDl = voyDB.InsertDataLogs.Where( s => s.VoyBillId==voyBillID ).FirstOrDefault();
+                if (iDl!=null)
+                {
+                    iDl.InsertedOn=DateTime.Now;
+                    iDl.DailySaleId=DailySaleId;
+
+                    voyDB.SaveChanges();
+                }
+            }
+        }
+
+        public string ConvertToPaymentMode( string mode )
+        {
+            switch (mode)
+            {
+                case "CA": return "Cash"; break;
+                case "CR": return "Card"; break;
+                case "MIX": return "Mix"; break;
+                default: return "Cash";
+            }
+        }
+
         #endregion VoygerDB
+
+        #region ExtraFeatures
+
+        private List<LineItem> itemList;
+
+        public void CalculateItemCount( String invoiceNo, int VoyBillId )
+        {//TODO: To be implement after product type is added productItem
+            using (voyDB=new VoyagerDB())
+            {
+                itemList=voyDB.LineItems.Where( s => s.VoyBillId==VoyBillId ).ToList();
+                double rQty = 0;
+                foreach (LineItem item in itemList)
+                {
+                    rQty=item.Qty;
+                }
+            }
+        }
+
+        public void SaveWowBill( String invID, decimal amt, int salesmanID, DateTime dDate )
+        {
+            WOWBill wOWBill = new WOWBill()
+            {
+                BillAmount=amt,
+                InvoiceNo=invID,
+                SalesmanID=salesmanID,
+                BillDate=dDate
+            };
+            //TODO: add wow bill to database
+            mainDB.SaveChanges();
+        }
+
+        public void SaveSaleInvoices( string inv )
+        {
+            VoygerBill voyB;
+            using (voyDB=new VoyagerDB())
+            {
+                voyB=new VoygerBill
+                {
+                    bill=voyDB.VoyBills.Where( s => s.BillNumber==inv ).FirstOrDefault()
+                };
+                if (voyB.bill!=null)
+                {
+                    voyB.lineItems=voyDB.LineItems.Where( s => s.VoyBillId==voyB.bill.ID ).ToList();
+                    voyB.payModes=voyDB.VPaymentModes.Where( s => s.VoyBillId==voyB.bill.ID ).ToList();
+                }
+            }
+
+            int? custID = mainDB.Customers.Where( s => s.MobileNo==voyB.bill.CustomerMobile ).Select( s => s.CustomerID ).FirstOrDefault();
+            if (custID==null)
+            {
+                //TODO: Create customer.
+                string[] cname = voyB.bill.CustomerName.Split( ' ' );
+                Customer newCust = new Customer()
+                {
+                    FirstName=cname[0],
+                    LastName=cname[1],
+                    MobileNo=voyB.bill.CustomerMobile,
+                    City=GetCityName( voyB.bill.StoreID ),
+                };
+                mainDB.Customers.Add( newCust );
+                mainDB.SaveChanges();
+                Console.WriteLine( "New Customer ID: {0}", newCust.CustomerID );
+                custID=newCust.CustomerID;
+            }
+
+           List< SaleItem> saleItem = new List<SaleItem>() { };
+            CardPaymentDetail cpD;
+            List<PaymentDetail> payDetails = new List<PaymentDetail>() { //TODO: Payment Details
+            };
+            
+            // Check vPaymentmode for cash card or Mix
+            //Total Tax , Total Qty, Total Item
+            SaleInvoice saleInvoice = new SaleInvoice()
+            {
+                CustomerID=custID,
+                InvoiceNo=inv, OnDate=voyB.bill.BillTime??DateTime.Now, //TODO: make changes in voydb to for not null
+                SaleItems=saleItem, PaymentDetails=payDetails,
+                IsManualBillAdjusted=0,RoundOffAmount=0,//TODO: Calculate roundoff amount matching from saleupload
+                StoreCode=CurrentClient.LoggedClient.ClientCode,
+                SaleTypeID=GetSaleTypeID(voyB.bill.BillType),TotalBillAmount=(decimal)voyB.bill.BillGrossAmount,
+                TotalDiscountAmount=(decimal)voyB.bill.BillDiscount, TotalItems=saleItem.Count, 
+                TotalQty= saleItem.Sum(s=>s.Qty)
+
+            };
+        }
+
+        private int GetSaleTypeID( string billType )
+        {
+            //TODO: implement
+            throw new NotImplementedException();
+        }
+
+        private string GetCityName( string sCode )
+        {
+            //TODO: get city name from store
+            return mainDB.Clients.Where( s => s.ClientCode==sCode ).Select( s => s.ClientCity ).FirstOrDefault();
+          //  throw new NotImplementedException();
+        }
+
+        #endregion ExtraFeatures
     }
 }

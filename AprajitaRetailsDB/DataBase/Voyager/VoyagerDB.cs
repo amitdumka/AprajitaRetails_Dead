@@ -7,6 +7,9 @@ namespace AprajitaRetailsDB.DataBase.Voyager
 
     public partial class VoyagerDB : DbContext
     {
+        //TODO: Database should have username and password. which can be used database. 
+        //TODO: All database should be at Same Location. 
+        //TODO: All Database should have update , backup and copy function .if any version is updated.
         public VoyagerDB( )
             : base( "VoyagerDB" )
         {

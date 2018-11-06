@@ -21,6 +21,7 @@ namespace AprajitaRetails
             // Form childForm = new Form ();
             childForm.MdiParent=this;
             //childForm.Text = "Window " + childFormNumber++;
+            childForm.Dock=DockStyle.Fill;
             childFormNumber++;
             childForm.Show();
         }

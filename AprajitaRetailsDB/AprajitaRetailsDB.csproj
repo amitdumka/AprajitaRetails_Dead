@@ -108,6 +108,12 @@
     <Compile Include="DataBase\AprajitaRetails\Incentive.cs" />
     <Compile Include="DataBase\AprajitaRetails\ProductType.cs" />
     <Compile Include="DataBase\AprajitaRetails\PurchaseInward.cs" />
+    <Compile Include="DataBase\AprajitaRetails\WOWBill.cs" />
+    <Compile Include="DataBase\Voyager\InsertDataLog.cs" />
+    <Compile Include="DataBase\Voyager\LineItem.cs" />
+    <Compile Include="DataBase\Voyager\VoyagerDB.cs" />
+    <Compile Include="DataBase\Voyager\VoyBill.cs" />
+    <Compile Include="DataBase\Voyager\VPaymentMode.cs" />
     <Compile Include="DataTypes\InvoiceNo.cs" />
     <Compile Include="DataBase\AprajitaRetails\NewCustomer.cs" />
     <Compile Include="DataBase\AprajitaRetails\PaymentDetail.cs" />
@@ -131,11 +137,6 @@
     <Compile Include="DataBase\AprajitaRetails\Units.cs" />
     <Compile Include="DataBase\AprajitaRetails\User.cs" />
     <Compile Include="DataBase\ObservableListSource.cs" />
-    <Compile Include="DataBase\Voyager\InsertDataLog.cs" />
-    <Compile Include="DataBase\Voyager\LineItem.cs" />
-    <Compile Include="DataBase\Voyager\VoyagerDB.cs" />
-    <Compile Include="DataBase\Voyager\VoyBill.cs" />
-    <Compile Include="DataBase\Voyager\VPaymentMode.cs" />
     <Compile Include="DataTypes\EnumList.cs" />
     <Compile Include="DataTypes\Transcation.cs" />
     <Compile Include="DataTypes\VoygerBill.cs" />
